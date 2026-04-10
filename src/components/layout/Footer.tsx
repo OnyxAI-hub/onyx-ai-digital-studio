@@ -31,12 +31,12 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/50 bg-background">
+    <footer className="border-t border-border/40 bg-background">
       <div className="container-narrow px-4 py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
-          <div className="space-y-4">
-            <img src={onyxLogo} alt="ONYX AI" className="h-8 w-auto" />
+          <div className="space-y-5">
+            <img src={onyxLogo} alt="ONYX AI" className="h-12 w-auto" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Premium websites, web apps, and AI-powered solutions built to help your business grow.
             </p>
@@ -46,7 +46,7 @@ const Footer = () => {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="rounded-lg border border-border/50 p-2 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                  className="rounded-md border border-border/50 p-2 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -57,13 +57,13 @@ const Footer = () => {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="mb-4 font-display text-sm font-semibold text-foreground">{title}</h4>
+              <h4 className="mb-4 font-display text-xs font-semibold uppercase tracking-widest text-foreground">{title}</h4>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.path}
-                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {link.label}
                     </Link>
@@ -74,7 +74,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 md:flex-row">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} ONYX AI. All rights reserved.
           </p>

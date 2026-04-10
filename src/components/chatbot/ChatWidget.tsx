@@ -61,7 +61,6 @@ const ChatWidget = () => {
     if (!text) return;
     setInput("");
 
-    // If in lead capture flow
     if (leadStep >= 0 && leadStep < LEAD_FLOW.length) {
       const currentKey = LEAD_FLOW[leadStep].key;
       const newData = { ...leadData, [currentKey]: text };
@@ -79,14 +78,12 @@ const ChatWidget = () => {
       return;
     }
 
-    // Check for FAQ match
     const faqResponse = findFAQResponse(text);
     if (faqResponse) {
       addMessages(text, faqResponse);
       return;
     }
 
-    // Check for intent to start lead flow
     const lower = text.toLowerCase();
     if (lower.includes("get started") || lower.includes("consultation") || lower.includes("hire") || lower.includes("quote") || lower.includes("interested")) {
       addMessages(text, LEAD_FLOW[0].question);
@@ -94,7 +91,6 @@ const ChatWidget = () => {
       return;
     }
 
-    // Default fallback
     addMessages(text, "I can help with information about our services, pricing, and process. If you'd like to get started, just say so and I'll collect your details for Xavier to follow up.");
   };
 
@@ -104,7 +100,7 @@ const ChatWidget = () => {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-105"
+          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-foreground text-background shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-transform hover:scale-105"
           aria-label="Open chat"
         >
           <MessageCircle className="h-6 w-6" />
@@ -113,11 +109,11 @@ const ChatWidget = () => {
 
       {/* Chat Panel */}
       {open && (
-        <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[360px] flex-col overflow-hidden rounded-2xl border border-border/50 bg-background shadow-2xl">
+        <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[360px] flex-col overflow-hidden rounded-lg border border-border/60 bg-background shadow-2xl shadow-black/50">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border/50 bg-card/80 px-4 py-3">
-            <div className="flex items-center gap-2">
-              <img src={onyxLogo} alt="ONYX AI" className="h-5" />
+          <div className="flex items-center justify-between border-b border-border/40 bg-card/80 px-4 py-3">
+            <div className="flex items-center gap-3">
+              <img src={onyxLogo} alt="ONYX AI" className="h-8" />
               <div>
                 <p className="text-xs font-semibold">ONYX AI Assistant</p>
                 <p className="text-[10px] text-muted-foreground">Online</p>
@@ -132,9 +128,9 @@ const ChatWidget = () => {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] rounded-xl px-3 py-2 text-sm ${
+                <div className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
                   msg.role === "user"
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-foreground text-background"
                     : "bg-secondary text-secondary-foreground"
                 }`}>
                   {msg.text}
@@ -144,7 +140,7 @@ const ChatWidget = () => {
           </div>
 
           {/* Input */}
-          <div className="border-t border-border/50 p-3">
+          <div className="border-t border-border/40 p-3">
             <form
               className="flex gap-2"
               onSubmit={(e) => { e.preventDefault(); handleSend(); }}
@@ -153,7 +149,7 @@ const ChatWidget = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
-                className="flex-1 rounded-lg border border-border/50 bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="flex-1 rounded-md border border-border/60 bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               />
               <Button type="submit" size="icon" className="shrink-0">
                 <Send className="h-4 w-4" />

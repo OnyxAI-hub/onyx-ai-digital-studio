@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, CreditCard, MessageSquare, RefreshCw, FolderOpen, LogIn, UserPlus, KeyRound, CheckCircle } from "lucide-react";
+import { FileText, CreditCard, MessageSquare, RefreshCw, FolderOpen, LogIn, UserPlus, KeyRound } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import onyxLogo from "@/assets/onyx-logo.png";
 
@@ -49,25 +49,25 @@ const ResetForm = () => (
 );
 
 const dashboardWidgets = [
-  { icon: FileText, title: "Project Status", status: "In Progress", detail: "Business Website — Phase 2: Design Review", color: "text-yellow-400" },
-  { icon: FolderOpen, title: "Files & Uploads", status: "3 Files", detail: "Logo, Brand Guidelines, Content Draft", color: "text-primary" },
-  { icon: CreditCard, title: "Invoices", status: "$275 Paid", detail: "Invoice #1042 — 50% deposit received", color: "text-emerald-400" },
-  { icon: MessageSquare, title: "Messages", status: "2 New", detail: "Xavier sent design mockups for review", color: "text-primary" },
-  { icon: RefreshCw, title: "Revisions", status: "1 Pending", detail: "Round 1 feedback submitted — awaiting update", color: "text-orange-400" },
+  { icon: FileText, title: "Project Status", status: "In Progress", detail: "Business Website — Phase 2: Design Review", color: "text-foreground/70" },
+  { icon: FolderOpen, title: "Files & Uploads", status: "3 Files", detail: "Logo, Brand Guidelines, Content Draft", color: "text-foreground/70" },
+  { icon: CreditCard, title: "Invoices", status: "$275 Paid", detail: "Invoice #1042 — 50% deposit received", color: "text-foreground/70" },
+  { icon: MessageSquare, title: "Messages", status: "2 New", detail: "Xavier sent design mockups for review", color: "text-foreground/70" },
+  { icon: RefreshCw, title: "Revisions", status: "1 Pending", detail: "Round 1 feedback submitted — awaiting update", color: "text-foreground/70" },
 ];
 
 const Dashboard = () => (
   <div className="space-y-6">
     <div>
-      <h2 className="font-display text-2xl font-bold">Welcome back, John</h2>
+      <h2 className="font-display text-2xl font-bold tracking-tight">Welcome back, John</h2>
       <p className="text-sm text-muted-foreground">Here's your project overview.</p>
     </div>
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {dashboardWidgets.map((w) => (
         <div key={w.title} className="glass-card-hover p-5">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-              <w.icon className="h-4 w-4 text-primary" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-card border border-border/60">
+              <w.icon className="h-4 w-4 text-foreground/70" />
             </div>
             <div>
               <h3 className="font-display text-sm font-semibold">{w.title}</h3>
@@ -90,7 +90,7 @@ const ClientPortal = () => {
         <section className="section-padding">
           <div className="container-narrow">
             <div className="flex items-center justify-between mb-8">
-              <img src={onyxLogo} alt="ONYX AI" className="h-7" />
+              <img src={onyxLogo} alt="ONYX AI" className="h-10" />
               <Button variant="outline" size="sm" onClick={() => setLoggedIn(false)}>Sign Out</Button>
             </div>
             <Dashboard />
@@ -107,8 +107,8 @@ const ClientPortal = () => {
           <AnimatedSection>
             <div className="glass-card p-8 md:p-10 w-full max-w-md">
               <div className="text-center mb-8">
-                <img src={onyxLogo} alt="ONYX AI" className="h-8 mx-auto mb-4" />
-                <h1 className="font-display text-2xl font-bold">Client Portal</h1>
+                <img src={onyxLogo} alt="ONYX AI" className="h-14 mx-auto mb-5" />
+                <h1 className="font-display text-2xl font-bold tracking-tight">Client Portal</h1>
                 <p className="text-sm text-muted-foreground mt-1">Access your project dashboard</p>
               </div>
 
