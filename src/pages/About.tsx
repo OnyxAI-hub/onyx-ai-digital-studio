@@ -1,0 +1,124 @@
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, User, Globe2, Heart, Clock, Palette, Code2, Rocket, Headphones } from "lucide-react";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import SectionHeading from "@/components/shared/SectionHeading";
+
+const differentiators = [
+  { icon: Palette, title: "Premium Design", desc: "Clean, modern, and tailored to your brand — never a cookie-cutter template." },
+  { icon: Code2, title: "Modern Technology", desc: "Built with the latest tools for speed, security, and scalability." },
+  { icon: Heart, title: "Client-First Approach", desc: "We listen, we adapt, and we deliver exactly what your business needs." },
+  { icon: Globe2, title: "Bilingual Support", desc: "Fluent in English and Spanish — we serve clients in both languages." },
+];
+
+const timeline = [
+  { step: "Discovery", desc: "We meet to understand your business, goals, and audience." },
+  { step: "Design", desc: "We create mockups and refine the visual direction together." },
+  { step: "Build", desc: "We develop your project with clean code and thorough testing." },
+  { step: "Launch", desc: "We deploy everything and make sure it runs smoothly." },
+  { step: "Support", desc: "We stick around to help with updates and improvements." },
+];
+
+const About = () => (
+  <main className="pt-20">
+    <section className="section-padding">
+      <div className="container-narrow text-center">
+        <AnimatedSection>
+          <span className="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-medium text-primary">About</span>
+          <h1 className="font-display text-4xl font-bold md:text-5xl">
+            The Team Behind <span className="gradient-text">ONYX AI</span>
+          </h1>
+        </AnimatedSection>
+      </div>
+    </section>
+
+    {/* Founder */}
+    <section className="pb-20 px-4">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <div className="glass-card p-8 md:p-12 md:flex gap-10 items-center">
+            <div className="mb-6 md:mb-0 md:w-1/3 flex justify-center">
+              <div className="h-48 w-48 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <User className="h-20 w-20 text-primary/40" />
+              </div>
+            </div>
+            <div className="md:w-2/3">
+              <h2 className="font-display text-2xl font-bold">Xavier — Founder & Developer</h2>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                ONYX AI was founded with a simple belief: every business deserves a website that actually works for them. Not a template with a logo swap — a real digital presence that reflects who they are and helps them grow.
+              </p>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                With experience across web development, UI/UX design, and AI integration, Xavier builds solutions that are both beautiful and functional. Fluent in English and Spanish, ONYX AI serves a diverse range of clients with clear communication and zero jargon.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+
+    {/* Why Choose */}
+    <section className="section-padding bg-card/20">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Why ONYX AI" title="What Sets Us Apart" />
+        </AnimatedSection>
+        <div className="grid gap-6 md:grid-cols-2">
+          {differentiators.map((d, i) => (
+            <AnimatedSection key={d.title} delay={i * 0.1}>
+              <div className="glass-card-hover p-6 flex gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <d.icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display font-semibold">{d.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{d.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Process Timeline */}
+    <section className="section-padding">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Our Process" title="From Idea to Launch" description="A straightforward process designed to keep things moving." />
+        </AnimatedSection>
+        <div className="relative max-w-2xl mx-auto">
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-border/50 md:left-1/2 md:-translate-x-px" />
+          {timeline.map((item, i) => (
+            <AnimatedSection key={item.step} delay={i * 0.1}>
+              <div className="relative flex gap-6 pb-10 pl-10 md:pl-0">
+                <div className="absolute left-0 top-1 md:left-1/2 md:-translate-x-1/2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/50 bg-background text-xs font-bold text-primary">
+                    {i + 1}
+                  </div>
+                </div>
+                <div className="md:w-1/2 md:ml-auto md:pl-10">
+                  <h3 className="font-display font-semibold">{item.step}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section className="section-padding bg-card/20">
+      <div className="container-narrow text-center">
+        <AnimatedSection>
+          <h2 className="font-display text-3xl font-bold">Ready to Work Together?</h2>
+          <p className="mt-3 text-muted-foreground">Let's discuss your project and build something great.</p>
+          <Link to="/contact" className="mt-6 inline-block">
+            <Button size="lg" className="gap-2">Book a Consultation <ArrowRight className="h-4 w-4" /></Button>
+          </Link>
+        </AnimatedSection>
+      </div>
+    </section>
+  </main>
+);
+
+export default About;
