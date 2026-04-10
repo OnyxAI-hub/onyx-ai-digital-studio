@@ -1,3 +1,7 @@
+import proteinImg from "@/assets/products/protein-blend.png";
+import greensImg from "@/assets/products/greens-powder.png";
+import omegaImg from "@/assets/products/omega-complex.png";
+
 const NutrifitProduct = () => (
   <div className="bg-[#0a1a0f] text-white text-[10px] leading-tight">
     {/* Navbar */}
@@ -15,10 +19,14 @@ const NutrifitProduct = () => (
       {/* Image */}
       <div className="w-[45%] shrink-0">
         <div className="bg-gradient-to-br from-emerald-800/30 to-teal-800/20 rounded-lg h-32 flex items-center justify-center border border-emerald-700/20">
-          <div className="w-14 h-18 bg-emerald-700/40 rounded-lg" />
+          <img src={proteinImg} alt="Premium Protein Blend" className="h-24 w-auto object-contain" loading="lazy" />
         </div>
         <div className="flex gap-1 mt-1.5">
-          {[1, 2, 3].map(i => <div key={i} className="w-8 h-8 rounded bg-emerald-800/20 border border-emerald-700/20" />)}
+          {[proteinImg, greensImg, omegaImg].map((img, i) => (
+            <div key={i} className="w-8 h-8 rounded bg-emerald-800/20 border border-emerald-700/20 flex items-center justify-center overflow-hidden">
+              <img src={img} alt="" className="h-6 w-auto object-contain" loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
       {/* Details */}
@@ -50,11 +58,18 @@ const NutrifitProduct = () => (
     <div className="px-4 py-3 border-t border-emerald-900/30">
       <p className="text-[9px] font-semibold text-emerald-300/80 mb-2">YOU MAY ALSO LIKE</p>
       <div className="grid grid-cols-4 gap-1.5">
-        {["Greens Powder", "BCAA Mix", "Omega-3", "Vitamin D"].map((p, i) => (
+        {[
+          { name: "Greens Powder", price: "$34.99", img: greensImg },
+          { name: "BCAA Mix", price: "$24.99", img: proteinImg },
+          { name: "Omega-3", price: "$29.99", img: omegaImg },
+          { name: "Vitamin D", price: "$19.99", img: greensImg },
+        ].map((p, i) => (
           <div key={i} className="bg-emerald-900/20 border border-emerald-800/20 rounded p-1.5 text-center">
-            <div className="h-6 rounded bg-emerald-700/20 mb-1" />
-            <p className="text-[7px] truncate">{p}</p>
-            <p className="text-[6px] text-emerald-400">${(19.99 + i * 5).toFixed(2)}</p>
+            <div className="h-8 rounded bg-emerald-950/40 mb-1 flex items-center justify-center overflow-hidden">
+              <img src={p.img} alt={p.name} className="h-6 w-auto object-contain" loading="lazy" />
+            </div>
+            <p className="text-[7px] truncate">{p.name}</p>
+            <p className="text-[6px] text-emerald-400">{p.price}</p>
           </div>
         ))}
       </div>

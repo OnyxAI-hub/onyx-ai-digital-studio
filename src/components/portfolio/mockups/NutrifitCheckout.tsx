@@ -1,3 +1,6 @@
+import proteinImg from "@/assets/products/protein-blend.png";
+import greensImg from "@/assets/products/greens-powder.png";
+
 const NutrifitCheckout = () => (
   <div className="bg-[#0a1a0f] text-white text-[10px] leading-tight">
     {/* Navbar */}
@@ -64,10 +67,16 @@ const NutrifitCheckout = () => (
       <div className="w-[38%] shrink-0">
         <div className="bg-emerald-900/15 border border-emerald-800/30 rounded-lg p-3">
           <p className="text-[9px] font-semibold mb-2">Order Summary</p>
-          {[["Protein Blend ×2", "$59.98"], ["Greens Powder ×1", "$34.99"]].map(([item, price], i) => (
-            <div key={i} className="flex justify-between py-1 border-b border-emerald-800/20 text-[8px]">
-              <span className="text-emerald-200/60">{item}</span>
-              <span>{price}</span>
+          {[
+            { name: "Protein Blend ×2", price: "$59.98", img: proteinImg },
+            { name: "Greens Powder ×1", price: "$34.99", img: greensImg },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-1.5 py-1 border-b border-emerald-800/20 text-[8px]">
+              <div className="w-6 h-6 rounded bg-emerald-950/40 flex items-center justify-center overflow-hidden shrink-0">
+                <img src={item.img} alt="" className="h-5 w-auto object-contain" loading="lazy" />
+              </div>
+              <span className="text-emerald-200/60 flex-1">{item.name}</span>
+              <span>{item.price}</span>
             </div>
           ))}
           <div className="flex justify-between py-1 text-[8px] text-emerald-300/50">

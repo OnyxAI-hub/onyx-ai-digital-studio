@@ -1,3 +1,13 @@
+import proteinImg from "@/assets/products/protein-blend.png";
+import greensImg from "@/assets/products/greens-powder.png";
+import omegaImg from "@/assets/products/omega-complex.png";
+
+const products = [
+  { name: "Protein Blend", price: "$29.99", img: proteinImg },
+  { name: "Greens Powder", price: "$34.99", img: greensImg },
+  { name: "Omega Complex", price: "$24.99", img: omegaImg },
+];
+
 const NutrifitHomepage = () => (
   <div className="bg-[#0a1a0f] text-white text-[10px] leading-tight">
     {/* Navbar */}
@@ -22,11 +32,13 @@ const NutrifitHomepage = () => (
     <div className="px-4 py-3">
       <p className="text-[9px] font-semibold text-emerald-300/80 mb-2">BESTSELLERS</p>
       <div className="grid grid-cols-3 gap-2">
-        {["Protein Blend", "Greens Powder", "Omega Complex"].map((p, i) => (
+        {products.map((p, i) => (
           <div key={i} className="bg-emerald-900/20 border border-emerald-800/30 rounded p-2">
-            <div className={`h-10 rounded mb-1.5 ${i === 0 ? "bg-emerald-700/30" : i === 1 ? "bg-teal-700/30" : "bg-green-700/30"}`} />
-            <p className="text-[8px] font-semibold">{p}</p>
-            <p className="text-[7px] text-emerald-400">${[29.99, 34.99, 24.99][i]}</p>
+            <div className="h-14 rounded mb-1.5 bg-emerald-950/40 flex items-center justify-center overflow-hidden">
+              <img src={p.img} alt={p.name} className="h-12 w-auto object-contain" loading="lazy" />
+            </div>
+            <p className="text-[8px] font-semibold">{p.name}</p>
+            <p className="text-[7px] text-emerald-400">{p.price}</p>
             <div className="bg-emerald-600/80 rounded mt-1 py-0.5 text-center text-[7px] font-semibold text-black">Add to Cart</div>
           </div>
         ))}
