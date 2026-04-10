@@ -290,7 +290,8 @@ const TestimonialsSection = () => (
 
 /* ─── Chatbot Teaser ─── */
 const ChatbotTeaser = () => (
-  <section className="section-padding">
+  <section className="section-padding relative overflow-hidden">
+    <StarGlimmers count={12} />
     <div className="container-narrow">
       <AnimatedSection>
         <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
@@ -332,7 +333,8 @@ const Newsletter = () => (
 
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
-  <section className="section-padding">
+  <section className="section-padding relative overflow-hidden">
+    <StarGlimmers count={12} />
     <div className="container-narrow">
       <AnimatedSection>
         <div className="text-center">
