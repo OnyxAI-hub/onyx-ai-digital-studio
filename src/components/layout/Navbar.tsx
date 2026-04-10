@@ -2,21 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const OnyxBrandMark = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 28 28" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#brand-grad)" strokeWidth="1.5" fill="none" />
-    <path d="M9 14L14 9L19 14L14 19Z" stroke="url(#brand-grad)" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
-    <circle cx="14" cy="14" r="2.5" fill="url(#brand-grad)" />
-    <defs>
-      <linearGradient id="brand-grad" x1="0" y1="0" x2="28" y2="28">
-        <stop offset="0%" stopColor="hsl(0,0%,90%)" />
-        <stop offset="50%" stopColor="hsl(0,0%,70%)" />
-        <stop offset="100%" stopColor="hsl(0,0%,50%)" />
-      </linearGradient>
-    </defs>
-  </svg>
-);
+import onyxLogo from "@/assets/onyx-logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -35,17 +21,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/20 bg-background/85 backdrop-blur-2xl">
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
-        {/* Brand Lockup */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <OnyxBrandMark className="h-7 w-7 md:h-8 md:w-8 transition-transform duration-300 group-hover:scale-105" />
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-xl md:text-2xl font-extrabold tracking-[-0.03em] text-foreground">
-              ONYX
-            </span>
-            <span className="font-display text-xl md:text-2xl font-light tracking-[0.08em] bg-clip-text text-transparent bg-gradient-to-r from-[hsl(0,0%,80%)] to-[hsl(0,0%,55%)]">
-              AI
-            </span>
-          </div>
+        <Link to="/" className="flex items-center py-1">
+          <img
+            src={onyxLogo}
+            alt="Onyx AI"
+            className="h-10 md:h-12 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}
