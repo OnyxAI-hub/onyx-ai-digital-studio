@@ -177,11 +177,11 @@ const HeroBackground = () => {
 
       // --- Terminal text layer ---
       ctx.save();
-      ctx.font = "11px 'SF Mono', 'Fira Code', 'Consolas', monospace";
+      ctx.font = "10.5px 'SF Mono', 'Fira Code', 'Consolas', monospace";
       ctx.textBaseline = "top";
 
-      // Cycle: total duration for all lines then reset
-      const cycleDuration = TERMINAL_LINES.length * 2800 + 8000;
+      const totalLines = TERMINAL_LINES_LEFT.length + TERMINAL_LINES_RIGHT.length;
+      const cycleDuration = totalLines * 2400 + 10000;
       const cycleElapsed = elapsed % cycleDuration;
 
       // Reset lines on new cycle
