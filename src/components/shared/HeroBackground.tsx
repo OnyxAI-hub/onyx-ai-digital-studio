@@ -61,6 +61,16 @@ const HeroBackground = () => {
 
     particlesRef.current = Array.from({ length: PARTICLE_COUNT }, createParticle);
 
+    // Init stars
+    const starsRef_local: Star[] = Array.from({ length: STAR_COUNT }, () => ({
+      x: Math.random() * w(),
+      y: Math.random() * h(),
+      size: Math.random() * 1.2 + 0.4,
+      baseOpacity: Math.random() * 0.25 + 0.08,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.0008 + 0.0004,
+    }));
+
     const draw = (time: number) => {
       const dt = time - timeRef.current;
       timeRef.current = time;
