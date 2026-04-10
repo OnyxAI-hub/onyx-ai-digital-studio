@@ -25,7 +25,7 @@ const Navbar = () => {
           <img
             src={onyxLogo}
             alt="Onyx AI"
-            className="h-14 md:h-16 w-auto object-contain mix-blend-lighten"
+            className="h-16 md:h-[4.5rem] w-auto object-contain mix-blend-screen brightness-110"
           />
         </Link>
 
