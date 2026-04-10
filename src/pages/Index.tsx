@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import HeroBackground from "@/components/shared/HeroBackground";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { featuredServices } from "@/data/services";
 import { packages } from "@/data/packages";
@@ -11,47 +12,13 @@ import { testimonials } from "@/data/testimonials";
 /* ─── Hero ─── */
 const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-    {/* Abstract background */}
+    {/* Layered animated background */}
     <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,3%)] via-background to-[hsl(0,0%,5%)]" />
-      {/* Radial silver glow */}
-      <div className="absolute top-1/3 left-1/3 h-[600px] w-[600px] rounded-full bg-white/[0.015] blur-[100px]" />
-      <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.01] blur-[80px]" />
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(hsl(0 0% 30%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 30%) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
-      {/* Chrome line accents */}
-      <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
-      <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
-      {/* Diagonal chrome slash */}
-      <div className="absolute top-0 right-[20%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent rotate-12 origin-top hidden lg:block" />
-      {/* Floating UI elements */}
-      <div className="absolute top-[20%] right-[15%] hidden lg:block">
-        <div className="glass-card p-4 animate-float opacity-25">
-          <div className="flex gap-2 mb-2">
-            <div className="h-2 w-2 rounded-full bg-white/30" />
-            <div className="h-2 w-2 rounded-full bg-white/15" />
-            <div className="h-2 w-2 rounded-full bg-white/8" />
-          </div>
-          <div className="space-y-1.5">
-            <div className="h-2 w-24 rounded bg-white/8" />
-            <div className="h-2 w-32 rounded bg-white/4" />
-            <div className="h-2 w-20 rounded bg-white/4" />
-          </div>
-        </div>
-      </div>
-      <div className="absolute bottom-[30%] left-[10%] hidden lg:block">
-        <div className="glass-card p-3 animate-float opacity-15" style={{ animationDelay: "2s" }}>
-          <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-md bg-white/8 flex items-center justify-center">
-              <Zap className="h-3 w-3 text-white/30" />
-            </div>
-            <div className="space-y-1">
-              <div className="h-2 w-16 rounded bg-white/8" />
-              <div className="h-1.5 w-12 rounded bg-white/4" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,2%)] via-[hsl(0,0%,3%)] to-[hsl(0,0%,4%)]" />
+      <HeroBackground />
+      {/* Static chrome line accents layered on top */}
+      <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
     </div>
 
     <div className="relative z-10 container-narrow px-4 text-center">
