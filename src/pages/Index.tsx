@@ -311,27 +311,61 @@ const ChatbotTeaser = () => (
 );
 
 /* ─── Newsletter ─── */
-const Newsletter = () => (
-  <section className="section-padding section-charcoal">
-    <div className="container-narrow">
-      <AnimatedSection>
-        <div className="mx-auto max-w-xl text-center">
-          <Send className="mx-auto mb-4 h-8 w-8 text-muted-foreground" />
-          <h2 className="font-display text-2xl font-bold tracking-tight">Stay in the Loop</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Get updates on new services, tips, and exclusive offers.</p>
-          <form className="mt-6 flex gap-3" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 rounded-md border border-border/60 bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
-            />
-            <Button type="submit">Subscribe</Button>
-          </form>
-        </div>
-      </AnimatedSection>
-    </div>
-  </section>
-);
+const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setIsLoading(true);
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/27176071/u7gr62q/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
+        body: JSON.stringify({
+          email: email.trim(),
+          form_type: "newsletter",
+          source_page: "newsletter_section",
+        }),
+      });
+      toast.success("You're subscribed. Check your inbox.");
+      setEmail("");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section className="section-padding section-charcoal">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <div className="mx-auto max-w-xl text-center">
+            <Send className="mx-auto mb-4 h-8 w-8 text-muted-foreground" />
+            <h2 className="font-display text-2xl font-bold tracking-tight">Stay in the Loop</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Get updates on new services, tips, and exclusive offers.</p>
+            <form className="mt-6 flex gap-3" onSubmit={handleSubmit}>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="flex-1 rounded-md border border-border/60 bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+              />
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? "Sending…" : "Subscribe"}
+              </Button>
+            </form>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
 
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
