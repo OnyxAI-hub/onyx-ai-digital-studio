@@ -10,33 +10,125 @@ interface Message {
 
 const INITIAL_MESSAGE: Message = {
   role: "bot",
-  text: "Hi! I'm the ONYX AI assistant. I can help you learn about our services, find the right package, or connect you with Xavier. What can I help you with?",
+  text: "Hi! I'm the ONYX AI assistant. I can help you find the right service or package, show you relevant portfolio examples, or connect you with Xavier. What can I help you with?",
 };
 
-const FAQ_RESPONSES: Record<string, string> = {
-  pricing: "We have three packages: Starter ($250), Business ($550, most popular), and Advanced ($1,100). Want me to help you figure out which one fits your needs?",
-  price: "We have three packages: Starter ($250), Business ($550, most popular), and Advanced ($1,100). Want me to help you figure out which one fits your needs?",
-  cost: "We have three packages: Starter ($250), Business ($550, most popular), and Advanced ($1,100). Want me to help you figure out which one fits your needs?",
-  services: "We build business websites, landing pages, web apps, dashboards, booking systems, and AI chatbots. We also offer add-ons like logo design, copywriting, and maintenance. What does your business need?",
-  timeline: "Most projects are completed in 2–4 weeks depending on complexity. Rush delivery is available as an add-on. When do you need your project ready?",
-  "how long": "Most projects are completed in 2–4 weeks depending on complexity. Rush delivery is available as an add-on.",
-  revision: "Revisions are included with every package — 1 round for Starter, 3 for Business, and 5 for Advanced.",
-  support: "Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $50/month.",
-  contact: "You can reach us at hello@onyxai.dev or book a consultation directly on our Contact page. Want me to take your details now?",
-  about: "ONYX AI is a premium digital agency founded by Xavier. We build modern websites, web apps, and AI-powered solutions for businesses of all sizes.",
+const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> = {
+  pricing: [
+    {
+      keywords: ["pricing", "price", "cost", "how much", "budget", "afford"],
+      response: "We have three packages:\n\n• **Starter** — $250 (1–3 page site, 2-week delivery)\n• **Business** — $550 (up to 7 pages, custom design, most popular)\n• **Advanced** — $1,100 (unlimited pages, web app features, 30-day support)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
+    },
+  ],
+  services: [
+    {
+      keywords: ["services", "what do you", "what can you", "offer", "do you build"],
+      response: "We build:\n\n• Business Websites\n• Landing Pages\n• Web Applications & Dashboards\n• Booking & Scheduling Systems\n• Payment Integrations\n• AI Chatbots\n\nWe also offer add-ons like logo design, copywriting, and maintenance. What does your business need? [See all services](/services)",
+    },
+  ],
+  timeline: [
+    {
+      keywords: ["timeline", "how long", "turnaround", "delivery", "when", "deadline"],
+      response: "Most projects are completed in 2–4 weeks:\n\n• Starter: ~2 weeks\n• Business: ~3 weeks\n• Advanced: ~4 weeks\n\nRush delivery is available as a $150 add-on. When do you need your project ready?",
+    },
+  ],
+  revisions: [
+    {
+      keywords: ["revision", "changes", "edits", "rounds"],
+      response: "Revisions are included with every package — 1 round for Starter, 3 for Business, and 5 for Advanced. Additional revision rounds can be arranged if needed.",
+    },
+  ],
+  support: [
+    {
+      keywords: ["support", "maintenance", "after launch", "updates"],
+      response: "Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $50/month for ongoing updates, security patches, and content changes.",
+    },
+  ],
+  contact: [
+    {
+      keywords: ["contact", "reach", "email", "call"],
+      response: "You can reach us at hello@onyxai.dev or [book a consultation](/contact) directly. Want me to collect your details now so Xavier can follow up?",
+    },
+  ],
+  about: [
+    {
+      keywords: ["about", "who are you", "onyx", "xavier", "founder"],
+      response: "ONYX AI is a premium digital agency founded by Xavier de Jesus Ruiz. We build modern websites, web apps, and AI-powered solutions for businesses of all sizes. Xavier is fluent in English and Spanish. [Learn more about us](/about).",
+    },
+  ],
+  technology: [
+    {
+      keywords: ["technology", "tech stack", "react", "what do you use", "tools"],
+      response: "We build with React, TypeScript, Tailwind CSS, and Supabase — the same modern stack used by top startups. Your site will be fast, accessible, and scalable.",
+    },
+  ],
 };
+
+// Smart recommendation logic
+const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
+  {
+    keywords: ["business website", "company website", "professional website", "brochure"],
+    response: "For a professional business website, I'd recommend our **Business package ($550)**. It includes up to 7 pages, custom UI/UX design, advanced SEO, and 3 rounds of revisions.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
+  },
+  {
+    keywords: ["e-commerce", "ecommerce", "online store", "sell products", "shop", "supplements", "wellness"],
+    response: "For an e-commerce or product-based site, our **Advanced package ($1,100)** is the best fit. It includes custom features, payment integration, and 30-day post-launch support.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
+  },
+  {
+    keywords: ["cleaning", "service business", "local business", "plumber", "contractor", "landscaping"],
+    response: "For a service business, our **Business package ($550)** works great. It includes a professional design with clear CTAs, booking integration, and SEO to help local customers find you.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
+  },
+  {
+    keywords: ["dashboard", "admin", "platform", "portal", "saas", "app"],
+    response: "For dashboards and web platforms, our **Advanced package ($1,100)** is ideal. It includes custom web app features, user dashboards, role-based access, and API integrations.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
+  },
+  {
+    keywords: ["fitness", "gym", "workout", "training", "health"],
+    response: "We've built premium fitness platforms before! Check out Quality Fitness Club — a full member portal with scheduling, profiles, and class management: [View project →](/portfolio/quality-fitness-club)\n\nI'd recommend our **Advanced package** for a fitness platform. [Get started →](/contact?package=Advanced)",
+  },
+  {
+    keywords: ["landing page", "single page", "launch page", "coming soon"],
+    response: "For a high-converting landing page, our **Starter package ($250)** is perfect. You'll get a responsive, SEO-optimized page delivered in about 2 weeks.\n\nNeed more pages or features? The **Business package ($550)** gives you up to 7 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
+  },
+  {
+    keywords: ["booking", "scheduling", "appointment", "calendar"],
+    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package ($1,100)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
+  },
+  {
+    keywords: ["chatbot", "ai bot", "chat assistant", "automated chat"],
+    response: "We build custom AI chatbots that qualify leads, answer FAQs, and engage visitors 24/7. You can add one to any project for $200 as an add-on.\n\n[Get started →](/contact?extra=AI+Chatbot+Integration)",
+  },
+  {
+    keywords: ["logo", "brand", "branding", "identity"],
+    response: "We offer logo design ($75) and full brand kits ($120) that include logo concepts, color palettes, typography, and brand guidelines. These can be added to any package.\n\n[Get started →](/contact?extra=Brand+Kit)",
+  },
+  {
+    keywords: ["cheap", "free", "lowest", "discount"],
+    response: "Our most affordable option is the **Starter package at $250** — it includes a 1–3 page responsive website with mobile-friendly design, basic SEO, and a contact form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
+  },
+];
 
 const LEAD_FLOW = [
-  { key: "name", question: "Great! What's your name?" },
-  { key: "email", question: "Thanks! What's the best email to reach you?" },
+  { key: "name", question: "I'd love to connect you with Xavier. What's your name?" },
+  { key: "email", question: "Great! What's the best email to reach you at?" },
   { key: "summary", question: "Perfect. In a few words, what are you looking to build?" },
 ];
 
-const findFAQResponse = (input: string): string | null => {
+const findResponse = (input: string): string | null => {
   const lower = input.toLowerCase();
-  for (const [keyword, response] of Object.entries(FAQ_RESPONSES)) {
-    if (lower.includes(keyword)) return response;
+
+  // Check smart recommendations first (more specific)
+  for (const item of SMART_RESPONSES) {
+    if (item.keywords.some((kw) => lower.includes(kw))) return item.response;
   }
+
+  // Then check FAQ categories
+  for (const category of Object.values(FAQ_RESPONSES)) {
+    for (const item of category) {
+      if (item.keywords.some((kw) => lower.includes(kw))) return item.response;
+    }
+  }
+
   return null;
 };
 
@@ -61,6 +153,7 @@ const ChatWidget = () => {
     if (!text) return;
     setInput("");
 
+    // Lead capture flow
     if (leadStep >= 0 && leadStep < LEAD_FLOW.length) {
       const currentKey = LEAD_FLOW[leadStep].key;
       const newData = { ...leadData, [currentKey]: text };
@@ -71,32 +164,67 @@ const ChatWidget = () => {
         addMessages(text, LEAD_FLOW[nextStep].question);
         setLeadStep(nextStep);
       } else {
-        addMessages(text, `Thanks, ${newData.name}! I've noted your details. Xavier will follow up at ${newData.email} soon. In the meantime, feel free to explore our services or pricing.`);
+        addMessages(text, `Thanks, ${newData.name}! Xavier will follow up at ${newData.email} within 24 hours.\n\nIn the meantime, feel free to:\n• [Browse our services](/services)\n• [Check pricing](/pricing)\n• [View our portfolio](/portfolio)`);
         setLeadStep(-1);
         console.log("Lead captured:", newData);
       }
       return;
     }
 
-    const faqResponse = findFAQResponse(text);
-    if (faqResponse) {
-      addMessages(text, faqResponse);
+    // Check for smart/FAQ responses
+    const response = findResponse(text);
+    if (response) {
+      addMessages(text, response);
       return;
     }
 
+    // Check for lead capture intent
     const lower = text.toLowerCase();
-    if (lower.includes("get started") || lower.includes("consultation") || lower.includes("hire") || lower.includes("quote") || lower.includes("interested")) {
+    if (lower.includes("get started") || lower.includes("consultation") || lower.includes("hire") || lower.includes("quote") || lower.includes("interested") || lower.includes("ready") || lower.includes("sign up") || lower.includes("begin")) {
       addMessages(text, LEAD_FLOW[0].question);
       setLeadStep(0);
       return;
     }
 
-    addMessages(text, "I can help with information about our services, pricing, and process. If you'd like to get started, just say so and I'll collect your details for Xavier to follow up.");
+    // Check for greetings
+    if (lower.match(/^(hi|hello|hey|sup|yo|what's up|howdy)/)) {
+      addMessages(text, "Hey there! 👋 How can I help you today? I can:\n\n• Help you find the right service or package\n• Show you relevant portfolio examples\n• Answer questions about pricing, timeline, or process\n• Connect you with Xavier for a consultation\n\nWhat are you looking for?");
+      return;
+    }
+
+    // Check for thanks
+    if (lower.match(/(thank|thanks|thx|appreciate)/)) {
+      addMessages(text, "You're welcome! Is there anything else I can help with? If you're ready to move forward, just say \"get started\" and I'll collect your details for Xavier.");
+      return;
+    }
+
+    // Fallback with helpful guidance
+    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $250\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
+  };
+
+  // Simple markdown-like link rendering
+  const renderText = (text: string) => {
+    const parts = text.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*|\n)/g);
+    return parts.map((part, i) => {
+      const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/);
+      if (linkMatch) {
+        return (
+          <a key={i} href={linkMatch[2]} className="underline text-foreground/80 hover:text-foreground" onClick={() => setOpen(false)}>
+            {linkMatch[1]}
+          </a>
+        );
+      }
+      const boldMatch = part.match(/\*\*(.*?)\*\*/);
+      if (boldMatch) {
+        return <strong key={i} className="font-semibold text-foreground/90">{boldMatch[1]}</strong>;
+      }
+      if (part === "\n") return <br key={i} />;
+      return <span key={i}>{part}</span>;
+    });
   };
 
   return (
     <>
-      {/* Floating Button */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
@@ -107,7 +235,6 @@ const ChatWidget = () => {
         </button>
       )}
 
-      {/* Chat Panel */}
       {open && (
         <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[360px] flex-col overflow-hidden rounded-lg border border-border/60 bg-background shadow-2xl shadow-black/50">
           {/* Header */}
@@ -128,21 +255,36 @@ const ChatWidget = () => {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
+                <div className={`max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed ${
                   msg.role === "user"
                     ? "bg-foreground text-background"
                     : "bg-secondary text-secondary-foreground"
                 }`}>
-                  {msg.text}
+                  {msg.role === "bot" ? renderText(msg.text) : msg.text}
                 </div>
               </div>
             ))}
           </div>
 
+          {/* Quick actions */}
+          {messages.length <= 1 && (
+            <div className="px-4 pb-2 flex flex-wrap gap-1.5">
+              {["Pricing", "Services", "Portfolio", "Get Started"].map((q) => (
+                <button
+                  key={q}
+                  onClick={() => { setInput(q); setTimeout(() => { setInput(q); document.querySelector<HTMLFormElement>(".chat-form")?.requestSubmit(); }, 50); }}
+                  className="rounded-full border border-border/40 bg-card/60 px-3 py-1 text-[11px] text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Input */}
           <div className="border-t border-border/40 p-3">
             <form
-              className="flex gap-2"
+              className="flex gap-2 chat-form"
               onSubmit={(e) => { e.preventDefault(); handleSend(); }}
             >
               <input

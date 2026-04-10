@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -23,13 +24,67 @@ const contactSchema = z.object({
 
 type ContactForm = z.infer<typeof contactSchema>;
 
+const SERVICE_MAP: Record<string, string> = {
+  "Business Websites": "website",
+  "Landing Pages": "landing",
+  "Web Applications": "webapp",
+  "Dashboards & Admin Panels": "webapp",
+  "Payment Integrations": "webapp",
+  "Booking & Scheduling Systems": "webapp",
+  "Automation & Workflows": "webapp",
+  "AI Chatbots": "webapp",
+  website: "website",
+  landing: "landing",
+  webapp: "webapp",
+  ecommerce: "ecommerce",
+  redesign: "redesign",
+  other: "other",
+};
+
+const PACKAGE_BUDGET_MAP: Record<string, string> = {
+  Starter: "under-500",
+  Business: "500-1000",
+  Advanced: "1000-2500",
+};
+
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  const prefillService = searchParams.get("service") || "";
+  const prefillPackage = searchParams.get("package") || "";
+  const prefillExtra = searchParams.get("extra") || "";
+
+  const resolvedService = SERVICE_MAP[prefillService] || prefillService || "";
+  const resolvedBudget = PACKAGE_BUDGET_MAP[prefillPackage] || "";
+
+  const defaultMessage = prefillPackage
+    ? `I'm interested in the ${prefillPackage} package.`
+    : prefillExtra
+      ? `I'm interested in the "${prefillExtra}" add-on.`
+      : prefillService
+        ? `I'm interested in ${prefillService}.`
+        : "";
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", budget: "", timeline: "", services: "", message: "" },
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      budget: resolvedBudget,
+      timeline: "",
+      services: resolvedService,
+      message: defaultMessage,
+    },
   });
+
+  // Update form when search params change
+  useEffect(() => {
+    if (resolvedService) form.setValue("services", resolvedService);
+    if (resolvedBudget) form.setValue("budget", resolvedBudget);
+    if (defaultMessage) form.setValue("message", defaultMessage);
+  }, [resolvedService, resolvedBudget, defaultMessage]);
 
   const onSubmit = (data: ContactForm) => {
     console.log("Form submitted:", data);
@@ -103,6 +158,13 @@ const Contact = () => {
               ) : (
                 <div className="glass-card p-8">
                   <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Project Intake Form</h3>
+                  {(prefillPackage || prefillService || prefillExtra) && (
+                    <div className="mb-6 rounded-lg border border-border/40 bg-card/40 px-4 py-3 text-sm text-muted-foreground">
+                      {prefillPackage && <>Selected package: <span className="text-foreground font-medium">{prefillPackage}</span></>}
+                      {prefillService && <>Interested in: <span className="text-foreground font-medium">{prefillService}</span></>}
+                      {prefillExtra && <>Add-on: <span className="text-foreground font-medium">{prefillExtra}</span></>}
+                    </div>
+                  )}
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                       <div className="grid gap-5 md:grid-cols-2">
@@ -132,7 +194,7 @@ const Contact = () => {
                         <FormField control={form.control} name="budget" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Budget Range</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                               </FormControl>
@@ -151,7 +213,7 @@ const Contact = () => {
                         <FormField control={form.control} name="timeline" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Timeline</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
                               </FormControl>
@@ -168,7 +230,7 @@ const Contact = () => {
                         <FormField control={form.control} name="services" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Service Needed</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger><SelectValue placeholder="Select service" /></SelectTrigger>
                               </FormControl>

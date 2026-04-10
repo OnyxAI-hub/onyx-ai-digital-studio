@@ -48,7 +48,7 @@ const Pricing = () => (
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact">
+                <Link to={`/contact?package=${encodeURIComponent(pkg.name)}`}>
                   <Button className="w-full" variant={pkg.highlighted ? "default" : "outline"}>
                     Get Started <ArrowRight className="h-4 w-4 ml-1" />
                   </Button>
@@ -69,13 +69,18 @@ const Pricing = () => (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {extras.map((extra, i) => (
             <AnimatedSection key={extra.name} delay={i * 0.05}>
-              <div className="glass-card-hover p-5 flex items-start justify-between gap-4">
-                <div>
-                  <h4 className="font-display text-sm font-semibold">{extra.name}</h4>
-                  <p className="text-xs text-muted-foreground mt-1">{extra.description}</p>
+              <Link
+                to={`/contact?extra=${encodeURIComponent(extra.name)}`}
+                className="block"
+              >
+                <div className="glass-card-hover p-5 flex items-start justify-between gap-4 group cursor-pointer transition-all">
+                  <div>
+                    <h4 className="font-display text-sm font-semibold group-hover:text-foreground transition-colors">{extra.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-1">{extra.description}</p>
+                  </div>
+                  <span className="shrink-0 rounded-md bg-card border border-border/60 px-2 py-1 text-xs font-semibold text-foreground/70">{extra.price}</span>
                 </div>
-                <span className="shrink-0 rounded-md bg-card border border-border/60 px-2 py-1 text-xs font-semibold text-foreground/70">{extra.price}</span>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>
