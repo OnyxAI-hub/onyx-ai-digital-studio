@@ -11,7 +11,17 @@ interface Particle {
   maxLife: number;
 }
 
+interface Star {
+  x: number;
+  y: number;
+  size: number;
+  baseOpacity: number;
+  phase: number;
+  speed: number;
+}
+
 const PARTICLE_COUNT = 40;
+const STAR_COUNT = 25;
 
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
