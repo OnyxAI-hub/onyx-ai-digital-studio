@@ -11,7 +11,17 @@ interface Particle {
   maxLife: number;
 }
 
+interface Star {
+  x: number;
+  y: number;
+  size: number;
+  baseOpacity: number;
+  phase: number;
+  speed: number;
+}
+
 const PARTICLE_COUNT = 40;
+const STAR_COUNT = 25;
 
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -50,6 +60,16 @@ const HeroBackground = () => {
     });
 
     particlesRef.current = Array.from({ length: PARTICLE_COUNT }, createParticle);
+
+    // Init stars
+    const starsRef_local: Star[] = Array.from({ length: STAR_COUNT }, () => ({
+      x: Math.random() * w(),
+      y: Math.random() * h(),
+      size: Math.random() * 1.2 + 0.4,
+      baseOpacity: Math.random() * 0.25 + 0.08,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.0008 + 0.0004,
+    }));
 
     const draw = (time: number) => {
       const dt = time - timeRef.current;
@@ -129,7 +149,32 @@ const HeroBackground = () => {
         }
       });
 
-      // --- Chrome geometric shapes (very subtle) ---
+      // --- Star glimmers ---
+      starsRef_local.forEach((star) => {
+        const shimmer = Math.sin(time * star.speed + star.phase);
+        const alpha = star.baseOpacity * (0.3 + shimmer * 0.7);
+        if (alpha > 0.01) {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(220,220,230,${alpha})`;
+          ctx.fill();
+
+          // Tiny cross flare on brightest moments
+          if (alpha > star.baseOpacity * 0.75) {
+            const flareLen = star.size * 2.5;
+            const flareAlpha = (alpha - star.baseOpacity * 0.5) * 0.4;
+            ctx.strokeStyle = `rgba(255,255,255,${flareAlpha})`;
+            ctx.lineWidth = 0.3;
+            ctx.beginPath();
+            ctx.moveTo(star.x - flareLen, star.y);
+            ctx.lineTo(star.x + flareLen, star.y);
+            ctx.moveTo(star.x, star.y - flareLen);
+            ctx.lineTo(star.x, star.y + flareLen);
+            ctx.stroke();
+          }
+        }
+      });
+
       ctx.save();
       ctx.strokeStyle = `rgba(255,255,255,${0.015 + Math.sin(t * 1.5) * 0.005})`;
       ctx.lineWidth = 0.5;
