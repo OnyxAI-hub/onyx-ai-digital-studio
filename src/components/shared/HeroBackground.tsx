@@ -10,56 +10,145 @@ interface Sparkle {
   bloomRadius: number;
 }
 
-interface TermLine {
-  text: string;
+type LineColor = "white" | "green" | "red" | "purple" | "gray";
+
+interface TermFragment {
+  lines: { text: string; color: LineColor }[];
   x: number;
   y: number;
-  opacity: number;
   delay: number;
   speed: number;
   charIndex: number;
+  currentLine: number;
   blinkPhase: number;
-  done: boolean;
+  opacity: number;
 }
 
 const SPARKLE_COUNT = 6;
 
-const TERMINAL_LINES_LEFT = [
-  "$ onyx init --project client-portal",
-  "> compiling components...",
-  "> authentication enabled",
-  "> route /dashboard mapped",
-  "> ui compiled successfully",
-  "$ onyx deploy --prod",
-  "> deploying to edge network...",
-  "> system ready ✓",
-  "> chatbot active",
-  "> payment integration configured",
-  "$ onyx build --optimize",
-  "> initializing build pipeline...",
-  "> assets optimized",
-  "> ssl certificates verified",
-  "$ onyx monitor --status",
-  "> uptime 99.98%",
-  "> latency 12ms avg",
-  "> cache hit ratio 94.2%",
-  "> memory usage nominal",
+// Terminal fragment blocks — scattered organically
+const FRAGMENTS: { lines: { text: string; color: LineColor }[] }[] = [
+  {
+    lines: [
+      { text: "$ onyx init --project client-portal", color: "white" },
+      { text: "> compiling components...", color: "gray" },
+      { text: "> authentication enabled", color: "green" },
+      { text: "> route /dashboard mapped", color: "green" },
+      { text: "> ui compiled successfully ✓", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx deploy --prod --region=edge", color: "white" },
+      { text: "> bundling assets...", color: "gray" },
+      { text: "> deploying to edge network...", color: "gray" },
+      { text: "> ssl certificates verified", color: "green" },
+      { text: "> system ready ✓", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx scan --security", color: "white" },
+      { text: "> scanning dependencies...", color: "gray" },
+      { text: "> no vulnerabilities found", color: "green" },
+      { text: "> headers configured", color: "green" },
+      { text: "> cors policy active", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx build --optimize", color: "white" },
+      { text: "> tree-shaking modules...", color: "gray" },
+      { text: "> warn: unused import 'legacy'", color: "red" },
+      { text: "> assets optimized (1.2mb → 340kb)", color: "green" },
+      { text: "> build complete in 2.4s", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx monitor --status", color: "white" },
+      { text: "> uptime 99.98%", color: "green" },
+      { text: "> latency 12ms avg", color: "green" },
+      { text: "> err: timeout on /api/legacy", color: "red" },
+      { text: "> cache hit ratio 94.2%", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "const config = {", color: "purple" },
+      { text: "  theme: 'dark',", color: "gray" },
+      { text: "  engine: 'turbo',", color: "gray" },
+      { text: "  analytics: true,", color: "gray" },
+      { text: "};", color: "purple" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx test --coverage", color: "white" },
+      { text: "> running 247 tests...", color: "gray" },
+      { text: "> all tests passing ✓", color: "green" },
+      { text: "> coverage 96.1%", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx analytics --live", color: "white" },
+      { text: "> 2.4k sessions today", color: "gray" },
+      { text: "> conversion rate 3.8%", color: "green" },
+      { text: "> bounce rate 22%", color: "gray" },
+      { text: "> chatbot active", color: "green" },
+    ],
+  },
+  {
+    lines: [
+      { text: "async function deploy() {", color: "purple" },
+      { text: "  await build({ minify: true });", color: "gray" },
+      { text: "  await push('production');", color: "gray" },
+      { text: "  return { status: 'live' };", color: "green" },
+      { text: "}", color: "purple" },
+    ],
+  },
+  {
+    lines: [
+      { text: "$ onyx integrate --payments", color: "white" },
+      { text: "> stripe connected", color: "green" },
+      { text: "> webhooks configured", color: "green" },
+      { text: "> warn: test mode enabled", color: "red" },
+    ],
+  },
 ];
 
-const TERMINAL_LINES_RIGHT = [
-  "$ onyx scan --security",
-  "> no vulnerabilities found",
-  "> headers configured",
-  "> cors policy active",
-  "$ onyx analytics --live",
-  "> tracking enabled",
-  "> 2.4k sessions today",
-  "> conversion rate 3.8%",
-  "> bounce rate 22%",
-  "$ onyx test --coverage",
-  "> all tests passing",
-  "> coverage 96.1%",
+// Zones that avoid the center content area (roughly 25-75% x, 30-70% y)
+const PLACEMENT_ZONES = [
+  // Upper left
+  { xMin: 0.02, xMax: 0.30, yMin: 0.04, yMax: 0.30 },
+  // Left side
+  { xMin: 0.02, xMax: 0.22, yMin: 0.30, yMax: 0.65 },
+  // Lower left
+  { xMin: 0.02, xMax: 0.28, yMin: 0.65, yMax: 0.88 },
+  // Upper right
+  { xMin: 0.65, xMax: 0.92, yMin: 0.04, yMax: 0.28 },
+  // Right side
+  { xMin: 0.72, xMax: 0.94, yMin: 0.28, yMax: 0.60 },
+  // Lower right
+  { xMin: 0.68, xMax: 0.92, yMin: 0.65, yMax: 0.88 },
+  // Top center-left
+  { xMin: 0.28, xMax: 0.45, yMin: 0.02, yMax: 0.18 },
+  // Top center-right
+  { xMin: 0.55, xMax: 0.72, yMin: 0.02, yMax: 0.18 },
+  // Bottom center
+  { xMin: 0.30, xMax: 0.70, yMin: 0.82, yMax: 0.96 },
+  // Far left edge
+  { xMin: 0.01, xMax: 0.15, yMin: 0.15, yMax: 0.85 },
 ];
+
+const COLOR_MAP: Record<LineColor, (a: number) => string> = {
+  white: (a) => `rgba(210, 210, 220, ${a})`,
+  green: (a) => `rgba(120, 180, 120, ${a})`,
+  red: (a) => `rgba(190, 110, 100, ${a})`,
+  purple: (a) => `rgba(160, 130, 190, ${a})`,
+  gray: (a) => `rgba(140, 140, 155, ${a})`,
+};
 
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -95,47 +184,30 @@ const HeroBackground = () => {
       bloomRadius: Math.random() * 5 + 2,
     }));
 
-    // Terminal lines — spread across hero with left-heavy distribution
-    const createTermLines = (): TermLine[] => {
-      const lines: TermLine[] = [];
+    // Create terminal fragments with organic placement
+    const createFragments = (): TermFragment[] => {
       const cw = w();
       const ch = h();
-      const lineHeight = 17;
+      const shuffled = [...FRAGMENTS].sort(() => Math.random() - 0.5);
+      const count = Math.min(shuffled.length, PLACEMENT_ZONES.length);
 
-      // Left column — main presence, spans most of the height
-      TERMINAL_LINES_LEFT.forEach((text, i) => {
-        lines.push({
-          text,
-          x: cw * 0.04 + (i % 3) * 8, // slight indent variation
-          y: ch * 0.08 + i * lineHeight,
-          opacity: 0,
-          delay: i * 2200 + Math.random() * 800,
-          speed: 0.028 + Math.random() * 0.012,
+      return shuffled.slice(0, count).map((frag, i) => {
+        const zone = PLACEMENT_ZONES[i % PLACEMENT_ZONES.length];
+        return {
+          lines: frag.lines,
+          x: cw * (zone.xMin + Math.random() * (zone.xMax - zone.xMin)),
+          y: ch * (zone.yMin + Math.random() * (zone.yMax - zone.yMin)),
+          delay: i * 1800 + Math.random() * 2000,
+          speed: 0.022 + Math.random() * 0.01,
           charIndex: 0,
+          currentLine: 0,
           blinkPhase: Math.random() * Math.PI * 2,
-          done: false,
-        });
-      });
-
-      // Right column — lighter presence, upper area
-      TERMINAL_LINES_RIGHT.forEach((text, i) => {
-        lines.push({
-          text,
-          x: cw * 0.62 + (i % 2) * 6,
-          y: ch * 0.1 + i * lineHeight,
           opacity: 0,
-          delay: i * 2600 + 3000 + Math.random() * 1200,
-          speed: 0.025 + Math.random() * 0.01,
-          charIndex: 0,
-          blinkPhase: Math.random() * Math.PI * 2,
-          done: false,
-        });
+        };
       });
-
-      return lines;
     };
 
-    let termLines = createTermLines();
+    let fragments = createFragments();
     let startTime = 0;
 
     const draw = (time: number) => {
@@ -175,59 +247,73 @@ const HeroBackground = () => {
       ctx.fillStyle = sweepGrad;
       ctx.fillRect(0, 0, cw, ch);
 
-      // --- Terminal text layer ---
+      // --- Terminal fragments layer ---
       ctx.save();
       ctx.font = "10.5px 'SF Mono', 'Fira Code', 'Consolas', monospace";
       ctx.textBaseline = "top";
 
-      const totalLines = TERMINAL_LINES_LEFT.length + TERMINAL_LINES_RIGHT.length;
-      const cycleDuration = totalLines * 2400 + 10000;
+      const cycleDuration = FRAGMENTS.length * 2000 + 14000;
       const cycleElapsed = elapsed % cycleDuration;
 
-      // Reset lines on new cycle
       if (cycleElapsed < dt + 20) {
-        termLines = createTermLines();
+        fragments = createFragments();
       }
 
-      termLines.forEach((line) => {
-        if (cycleElapsed < line.delay) return;
+      const lineHeight = 15;
 
-        const lineElapsed = cycleElapsed - line.delay;
+      fragments.forEach((frag) => {
+        if (cycleElapsed < frag.delay) return;
 
-        // Type out characters
-        if (!line.done) {
-          line.charIndex = Math.min(
-            Math.floor(lineElapsed * line.speed),
-            line.text.length
-          );
-          if (line.charIndex >= line.text.length) line.done = true;
-        }
+        const fragElapsed = cycleElapsed - frag.delay;
 
-        // Fade in then slow fade out
-        const fadeIn = Math.min(lineElapsed / 800, 1);
-        const fadeOutStart = 8000;
-        const fadeOut = lineElapsed > fadeOutStart
-          ? Math.max(1 - (lineElapsed - fadeOutStart) / 4000, 0)
+        // Total chars across all lines in this fragment
+        const totalChars = frag.lines.reduce((sum, l) => sum + l.text.length, 0);
+        const typedChars = Math.min(
+          Math.floor(fragElapsed * frag.speed),
+          totalChars
+        );
+
+        // Fade
+        const fadeIn = Math.min(fragElapsed / 1000, 1);
+        const fadeOutStart = 10000;
+        const fadeOut = fragElapsed > fadeOutStart
+          ? Math.max(1 - (fragElapsed - fadeOutStart) / 5000, 0)
           : 1;
-        const alpha = 0.1 * fadeIn * fadeOut;
+        const baseAlpha = 0.13 * fadeIn * fadeOut;
 
-        if (alpha < 0.002) return;
+        if (baseAlpha < 0.003) return;
 
-        const displayText = line.text.substring(0, line.charIndex);
-        const isCmd = line.text.startsWith("$");
+        // Draw each line
+        let charsUsed = 0;
+        frag.lines.forEach((line, li) => {
+          const lineCharsAvailable = Math.max(0, typedChars - charsUsed);
+          const displayText = line.text.substring(0, Math.min(lineCharsAvailable, line.text.length));
+          charsUsed += line.text.length;
 
-        // Command prompt color vs output color
-        ctx.fillStyle = isCmd
-          ? `rgba(200, 200, 210, ${alpha * 1.2})`
-          : `rgba(160, 160, 170, ${alpha})`;
+          if (displayText.length === 0) return;
 
-        ctx.fillText(displayText, line.x, line.y);
+          const colorFn = COLOR_MAP[line.color];
+          ctx.fillStyle = colorFn(baseAlpha * (line.color === "white" ? 1.3 : 1));
+          ctx.fillText(displayText, frag.x, frag.y + li * lineHeight);
+        });
 
-        // Blinking cursor at end of typing line
-        if (!line.done && Math.sin(time * 0.005 + line.blinkPhase) > 0) {
-          const cursorX = line.x + ctx.measureText(displayText).width + 2;
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 1.5})`;
-          ctx.fillRect(cursorX, line.y, 6, 12);
+        // Blinking cursor on current typing line
+        let cursorCharsUsed = 0;
+        for (let li = 0; li < frag.lines.length; li++) {
+          const lineLen = frag.lines[li].text.length;
+          if (typedChars < cursorCharsUsed + lineLen) {
+            // Cursor is on this line
+            const charsOnLine = typedChars - cursorCharsUsed;
+            const partialText = frag.lines[li].text.substring(0, charsOnLine);
+            if (Math.sin(time * 0.004 + frag.blinkPhase) > 0) {
+              const cursorX = frag.x + ctx.measureText(partialText).width + 2;
+              const cursorY = frag.y + li * lineHeight;
+              ctx.fillStyle = `rgba(255,255,255,${baseAlpha * 1.4})`;
+              ctx.fillRect(cursorX, cursorY, 5, 11);
+            }
+            break;
+          }
+          cursorCharsUsed += lineLen;
         }
       });
       ctx.restore();
