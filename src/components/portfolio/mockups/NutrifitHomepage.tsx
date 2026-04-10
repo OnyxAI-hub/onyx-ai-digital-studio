@@ -23,14 +23,13 @@ const NutrifitHomepage = () => (
       <div className="mt-3 inline-block bg-emerald-400/90 text-black rounded-full px-5 py-1 text-[7px] font-medium tracking-wider">Explore Collection</div>
     </div>
 
-    {/* Featured product — large, centered, breathing */}
-    <div className="flex justify-center py-3">
-      <div className="relative">
-        <div className="w-32 h-20 bg-gradient-to-b from-emerald-950/30 to-transparent rounded-3xl flex items-center justify-center">
-          <img src={proteinImg} alt="Protein Blend" className="h-16 w-auto object-contain drop-shadow-lg" loading="lazy" />
-        </div>
-        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-0.5 text-[6px] text-emerald-300/60 whitespace-nowrap">★ 4.9 · 2,400+ reviews</div>
-      </div>
+    {/* Trust strip */}
+    <div className="flex justify-center py-2.5 gap-6 text-[6px] text-emerald-300/40 tracking-wider">
+      <span>★ 4.9 Rating</span>
+      <span>·</span>
+      <span>2,400+ Reviews</span>
+      <span>·</span>
+      <span>Free Shipping $50+</span>
     </div>
 
     {/* Product strip — horizontal scroll feel */}

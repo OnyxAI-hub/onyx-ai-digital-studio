@@ -32,21 +32,29 @@ const Services = () => (
         <div className="grid gap-6 md:grid-cols-2">
           {coreServices.map((service, i) => (
             <AnimatedSection key={service.title} delay={i * 0.05}>
-              <div className="glass-card-hover p-6 h-full">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
-                  <service.icon className="h-5 w-5 text-foreground/70" />
+              <Link
+                to={`/contact?service=${encodeURIComponent(service.title)}`}
+                className="block h-full"
+              >
+                <div className="glass-card-hover p-6 h-full group cursor-pointer transition-all">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
+                    <service.icon className="h-5 w-5 text-foreground/70" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2 tracking-tight group-hover:text-foreground transition-colors">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{service.description}</p>
+                  <ul className="space-y-1.5 mb-4">
+                    {service.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <CheckCircle className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                    Get started <ArrowRight className="h-3 w-3" />
+                  </span>
                 </div>
-                <h3 className="font-display text-lg font-semibold mb-2 tracking-tight">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{service.description}</p>
-                <ul className="space-y-1.5">
-                  {service.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>
@@ -61,13 +69,18 @@ const Services = () => (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {extras.map((extra, i) => (
             <AnimatedSection key={extra.name} delay={i * 0.05}>
-              <div className="glass-card-hover p-5 flex items-start justify-between gap-4">
-                <div>
-                  <h4 className="font-display text-sm font-semibold">{extra.name}</h4>
-                  <p className="text-xs text-muted-foreground mt-1">{extra.description}</p>
+              <Link
+                to={`/contact?extra=${encodeURIComponent(extra.name)}`}
+                className="block"
+              >
+                <div className="glass-card-hover p-5 flex items-start justify-between gap-4 group cursor-pointer transition-all">
+                  <div>
+                    <h4 className="font-display text-sm font-semibold group-hover:text-foreground transition-colors">{extra.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-1">{extra.description}</p>
+                  </div>
+                  <span className="shrink-0 rounded-md bg-card border border-border/60 px-2 py-1 text-xs font-semibold text-foreground/70">{extra.price}</span>
                 </div>
-                <span className="shrink-0 rounded-md bg-card border border-border/60 px-2 py-1 text-xs font-semibold text-foreground/70">{extra.price}</span>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>

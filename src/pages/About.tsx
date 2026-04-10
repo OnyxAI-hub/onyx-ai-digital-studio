@@ -1,24 +1,119 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe2, Heart, Palette, Code2 } from "lucide-react";
+import { ArrowRight, Globe2, Heart, Palette, Code2, ChevronDown } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import xavierHeadshot from "@/assets/xavier-headshot.jpg";
 
 const differentiators = [
-  { icon: Palette, title: "Premium Design", desc: "Clean, modern, and tailored to your brand — never a cookie-cutter template." },
-  { icon: Code2, title: "Modern Technology", desc: "Built with the latest tools for speed, security, and scalability." },
-  { icon: Heart, title: "Client-First Approach", desc: "We listen, we adapt, and we deliver exactly what your business needs." },
-  { icon: Globe2, title: "Bilingual Support", desc: "Fluent in English and Spanish — we serve clients in both languages." },
+  {
+    icon: Palette,
+    title: "Premium Design",
+    desc: "Clean, modern, and tailored to your brand — never a cookie-cutter template.",
+    detail: "We obsess over spacing, typography, and color to create designs that look custom-built because they are. Every layout is crafted from scratch based on your brand identity and industry.",
+  },
+  {
+    icon: Code2,
+    title: "Modern Technology",
+    desc: "Built with the latest tools for speed, security, and scalability.",
+    detail: "We use React, TypeScript, Tailwind CSS, and Supabase — the same tech stack powering top startups. Your site will be fast, accessible, and future-proof.",
+  },
+  {
+    icon: Heart,
+    title: "Client-First Approach",
+    desc: "We listen, we adapt, and we deliver exactly what your business needs.",
+    detail: "Your goals drive every decision. We keep communication transparent, timelines realistic, and revisions generous so you're always confident in the outcome.",
+  },
+  {
+    icon: Globe2,
+    title: "Bilingual Support",
+    desc: "Fluent in English and Spanish — we serve clients in both languages.",
+    detail: "From discovery calls to final handoff, we communicate in the language you're most comfortable with. This means clearer briefs, faster feedback, and better results.",
+  },
 ];
 
 const timeline = [
-  { step: "Discovery", desc: "We meet to understand your business, goals, and audience." },
-  { step: "Design", desc: "We create mockups and refine the visual direction together." },
-  { step: "Build", desc: "We develop your project with clean code and thorough testing." },
-  { step: "Launch", desc: "We deploy everything and make sure it runs smoothly." },
-  { step: "Support", desc: "We stick around to help with updates and improvements." },
+  {
+    step: "Discovery",
+    desc: "We meet to understand your business, goals, and audience.",
+    detail: "This includes a 30-minute strategy call, competitor analysis, and a written project brief outlining scope, timeline, and deliverables.",
+  },
+  {
+    step: "Design",
+    desc: "We create mockups and refine the visual direction together.",
+    detail: "You'll receive full-page design mockups for review. We iterate based on your feedback until the look and feel is exactly right.",
+  },
+  {
+    step: "Build",
+    desc: "We develop your project with clean code and thorough testing.",
+    detail: "Development happens in sprints with regular check-ins. We test across devices and browsers to ensure everything works flawlessly.",
+  },
+  {
+    step: "Launch",
+    desc: "We deploy everything and make sure it runs smoothly.",
+    detail: "We handle hosting setup, domain configuration, SSL, and a final QA pass. You get full access and ownership of everything.",
+  },
+  {
+    step: "Support",
+    desc: "We stick around to help with updates and improvements.",
+    detail: "Post-launch support is included with select packages. We also offer monthly maintenance plans for ongoing peace of mind.",
+  },
 ];
+
+const DifferentiatorCard = ({ d }: { d: typeof differentiators[0] }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div
+      className="glass-card-hover p-6 flex gap-4 cursor-pointer select-none transition-all"
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-card border border-border/60">
+        <d.icon className="h-5 w-5 text-foreground/70" />
+      </div>
+      <div className="flex-1">
+        <div className="flex items-center justify-between">
+          <h3 className="font-display font-semibold tracking-tight">{d.title}</h3>
+          <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${expanded ? "rotate-180" : ""}`} />
+        </div>
+        <p className="mt-1 text-sm text-muted-foreground">{d.desc}</p>
+        {expanded && (
+          <p className="mt-3 text-sm text-muted-foreground/80 leading-relaxed border-t border-border/20 pt-3">
+            {d.detail}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const TimelineItem = ({ item, index }: { item: typeof timeline[0]; index: number }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div
+      className="relative flex gap-6 pb-10 pl-10 md:pl-0 cursor-pointer select-none"
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="absolute left-0 top-1 md:left-1/2 md:-translate-x-1/2">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border/60 bg-background text-xs font-bold text-foreground/70">
+          {index + 1}
+        </div>
+      </div>
+      <div className="md:w-1/2 md:ml-auto md:pl-10">
+        <div className="flex items-center gap-2">
+          <h3 className="font-display font-semibold tracking-tight">{item.step}</h3>
+          <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform ${expanded ? "rotate-180" : ""}`} />
+        </div>
+        <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+        {expanded && (
+          <p className="mt-2 text-sm text-muted-foreground/80 leading-relaxed border-t border-border/20 pt-2">
+            {item.detail}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const About = () => (
   <main className="pt-20">
@@ -72,15 +167,7 @@ const About = () => (
         <div className="grid gap-6 md:grid-cols-2">
           {differentiators.map((d, i) => (
             <AnimatedSection key={d.title} delay={i * 0.1}>
-              <div className="glass-card-hover p-6 flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-card border border-border/60">
-                  <d.icon className="h-5 w-5 text-foreground/70" />
-                </div>
-                <div>
-                  <h3 className="font-display font-semibold tracking-tight">{d.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{d.desc}</p>
-                </div>
-              </div>
+              <DifferentiatorCard d={d} />
             </AnimatedSection>
           ))}
         </div>
@@ -90,23 +177,13 @@ const About = () => (
     <section className="section-padding">
       <div className="container-narrow">
         <AnimatedSection>
-          <SectionHeading badge="Our Process" title="From Idea to Launch" description="A straightforward process designed to keep things moving." />
+          <SectionHeading badge="Our Process" title="From Idea to Launch" description="A straightforward process designed to keep things moving. Click any step for more detail." />
         </AnimatedSection>
         <div className="relative max-w-2xl mx-auto">
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border/40 md:left-1/2 md:-translate-x-px" />
           {timeline.map((item, i) => (
             <AnimatedSection key={item.step} delay={i * 0.1}>
-              <div className="relative flex gap-6 pb-10 pl-10 md:pl-0">
-                <div className="absolute left-0 top-1 md:left-1/2 md:-translate-x-1/2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border/60 bg-background text-xs font-bold text-foreground/70">
-                    {i + 1}
-                  </div>
-                </div>
-                <div className="md:w-1/2 md:ml-auto md:pl-10">
-                  <h3 className="font-display font-semibold tracking-tight">{item.step}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
+              <TimelineItem item={item} index={i} />
             </AnimatedSection>
           ))}
         </div>
