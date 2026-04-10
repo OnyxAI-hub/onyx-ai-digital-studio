@@ -11,17 +11,18 @@ interface Particle {
   maxLife: number;
 }
 
-interface Star {
+interface Sparkle {
   x: number;
   y: number;
-  size: number;
-  baseOpacity: number;
+  baseSize: number;
   phase: number;
   speed: number;
+  baseOpacity: number;
+  bloomRadius: number;
 }
 
 const PARTICLE_COUNT = 40;
-const STAR_COUNT = 25;
+const SPARKLE_COUNT = 8;
 
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -61,14 +62,15 @@ const HeroBackground = () => {
 
     particlesRef.current = Array.from({ length: PARTICLE_COUNT }, createParticle);
 
-    // Init stars
-    const starsRef_local: Star[] = Array.from({ length: STAR_COUNT }, () => ({
+    // Init sparkles
+    const sparkles: Sparkle[] = Array.from({ length: SPARKLE_COUNT }, () => ({
       x: Math.random() * w(),
       y: Math.random() * h(),
-      size: Math.random() * 1.2 + 0.4,
-      baseOpacity: Math.random() * 0.25 + 0.08,
+      baseSize: Math.random() * 14 + 8,
       phase: Math.random() * Math.PI * 2,
-      speed: Math.random() * 0.0008 + 0.0004,
+      speed: Math.random() * 0.0006 + 0.0003,
+      baseOpacity: Math.random() * 0.3 + 0.1,
+      bloomRadius: Math.random() * 5 + 2,
     }));
 
     const draw = (time: number) => {
@@ -149,29 +151,61 @@ const HeroBackground = () => {
         }
       });
 
-      // --- Star glimmers ---
-      starsRef_local.forEach((star) => {
-        const shimmer = Math.sin(time * star.speed + star.phase);
-        const alpha = star.baseOpacity * (0.3 + shimmer * 0.7);
-        if (alpha > 0.01) {
+      // --- Luxury sparkle flares ---
+      sparkles.forEach((s) => {
+        const shimmer = Math.sin(time * s.speed + s.phase);
+        const tf = (shimmer + 1) / 2;
+        const eased = tf * tf * tf;
+        const opacity = s.baseOpacity * (0.05 + eased * 0.95);
+        const size = s.baseSize * (0.7 + eased * 0.3);
+        const bloom = s.bloomRadius * (0.5 + eased * 0.5);
+
+        if (opacity > 0.01) {
+          // Soft bloom
+          const bg = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, bloom);
+          bg.addColorStop(0, `rgba(255,255,255,${opacity * 0.6})`);
+          bg.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = bg;
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(220,220,230,${alpha})`;
+          ctx.arc(s.x, s.y, bloom, 0, Math.PI * 2);
           ctx.fill();
 
-          // Tiny cross flare on brightest moments
-          if (alpha > star.baseOpacity * 0.75) {
-            const flareLen = star.size * 2.5;
-            const flareAlpha = (alpha - star.baseOpacity * 0.5) * 0.4;
-            ctx.strokeStyle = `rgba(255,255,255,${flareAlpha})`;
-            ctx.lineWidth = 0.3;
-            ctx.beginPath();
-            ctx.moveTo(star.x - flareLen, star.y);
-            ctx.lineTo(star.x + flareLen, star.y);
-            ctx.moveTo(star.x, star.y - flareLen);
-            ctx.lineTo(star.x, star.y + flareLen);
-            ctx.stroke();
-          }
+          ctx.save();
+          ctx.globalAlpha = opacity;
+          ctx.lineWidth = 0.4;
+
+          // Horizontal flare
+          const g1 = ctx.createLinearGradient(s.x - size, s.y, s.x + size, s.y);
+          g1.addColorStop(0, "rgba(255,255,255,0)");
+          g1.addColorStop(0.35, `rgba(255,255,255,${opacity * 0.3})`);
+          g1.addColorStop(0.5, `rgba(255,255,255,${opacity})`);
+          g1.addColorStop(0.65, `rgba(255,255,255,${opacity * 0.3})`);
+          g1.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.strokeStyle = g1;
+          ctx.beginPath();
+          ctx.moveTo(s.x - size, s.y);
+          ctx.lineTo(s.x + size, s.y);
+          ctx.stroke();
+
+          // Vertical flare
+          const g2 = ctx.createLinearGradient(s.x, s.y - size, s.x, s.y + size);
+          g2.addColorStop(0, "rgba(255,255,255,0)");
+          g2.addColorStop(0.35, `rgba(255,255,255,${opacity * 0.3})`);
+          g2.addColorStop(0.5, `rgba(255,255,255,${opacity})`);
+          g2.addColorStop(0.65, `rgba(255,255,255,${opacity * 0.3})`);
+          g2.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.strokeStyle = g2;
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y - size);
+          ctx.lineTo(s.x, s.y + size);
+          ctx.stroke();
+
+          // Center dot
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, 0.6, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${opacity * 0.9})`;
+          ctx.fill();
+          ctx.restore();
         }
       });
 
