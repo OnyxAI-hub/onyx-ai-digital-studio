@@ -24,7 +24,7 @@ interface TermLine {
 
 const SPARKLE_COUNT = 6;
 
-const TERMINAL_LINES = [
+const TERMINAL_LINES_LEFT = [
   "$ onyx init --project client-portal",
   "> compiling components...",
   "> authentication enabled",
@@ -39,6 +39,26 @@ const TERMINAL_LINES = [
   "> initializing build pipeline...",
   "> assets optimized",
   "> ssl certificates verified",
+  "$ onyx monitor --status",
+  "> uptime 99.98%",
+  "> latency 12ms avg",
+  "> cache hit ratio 94.2%",
+  "> memory usage nominal",
+];
+
+const TERMINAL_LINES_RIGHT = [
+  "$ onyx scan --security",
+  "> no vulnerabilities found",
+  "> headers configured",
+  "> cors policy active",
+  "$ onyx analytics --live",
+  "> tracking enabled",
+  "> 2.4k sessions today",
+  "> conversion rate 3.8%",
+  "> bounce rate 22%",
+  "$ onyx test --coverage",
+  "> all tests passing",
+  "> coverage 96.1%",
 ];
 
 const HeroBackground = () => {
