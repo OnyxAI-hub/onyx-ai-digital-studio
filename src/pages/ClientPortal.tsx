@@ -1,133 +1,43 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, CreditCard, MessageSquare, RefreshCw, FolderOpen, LogIn, UserPlus, KeyRound } from "lucide-react";
+import { Lock, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import onyxLogo from "@/assets/onyx-logo.png";
 
-const LoginForm = ({ onLogin }: { onLogin: () => void }) => (
-  <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); onLogin(); }}>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Email</label>
-      <Input type="email" placeholder="you@example.com" />
-    </div>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Password</label>
-      <Input type="password" placeholder="••••••••" />
-    </div>
-    <Button className="w-full">Sign In</Button>
-  </form>
-);
-
-const SignUpForm = () => (
-  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Full Name</label>
-      <Input placeholder="John Smith" />
-    </div>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Email</label>
-      <Input type="email" placeholder="you@example.com" />
-    </div>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Password</label>
-      <Input type="password" placeholder="••••••••" />
-    </div>
-    <Button className="w-full">Create Account</Button>
-  </form>
-);
-
-const ResetForm = () => (
-  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-    <div>
-      <label className="text-sm font-medium mb-1 block">Email</label>
-      <Input type="email" placeholder="you@example.com" />
-    </div>
-    <Button className="w-full">Send Reset Link</Button>
-  </form>
-);
-
-const dashboardWidgets = [
-  { icon: FileText, title: "Project Status", status: "In Progress", detail: "Business Website — Phase 2: Design Review", color: "text-foreground/70" },
-  { icon: FolderOpen, title: "Files & Uploads", status: "3 Files", detail: "Logo, Brand Guidelines, Content Draft", color: "text-foreground/70" },
-  { icon: CreditCard, title: "Invoices", status: "$275 Paid", detail: "Invoice #1042 — 50% deposit received", color: "text-foreground/70" },
-  { icon: MessageSquare, title: "Messages", status: "2 New", detail: "Xavier sent design mockups for review", color: "text-foreground/70" },
-  { icon: RefreshCw, title: "Revisions", status: "1 Pending", detail: "Round 1 feedback submitted — awaiting update", color: "text-foreground/70" },
-];
-
-const Dashboard = () => (
-  <div className="space-y-6">
-    <div>
-      <h2 className="font-display text-2xl font-bold tracking-tight">Welcome back, John</h2>
-      <p className="text-sm text-muted-foreground">Here's your project overview.</p>
-    </div>
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {dashboardWidgets.map((w) => (
-        <div key={w.title} className="glass-card-hover p-5">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-card border border-border/60">
-              <w.icon className="h-4 w-4 text-foreground/70" />
-            </div>
-            <div>
-              <h3 className="font-display text-sm font-semibold">{w.title}</h3>
-              <span className={`text-xs font-medium ${w.color}`}>{w.status}</span>
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground">{w.detail}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const ClientPortal = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  if (loggedIn) {
-    return (
-      <main className="pt-20">
-        <section className="section-padding">
-          <div className="container-narrow">
-            <div className="flex items-center justify-between mb-8">
-              <img src={onyxLogo} alt="ONYX AI" className="h-10" />
-              <Button variant="outline" size="sm" onClick={() => setLoggedIn(false)}>Sign Out</Button>
-            </div>
-            <Dashboard />
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  return (
-    <main className="pt-20">
-      <section className="section-padding">
-        <div className="container-narrow flex items-center justify-center">
-          <AnimatedSection>
-            <div className="glass-card p-8 md:p-10 w-full max-w-md">
-              <div className="text-center mb-8">
-                <img src={onyxLogo} alt="ONYX AI" className="h-14 mx-auto mb-5" />
-                <h1 className="font-display text-2xl font-bold tracking-tight">Client Portal</h1>
-                <p className="text-sm text-muted-foreground mt-1">Access your project dashboard</p>
+const ClientPortal = () => (
+  <main className="pt-20">
+    <section className="section-padding">
+      <div className="container-narrow flex items-center justify-center">
+        <AnimatedSection>
+          <div className="glass-card p-8 md:p-12 w-full max-w-md text-center">
+            <img src={onyxLogo} alt="ONYX AI" className="h-14 mx-auto mb-6" />
+            <div className="flex justify-center mb-5">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border/60 bg-card">
+                <Lock className="h-6 w-6 text-muted-foreground" />
               </div>
-
-              <Tabs defaultValue="login">
-                <TabsList className="w-full grid grid-cols-3 mb-6">
-                  <TabsTrigger value="login" className="gap-1 text-xs"><LogIn className="h-3 w-3" /> Sign In</TabsTrigger>
-                  <TabsTrigger value="signup" className="gap-1 text-xs"><UserPlus className="h-3 w-3" /> Sign Up</TabsTrigger>
-                  <TabsTrigger value="reset" className="gap-1 text-xs"><KeyRound className="h-3 w-3" /> Reset</TabsTrigger>
-                </TabsList>
-                <TabsContent value="login"><LoginForm onLogin={() => setLoggedIn(true)} /></TabsContent>
-                <TabsContent value="signup"><SignUpForm /></TabsContent>
-                <TabsContent value="reset"><ResetForm /></TabsContent>
-              </Tabs>
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
-    </main>
-  );
-};
+            <h1 className="font-display text-2xl font-bold tracking-tight">Client Portal</h1>
+            <p className="mt-3 text-muted-foreground leading-relaxed text-sm">
+              Portal access is provided to active clients during project onboarding. If you're a current client, your login credentials will be sent directly to you.
+            </p>
+            <div className="mt-6 rounded-lg border border-border/40 bg-card/40 p-4">
+              <p className="text-xs text-muted-foreground">
+                <span className="font-semibold text-foreground/80">Coming soon:</span> Real-time project tracking, file sharing, invoices, and direct messaging — all in one place.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-col gap-3">
+              <Link to="/contact">
+                <Button className="w-full gap-2">Get Started <ArrowRight className="h-4 w-4" /></Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" className="w-full">View Packages</Button>
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  </main>
+);
 
 export default ClientPortal;

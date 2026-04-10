@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, User, Globe2, Heart, Clock, Palette, Code2 } from "lucide-react";
+import { ArrowRight, Globe2, Heart, Palette, Code2 } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
+import xavierHeadshot from "@/assets/xavier-headshot.jpg";
 
 const differentiators = [
   { icon: Palette, title: "Premium Design", desc: "Clean, modern, and tailored to your brand — never a cookie-cutter template." },
@@ -37,17 +38,25 @@ const About = () => (
         <AnimatedSection>
           <div className="glass-card p-8 md:p-12 md:flex gap-10 items-center">
             <div className="mb-6 md:mb-0 md:w-1/3 flex justify-center">
-              <div className="h-48 w-48 rounded-lg bg-gradient-to-br from-card to-secondary flex items-center justify-center border border-border/60">
-                <User className="h-20 w-20 text-muted-foreground/30" />
+              <div className="h-56 w-56 rounded-lg overflow-hidden border border-border/60 shadow-lg">
+                <img
+                  src={xavierHeadshot}
+                  alt="Xavier de Jesus Ruiz — Founder of ONYX AI"
+                  className="h-full w-full object-cover object-top"
+                />
               </div>
             </div>
             <div className="md:w-2/3">
-              <h2 className="font-display text-2xl font-bold tracking-tight">Xavier — Founder & Developer</h2>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Xavier de Jesus Ruiz</h2>
+              <p className="text-sm text-muted-foreground mt-1 font-medium">Founder & Developer</p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                ONYX AI was founded with a simple belief: every business deserves a website that actually works for them. Not a template with a logo swap — a real digital presence that reflects who they are and helps them grow.
+                ONYX AI was founded on a straightforward principle: every business deserves a digital presence that actually drives results — not a recycled template with a logo swap, but a purpose-built platform designed to convert visitors, build credibility, and scale with your growth.
               </p>
               <p className="mt-3 text-muted-foreground leading-relaxed">
-                With experience across web development, UI/UX design, and AI integration, Xavier builds solutions that are both beautiful and functional. Fluent in English and Spanish, ONYX AI serves a diverse range of clients with clear communication and zero jargon.
+                Xavier specializes in building modern websites and web applications for businesses, startups, and entrepreneurs. With deep expertise in UI/UX design, full-stack development, and AI integration, every project is crafted with clean design, strong functionality, and measurable business impact at its core.
+              </p>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                Fluent in English and Spanish, ONYX AI serves a diverse range of clients with clear communication, zero jargon, and a relentless focus on quality.
               </p>
             </div>
           </div>
