@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, S
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
 import SectionHeading from "@/components/shared/SectionHeading";
+import StarGlimmers from "@/components/shared/StarGlimmers";
 import { featuredServices } from "@/data/services";
 import { packages } from "@/data/packages";
 import { projects } from "@/data/portfolio";
@@ -289,7 +290,8 @@ const TestimonialsSection = () => (
 
 /* ─── Chatbot Teaser ─── */
 const ChatbotTeaser = () => (
-  <section className="section-padding">
+  <section className="section-padding relative overflow-hidden">
+    <StarGlimmers count={12} />
     <div className="container-narrow">
       <AnimatedSection>
         <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
@@ -331,7 +333,8 @@ const Newsletter = () => (
 
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
-  <section className="section-padding">
+  <section className="section-padding relative overflow-hidden">
+    <StarGlimmers count={12} />
     <div className="container-narrow">
       <AnimatedSection>
         <div className="text-center">
