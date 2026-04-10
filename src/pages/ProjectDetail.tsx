@@ -1,18 +1,38 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, X, Maximize2 } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import BrowserFrame from "@/components/portfolio/BrowserFrame";
+
+// Mockups
+import NutrifitHomepage from "@/components/portfolio/mockups/NutrifitHomepage";
+import NutrifitProduct from "@/components/portfolio/mockups/NutrifitProduct";
+import NutrifitCheckout from "@/components/portfolio/mockups/NutrifitCheckout";
+import PrimeshineLanding from "@/components/portfolio/mockups/PrimeshineLanding";
+import PrimeshineBooking from "@/components/portfolio/mockups/PrimeshineBooking";
+import PrimeshineQuote from "@/components/portfolio/mockups/PrimeshineQuote";
+import FitnessDashboard from "@/components/portfolio/mockups/FitnessDashboard";
+import FitnessSchedule from "@/components/portfolio/mockups/FitnessSchedule";
+import FitnessProfile from "@/components/portfolio/mockups/FitnessProfile";
+import { ReactNode } from "react";
+
+interface MockupScreen {
+  label: string;
+  url: string;
+  component: ReactNode;
+}
 
 interface ProjectData {
   slug: string;
   title: string;
   category: string;
-  gradient: string;
   description: string;
   overview: string;
   features: { title: string; desc: string }[];
   tags: string[];
-  mockups: { label: string; gradient: string }[];
+  screens: MockupScreen[];
 }
 
 const projectsData: ProjectData[] = [
@@ -20,7 +40,6 @@ const projectsData: ProjectData[] = [
     slug: "nutrifit-wellness",
     title: "NutriFit Wellness",
     category: "E-Commerce & Health",
-    gradient: "from-emerald-500/20 to-teal-600/20",
     description: "A modern e-commerce platform for a wellness brand, featuring product catalogs, online ordering, and a nutrition blog. Built for speed, conversion, and brand authority.",
     overview: "NutriFit Wellness needed a digital storefront that matched the quality of their products — clean, fast, and built to convert browsers into buyers. We designed and developed a complete e-commerce experience from the ground up, with a focus on mobile performance, seamless checkout, and content-driven SEO to drive organic traffic.",
     features: [
@@ -32,17 +51,16 @@ const projectsData: ProjectData[] = [
       { title: "Analytics Dashboard", desc: "Integrated sales and traffic analytics for data-driven business decisions." },
     ],
     tags: ["React", "Tailwind CSS", "Stripe", "SEO", "E-Commerce", "CMS"],
-    mockups: [
-      { label: "Homepage", gradient: "from-emerald-500/10 to-teal-600/10" },
-      { label: "Product Page", gradient: "from-teal-500/10 to-green-600/10" },
-      { label: "Checkout", gradient: "from-green-500/10 to-emerald-600/10" },
+    screens: [
+      { label: "Homepage", url: "nutrifit-wellness.com", component: <NutrifitHomepage /> },
+      { label: "Product Page", url: "nutrifit-wellness.com/products/protein-blend", component: <NutrifitProduct /> },
+      { label: "Checkout", url: "nutrifit-wellness.com/checkout", component: <NutrifitCheckout /> },
     ],
   },
   {
     slug: "primeshine-cleaning",
     title: "PrimeShine Cleaning Co.",
     category: "Service Business",
-    gradient: "from-blue-500/20 to-cyan-600/20",
     description: "Professional website with online booking, service area maps, and an instant quote calculator. Designed to convert visitors into booked appointments.",
     overview: "PrimeShine needed more than a brochure site — they needed a booking engine. We built a conversion-focused platform that lets customers explore services, check availability in their area, get an instant estimate, and book directly online. The result: a 3x increase in online bookings within the first month.",
     features: [
@@ -54,17 +72,16 @@ const projectsData: ProjectData[] = [
       { title: "SEO & Local Search", desc: "Optimized for local search results to capture high-intent service queries." },
     ],
     tags: ["React", "TypeScript", "Booking System", "Responsive", "Maps API", "SEO"],
-    mockups: [
-      { label: "Landing Page", gradient: "from-blue-500/10 to-cyan-600/10" },
-      { label: "Booking Flow", gradient: "from-cyan-500/10 to-sky-600/10" },
-      { label: "Quote Calculator", gradient: "from-sky-500/10 to-blue-600/10" },
+    screens: [
+      { label: "Landing Page", url: "primeshinecleaning.com", component: <PrimeshineLanding /> },
+      { label: "Booking Flow", url: "primeshinecleaning.com/book", component: <PrimeshineBooking /> },
+      { label: "Quote Calculator", url: "primeshinecleaning.com/quote", component: <PrimeshineQuote /> },
     ],
   },
   {
     slug: "quality-fitness-club",
     title: "Quality Fitness Club",
     category: "Dashboard & Web App",
-    gradient: "from-rose-500/20 to-orange-600/20",
     description: "Member management dashboard with class scheduling, payment tracking, and engagement analytics. A complete digital toolkit for gym operations.",
     overview: "Quality Fitness Club was running their operations across spreadsheets and paper sign-up sheets. We built a centralized dashboard that handles member management, class scheduling, payment tracking, and engagement analytics — giving staff a single source of truth and members a seamless digital experience.",
     features: [
@@ -76,22 +93,24 @@ const projectsData: ProjectData[] = [
       { title: "Notification System", desc: "Automated email and SMS reminders for classes, payments, and announcements." },
     ],
     tags: ["React", "Supabase", "Dashboard", "Analytics", "Auth", "Real-time"],
-    mockups: [
-      { label: "Dashboard Overview", gradient: "from-rose-500/10 to-orange-600/10" },
-      { label: "Class Schedule", gradient: "from-orange-500/10 to-amber-600/10" },
-      { label: "Member Profile", gradient: "from-amber-500/10 to-rose-600/10" },
+    screens: [
+      { label: "Dashboard Overview", url: "app.qualityfitnessclub.com/dashboard", component: <FitnessDashboard /> },
+      { label: "Class Schedule", url: "app.qualityfitnessclub.com/schedule", component: <FitnessSchedule /> },
+      { label: "Member Profile", url: "app.qualityfitnessclub.com/members/alex-torres", component: <FitnessProfile /> },
     ],
   },
 ];
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) return <Navigate to="/portfolio" replace />;
 
   return (
     <main className="pt-20">
+      {/* Header */}
       <section className="section-padding">
         <div className="container-narrow">
           <AnimatedSection>
@@ -110,25 +129,57 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Mockup previews */}
-      <section className="pb-16 px-4">
+      {/* Screen Previews */}
+      <section className="pb-20 px-4">
         <div className="container-narrow">
-          <div className="grid gap-6 md:grid-cols-3">
-            {project.mockups.map((m, i) => (
-              <AnimatedSection key={m.label} delay={i * 0.1}>
-                <div className={`glass-card overflow-hidden`}>
-                  <div className={`h-48 bg-gradient-to-br ${m.gradient} flex items-center justify-center`}>
-                    <span className="font-display text-sm font-medium text-foreground/20">{m.label}</span>
-                  </div>
-                  <div className="p-4 text-center">
-                    <span className="text-xs text-muted-foreground font-medium">{m.label}</span>
-                  </div>
+          <AnimatedSection>
+            <h2 className="font-display text-2xl font-bold tracking-tight mb-8">Project Screens</h2>
+          </AnimatedSection>
+          <div className="grid gap-8 md:grid-cols-3">
+            {project.screens.map((screen, i) => (
+              <AnimatedSection key={screen.label} delay={i * 0.1}>
+                <div
+                  className="group cursor-pointer"
+                  onClick={() => setLightboxIdx(i)}
+                >
+                  <BrowserFrame url={screen.url}>
+                    <div className="relative overflow-hidden max-h-[320px]">
+                      {screen.component}
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <div className="bg-card/90 backdrop-blur-sm border border-border/60 rounded-lg px-4 py-2 flex items-center gap-2 text-sm font-medium shadow-lg">
+                          <Maximize2 className="h-4 w-4" /> View Full Screen
+                        </div>
+                      </div>
+                    </div>
+                  </BrowserFrame>
+                  <p className="mt-3 text-center text-sm font-medium text-muted-foreground">{screen.label}</p>
                 </div>
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <Dialog open={lightboxIdx !== null} onOpenChange={() => setLightboxIdx(null)}>
+        <DialogContent className="max-w-4xl w-[95vw] p-0 bg-background border-border/60 overflow-hidden">
+          {lightboxIdx !== null && (
+            <>
+              <div className="p-4 pb-0 flex items-center justify-between">
+                <p className="text-sm font-semibold">{project.screens[lightboxIdx].label}</p>
+              </div>
+              <div className="p-4">
+                <BrowserFrame url={project.screens[lightboxIdx].url}>
+                  <div className="max-h-[70vh] overflow-y-auto">
+                    {project.screens[lightboxIdx].component}
+                  </div>
+                </BrowserFrame>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Overview */}
       <section className="section-padding bg-card/20">
