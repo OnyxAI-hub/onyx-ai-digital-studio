@@ -103,14 +103,14 @@ const trustItems = [
 ];
 
 const TrustSection = () => (
-  <section className="border-y border-border/40 bg-card/20">
+  <section className="border-y border-[hsl(0,0%,10%)] section-charcoal">
     <div className="container-narrow px-4 py-14">
       <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
         {trustItems.map((item, i) => (
           <AnimatedSection key={item.label} delay={i * 0.1}>
             <div className="flex flex-col items-center gap-3 text-center">
-              <item.icon className="h-5 w-5 text-muted-foreground" />
-              <span className="text-xs font-medium uppercase tracking-wider text-foreground">{item.label}</span>
+              <item.icon className="h-5 w-5 text-[hsl(0,0%,45%)]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[hsl(0,0%,80%)]">{item.label}</span>
             </div>
           </AnimatedSection>
         ))}
