@@ -204,12 +204,12 @@ const HeroBackground = () => {
         }
 
         // Fade in then slow fade out
-        const fadeIn = Math.min(lineElapsed / 600, 1);
-        const fadeOutStart = 6000;
+        const fadeIn = Math.min(lineElapsed / 800, 1);
+        const fadeOutStart = 8000;
         const fadeOut = lineElapsed > fadeOutStart
-          ? Math.max(1 - (lineElapsed - fadeOutStart) / 3000, 0)
+          ? Math.max(1 - (lineElapsed - fadeOutStart) / 4000, 0)
           : 1;
-        const alpha = 0.06 * fadeIn * fadeOut;
+        const alpha = 0.1 * fadeIn * fadeOut;
 
         if (alpha < 0.002) return;
 
