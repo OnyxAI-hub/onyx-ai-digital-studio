@@ -41,8 +41,8 @@ const Contact = () => {
       <section className="section-padding">
         <div className="container-narrow text-center">
           <AnimatedSection>
-            <span className="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-medium text-primary">Contact</span>
-            <h1 className="font-display text-4xl font-bold md:text-5xl">
+            <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Contact</span>
+            <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
               Let's Build Something <span className="gradient-text">Powerful</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
@@ -55,57 +55,54 @@ const Contact = () => {
       <section className="pb-20 px-4">
         <div className="container-narrow">
           <div className="grid gap-10 lg:grid-cols-3">
-            {/* Contact Info */}
             <AnimatedSection>
               <div className="space-y-6">
                 <div className="glass-card p-6">
-                  <h3 className="font-display font-semibold mb-4">Get in Touch</h3>
+                  <h3 className="font-display font-semibold mb-4 tracking-tight">Get in Touch</h3>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Mail className="h-4 w-4 text-primary" />
+                      <Mail className="h-4 w-4 text-foreground/50" />
                       hello@onyxai.dev
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Phone className="h-4 w-4 text-primary" />
+                      <Phone className="h-4 w-4 text-foreground/50" />
                       (555) 123-4567
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4 text-primary" />
+                      <MapPin className="h-4 w-4 text-foreground/50" />
                       Remote — Serving clients worldwide
                     </div>
                   </div>
                 </div>
 
                 <div className="glass-card p-6">
-                  <h3 className="font-display font-semibold mb-2">Book a Consultation</h3>
+                  <h3 className="font-display font-semibold mb-2 tracking-tight">Book a Consultation</h3>
                   <p className="text-sm text-muted-foreground mb-4">Prefer to schedule a call? Pick a time that works for you.</p>
                   <Button variant="outline" className="w-full gap-2">
                     Schedule a Call <ArrowRight className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* Map Placeholder */}
                 <div className="glass-card h-48 flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
-                    <MapPin className="h-8 w-8 mx-auto mb-2 opacity-30" />
+                    <MapPin className="h-8 w-8 mx-auto mb-2 opacity-20" />
                     <p className="text-xs">Map placeholder</p>
                   </div>
                 </div>
               </div>
             </AnimatedSection>
 
-            {/* Form */}
             <AnimatedSection delay={0.1} className="lg:col-span-2">
               {submitted ? (
                 <div className="glass-card p-12 text-center">
-                  <CheckCircle className="mx-auto h-16 w-16 text-primary mb-4" />
-                  <h2 className="font-display text-2xl font-bold">Message Sent!</h2>
+                  <CheckCircle className="mx-auto h-16 w-16 text-foreground/50 mb-4" />
+                  <h2 className="font-display text-2xl font-bold tracking-tight">Message Sent!</h2>
                   <p className="mt-3 text-muted-foreground">Thanks for reaching out. We'll get back to you within 48 hours.</p>
                   <Button className="mt-6" onClick={() => { setSubmitted(false); form.reset(); }}>Send Another Message</Button>
                 </div>
               ) : (
                 <div className="glass-card p-8">
-                  <h3 className="font-display text-xl font-bold mb-6">Project Intake Form</h3>
+                  <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Project Intake Form</h3>
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                       <div className="grid gap-5 md:grid-cols-2">
