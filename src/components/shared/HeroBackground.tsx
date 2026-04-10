@@ -95,29 +95,43 @@ const HeroBackground = () => {
       bloomRadius: Math.random() * 5 + 2,
     }));
 
-    // Terminal lines — placed in two subtle columns
+    // Terminal lines — spread across hero with left-heavy distribution
     const createTermLines = (): TermLine[] => {
       const lines: TermLine[] = [];
       const cw = w();
       const ch = h();
-      const lineHeight = 18;
-      const colOffsets = [cw * 0.06, cw * 0.58];
+      const lineHeight = 17;
 
-      TERMINAL_LINES.forEach((text, i) => {
-        const col = i < 7 ? 0 : 1;
-        const row = col === 0 ? i : i - 7;
+      // Left column — main presence, spans most of the height
+      TERMINAL_LINES_LEFT.forEach((text, i) => {
         lines.push({
           text,
-          x: colOffsets[col],
-          y: ch * 0.15 + row * lineHeight,
+          x: cw * 0.04 + (i % 3) * 8, // slight indent variation
+          y: ch * 0.08 + i * lineHeight,
           opacity: 0,
-          delay: i * 2800 + Math.random() * 1500,
-          speed: 0.04 + Math.random() * 0.02,
+          delay: i * 2200 + Math.random() * 800,
+          speed: 0.028 + Math.random() * 0.012,
           charIndex: 0,
           blinkPhase: Math.random() * Math.PI * 2,
           done: false,
         });
       });
+
+      // Right column — lighter presence, upper area
+      TERMINAL_LINES_RIGHT.forEach((text, i) => {
+        lines.push({
+          text,
+          x: cw * 0.62 + (i % 2) * 6,
+          y: ch * 0.1 + i * lineHeight,
+          opacity: 0,
+          delay: i * 2600 + 3000 + Math.random() * 1200,
+          speed: 0.025 + Math.random() * 0.01,
+          charIndex: 0,
+          blinkPhase: Math.random() * Math.PI * 2,
+          done: false,
+        });
+      });
+
       return lines;
     };
 
