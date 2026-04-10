@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, S
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
 import SectionHeading from "@/components/shared/SectionHeading";
+import StarGlimmers from "@/components/shared/StarGlimmers";
 import { featuredServices } from "@/data/services";
 import { packages } from "@/data/packages";
 import { projects } from "@/data/portfolio";
