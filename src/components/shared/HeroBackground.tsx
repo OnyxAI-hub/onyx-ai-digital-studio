@@ -149,7 +149,32 @@ const HeroBackground = () => {
         }
       });
 
-      // --- Chrome geometric shapes (very subtle) ---
+      // --- Star glimmers ---
+      starsRef_local.forEach((star) => {
+        const shimmer = Math.sin(time * star.speed + star.phase);
+        const alpha = star.baseOpacity * (0.3 + shimmer * 0.7);
+        if (alpha > 0.01) {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(220,220,230,${alpha})`;
+          ctx.fill();
+
+          // Tiny cross flare on brightest moments
+          if (alpha > star.baseOpacity * 0.75) {
+            const flareLen = star.size * 2.5;
+            const flareAlpha = (alpha - star.baseOpacity * 0.5) * 0.4;
+            ctx.strokeStyle = `rgba(255,255,255,${flareAlpha})`;
+            ctx.lineWidth = 0.3;
+            ctx.beginPath();
+            ctx.moveTo(star.x - flareLen, star.y);
+            ctx.lineTo(star.x + flareLen, star.y);
+            ctx.moveTo(star.x, star.y - flareLen);
+            ctx.lineTo(star.x, star.y + flareLen);
+            ctx.stroke();
+          }
+        }
+      });
+
       ctx.save();
       ctx.strokeStyle = `rgba(255,255,255,${0.015 + Math.sin(t * 1.5) * 0.005})`;
       ctx.lineWidth = 0.5;
