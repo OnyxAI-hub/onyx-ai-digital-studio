@@ -272,7 +272,20 @@ const ChatWidget = () => {
               {["Pricing", "Services", "Portfolio", "Get Started"].map((q) => (
                 <button
                   key={q}
-                  onClick={() => { setInput(q); setTimeout(() => { setInput(q); document.querySelector<HTMLFormElement>(".chat-form")?.requestSubmit(); }, 50); }}
+                  onClick={() => {
+                    const fakeInput = q;
+                    setInput("");
+                    setMessages((prev) => [...prev, { role: "user", text: fakeInput }]);
+                    const response = findResponse(fakeInput);
+                    if (response) {
+                      setTimeout(() => setMessages((prev) => [...prev, { role: "bot", text: response }]), 300);
+                    } else if (fakeInput === "Get Started") {
+                      setTimeout(() => {
+                        setMessages((prev) => [...prev, { role: "bot", text: LEAD_FLOW[0].question }]);
+                        setLeadStep(0);
+                      }, 300);
+                    }
+                  }}
                   className="rounded-full border border-border/40 bg-card/60 px-3 py-1 text-[11px] text-muted-foreground hover:text-foreground hover:border-border transition-colors"
                 >
                   {q}
