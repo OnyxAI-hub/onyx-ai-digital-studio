@@ -13,39 +13,41 @@ const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Abstract background */}
     <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/30" />
-      {/* Silver glow orbs */}
-      <div className="absolute top-1/3 left-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.02] blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/3 h-[400px] w-[400px] rounded-full bg-white/[0.015] blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,3%)] via-background to-[hsl(0,0%,5%)]" />
+      {/* Radial silver glow */}
+      <div className="absolute top-1/3 left-1/3 h-[600px] w-[600px] rounded-full bg-white/[0.015] blur-[100px]" />
+      <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.01] blur-[80px]" />
       {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(hsl(0 0% 40%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 40%) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(hsl(0 0% 30%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 30%) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
       {/* Chrome line accents */}
-      <div className="absolute top-[20%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute bottom-[25%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+      <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
+      {/* Diagonal chrome slash */}
+      <div className="absolute top-0 right-[20%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent rotate-12 origin-top hidden lg:block" />
       {/* Floating UI elements */}
       <div className="absolute top-[20%] right-[15%] hidden lg:block">
-        <div className="glass-card p-4 animate-float opacity-30">
+        <div className="glass-card p-4 animate-float opacity-25">
           <div className="flex gap-2 mb-2">
-            <div className="h-2 w-2 rounded-full bg-white/40" />
-            <div className="h-2 w-2 rounded-full bg-white/20" />
-            <div className="h-2 w-2 rounded-full bg-white/10" />
+            <div className="h-2 w-2 rounded-full bg-white/30" />
+            <div className="h-2 w-2 rounded-full bg-white/15" />
+            <div className="h-2 w-2 rounded-full bg-white/8" />
           </div>
           <div className="space-y-1.5">
-            <div className="h-2 w-24 rounded bg-white/10" />
-            <div className="h-2 w-32 rounded bg-white/5" />
-            <div className="h-2 w-20 rounded bg-white/5" />
+            <div className="h-2 w-24 rounded bg-white/8" />
+            <div className="h-2 w-32 rounded bg-white/4" />
+            <div className="h-2 w-20 rounded bg-white/4" />
           </div>
         </div>
       </div>
       <div className="absolute bottom-[30%] left-[10%] hidden lg:block">
-        <div className="glass-card p-3 animate-float opacity-20" style={{ animationDelay: "2s" }}>
+        <div className="glass-card p-3 animate-float opacity-15" style={{ animationDelay: "2s" }}>
           <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-md bg-white/10 flex items-center justify-center">
-              <Zap className="h-3 w-3 text-white/40" />
+            <div className="h-6 w-6 rounded-md bg-white/8 flex items-center justify-center">
+              <Zap className="h-3 w-3 text-white/30" />
             </div>
             <div className="space-y-1">
-              <div className="h-2 w-16 rounded bg-white/10" />
-              <div className="h-1.5 w-12 rounded bg-white/5" />
+              <div className="h-2 w-16 rounded bg-white/8" />
+              <div className="h-1.5 w-12 rounded bg-white/4" />
             </div>
           </div>
         </div>
@@ -54,18 +56,19 @@ const Hero = () => (
 
     <div className="relative z-10 container-narrow px-4 text-center">
       <AnimatedSection>
-        <span className="mb-6 inline-block rounded-full border border-border/60 bg-card/60 px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
+        <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
           AI-Powered Digital Agency
         </span>
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
-        <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
-          Modern Websites
+        <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
+          <span className="text-foreground">Modern Websites</span>
           <br />
           <span className="gradient-text">& Web Apps</span>
-          <br />
-          <span className="text-muted-foreground text-[0.65em]">Built to Grow Your Business</span>
         </h1>
+        <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
+          Built to Grow Your Business
+        </p>
       </AnimatedSection>
       <AnimatedSection delay={0.2}>
         <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
@@ -100,14 +103,14 @@ const trustItems = [
 ];
 
 const TrustSection = () => (
-  <section className="border-y border-border/40 bg-card/20">
+  <section className="border-y border-[hsl(0,0%,10%)] section-charcoal">
     <div className="container-narrow px-4 py-14">
       <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
         {trustItems.map((item, i) => (
           <AnimatedSection key={item.label} delay={i * 0.1}>
             <div className="flex flex-col items-center gap-3 text-center">
-              <item.icon className="h-5 w-5 text-muted-foreground" />
-              <span className="text-xs font-medium uppercase tracking-wider text-foreground">{item.label}</span>
+              <item.icon className="h-5 w-5 text-[hsl(0,0%,45%)]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[hsl(0,0%,80%)]">{item.label}</span>
             </div>
           </AnimatedSection>
         ))}
@@ -156,7 +159,7 @@ const steps = [
 ];
 
 const HowItWorksSection = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Our Process" title="How It Works" description="A simple, transparent process from idea to launch." />
@@ -211,7 +214,7 @@ const WhyChooseSection = () => (
 
 /* ─── Package Preview ─── */
 const PackagePreview = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Pricing" title="Simple, Transparent Pricing" description="Choose a package that fits your needs. No hidden fees." />
@@ -290,7 +293,7 @@ const PortfolioPreview = () => (
 
 /* ─── Testimonials ─── */
 const TestimonialsSection = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Testimonials" title="What Our Clients Say" />
@@ -338,7 +341,7 @@ const ChatbotTeaser = () => (
 
 /* ─── Newsletter ─── */
 const Newsletter = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <div className="mx-auto max-w-xl text-center">

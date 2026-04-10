@@ -19,10 +19,10 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/90 backdrop-blur-2xl">
-      <div className="container-narrow flex h-20 items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={onyxLogo} alt="ONYX AI" className="h-12 w-auto md:h-14" />
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/92 backdrop-blur-2xl">
+      <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
+        <Link to="/" className="flex items-center py-2">
+          <img src={onyxLogo} alt="ONYX AI" className="h-16 w-auto md:h-[4.5rem] drop-shadow-[0_0_12px_rgba(255,255,255,0.06)]" />
         </Link>
 
         {/* Desktop Nav */}
