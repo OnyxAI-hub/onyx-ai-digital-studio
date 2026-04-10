@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot } from "lucide-react";
+import { toast } from "sonner";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
 import SectionHeading from "@/components/shared/SectionHeading";
