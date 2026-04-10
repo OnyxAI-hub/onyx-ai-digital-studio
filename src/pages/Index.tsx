@@ -159,7 +159,7 @@ const steps = [
 ];
 
 const HowItWorksSection = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Our Process" title="How It Works" description="A simple, transparent process from idea to launch." />
@@ -214,7 +214,7 @@ const WhyChooseSection = () => (
 
 /* ─── Package Preview ─── */
 const PackagePreview = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Pricing" title="Simple, Transparent Pricing" description="Choose a package that fits your needs. No hidden fees." />
@@ -293,7 +293,7 @@ const PortfolioPreview = () => (
 
 /* ─── Testimonials ─── */
 const TestimonialsSection = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Testimonials" title="What Our Clients Say" />
@@ -341,7 +341,7 @@ const ChatbotTeaser = () => (
 
 /* ─── Newsletter ─── */
 const Newsletter = () => (
-  <section className="section-padding bg-card/20">
+  <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
         <div className="mx-auto max-w-xl text-center">
