@@ -1,16 +1,5 @@
 import { useEffect, useRef } from "react";
 
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  opacity: number;
-  life: number;
-  maxLife: number;
-}
-
 interface Sparkle {
   x: number;
   y: number;
@@ -21,14 +10,41 @@ interface Sparkle {
   bloomRadius: number;
 }
 
-const PARTICLE_COUNT = 40;
-const SPARKLE_COUNT = 8;
+interface TermLine {
+  text: string;
+  x: number;
+  y: number;
+  opacity: number;
+  delay: number;
+  speed: number;
+  charIndex: number;
+  blinkPhase: number;
+  done: boolean;
+}
+
+const SPARKLE_COUNT = 6;
+
+const TERMINAL_LINES = [
+  "$ onyx init --project client-portal",
+  "> compiling components...",
+  "> authentication enabled",
+  "> route /dashboard mapped",
+  "> ui compiled successfully",
+  "$ onyx deploy --prod",
+  "> deploying to edge network...",
+  "> system ready ✓",
+  "> chatbot active",
+  "> payment integration configured",
+  "$ onyx build --optimize",
+  "> initializing build pipeline...",
+  "> assets optimized",
+  "> ssl certificates verified",
+];
 
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
   const timeRef = useRef(0);
-  const particlesRef = useRef<Particle[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -40,82 +56,153 @@ const HeroBackground = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = canvas.offsetWidth * dpr;
       canvas.height = canvas.offsetHeight * dpr;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener("resize", resize);
 
-    // Init particles
     const w = () => canvas.offsetWidth;
     const h = () => canvas.offsetHeight;
 
-    const createParticle = (): Particle => ({
-      x: Math.random() * w(),
-      y: Math.random() * h(),
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.1 - 0.05,
-      size: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.15 + 0.03,
-      life: 0,
-      maxLife: Math.random() * 800 + 400,
-    });
-
-    particlesRef.current = Array.from({ length: PARTICLE_COUNT }, createParticle);
-
-    // Init sparkles
+    // Sparkles
     const sparkles: Sparkle[] = Array.from({ length: SPARKLE_COUNT }, () => ({
       x: Math.random() * w(),
       y: Math.random() * h(),
       baseSize: Math.random() * 14 + 8,
       phase: Math.random() * Math.PI * 2,
       speed: Math.random() * 0.0006 + 0.0003,
-      baseOpacity: Math.random() * 0.3 + 0.1,
+      baseOpacity: Math.random() * 0.25 + 0.08,
       bloomRadius: Math.random() * 5 + 2,
     }));
 
+    // Terminal lines — placed in two subtle columns
+    const createTermLines = (): TermLine[] => {
+      const lines: TermLine[] = [];
+      const cw = w();
+      const ch = h();
+      const lineHeight = 18;
+      const colOffsets = [cw * 0.06, cw * 0.58];
+
+      TERMINAL_LINES.forEach((text, i) => {
+        const col = i < 7 ? 0 : 1;
+        const row = col === 0 ? i : i - 7;
+        lines.push({
+          text,
+          x: colOffsets[col],
+          y: ch * 0.15 + row * lineHeight,
+          opacity: 0,
+          delay: i * 2800 + Math.random() * 1500,
+          speed: 0.04 + Math.random() * 0.02,
+          charIndex: 0,
+          blinkPhase: Math.random() * Math.PI * 2,
+          done: false,
+        });
+      });
+      return lines;
+    };
+
+    let termLines = createTermLines();
+    let startTime = 0;
+
     const draw = (time: number) => {
+      if (!startTime) startTime = time;
+      const elapsed = time - startTime;
       const dt = time - timeRef.current;
       timeRef.current = time;
       const cw = w();
       const ch = h();
+      const t = time * 0.0001;
 
       ctx.clearRect(0, 0, cw, ch);
 
       // --- Slow-moving gradient glow orbs ---
-      const t = time * 0.0001;
-
-      // Large silver glow 1
       const g1x = cw * (0.3 + Math.sin(t * 0.7) * 0.15);
       const g1y = ch * (0.35 + Math.cos(t * 0.5) * 0.1);
       const grad1 = ctx.createRadialGradient(g1x, g1y, 0, g1x, g1y, cw * 0.35);
-      grad1.addColorStop(0, "rgba(255,255,255,0.018)");
+      grad1.addColorStop(0, "rgba(255,255,255,0.015)");
       grad1.addColorStop(1, "transparent");
       ctx.fillStyle = grad1;
       ctx.fillRect(0, 0, cw, ch);
 
-      // Large silver glow 2
       const g2x = cw * (0.7 + Math.cos(t * 0.6) * 0.12);
       const g2y = ch * (0.6 + Math.sin(t * 0.8) * 0.12);
       const grad2 = ctx.createRadialGradient(g2x, g2y, 0, g2x, g2y, cw * 0.3);
-      grad2.addColorStop(0, "rgba(255,255,255,0.012)");
+      grad2.addColorStop(0, "rgba(255,255,255,0.01)");
       grad2.addColorStop(1, "transparent");
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, cw, ch);
 
       // --- Silver light sweep ---
-      const sweepX = ((time * 0.02) % (cw + 600)) - 300;
+      const sweepX = ((time * 0.015) % (cw + 600)) - 300;
       const sweepGrad = ctx.createLinearGradient(sweepX - 200, 0, sweepX + 200, 0);
       sweepGrad.addColorStop(0, "transparent");
-      sweepGrad.addColorStop(0.5, "rgba(255,255,255,0.015)");
+      sweepGrad.addColorStop(0.5, "rgba(255,255,255,0.012)");
       sweepGrad.addColorStop(1, "transparent");
       ctx.fillStyle = sweepGrad;
       ctx.fillRect(0, 0, cw, ch);
 
-      // --- Animated grid lines (subtle) ---
-      ctx.strokeStyle = `rgba(255,255,255,${0.02 + Math.sin(t * 2) * 0.005})`;
+      // --- Terminal text layer ---
+      ctx.save();
+      ctx.font = "11px 'SF Mono', 'Fira Code', 'Consolas', monospace";
+      ctx.textBaseline = "top";
+
+      // Cycle: total duration for all lines then reset
+      const cycleDuration = TERMINAL_LINES.length * 2800 + 8000;
+      const cycleElapsed = elapsed % cycleDuration;
+
+      // Reset lines on new cycle
+      if (cycleElapsed < dt + 20) {
+        termLines = createTermLines();
+      }
+
+      termLines.forEach((line) => {
+        if (cycleElapsed < line.delay) return;
+
+        const lineElapsed = cycleElapsed - line.delay;
+
+        // Type out characters
+        if (!line.done) {
+          line.charIndex = Math.min(
+            Math.floor(lineElapsed * line.speed),
+            line.text.length
+          );
+          if (line.charIndex >= line.text.length) line.done = true;
+        }
+
+        // Fade in then slow fade out
+        const fadeIn = Math.min(lineElapsed / 600, 1);
+        const fadeOutStart = 6000;
+        const fadeOut = lineElapsed > fadeOutStart
+          ? Math.max(1 - (lineElapsed - fadeOutStart) / 3000, 0)
+          : 1;
+        const alpha = 0.06 * fadeIn * fadeOut;
+
+        if (alpha < 0.002) return;
+
+        const displayText = line.text.substring(0, line.charIndex);
+        const isCmd = line.text.startsWith("$");
+
+        // Command prompt color vs output color
+        ctx.fillStyle = isCmd
+          ? `rgba(200, 200, 210, ${alpha * 1.2})`
+          : `rgba(160, 160, 170, ${alpha})`;
+
+        ctx.fillText(displayText, line.x, line.y);
+
+        // Blinking cursor at end of typing line
+        if (!line.done && Math.sin(time * 0.005 + line.blinkPhase) > 0) {
+          const cursorX = line.x + ctx.measureText(displayText).width + 2;
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 1.5})`;
+          ctx.fillRect(cursorX, line.y, 6, 12);
+        }
+      });
+      ctx.restore();
+
+      // --- Subtle grid ---
+      ctx.strokeStyle = `rgba(255,255,255,${0.015 + Math.sin(t * 2) * 0.004})`;
       ctx.lineWidth = 0.5;
       const gridSize = 80;
-      const gridOffset = (time * 0.005) % gridSize;
+      const gridOffset = (time * 0.003) % gridSize;
 
       ctx.beginPath();
       for (let x = -gridOffset; x < cw; x += gridSize) {
@@ -128,29 +215,6 @@ const HeroBackground = () => {
       }
       ctx.stroke();
 
-      // --- Particles (dust/motes) ---
-      particlesRef.current.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life += dt * 0.06;
-
-        const lifeRatio = p.life / p.maxLife;
-        const fadeIn = Math.min(lifeRatio * 4, 1);
-        const fadeOut = lifeRatio > 0.7 ? 1 - (lifeRatio - 0.7) / 0.3 : 1;
-        const alpha = p.opacity * fadeIn * fadeOut;
-
-        if (alpha > 0.001) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(200,200,210,${alpha})`;
-          ctx.fill();
-        }
-
-        if (p.life >= p.maxLife || p.x < -20 || p.x > cw + 20 || p.y < -20 || p.y > ch + 20) {
-          particlesRef.current[i] = createParticle();
-        }
-      });
-
       // --- Luxury sparkle flares ---
       sparkles.forEach((s) => {
         const shimmer = Math.sin(time * s.speed + s.phase);
@@ -161,7 +225,6 @@ const HeroBackground = () => {
         const bloom = s.bloomRadius * (0.5 + eased * 0.5);
 
         if (opacity > 0.01) {
-          // Soft bloom
           const bg = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, bloom);
           bg.addColorStop(0, `rgba(255,255,255,${opacity * 0.6})`);
           bg.addColorStop(1, "rgba(255,255,255,0)");
@@ -174,7 +237,6 @@ const HeroBackground = () => {
           ctx.globalAlpha = opacity;
           ctx.lineWidth = 0.4;
 
-          // Horizontal flare
           const g1 = ctx.createLinearGradient(s.x - size, s.y, s.x + size, s.y);
           g1.addColorStop(0, "rgba(255,255,255,0)");
           g1.addColorStop(0.35, `rgba(255,255,255,${opacity * 0.3})`);
@@ -187,7 +249,6 @@ const HeroBackground = () => {
           ctx.lineTo(s.x + size, s.y);
           ctx.stroke();
 
-          // Vertical flare
           const g2 = ctx.createLinearGradient(s.x, s.y - size, s.x, s.y + size);
           g2.addColorStop(0, "rgba(255,255,255,0)");
           g2.addColorStop(0.35, `rgba(255,255,255,${opacity * 0.3})`);
@@ -200,7 +261,6 @@ const HeroBackground = () => {
           ctx.lineTo(s.x, s.y + size);
           ctx.stroke();
 
-          // Center dot
           ctx.beginPath();
           ctx.arc(s.x, s.y, 0.6, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(255,255,255,${opacity * 0.9})`;
@@ -209,15 +269,15 @@ const HeroBackground = () => {
         }
       });
 
+      // --- Subtle geometric accents ---
       ctx.save();
-      ctx.strokeStyle = `rgba(255,255,255,${0.015 + Math.sin(t * 1.5) * 0.005})`;
+      ctx.strokeStyle = `rgba(255,255,255,${0.012 + Math.sin(t * 1.5) * 0.004})`;
       ctx.lineWidth = 0.5;
 
-      // Rotating hexagon
-      const hexX = cw * 0.8;
-      const hexY = ch * 0.25;
-      const hexR = 60;
-      const hexRot = t * 0.3;
+      const hexX = cw * 0.82;
+      const hexY = ch * 0.22;
+      const hexR = 50;
+      const hexRot = t * 0.25;
       ctx.beginPath();
       for (let i = 0; i < 6; i++) {
         const angle = (Math.PI / 3) * i + hexRot;
@@ -228,11 +288,10 @@ const HeroBackground = () => {
       ctx.closePath();
       ctx.stroke();
 
-      // Slow rotating diamond
-      const diaX = cw * 0.15;
-      const diaY = ch * 0.7;
-      const diaR = 40;
-      const diaRot = -t * 0.2;
+      const diaX = cw * 0.12;
+      const diaY = ch * 0.75;
+      const diaR = 35;
+      const diaRot = -t * 0.18;
       ctx.beginPath();
       for (let i = 0; i < 4; i++) {
         const angle = (Math.PI / 2) * i + diaRot;
