@@ -21,11 +21,11 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/20 bg-background/85 backdrop-blur-2xl">
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
-        <Link to="/" className="flex items-center py-1 -ml-1">
+        <Link to="/" className="flex items-center py-1">
           <img
             src={onyxLogo}
             alt="Onyx AI"
-            className="h-14 md:h-16 w-auto object-contain brightness-[1.15] contrast-[1.1]"
+            className="h-14 md:h-16 w-auto object-contain mix-blend-lighten"
           />
         </Link>
 
