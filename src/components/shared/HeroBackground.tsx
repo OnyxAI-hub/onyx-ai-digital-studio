@@ -24,7 +24,7 @@ interface TermLine {
 
 const SPARKLE_COUNT = 6;
 
-const TERMINAL_LINES = [
+const TERMINAL_LINES_LEFT = [
   "$ onyx init --project client-portal",
   "> compiling components...",
   "> authentication enabled",
@@ -39,6 +39,26 @@ const TERMINAL_LINES = [
   "> initializing build pipeline...",
   "> assets optimized",
   "> ssl certificates verified",
+  "$ onyx monitor --status",
+  "> uptime 99.98%",
+  "> latency 12ms avg",
+  "> cache hit ratio 94.2%",
+  "> memory usage nominal",
+];
+
+const TERMINAL_LINES_RIGHT = [
+  "$ onyx scan --security",
+  "> no vulnerabilities found",
+  "> headers configured",
+  "> cors policy active",
+  "$ onyx analytics --live",
+  "> tracking enabled",
+  "> 2.4k sessions today",
+  "> conversion rate 3.8%",
+  "> bounce rate 22%",
+  "$ onyx test --coverage",
+  "> all tests passing",
+  "> coverage 96.1%",
 ];
 
 const HeroBackground = () => {
@@ -75,29 +95,43 @@ const HeroBackground = () => {
       bloomRadius: Math.random() * 5 + 2,
     }));
 
-    // Terminal lines — placed in two subtle columns
+    // Terminal lines — spread across hero with left-heavy distribution
     const createTermLines = (): TermLine[] => {
       const lines: TermLine[] = [];
       const cw = w();
       const ch = h();
-      const lineHeight = 18;
-      const colOffsets = [cw * 0.06, cw * 0.58];
+      const lineHeight = 17;
 
-      TERMINAL_LINES.forEach((text, i) => {
-        const col = i < 7 ? 0 : 1;
-        const row = col === 0 ? i : i - 7;
+      // Left column — main presence, spans most of the height
+      TERMINAL_LINES_LEFT.forEach((text, i) => {
         lines.push({
           text,
-          x: colOffsets[col],
-          y: ch * 0.15 + row * lineHeight,
+          x: cw * 0.04 + (i % 3) * 8, // slight indent variation
+          y: ch * 0.08 + i * lineHeight,
           opacity: 0,
-          delay: i * 2800 + Math.random() * 1500,
-          speed: 0.04 + Math.random() * 0.02,
+          delay: i * 2200 + Math.random() * 800,
+          speed: 0.028 + Math.random() * 0.012,
           charIndex: 0,
           blinkPhase: Math.random() * Math.PI * 2,
           done: false,
         });
       });
+
+      // Right column — lighter presence, upper area
+      TERMINAL_LINES_RIGHT.forEach((text, i) => {
+        lines.push({
+          text,
+          x: cw * 0.62 + (i % 2) * 6,
+          y: ch * 0.1 + i * lineHeight,
+          opacity: 0,
+          delay: i * 2600 + 3000 + Math.random() * 1200,
+          speed: 0.025 + Math.random() * 0.01,
+          charIndex: 0,
+          blinkPhase: Math.random() * Math.PI * 2,
+          done: false,
+        });
+      });
+
       return lines;
     };
 
@@ -143,11 +177,11 @@ const HeroBackground = () => {
 
       // --- Terminal text layer ---
       ctx.save();
-      ctx.font = "11px 'SF Mono', 'Fira Code', 'Consolas', monospace";
+      ctx.font = "10.5px 'SF Mono', 'Fira Code', 'Consolas', monospace";
       ctx.textBaseline = "top";
 
-      // Cycle: total duration for all lines then reset
-      const cycleDuration = TERMINAL_LINES.length * 2800 + 8000;
+      const totalLines = TERMINAL_LINES_LEFT.length + TERMINAL_LINES_RIGHT.length;
+      const cycleDuration = totalLines * 2400 + 10000;
       const cycleElapsed = elapsed % cycleDuration;
 
       // Reset lines on new cycle
@@ -170,12 +204,12 @@ const HeroBackground = () => {
         }
 
         // Fade in then slow fade out
-        const fadeIn = Math.min(lineElapsed / 600, 1);
-        const fadeOutStart = 6000;
+        const fadeIn = Math.min(lineElapsed / 800, 1);
+        const fadeOutStart = 8000;
         const fadeOut = lineElapsed > fadeOutStart
-          ? Math.max(1 - (lineElapsed - fadeOutStart) / 3000, 0)
+          ? Math.max(1 - (lineElapsed - fadeOutStart) / 4000, 0)
           : 1;
-        const alpha = 0.06 * fadeIn * fadeOut;
+        const alpha = 0.1 * fadeIn * fadeOut;
 
         if (alpha < 0.002) return;
 
