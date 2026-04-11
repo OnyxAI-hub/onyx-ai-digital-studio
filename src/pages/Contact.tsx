@@ -174,7 +174,7 @@ const Contact = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1} className="lg:col-span-2">
-              {(
+              
                 <div className="glass-card p-8">
                   <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Project Intake Form</h3>
                   {(prefillPackage || prefillService || prefillExtra) && (
@@ -281,7 +281,7 @@ const Contact = () => {
                     </form>
                   </Form>
                 </div>
-              )
+              
             </AnimatedSection>
           </div>
         </div>
