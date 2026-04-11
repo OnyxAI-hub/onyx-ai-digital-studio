@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { ArrowRight, Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin, Send } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 
@@ -48,7 +48,6 @@ const PACKAGE_BUDGET_MAP: Record<string, string> = {
 };
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
   const [searchParams] = useSearchParams();
 
   const prefillService = searchParams.get("service") || "";
@@ -86,9 +85,36 @@ const Contact = () => {
     if (defaultMessage) form.setValue("message", defaultMessage);
   }, [resolvedService, resolvedBudget, defaultMessage]);
 
-  const onSubmit = (data: ContactForm) => {
-    console.log("Form submitted:", data);
-    setSubmitted(true);
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (data: ContactForm) => {
+    setIsSubmitting(true);
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/27176071/u7gsmn1/", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form_type: "consultation",
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "",
+          budget: data.budget || "",
+          timeline: data.timeline || "",
+          service: data.services || "",
+          message: data.message,
+          source_page: "contact_page",
+        }),
+      });
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Webhook error:", error);
+      const { toast } = await import("sonner");
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -148,14 +174,7 @@ const Contact = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1} className="lg:col-span-2">
-              {submitted ? (
-                <div className="glass-card p-12 text-center">
-                  <CheckCircle className="mx-auto h-16 w-16 text-foreground/50 mb-4" />
-                  <h2 className="font-display text-2xl font-bold tracking-tight">Message Sent!</h2>
-                  <p className="mt-3 text-muted-foreground">Thanks for reaching out. We'll get back to you within 48 hours.</p>
-                  <Button className="mt-6" onClick={() => { setSubmitted(false); form.reset(); }}>Send Another Message</Button>
-                </div>
-              ) : (
+              
                 <div className="glass-card p-8">
                   <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Project Intake Form</h3>
                   {(prefillPackage || prefillService || prefillExtra) && (
@@ -256,13 +275,13 @@ const Contact = () => {
                           <FormMessage />
                         </FormItem>
                       )} />
-                      <Button type="submit" size="lg" className="w-full gap-2">
-                        Send Message <Send className="h-4 w-4" />
+                      <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                        {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
                       </Button>
                     </form>
                   </Form>
                 </div>
-              )}
+              
             </AnimatedSection>
           </div>
         </div>
