@@ -281,7 +281,7 @@ const Contact = () => {
                     </form>
                   </Form>
                 </div>
-              )}
+              )
             </AnimatedSection>
           </div>
         </div>
