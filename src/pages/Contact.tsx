@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -86,9 +86,36 @@ const Contact = () => {
     if (defaultMessage) form.setValue("message", defaultMessage);
   }, [resolvedService, resolvedBudget, defaultMessage]);
 
-  const onSubmit = (data: ContactForm) => {
-    console.log("Form submitted:", data);
-    setSubmitted(true);
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (data: ContactForm) => {
+    setIsSubmitting(true);
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/27176071/u7gsmn1/", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form_type: "consultation",
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "",
+          budget: data.budget || "",
+          timeline: data.timeline || "",
+          service: data.services || "",
+          message: data.message,
+          source_page: "contact_page",
+        }),
+      });
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Webhook error:", error);
+      const { toast } = await import("sonner");
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -256,8 +283,8 @@ const Contact = () => {
                           <FormMessage />
                         </FormItem>
                       )} />
-                      <Button type="submit" size="lg" className="w-full gap-2">
-                        Send Message <Send className="h-4 w-4" />
+                      <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                        {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
                       </Button>
                     </form>
                   </Form>
