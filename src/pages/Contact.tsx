@@ -48,7 +48,6 @@ const PACKAGE_BUDGET_MAP: Record<string, string> = {
 };
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
   const [searchParams] = useSearchParams();
 
   const prefillService = searchParams.get("service") || "";
@@ -175,14 +174,7 @@ const Contact = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1} className="lg:col-span-2">
-              {submitted ? (
-                <div className="glass-card p-12 text-center">
-                  <CheckCircle className="mx-auto h-16 w-16 text-foreground/50 mb-4" />
-                  <h2 className="font-display text-2xl font-bold tracking-tight">Message Sent!</h2>
-                  <p className="mt-3 text-muted-foreground">Thanks for reaching out. We'll get back to you within 48 hours.</p>
-                  <Button className="mt-6" onClick={() => { setSubmitted(false); form.reset(); }}>Send Another Message</Button>
-                </div>
-              ) : (
+              {(
                 <div className="glass-card p-8">
                   <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Project Intake Form</h3>
                   {(prefillPackage || prefillService || prefillExtra) && (
