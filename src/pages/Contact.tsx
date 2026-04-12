@@ -283,7 +283,7 @@ const Contact = () => {
                         </FormItem>
                       )} />
                       <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
-                        {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
+                        {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
                       </Button>
                     </form>
                   </Form>
