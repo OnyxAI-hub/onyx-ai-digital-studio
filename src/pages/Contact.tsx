@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ArrowRight, Mail, MapPin, Send, Clock, Calendar } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
+import AtlantaMapCard from "@/components/contact/AtlantaMapCard";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -139,18 +140,24 @@ const Contact = () => {
             <AnimatedSection>
               <div className="space-y-6">
                 <div className="glass-card p-6">
-                  <h3 className="font-display font-semibold mb-4 tracking-tight">Get in Touch</h3>
-                  <div className="space-y-4">
-                    <a href="mailto:onyxai.contact@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      <Mail className="h-4 w-4 text-foreground/50" />
+                  <h3 className="font-display font-semibold mb-5 tracking-tight">Get in Touch</h3>
+                  <div className="space-y-5">
+                    <a href="mailto:onyxai.contact@gmail.com" className="flex items-center gap-3.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Mail className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       onyxai.contact@gmail.com
                     </a>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4 text-foreground/50" />
+                    <div className="flex items-center gap-3.5 text-sm text-muted-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Calendar className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       Consultation by booking only
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4 text-foreground/50" />
+                    <div className="flex items-center gap-3.5 text-sm text-muted-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Clock className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       Response within 24–48 hours
                     </div>
                   </div>
@@ -166,17 +173,7 @@ const Contact = () => {
                   </a>
                 </div>
 
-                <div className="glass-card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-lg border border-border/40 bg-card/60 p-3">
-                      <MapPin className="h-5 w-5 text-foreground/60" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-semibold text-sm tracking-tight">Atlanta, GA</h4>
-                      <p className="text-sm text-muted-foreground mt-1">Remote — Serving clients worldwide</p>
-                    </div>
-                  </div>
-                </div>
+                <AtlantaMapCard />
               </div>
             </AnimatedSection>
 
@@ -197,14 +194,14 @@ const Contact = () => {
                         <FormField control={form.control} name="name" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Full Name *</FormLabel>
-                            <FormControl><Input placeholder="John Smith" {...field} /></FormControl>
+                            <FormControl><Input placeholder="Your full name" {...field} /></FormControl>
                             <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="email" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Email *</FormLabel>
-                            <FormControl><Input placeholder="john@example.com" {...field} /></FormControl>
+                            <FormControl><Input placeholder="Your email address" {...field} /></FormControl>
                             <FormMessage />
                           </FormItem>
                         )} />
@@ -213,7 +210,7 @@ const Contact = () => {
                         <FormField control={form.control} name="phone" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Phone (optional)</FormLabel>
-                            <FormControl><Input placeholder="(555) 123-4567" {...field} /></FormControl>
+                            <FormControl><Input placeholder="Your phone number" {...field} /></FormControl>
                             <FormMessage />
                           </FormItem>
                         )} />
@@ -282,9 +279,17 @@ const Contact = () => {
                           <FormMessage />
                         </FormItem>
                       )} />
-                      <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
-                        {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
-                      </Button>
+                      <div className="space-y-3">
+                        <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                          {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
+                        </Button>
+                        <p className="text-center text-xs text-muted-foreground/70">
+                          Prefer to talk first?{" "}
+                          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer" className="text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground">
+                            Book a consultation instead
+                          </a>
+                        </p>
+                      </div>
                     </form>
                   </Form>
                 </div>
