@@ -279,9 +279,17 @@ const Contact = () => {
                           <FormMessage />
                         </FormItem>
                       )} />
-                      <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
-                        {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
-                      </Button>
+                      <div className="space-y-3">
+                        <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                          {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
+                        </Button>
+                        <p className="text-center text-xs text-muted-foreground/70">
+                          Prefer to talk first?{" "}
+                          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer" className="text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground">
+                            Book a consultation instead
+                          </a>
+                        </p>
+                      </div>
                     </form>
                   </Form>
                 </div>
