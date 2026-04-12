@@ -5,6 +5,8 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { packages, extras } from "@/data/packages";
 
+const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
+
 const Pricing = () => (
   <main className="pt-20">
     <section className="section-padding">
@@ -12,51 +14,72 @@ const Pricing = () => (
         <AnimatedSection>
           <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Pricing</span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-            Simple, Transparent <span className="gradient-text">Pricing</span>
+            Invest in a Website That <span className="gradient-text">Works for You</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Pick the package that fits your business. No hidden fees, no surprises.
+            Premium web solutions built around your goals. Choose a package or book a consultation to scope your project.
           </p>
         </AnimatedSection>
       </div>
     </section>
 
-    <section className="pb-20 px-4">
+    <section className="pb-12 px-4">
       <div className="container-narrow">
         <div className="grid gap-6 md:grid-cols-3">
-          {packages.map((pkg, i) => (
-            <AnimatedSection key={pkg.name} delay={i * 0.1}>
-              <div className={`glass-card p-8 h-full flex flex-col relative ${pkg.highlighted ? "border-foreground/20 shadow-[0_0_50px_rgba(255,255,255,0.04)] md:scale-105" : ""}`}>
-                {pkg.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-4 py-1 text-xs font-semibold text-background">
-                    {pkg.badge}
-                  </span>
-                )}
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
-                  <pkg.icon className="h-5 w-5 text-foreground/70" />
+          {packages.map((pkg, i) => {
+            const isExternal = pkg.ctaLink.startsWith("http");
+            return (
+              <AnimatedSection key={pkg.name} delay={i * 0.1}>
+                <div className={`glass-card p-8 h-full flex flex-col relative ${pkg.highlighted ? "border-foreground/20 shadow-[0_0_50px_rgba(255,255,255,0.04)] md:scale-105" : ""}`}>
+                  {pkg.badge && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-4 py-1 text-xs font-semibold text-background">
+                      {pkg.badge}
+                    </span>
+                  )}
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
+                    <pkg.icon className="h-5 w-5 text-foreground/70" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold tracking-tight">{pkg.name}</h3>
+                  <div className="mt-2 mb-2">
+                    {pkg.pricePrefix && (
+                      <span className="block text-xs text-muted-foreground mb-0.5">{pkg.pricePrefix}</span>
+                    )}
+                    <span className="font-display text-5xl font-bold">${pkg.price.toLocaleString()}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-6">{pkg.description}</p>
+                  <ul className="mb-8 flex-1 space-y-3">
+                    {pkg.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 shrink-0 text-muted-foreground mt-0.5" />
+                        <span className="text-muted-foreground">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {isExternal ? (
+                    <a href={pkg.ctaLink} target="_blank" rel="noopener noreferrer">
+                      <Button className="w-full" variant={pkg.highlighted ? "default" : "outline"}>
+                        {pkg.cta} <ArrowRight className="h-4 w-4 ml-1" />
+                      </Button>
+                    </a>
+                  ) : (
+                    <Link to={pkg.ctaLink}>
+                      <Button className="w-full" variant={pkg.highlighted ? "default" : "outline"}>
+                        {pkg.cta} <ArrowRight className="h-4 w-4 ml-1" />
+                      </Button>
+                    </Link>
+                  )}
                 </div>
-                <h3 className="font-display text-2xl font-bold tracking-tight">{pkg.name}</h3>
-                <div className="mt-2 mb-2">
-                  <span className="font-display text-5xl font-bold">${pkg.price}</span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">{pkg.description}</p>
-                <ul className="mb-8 flex-1 space-y-3">
-                  {pkg.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 shrink-0 text-muted-foreground mt-0.5" />
-                      <span className="text-muted-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link to={`/contact?package=${encodeURIComponent(pkg.name)}`}>
-                  <Button className="w-full" variant={pkg.highlighted ? "default" : "outline"}>
-                    Get Started <ArrowRight className="h-4 w-4 ml-1" />
-                  </Button>
-                </Link>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            );
+          })}
         </div>
+
+        {/* Scope note */}
+        <AnimatedSection delay={0.3}>
+          <p className="mt-8 text-center text-xs text-muted-foreground/60 max-w-xl mx-auto">
+            Business and Advanced projects may require a consultation before kickoff to confirm scope, timeline, and final deliverables.
+          </p>
+        </AnimatedSection>
       </div>
     </section>
 
@@ -64,7 +87,7 @@ const Pricing = () => (
     <section className="section-padding bg-card/20">
       <div className="container-narrow">
         <AnimatedSection>
-          <SectionHeading badge="Add-Ons" title="Extras & Enhancements" description="Add these to any package for more functionality." />
+          <SectionHeading badge="Add-Ons" title="Extras & Enhancements" description="Extend any package with premium add-ons tailored to your needs." />
         </AnimatedSection>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {extras.map((extra, i) => (
@@ -92,9 +115,9 @@ const Pricing = () => (
         <AnimatedSection>
           <h2 className="font-display text-3xl font-bold tracking-tight">Need a Custom Quote?</h2>
           <p className="mt-3 text-muted-foreground">Every business is different. Let's talk about what you need.</p>
-          <Link to="/contact" className="mt-6 inline-block">
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
             <Button size="lg" className="gap-2">Book a Consultation <ArrowRight className="h-4 w-4" /></Button>
-          </Link>
+          </a>
         </AnimatedSection>
       </div>
     </section>
