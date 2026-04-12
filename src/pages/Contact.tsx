@@ -159,9 +159,11 @@ const Contact = () => {
                 <div className="glass-card p-6">
                   <h3 className="font-display font-semibold mb-2 tracking-tight">Book a Consultation</h3>
                   <p className="text-sm text-muted-foreground mb-4">Prefer to schedule a call? Pick a time that works for you.</p>
-                  <Button variant="outline" className="w-full gap-2">
-                    Schedule a Call <ArrowRight className="h-4 w-4" />
-                  </Button>
+                  <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="w-full gap-2">
+                      Schedule a Call <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </a>
                 </div>
 
                 <div className="glass-card h-48 flex items-center justify-center">

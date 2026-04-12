@@ -50,9 +50,9 @@ const Navbar = () => {
               Portal
             </Button>
           </Link>
-          <Link to="/contact">
+          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="uppercase tracking-wider text-[11px]">Book a Consultation</Button>
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -84,9 +84,9 @@ const Navbar = () => {
               <Link to="/client-portal" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" className="w-full">Client Portal</Button>
               </Link>
-              <Link to="/contact" onClick={() => setMobileOpen(false)}>
+              <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 <Button className="w-full">Book a Consultation</Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
