@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { ArrowRight, Mail, Phone, MapPin, Send } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Send, Clock, Calendar } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 
@@ -127,7 +127,7 @@ const Contact = () => {
               Let's Build Something <span className="gradient-text">Powerful</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Tell us about your project and we'll get back to you within 48 hours.
+              Every inquiry is reviewed personally. Expect a response within 24–48 hours, or book a consultation to connect sooner.
             </p>
           </AnimatedSection>
         </div>
@@ -141,35 +141,40 @@ const Contact = () => {
                 <div className="glass-card p-6">
                   <h3 className="font-display font-semibold mb-4 tracking-tight">Get in Touch</h3>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <a href="mailto:onyxai.contact@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
                       <Mail className="h-4 w-4 text-foreground/50" />
-                      hello@onyxai.dev
+                      onyxai.contact@gmail.com
+                    </a>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4 text-foreground/50" />
+                      Consultation by booking only
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Phone className="h-4 w-4 text-foreground/50" />
-                      (555) 123-4567
-                    </div>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4 text-foreground/50" />
-                      Remote — Serving clients worldwide
+                      <Clock className="h-4 w-4 text-foreground/50" />
+                      Response within 24–48 hours
                     </div>
                   </div>
                 </div>
 
                 <div className="glass-card p-6">
                   <h3 className="font-display font-semibold mb-2 tracking-tight">Book a Consultation</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Prefer to schedule a call? Pick a time that works for you.</p>
+                  <p className="text-sm text-muted-foreground mb-4">Book a 30-minute consultation to discuss your project, goals, and the best next step.</p>
                   <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" className="w-full gap-2">
-                      Schedule a Call <ArrowRight className="h-4 w-4" />
+                      Book 30-Min Consultation <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>
                 </div>
 
-                <div className="glass-card h-48 flex items-center justify-center">
-                  <div className="text-center text-muted-foreground">
-                    <MapPin className="h-8 w-8 mx-auto mb-2 opacity-20" />
-                    <p className="text-xs">Map placeholder</p>
+                <div className="glass-card p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-lg border border-border/40 bg-card/60 p-3">
+                      <MapPin className="h-5 w-5 text-foreground/60" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-semibold text-sm tracking-tight">Atlanta, GA</h4>
+                      <p className="text-sm text-muted-foreground mt-1">Remote — Serving clients worldwide</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -278,7 +283,7 @@ const Contact = () => {
                         </FormItem>
                       )} />
                       <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
-                        {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
+                        {isSubmitting ? "Sending…" : "Send Project Inquiry"} <Send className="h-4 w-4" />
                       </Button>
                     </form>
                   </Form>
