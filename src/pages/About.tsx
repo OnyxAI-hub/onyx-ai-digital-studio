@@ -122,7 +122,7 @@ const About = () => (
         <AnimatedSection>
           <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">About</span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-            The Team Behind <span className="gradient-text">ONYX AI</span>
+            <span className="gradient-text">ONYX AI</span>
           </h1>
         </AnimatedSection>
       </div>
