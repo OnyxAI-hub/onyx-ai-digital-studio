@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ArrowRight, Mail, MapPin, Send, Clock, Calendar } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
+import AtlantaMapCard from "@/components/contact/AtlantaMapCard";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
