@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe2, Heart, Palette, Code2, ChevronDown } from "lucide-react";
+import { ArrowRight, Globe2, Heart, Palette, Code2, ChevronDown, Briefcase, Monitor, Languages, Target } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import xavierHeadshot from "@/assets/xavier-headshot.jpg";
@@ -10,33 +10,33 @@ const differentiators = [
   {
     icon: Palette,
     title: "Premium Design",
-    desc: "Clean, modern, and tailored to your brand — never a cookie-cutter template.",
-    detail: "We obsess over spacing, typography, and color to create designs that look custom-built because they are. Every layout is crafted from scratch based on your brand identity and industry.",
+    desc: "Every layout is designed from scratch — tailored to your brand, your audience, and your goals.",
+    detail: "We obsess over spacing, typography, and color to create designs that look custom-built because they are. No templates, no shortcuts — just clean, intentional design that elevates your brand.",
   },
   {
     icon: Code2,
     title: "Modern Technology",
-    desc: "Built with the latest tools for speed, security, and scalability.",
-    detail: "We use React, TypeScript, Tailwind CSS, and Supabase — the same tech stack powering top startups. Your site will be fast, accessible, and future-proof.",
+    desc: "Built on the same tech stack powering top startups — fast, secure, and ready to scale.",
+    detail: "We use React, TypeScript, Tailwind CSS, and Supabase to deliver sites that load fast, rank well, and adapt as your business grows. Your project is future-proof from day one.",
   },
   {
     icon: Heart,
-    title: "Client-First Approach",
-    desc: "We listen, we adapt, and we deliver exactly what your business needs.",
-    detail: "Your goals drive every decision. We keep communication transparent, timelines realistic, and revisions generous so you're always confident in the outcome.",
+    title: "Client-First Process",
+    desc: "Your goals drive every decision — from discovery to launch and beyond.",
+    detail: "Transparent communication, realistic timelines, and generous revisions mean you're always confident in the outcome. We build with you, not just for you.",
   },
   {
     icon: Globe2,
     title: "Bilingual Support",
-    desc: "Fluent in English and Spanish — we serve clients in both languages.",
-    detail: "From discovery calls to final handoff, we communicate in the language you're most comfortable with. This means clearer briefs, faster feedback, and better results.",
+    desc: "Fluent in English and Spanish — clearer briefs, faster feedback, better results.",
+    detail: "From discovery calls to final handoff, we communicate in the language you're most comfortable with. This eliminates miscommunication and keeps projects moving smoothly.",
   },
 ];
 
 const timeline = [
   {
     step: "Discovery",
-    desc: "We meet to understand your business, goals, and audience.",
+    desc: "We learn your business, goals, and audience.",
     detail: "This includes a 30-minute strategy call, competitor analysis, and a written project brief outlining scope, timeline, and deliverables.",
   },
   {
@@ -56,9 +56,16 @@ const timeline = [
   },
   {
     step: "Support",
-    desc: "We stick around to help with updates and improvements.",
+    desc: "We stick around for updates, improvements, and growth.",
     detail: "Post-launch support is included with select packages. We also offer monthly maintenance plans for ongoing peace of mind.",
   },
+];
+
+const trustHighlights = [
+  { icon: Briefcase, label: "Business-Focused Builds" },
+  { icon: Monitor, label: "Modern Websites & Web Apps" },
+  { icon: Languages, label: "Bilingual Support" },
+  { icon: Target, label: "Conversion-Minded Design" },
 ];
 
 const DifferentiatorCard = ({ d }: { d: typeof differentiators[0] }) => {
@@ -91,7 +98,7 @@ const TimelineItem = ({ item, index }: { item: typeof timeline[0]; index: number
   const [expanded, setExpanded] = useState(false);
   return (
     <div
-      className="relative flex gap-6 pb-10 pl-10 md:pl-0 cursor-pointer select-none"
+      className="relative flex gap-6 pb-12 pl-10 md:pl-0 cursor-pointer select-none"
       onClick={() => setExpanded(!expanded)}
     >
       <div className="absolute left-0 top-1 md:left-1/2 md:-translate-x-1/2">
@@ -117,21 +124,28 @@ const TimelineItem = ({ item, index }: { item: typeof timeline[0]; index: number
 
 const About = () => (
   <main className="pt-20">
+    {/* Hero */}
     <section className="section-padding">
       <div className="container-narrow text-center">
         <AnimatedSection>
-          <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">About</span>
+          <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Behind ONYX AI
+          </span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
             <span className="gradient-text">ONYX AI</span>
           </h1>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground leading-relaxed">
+            Modern websites and web applications built to help businesses grow, convert, and stand out.
+          </p>
         </AnimatedSection>
       </div>
     </section>
 
+    {/* Founder */}
     <section className="pb-20 px-4">
       <div className="container-narrow">
         <AnimatedSection>
-          <div className="glass-card p-8 md:p-12 md:flex gap-10 items-center">
+          <div className="glass-card p-8 md:p-12 md:flex gap-10 items-start">
             <div className="mb-6 md:mb-0 md:w-1/3 flex justify-center">
               <div className="h-56 w-56 rounded-lg overflow-hidden border border-border/60 shadow-lg">
                 <img
@@ -144,11 +158,12 @@ const About = () => (
             <div className="md:w-2/3">
               <h2 className="font-display text-2xl font-bold tracking-tight">Xavier de Jesus Ruiz</h2>
               <p className="text-sm text-muted-foreground mt-1 font-medium">Founder & Developer</p>
+
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                ONYX AI was founded on a straightforward principle: every business deserves a digital presence that actually drives results — not a recycled template with a logo swap, but a purpose-built platform designed to convert visitors, build credibility, and scale with your growth.
+                ONYX AI was founded on a straightforward principle: every business deserves a digital presence that actually drives results — not a recycled template with a logo swap, but a purpose-built platform designed to convert visitors and scale with your growth.
               </p>
               <p className="mt-3 text-muted-foreground leading-relaxed">
-                Xavier specializes in building modern websites and web applications for businesses, startups, and entrepreneurs. With deep expertise in UI/UX design, full-stack development, and AI integration, every project is crafted with clean design, strong functionality, and measurable business impact at its core.
+                Xavier specializes in building modern websites and web applications with deep expertise in UI/UX design, full-stack development, and AI integration. Every project blends clean design with strong functionality and measurable business impact.
               </p>
               <p className="mt-3 text-muted-foreground leading-relaxed">
                 Fluent in English and Spanish, ONYX AI serves a diverse range of clients with clear communication, zero jargon, and a relentless focus on quality.
@@ -156,9 +171,24 @@ const About = () => (
             </div>
           </div>
         </AnimatedSection>
+
+        {/* Trust Highlights */}
+        <AnimatedSection delay={0.15}>
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {trustHighlights.map((h) => (
+              <div key={h.label} className="glass-card flex flex-col items-center gap-2.5 py-5 px-4 text-center">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-card">
+                  <h.icon className="h-4 w-4 text-foreground/60" />
+                </div>
+                <span className="text-xs font-medium text-muted-foreground tracking-wide">{h.label}</span>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
       </div>
     </section>
 
+    {/* Differentiators */}
     <section className="section-padding bg-card/20">
       <div className="container-narrow">
         <AnimatedSection>
@@ -174,10 +204,11 @@ const About = () => (
       </div>
     </section>
 
+    {/* Process Timeline */}
     <section className="section-padding">
       <div className="container-narrow">
         <AnimatedSection>
-          <SectionHeading badge="Our Process" title="From Idea to Launch" description="A straightforward process designed to keep things moving. Click any step for more detail." />
+          <SectionHeading badge="Our Process" title="From Idea to Launch" description="A clear, structured process designed to keep your project moving. Click any step for more detail." />
         </AnimatedSection>
         <div className="relative max-w-2xl mx-auto">
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border/40 md:left-1/2 md:-translate-x-px" />
@@ -190,14 +221,22 @@ const About = () => (
       </div>
     </section>
 
+    {/* Bottom CTA */}
     <section className="section-padding bg-card/20">
       <div className="container-narrow text-center">
         <AnimatedSection>
           <h2 className="font-display text-3xl font-bold tracking-tight">Ready to Work Together?</h2>
-          <p className="mt-3 text-muted-foreground">Let's discuss your project and build something great.</p>
-          <Link to="/contact" className="mt-6 inline-block">
-            <Button size="lg" className="gap-2">Book a Consultation <ArrowRight className="h-4 w-4" /></Button>
-          </Link>
+          <p className="mt-3 text-muted-foreground max-w-md mx-auto">
+            Let's turn your vision into a polished, high-performing digital product.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2">Book a Consultation <ArrowRight className="h-4 w-4" /></Button>
+            </a>
+            <Link to="/portfolio">
+              <Button size="lg" variant="outline" className="gap-2">View Portfolio</Button>
+            </Link>
+          </div>
         </AnimatedSection>
       </div>
     </section>
