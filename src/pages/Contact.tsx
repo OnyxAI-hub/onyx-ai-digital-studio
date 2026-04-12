@@ -140,18 +140,24 @@ const Contact = () => {
             <AnimatedSection>
               <div className="space-y-6">
                 <div className="glass-card p-6">
-                  <h3 className="font-display font-semibold mb-4 tracking-tight">Get in Touch</h3>
-                  <div className="space-y-4">
-                    <a href="mailto:onyxai.contact@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      <Mail className="h-4 w-4 text-foreground/50" />
+                  <h3 className="font-display font-semibold mb-5 tracking-tight">Get in Touch</h3>
+                  <div className="space-y-5">
+                    <a href="mailto:onyxai.contact@gmail.com" className="flex items-center gap-3.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Mail className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       onyxai.contact@gmail.com
                     </a>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4 text-foreground/50" />
+                    <div className="flex items-center gap-3.5 text-sm text-muted-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Calendar className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       Consultation by booking only
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4 text-foreground/50" />
+                    <div className="flex items-center gap-3.5 text-sm text-muted-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-card/40">
+                        <Clock className="h-3.5 w-3.5 text-foreground/60" />
+                      </div>
                       Response within 24–48 hours
                     </div>
                   </div>
