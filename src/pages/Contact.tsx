@@ -173,17 +173,7 @@ const Contact = () => {
                   </a>
                 </div>
 
-                <div className="glass-card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-lg border border-border/40 bg-card/60 p-3">
-                      <MapPin className="h-5 w-5 text-foreground/60" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-semibold text-sm tracking-tight">Atlanta, GA</h4>
-                      <p className="text-sm text-muted-foreground mt-1">Remote — Serving clients worldwide</p>
-                    </div>
-                  </div>
-                </div>
+                <AtlantaMapCard />
               </div>
             </AnimatedSection>
 
