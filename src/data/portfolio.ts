@@ -11,7 +11,7 @@ export const projects: Project[] = [
   {
     title: "NutriFit Wellness",
     category: "E-Commerce & Health",
-    description: "A modern e-commerce platform for a wellness brand, featuring product catalogs, online ordering, and a nutrition blog. Built for speed and conversion.",
+    description: "A conversion-optimized e-commerce platform for a wellness brand — featuring streamlined product catalogs, frictionless checkout, and content designed to drive repeat purchases and build long-term customer trust.",
     tags: ["React", "Tailwind CSS", "Stripe", "SEO"],
     gradient: "from-emerald-500/20 to-teal-600/20",
     slug: "nutrifit-wellness",
@@ -19,7 +19,7 @@ export const projects: Project[] = [
   {
     title: "PrimeShine Cleaning Co.",
     category: "Service Business",
-    description: "Professional website with online booking, service area maps, and instant quote calculator. Designed to convert visitors into booked appointments.",
+    description: "A professional site engineered to turn visitors into booked appointments — with online scheduling, service area maps, and an instant quote calculator that removes friction from the buying process.",
     tags: ["React", "TypeScript", "Booking System", "Responsive"],
     gradient: "from-blue-500/20 to-cyan-600/20",
     slug: "primeshine-cleaning",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     title: "Quality Fitness Club",
     category: "Dashboard & Web App",
-    description: "Member management dashboard with class scheduling, payment tracking, and engagement analytics. A complete digital toolkit for gym operations.",
+    description: "A member management dashboard that gives gym operators real-time visibility into class scheduling, payment tracking, and engagement analytics — replacing spreadsheets with a streamlined digital toolkit.",
     tags: ["React", "Supabase", "Dashboard", "Analytics"],
     gradient: "from-rose-500/20 to-orange-600/20",
     slug: "quality-fitness-club",
