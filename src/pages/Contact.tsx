@@ -194,14 +194,14 @@ const Contact = () => {
                         <FormField control={form.control} name="name" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Full Name *</FormLabel>
-                            <FormControl><Input placeholder="John Smith" {...field} /></FormControl>
+                            <FormControl><Input placeholder="Your full name" {...field} /></FormControl>
                             <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="email" render={({ field }) => (
                           <FormItem>
                             <FormLabel>Email *</FormLabel>
-                            <FormControl><Input placeholder="john@example.com" {...field} /></FormControl>
+                            <FormControl><Input placeholder="Your email address" {...field} /></FormControl>
                             <FormMessage />
                           </FormItem>
                         )} />
