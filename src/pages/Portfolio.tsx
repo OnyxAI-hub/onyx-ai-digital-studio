@@ -18,6 +18,7 @@ const previewMap: Record<string, { component: ReactNode; url: string }> = {
 
 const Portfolio = () => (
   <main className="pt-20">
+    {/* Hero */}
     <section className="section-padding">
       <div className="container-narrow text-center">
         <AnimatedSection>
@@ -26,12 +27,13 @@ const Portfolio = () => (
             Our <span className="gradient-text">Recent Work</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Real projects, real results. Here's a look at what we've built for our clients.
+            Tailored digital experiences built for different business goals and industries.
           </p>
         </AnimatedSection>
       </div>
     </section>
 
+    {/* Projects */}
     <section className="pb-20 px-4">
       <div className="container-narrow">
         <div className="grid gap-10">
@@ -40,7 +42,7 @@ const Portfolio = () => (
             return (
               <AnimatedSection key={project.title} delay={i * 0.1}>
                 <Link to={`/portfolio/${project.slug}`} className="block group">
-                  <div className="glass-card-hover overflow-hidden md:flex transition-all duration-300 group-hover:border-foreground/20 group-hover:shadow-lg group-hover:shadow-foreground/5">
+                  <div className="glass-card-hover overflow-hidden md:flex transition-all duration-300 group-hover:border-foreground/15 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.04)] group-hover:-translate-y-0.5">
                     {/* Preview mockup */}
                     <div className="md:w-[45%] shrink-0 p-4 md:p-5">
                       <div className="transform transition-transform duration-500 group-hover:scale-[1.02]">
@@ -62,7 +64,7 @@ const Portfolio = () => (
                         ))}
                       </div>
                       <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors">
-                        View Project <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        Explore Project <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </div>
@@ -74,14 +76,22 @@ const Portfolio = () => (
       </div>
     </section>
 
+    {/* Bottom CTA */}
     <section className="section-padding bg-card/20">
       <div className="container-narrow text-center">
         <AnimatedSection>
-          <h2 className="font-display text-3xl font-bold tracking-tight">Want to See Your Business Here?</h2>
-          <p className="mt-3 text-muted-foreground">Let's build something you'll be proud to show off.</p>
-          <Link to="/contact" className="mt-6 inline-block">
-            <Button size="lg" className="gap-2">Start Your Project <ArrowRight className="h-4 w-4" /></Button>
-          </Link>
+          <h2 className="font-display text-3xl font-bold tracking-tight">Want Something Built for Your Business?</h2>
+          <p className="mt-3 text-muted-foreground max-w-md mx-auto">
+            Let's discuss your goals and build a digital product you'll be proud to show off.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2">Book a Consultation <ArrowRight className="h-4 w-4" /></Button>
+            </a>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="gap-2">View Pricing</Button>
+            </Link>
+          </div>
         </AnimatedSection>
       </div>
     </section>
