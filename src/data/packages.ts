@@ -3,19 +3,26 @@ import { Globe, Rocket, Zap } from "lucide-react";
 export interface Package {
   name: string;
   price: number;
+  pricePrefix?: string;
   description: string;
   icon: typeof Globe;
   features: string[];
   highlighted?: boolean;
   badge?: string;
+  cta: string;
+  ctaLink: string;
 }
+
+const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
 
 export const packages: Package[] = [
   {
     name: "Starter",
     price: 250,
-    description: "Perfect for small businesses that need a professional online presence fast.",
+    description: "A clean, professional website to establish your online presence and start attracting clients.",
     icon: Globe,
+    cta: "Pay & Start",
+    ctaLink: "/contact?package=Starter",
     features: [
       "1–3 Page Responsive Website",
       "Mobile-Friendly Design",
@@ -27,11 +34,14 @@ export const packages: Package[] = [
   },
   {
     name: "Business",
-    price: 550,
-    description: "For growing businesses that need more functionality and polish.",
+    price: 750,
+    pricePrefix: "Starting at",
+    description: "For growing brands that need a stronger digital presence, custom design, and more functionality.",
     icon: Rocket,
     highlighted: true,
     badge: "Most Popular",
+    cta: "Book a Consultation",
+    ctaLink: CALENDLY,
     features: [
       "Up to 7 Pages",
       "Custom UI/UX Design",
@@ -45,9 +55,12 @@ export const packages: Package[] = [
   },
   {
     name: "Advanced",
-    price: 1100,
-    description: "Full-scale web solutions with custom features and ongoing support.",
+    price: 1500,
+    pricePrefix: "Starting at",
+    description: "Custom-built web apps, dashboards, and automation — scoped to your exact business needs.",
     icon: Zap,
+    cta: "Book a Consultation",
+    ctaLink: CALENDLY,
     features: [
       "Unlimited Pages",
       "Custom Web App Features",
@@ -69,13 +82,13 @@ export interface Extra {
 }
 
 export const extras: Extra[] = [
-  { name: "Additional Page", price: "$50/page", description: "Extra pages beyond your package limit" },
-  { name: "Logo Design", price: "$75", description: "Professional logo with 2 concepts" },
-  { name: "Brand Kit", price: "$120", description: "Logo, colors, fonts, and brand guidelines" },
-  { name: "Copywriting", price: "$80/page", description: "Professional website copy that converts" },
-  { name: "Monthly Maintenance", price: "$50/mo", description: "Updates, backups, and security patches" },
-  { name: "Rush Delivery", price: "$150", description: "Get your project delivered 50% faster" },
-  { name: "AI Chatbot Integration", price: "$200", description: "Custom chatbot for lead capture" },
-  { name: "Email Marketing Setup", price: "$100", description: "Newsletter and automation setup" },
-  { name: "Custom Animations", price: "$100", description: "Premium motion design and transitions" },
+  { name: "Additional Page", price: "$50/page", description: "Expand your site with professionally designed pages" },
+  { name: "Logo Design", price: "$75", description: "A custom logo with two refined concepts to choose from" },
+  { name: "Brand Kit", price: "$120", description: "Complete brand identity — logo, colors, fonts, and guidelines" },
+  { name: "Copywriting", price: "$80/page", description: "Conversion-focused copy written for your audience" },
+  { name: "Monthly Maintenance", price: "$50/mo", description: "Ongoing updates, backups, and security monitoring" },
+  { name: "Rush Delivery", price: "$150", description: "Accelerated timeline — deliver your project 50% faster" },
+  { name: "AI Chatbot Integration", price: "$200", description: "Intelligent chatbot for lead capture and support" },
+  { name: "Email Marketing Setup", price: "$100", description: "Newsletter infrastructure and automation workflows" },
+  { name: "Custom Animations", price: "$100", description: "Premium motion design and interactive transitions" },
 ];
