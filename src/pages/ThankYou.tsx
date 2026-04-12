@@ -28,9 +28,9 @@ const ThankYou = () => (
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <Link to="/contact">
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
               <CalendarCheck className="mr-2 h-4 w-4" /> Book a Consultation
-            </Link>
+            </a>
           </Button>
         </div>
       </AnimatedSection>
