@@ -22,7 +22,7 @@ export const packages: Package[] = [
     description: "A clean, professional website to establish your online presence and start attracting clients.",
     icon: Globe,
     cta: "Pay & Start",
-    ctaLink: "/contact?package=Starter",
+    ctaLink: "https://buy.stripe.com/aFa8wOa6f66i4dD4z51RC00",
     features: [
       "1–3 Page Responsive Website",
       "Mobile-Friendly Design",

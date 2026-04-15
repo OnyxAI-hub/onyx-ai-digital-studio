@@ -55,6 +55,17 @@ const ThankYou = () => (
           Typical response time: within 24–48 hours
         </p>
       </AnimatedSection>
+
+      <AnimatedSection delay={0.35}>
+        <div className="mx-auto mt-16 max-w-md rounded-lg border border-border/30 bg-card/20 p-6 text-center">
+          <p className="mb-4 text-sm font-medium text-muted-foreground">Ready to move forward immediately?</p>
+          <a href="https://buy.stripe.com/aFa8wOa6f66i4dD4z51RC00" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" className="w-full gap-2">
+              Pay for Starter Package <ArrowRight className="h-4 w-4" />
+            </Button>
+          </a>
+        </div>
+      </AnimatedSection>
     </div>
   </main>
 );
