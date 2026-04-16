@@ -54,6 +54,12 @@ const ThankYou = () => (
         <p className="mt-10 text-xs text-muted-foreground/60 tracking-wide">
           Typical response time: within 24–48 hours
         </p>
+        <p className="mt-3 text-xs text-muted-foreground/70">
+          Have more details to share?{" "}
+          <Link to="/project-intake" className="underline underline-offset-2 transition-colors hover:text-foreground">
+            Submit a detailed project intake
+          </Link>
+        </p>
       </AnimatedSection>
 
       <AnimatedSection delay={0.35}>
