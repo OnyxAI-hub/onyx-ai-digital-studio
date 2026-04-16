@@ -30,7 +30,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer: "Yes. Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $50/month for updates, security patches, and content changes.",
+    answer: "Yes. Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $30/month for updates, security patches, and content changes.",
   },
   {
     question: "How much does a website cost?",
@@ -42,7 +42,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Do you design logos and brand identities?",
-    answer: "Yes, we offer logo design ($75) and full brand kits ($120) as add-on services. These include logo concepts, color palettes, typography, and brand guidelines.",
+    answer: "Yes, we offer logo design ($75) and full brand kits ($60) as add-on services. These include logo concepts, color palettes, typography, and brand guidelines.",
   },
   {
     question: "What if I already have a website and want to redesign it?",
