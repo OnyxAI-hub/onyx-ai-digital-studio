@@ -14,6 +14,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
+import ProjectIntake from "./pages/ProjectIntake";
 import ClientPortal from "./pages/ClientPortal";
 import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/project-intake" element={<ProjectIntake />} />
           <Route path="/client-portal" element={<ClientPortal />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="*" element={<NotFound />} />

@@ -93,6 +93,12 @@ const Pricing = () => (
           <p className="mt-8 text-center text-xs text-muted-foreground/60 max-w-xl mx-auto">
             Business and Advanced projects may require a consultation before kickoff to confirm scope, timeline, selected features, and final deliverables.
           </p>
+          <p className="mt-3 text-center text-xs text-muted-foreground/70">
+            Ready to share full project details?{" "}
+            <Link to="/project-intake" className="underline underline-offset-2 transition-colors hover:text-foreground">
+              Use the detailed intake form
+            </Link>
+          </p>
         </AnimatedSection>
       </div>
     </section>
