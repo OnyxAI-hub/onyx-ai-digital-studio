@@ -17,31 +17,25 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   pricing: [
     {
       keywords: ["pricing", "price", "cost", "how much", "budget", "afford"],
-      response: "We have three packages:\n\n• **Starter** — $150 (1–3 page site, 2-week delivery)\n• **Business** — $300 (up to 7 pages, custom design, most popular)\n• **Advanced** — $500 (unlimited pages, web app features, 30-day support)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
+      response: "We have three packages:\n\n• **Starter** — $150 (up to 3 pages, 5-day delivery)\n• **Business** — Starting at $300 (up to 5 pages, autoresponder, 7-day delivery)\n• **Advanced Website / Web App** — Starting at $500 (up to 8 pages, payments, e-commerce or booking, 14-day delivery)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
     },
   ],
-  services: [
-    {
-      keywords: ["services", "what do you", "what can you", "offer", "do you build"],
-      response: "We build:\n\n• Business Websites\n• Landing Pages\n• Web Applications & Dashboards\n• Booking & Scheduling Systems\n• Payment Integrations\n• AI Chatbots\n\nWe also offer add-ons like logo design, copywriting, and maintenance. What does your business need? [See all services](/services)",
-    },
-  ],
-  timeline: [
+  [
     {
       keywords: ["timeline", "how long", "turnaround", "delivery", "when", "deadline"],
-      response: "Most projects are completed in 2–4 weeks:\n\n• Starter: ~2 weeks\n• Business: ~3 weeks\n• Advanced: ~4 weeks\n\nRush delivery is available as a $150 add-on. When do you need your project ready?",
+      response: "Most projects are completed in 1–2 weeks:\n\n• Starter: ~5 days\n• Business: ~7 days\n• Advanced: ~14 days\n\nRush delivery is available as a $75 add-on. When do you need your project ready?",
     },
   ],
-  revisions: [
+  [
     {
       keywords: ["revision", "changes", "edits", "rounds"],
-      response: "Revisions are included with every package — 1 round for Starter, 3 for Business, and 5 for Advanced. Additional revision rounds can be arranged if needed.",
+      response: "Every package includes unlimited revisions during the active build phase, so we can keep refining until the design feels right.",
     },
   ],
-  support: [
+  [
     {
       keywords: ["support", "maintenance", "after launch", "updates"],
-      response: "Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $50/month for ongoing updates, security patches, and content changes.",
+      response: "We offer monthly maintenance plans starting at $30/month for ongoing updates, security patches, and content changes.",
     },
   ],
   contact: [
