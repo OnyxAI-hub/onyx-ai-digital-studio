@@ -3,9 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { packages, extras } from "@/data/packages";
+import { packages, extras, CALENDLY } from "@/data/packages";
 
-const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
 
 const Pricing = () => (
   <main className="pt-20">
@@ -47,7 +46,7 @@ const Pricing = () => (
                     <span className="font-display text-5xl font-bold">${pkg.price.toLocaleString()}</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-6">{pkg.description}</p>
-                  <ul className="mb-8 flex-1 space-y-3">
+                  <ul className="mb-6 flex-1 space-y-3">
                     {pkg.features.map((f) => (
                       <li key={f} className="flex items-start gap-2 text-sm">
                         <CheckCircle className="h-4 w-4 shrink-0 text-muted-foreground mt-0.5" />
@@ -55,6 +54,11 @@ const Pricing = () => (
                       </li>
                     ))}
                   </ul>
+                  {pkg.supportingNote && (
+                    <p className="mb-4 text-[11px] leading-relaxed text-muted-foreground/70">
+                      {pkg.supportingNote}
+                    </p>
+                  )}
                   {isExternal ? (
                     <a href={pkg.ctaLink} target="_blank" rel="noopener noreferrer">
                       <Button className="w-full" variant={pkg.highlighted ? "default" : "outline"}>
@@ -68,6 +72,16 @@ const Pricing = () => (
                       </Button>
                     </Link>
                   )}
+                  {pkg.consultationNote && pkg.ctaLink !== CALENDLY && (
+                    <a
+                      href={CALENDLY}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 block text-center text-xs text-muted-foreground/70 underline underline-offset-2 transition-colors hover:text-foreground"
+                    >
+                      {pkg.consultationNote}
+                    </a>
+                  )}
                 </div>
               </AnimatedSection>
             );
@@ -77,7 +91,7 @@ const Pricing = () => (
         {/* Scope note */}
         <AnimatedSection delay={0.3}>
           <p className="mt-8 text-center text-xs text-muted-foreground/60 max-w-xl mx-auto">
-            Business and Advanced projects may require a consultation before kickoff to confirm scope, timeline, and final deliverables.
+            Business and Advanced projects may require a consultation before kickoff to confirm scope, timeline, selected features, and final deliverables.
           </p>
         </AnimatedSection>
       </div>
