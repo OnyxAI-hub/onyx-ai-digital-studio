@@ -17,7 +17,7 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   pricing: [
     {
       keywords: ["pricing", "price", "cost", "how much", "budget", "afford"],
-      response: "We have three packages:\n\n• **Starter** — $250 (1–3 page site, 2-week delivery)\n• **Business** — $550 (up to 7 pages, custom design, most popular)\n• **Advanced** — $1,100 (unlimited pages, web app features, 30-day support)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
+      response: "We have three packages:\n\n• **Starter** — $150 (1–3 page site, 2-week delivery)\n• **Business** — $300 (up to 7 pages, custom design, most popular)\n• **Advanced** — $500 (unlimited pages, web app features, 30-day support)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
     },
   ],
   services: [
@@ -68,19 +68,19 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
 const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   {
     keywords: ["business website", "company website", "professional website", "brochure"],
-    response: "For a professional business website, I'd recommend our **Business package ($550)**. It includes up to 7 pages, custom UI/UX design, advanced SEO, and 3 rounds of revisions.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
+    response: "For a professional business website, I'd recommend our **Business package ($300)**. It includes up to 7 pages, custom UI/UX design, advanced SEO, and 3 rounds of revisions.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
   },
   {
     keywords: ["e-commerce", "ecommerce", "online store", "sell products", "shop", "supplements", "wellness"],
-    response: "For an e-commerce or product-based site, our **Advanced package ($1,100)** is the best fit. It includes custom features, payment integration, and 30-day post-launch support.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
+    response: "For an e-commerce or product-based site, our **Advanced package ($500)** is the best fit. It includes custom features, payment integration, and 30-day post-launch support.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
   },
   {
     keywords: ["cleaning", "service business", "local business", "plumber", "contractor", "landscaping"],
-    response: "For a service business, our **Business package ($550)** works great. It includes a professional design with clear CTAs, booking integration, and SEO to help local customers find you.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
+    response: "For a service business, our **Business package ($300)** works great. It includes a professional design with clear CTAs, booking integration, and SEO to help local customers find you.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
   },
   {
     keywords: ["dashboard", "admin", "platform", "portal", "saas", "app"],
-    response: "For dashboards and web platforms, our **Advanced package ($1,100)** is ideal. It includes custom web app features, user dashboards, role-based access, and API integrations.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
+    response: "For dashboards and web platforms, our **Advanced package ($500)** is ideal. It includes custom web app features, user dashboards, role-based access, and API integrations.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
   },
   {
     keywords: ["fitness", "gym", "workout", "training", "health"],
@@ -88,11 +88,11 @@ const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   },
   {
     keywords: ["landing page", "single page", "launch page", "coming soon"],
-    response: "For a high-converting landing page, our **Starter package ($250)** is perfect. You'll get a responsive, SEO-optimized page delivered in about 2 weeks.\n\nNeed more pages or features? The **Business package ($550)** gives you up to 7 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
+    response: "For a high-converting landing page, our **Starter package ($150)** is perfect. You'll get a responsive, SEO-optimized page delivered in about 2 weeks.\n\nNeed more pages or features? The **Business package ($300)** gives you up to 7 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
   },
   {
     keywords: ["booking", "scheduling", "appointment", "calendar"],
-    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package ($1,100)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
+    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package ($500)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
   },
   {
     keywords: ["chatbot", "ai bot", "chat assistant", "automated chat"],
@@ -104,7 +104,7 @@ const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   },
   {
     keywords: ["cheap", "free", "lowest", "discount"],
-    response: "Our most affordable option is the **Starter package at $250** — it includes a 1–3 page responsive website with mobile-friendly design, basic SEO, and a contact form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
+    response: "Our most affordable option is the **Starter package at $150** — it includes a 1–3 page responsive website with mobile-friendly design, basic SEO, and a contact form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
   },
 ];
 
@@ -199,7 +199,7 @@ const ChatWidget = () => {
     }
 
     // Fallback with helpful guidance
-    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $250\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
+    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $150\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
   };
 
   // Simple markdown-like link rendering
