@@ -82,6 +82,14 @@ const Pricing = () => (
                       {pkg.consultationNote}
                     </a>
                   )}
+                  {pkg.intakeLink && (
+                    <Link
+                      to={pkg.intakeLink}
+                      className="mt-3 block text-center text-xs text-muted-foreground/70 underline underline-offset-2 transition-colors hover:text-foreground"
+                    >
+                      Need a more detailed project planner? Open Full Project Intake
+                    </Link>
+                  )}
                 </div>
               </AnimatedSection>
             );

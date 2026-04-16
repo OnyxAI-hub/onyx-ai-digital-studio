@@ -27,7 +27,7 @@ const Hero = () => (
     <div className="relative z-10 container-narrow px-4 text-center">
       <AnimatedSection>
         <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-          AI-Powered Digital Agency
+          Digital Studio
         </span>
       </AnimatedSection>
       <AnimatedSection delay={0.1}>

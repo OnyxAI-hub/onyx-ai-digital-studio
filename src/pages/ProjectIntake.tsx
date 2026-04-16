@@ -47,9 +47,9 @@ const intakeSchema = z.object({
 type IntakeForm = z.infer<typeof intakeSchema>;
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
-  Starter: "under-500",
-  Business: "500-1000",
-  Advanced: "1000-2500",
+  Starter: "150-300",
+  Business: "300-500",
+  Advanced: "500-750",
 };
 
 const ProjectIntake = () => {
@@ -322,10 +322,11 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="under-500">Under $500</SelectItem>
-                            <SelectItem value="500-1000">$500 – $1,000</SelectItem>
-                            <SelectItem value="1000-2500">$1,000 – $2,500</SelectItem>
-                            <SelectItem value="2500-plus">$2,500+</SelectItem>
+                            <SelectItem value="under-150">Under $150</SelectItem>
+                            <SelectItem value="150-300">$150 – $300</SelectItem>
+                            <SelectItem value="300-500">$300 – $500</SelectItem>
+                            <SelectItem value="500-750">$500 – $750</SelectItem>
+                            <SelectItem value="over-750">Over $750 / Custom Scope</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -339,10 +340,11 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="asap">ASAP</SelectItem>
+                            <SelectItem value="asap">ASAP / Rush</SelectItem>
+                            <SelectItem value="1-week">Within 1 week</SelectItem>
                             <SelectItem value="2-weeks">Within 2 weeks</SelectItem>
                             <SelectItem value="1-month">Within 1 month</SelectItem>
-                            <SelectItem value="flexible">Flexible</SelectItem>
+                            <SelectItem value="flexible">Flexible / Not sure yet</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -358,8 +360,9 @@ const ProjectIntake = () => {
                           <SelectTrigger><SelectValue placeholder="What would you like to do next?" /></SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="book-consultation">Book a consultation</SelectItem>
-                          <SelectItem value="project-inquiry">Start with a project inquiry</SelectItem>
+                          <SelectItem value="book-consultation">Book a Consultation</SelectItem>
+                          <SelectItem value="project-inquiry">Submit a Detailed Project Request</SelectItem>
+                          <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />

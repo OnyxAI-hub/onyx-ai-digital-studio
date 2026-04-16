@@ -6,7 +6,7 @@ export interface FAQ {
 export const faqs: FAQ[] = [
   {
     question: "How long does it take to build a website?",
-    answer: "Most projects are completed within 2–4 weeks depending on the package and complexity. Starter sites take about 2 weeks, Business sites 3 weeks, and Advanced projects up to 4 weeks. Rush delivery is available as an add-on.",
+    answer: "Most projects are completed within 1–2 weeks depending on the package and complexity. Starter sites deliver in about 5 days, Business sites in 7 days, and Advanced builds in around 14 days. Rush delivery is available as an add-on.",
   },
   {
     question: "What do I need to get started?",
@@ -14,11 +14,11 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Do you offer revisions?",
-    answer: "Yes. Each package includes a set number of revision rounds — 1 for Starter, 3 for Business, and 5 for Advanced. Additional revisions can be arranged if needed.",
+    answer: "Yes. Every package includes unlimited revisions during the active build phase, so we can refine the design until it feels right.",
   },
   {
     question: "Can you build custom features like booking systems or dashboards?",
-    answer: "Absolutely. Our Advanced package includes custom web app features like booking systems, admin dashboards, payment processing, and more. We can also add these to any package as extras.",
+    answer: "Absolutely. Our Advanced Website / Web App package includes payment integration and an e-commerce or booking system. More custom features like dashboards or API integrations are scoped through a consultation.",
   },
   {
     question: "Do you provide hosting?",
@@ -30,7 +30,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer: "Yes. Our Advanced package includes 30 days of post-launch support. We also offer monthly maintenance plans starting at $30/month for updates, security patches, and content changes.",
+    answer: "Yes. We offer monthly maintenance plans starting at $30/month for updates, security patches, and content changes.",
   },
   {
     question: "How much does a website cost?",
