@@ -18,7 +18,7 @@ const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
 export const packages: Package[] = [
   {
     name: "Starter",
-    price: 250,
+    price: 150,
     description: "A clean, professional website to establish your online presence and start attracting clients.",
     icon: Globe,
     cta: "Pay & Start",
@@ -34,7 +34,7 @@ export const packages: Package[] = [
   },
   {
     name: "Business",
-    price: 750,
+    price: 300,
     pricePrefix: "Starting at",
     description: "For growing brands that need a stronger digital presence, custom design, and more functionality.",
     icon: Rocket,
@@ -55,7 +55,7 @@ export const packages: Package[] = [
   },
   {
     name: "Advanced",
-    price: 1500,
+    price: 500,
     pricePrefix: "Starting at",
     description: "Custom-built web apps, dashboards, and automation — scoped to your exact business needs.",
     icon: Zap,

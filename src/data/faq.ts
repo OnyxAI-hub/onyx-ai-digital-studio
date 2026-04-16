@@ -34,7 +34,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "How much does a website cost?",
-    answer: "Our packages start at $250 for a Starter site, $550 for a Business site, and $1,100 for an Advanced build. The final cost depends on the features and customization you need.",
+    answer: "Our packages start at $150 for a Starter site, $300 for a Business site, and $500 for an Advanced build. The final cost depends on the features and customization you need.",
   },
   {
     question: "Can I update the website myself after it's built?",
