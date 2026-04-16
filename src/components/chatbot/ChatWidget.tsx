@@ -20,19 +20,19 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
       response: "We have three packages:\n\n• **Starter** — $150 (up to 3 pages, 5-day delivery)\n• **Business** — Starting at $300 (up to 5 pages, autoresponder, 7-day delivery)\n• **Advanced Website / Web App** — Starting at $500 (up to 8 pages, payments, e-commerce or booking, 14-day delivery)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
     },
   ],
-  [
+  timeline: [
     {
       keywords: ["timeline", "how long", "turnaround", "delivery", "when", "deadline"],
       response: "Most projects are completed in 1–2 weeks:\n\n• Starter: ~5 days\n• Business: ~7 days\n• Advanced: ~14 days\n\nRush delivery is available as a $75 add-on. When do you need your project ready?",
     },
   ],
-  [
+  revisions: [
     {
       keywords: ["revision", "changes", "edits", "rounds"],
       response: "Every package includes unlimited revisions during the active build phase, so we can keep refining until the design feels right.",
     },
   ],
-  [
+  support: [
     {
       keywords: ["support", "maintenance", "after launch", "updates"],
       response: "We offer monthly maintenance plans starting at $30/month for ongoing updates, security patches, and content changes.",
