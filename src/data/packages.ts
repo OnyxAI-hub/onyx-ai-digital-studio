@@ -13,7 +13,7 @@ export interface Package {
   ctaLink: string;
 }
 
-const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
+export const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
 
 export const packages: Package[] = [
   {
@@ -22,7 +22,7 @@ export const packages: Package[] = [
     description: "A clean, professional website to establish your online presence and start attracting clients.",
     icon: Globe,
     cta: "Pay & Start",
-    ctaLink: "https://buy.stripe.com/aFa8wOa6f66i4dD4z51RC00",
+    ctaLink: "https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1RC03",
     features: [
       "1–3 Page Responsive Website",
       "Mobile-Friendly Design",
@@ -40,8 +40,8 @@ export const packages: Package[] = [
     icon: Rocket,
     highlighted: true,
     badge: "Most Popular",
-    cta: "Book a Consultation",
-    ctaLink: CALENDLY,
+    cta: "Pay & Start",
+    ctaLink: "https://buy.stripe.com/6oU8wOfqz66i7pP1mT1RC04",
     features: [
       "Up to 7 Pages",
       "Custom UI/UX Design",
@@ -59,8 +59,8 @@ export const packages: Package[] = [
     pricePrefix: "Starting at",
     description: "Custom-built web apps, dashboards, and automation — scoped to your exact business needs.",
     icon: Zap,
-    cta: "Book a Consultation",
-    ctaLink: CALENDLY,
+    cta: "Pay & Start",
+    ctaLink: "https://buy.stripe.com/9B63cu0vFfGSh0pd5B1RC05",
     features: [
       "Unlimited Pages",
       "Custom Web App Features",
