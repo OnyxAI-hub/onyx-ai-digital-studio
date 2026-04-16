@@ -166,10 +166,11 @@ const Contact = () => {
                               <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="under-500">Under $500</SelectItem>
-                              <SelectItem value="500-1000">$500 – $1,000</SelectItem>
-                              <SelectItem value="1000-2500">$1,000 – $2,500</SelectItem>
-                              <SelectItem value="2500-plus">$2,500+</SelectItem>
+                              <SelectItem value="under-150">Under $150</SelectItem>
+                              <SelectItem value="150-300">$150 – $300</SelectItem>
+                              <SelectItem value="300-500">$300 – $500</SelectItem>
+                              <SelectItem value="500-750">$500 – $750</SelectItem>
+                              <SelectItem value="over-750">Over $750 / Custom Scope</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -185,10 +186,11 @@ const Contact = () => {
                               <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="asap">ASAP</SelectItem>
+                              <SelectItem value="asap">ASAP / Rush</SelectItem>
+                              <SelectItem value="1-week">Within 1 week</SelectItem>
                               <SelectItem value="2-weeks">Within 2 weeks</SelectItem>
                               <SelectItem value="1-month">Within 1 month</SelectItem>
-                              <SelectItem value="flexible">Flexible</SelectItem>
+                              <SelectItem value="flexible">Flexible / Not sure yet</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -223,20 +225,30 @@ const Contact = () => {
                         <FormMessage />
                       </FormItem>
                     )} />
-                    <div className="space-y-3">
+                    <div>
                       <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
                         {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
                       </Button>
-                      <p className="text-center text-xs text-muted-foreground/70">
-                        Need a more detailed project planner?{" "}
-                        <Link to="/project-intake" className="text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground">
-                          Use the full intake form
-                        </Link>
-                      </p>
                     </div>
                   </form>
                 </Form>
               </div>
+
+              <AnimatedSection delay={0.15}>
+                <div className="glass-card mt-8 p-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="max-w-md">
+                    <h3 className="font-display text-lg font-semibold tracking-tight">Need a more detailed project planner?</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                      If you already know the package, features, and add-ons you want, use the full intake form.
+                    </p>
+                  </div>
+                  <Link to="/project-intake" className="shrink-0">
+                    <Button variant="outline" size="lg" className="gap-2 whitespace-nowrap">
+                      Open Full Project Intake <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </AnimatedSection>
             </AnimatedSection>
           </div>
         </div>
