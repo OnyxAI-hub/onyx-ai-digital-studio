@@ -11,9 +11,12 @@ export interface Package {
   badge?: string;
   cta: string;
   ctaLink: string;
+  consultationNote?: string;
+  supportingNote?: string;
 }
 
 export const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
+export const STARTER_PAYMENT_LINK = "https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1RC03";
 
 export const packages: Package[] = [
   {
@@ -22,7 +25,8 @@ export const packages: Package[] = [
     description: "A clean, professional website to establish your online presence and start attracting clients.",
     icon: Globe,
     cta: "Pay & Start",
-    ctaLink: "https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1RC03",
+    ctaLink: STARTER_PAYMENT_LINK,
+    consultationNote: "Prefer to talk first? Book a consultation",
     features: [
       "1–3 Page Responsive Website",
       "Mobile-Friendly Design",
@@ -40,8 +44,10 @@ export const packages: Package[] = [
     icon: Rocket,
     highlighted: true,
     badge: "Most Popular",
-    cta: "Pay & Start",
-    ctaLink: "https://buy.stripe.com/6oU8wOfqz66i7pP1mT1RC04",
+    cta: "Book a Consultation",
+    ctaLink: CALENDLY,
+    consultationNote: "Need help deciding? Book a consultation",
+    supportingNote: "Business projects start at $300. Final scope depends on features, pages, timeline, and add-ons.",
     features: [
       "Up to 7 Pages",
       "Custom UI/UX Design",
@@ -59,8 +65,10 @@ export const packages: Package[] = [
     pricePrefix: "Starting at",
     description: "Custom-built web apps, dashboards, and automation — scoped to your exact business needs.",
     icon: Zap,
-    cta: "Pay & Start",
-    ctaLink: "https://buy.stripe.com/9B63cu0vFfGSh0pd5B1RC05",
+    cta: "Book a Consultation",
+    ctaLink: CALENDLY,
+    consultationNote: "Want to discuss scope first? Book a consultation",
+    supportingNote: "Advanced projects start at $500 and are reviewed before kickoff to confirm scope, complexity, and deliverables.",
     features: [
       "Unlimited Pages",
       "Custom Web App Features",
@@ -82,13 +90,19 @@ export interface Extra {
 }
 
 export const extras: Extra[] = [
-  { name: "Additional Page", price: "$50/page", description: "Expand your site with professionally designed pages" },
+  { name: "Additional Page", price: "$20", description: "Expand your site with professionally designed pages" },
+  { name: "Additional Plugin / Feature Install", price: "$15", description: "Install and configure an additional plugin or feature" },
+  { name: "Additional Product", price: "$10", description: "Add an extra product to your store catalog" },
+  { name: "Payment Integration", price: "$50", description: "Stripe or PayPal checkout configured for your site" },
+  { name: "E-commerce Functionality", price: "$50", description: "Cart, checkout, and product management setup" },
+  { name: "Booking / Calendly Setup", price: "$25", description: "Embed and configure booking or scheduling flows" },
+  { name: "Autoresponder / Email Automation", price: "$30", description: "Automated email sequences for new leads" },
+  { name: "Hosting Setup", price: "$25", description: "Domain, hosting, and deployment configuration" },
   { name: "Logo Design", price: "$75", description: "A custom logo with two refined concepts to choose from" },
-  { name: "Brand Kit", price: "$120", description: "Complete brand identity — logo, colors, fonts, and guidelines" },
-  { name: "Copywriting", price: "$80/page", description: "Conversion-focused copy written for your audience" },
-  { name: "Monthly Maintenance", price: "$50/mo", description: "Ongoing updates, backups, and security monitoring" },
-  { name: "Rush Delivery", price: "$150", description: "Accelerated timeline — deliver your project 50% faster" },
-  { name: "AI Chatbot Integration", price: "$200", description: "Intelligent chatbot for lead capture and support" },
-  { name: "Email Marketing Setup", price: "$100", description: "Newsletter infrastructure and automation workflows" },
-  { name: "Custom Animations", price: "$100", description: "Premium motion design and interactive transitions" },
+  { name: "Brand Kit", price: "$60", description: "Complete brand identity — logo, colors, fonts, and guidelines" },
+  { name: "Copywriting", price: "$50", description: "Conversion-focused copy written for your audience" },
+  { name: "Custom Animations", price: "$50", description: "Premium motion design and interactive transitions" },
+  { name: "AI Chatbot Integration", price: "$125", description: "Intelligent chatbot for lead capture and support" },
+  { name: "Monthly Maintenance", price: "$30/month", description: "Ongoing updates, backups, and security monitoring" },
+  { name: "Rush Delivery", price: "$75", description: "Accelerated timeline — deliver your project faster" },
 ];
