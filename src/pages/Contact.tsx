@@ -131,21 +131,27 @@ const Contact = () => {
 
             <AnimatedSection delay={0.1} className="lg:col-span-2">
               <div className="glass-card p-8">
-                <h3 className="font-display text-xl font-bold mb-6 tracking-tight">Send a Message</h3>
+                <h3 id="contact-form-heading" className="font-display text-xl font-bold mb-6 tracking-tight">Send a Message</h3>
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <form
+                    id="main-contact-form"
+                    data-testid="main-contact-form"
+                    aria-labelledby="contact-form-heading"
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-5"
+                  >
                     <div className="grid gap-5 md:grid-cols-2">
                       <FormField control={form.control} name="name" render={({ field }) => (
                         <FormItem>
                           <FormLabel>Full Name *</FormLabel>
-                          <FormControl><Input placeholder="Your full name" {...field} /></FormControl>
+                          <FormControl><Input placeholder="Your full name" autoComplete="name" data-testid="contact-name-input" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )} />
                       <FormField control={form.control} name="email" render={({ field }) => (
                         <FormItem>
                           <FormLabel>Email *</FormLabel>
-                          <FormControl><Input placeholder="Your email address" {...field} /></FormControl>
+                          <FormControl><Input type="email" placeholder="Your email address" autoComplete="email" data-testid="contact-email-input" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )} />
@@ -154,7 +160,7 @@ const Contact = () => {
                       <FormField control={form.control} name="phone" render={({ field }) => (
                         <FormItem>
                           <FormLabel>Phone (optional)</FormLabel>
-                          <FormControl><Input placeholder="Your phone number" {...field} /></FormControl>
+                          <FormControl><Input placeholder="Your phone number" autoComplete="tel" data-testid="contact-phone-input" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )} />
@@ -163,7 +169,7 @@ const Contact = () => {
                           <FormLabel>Budget Range</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
+                              <SelectTrigger data-testid="contact-budget-select"><SelectValue placeholder="Select budget" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="under-150">Under $150</SelectItem>
@@ -183,7 +189,7 @@ const Contact = () => {
                           <FormLabel>Timeline</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                              <SelectTrigger data-testid="contact-timeline-select"><SelectValue placeholder="Select timeline" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="asap">ASAP / Rush</SelectItem>
@@ -201,7 +207,7 @@ const Contact = () => {
                           <FormLabel>Service Needed</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger><SelectValue placeholder="Select service" /></SelectTrigger>
+                              <SelectTrigger data-testid="contact-service-select"><SelectValue placeholder="Select service" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="website">Business Website</SelectItem>
@@ -220,13 +226,21 @@ const Contact = () => {
                       <FormItem>
                         <FormLabel>Tell Us About Your Project *</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Describe your project, goals, and any specific features you need..." className="min-h-[120px]" {...field} />
+                          <Textarea placeholder="Describe your project, goals, and any specific features you need..." className="min-h-[120px]" data-testid="contact-message-textarea" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
                     <div>
-                      <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full gap-2"
+                        disabled={isSubmitting}
+                        id="contact-form-submit"
+                        data-testid="contact-form-submit"
+                        aria-label="Send contact message"
+                      >
                         {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
                       </Button>
                     </div>
