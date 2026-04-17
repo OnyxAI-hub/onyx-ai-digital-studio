@@ -291,16 +291,30 @@ const ChatWidget = () => {
           {/* Input */}
           <div className="border-t border-border/40 p-3">
             <form
+              id="chatbot-message-form"
+              data-testid="chatbot-message-form"
+              aria-label="ONYX AI chatbot message"
               className="flex gap-2 chat-form"
               onSubmit={(e) => { e.preventDefault(); handleSend(); }}
             >
               <input
+                id="chatbot-message-input"
+                data-testid="chatbot-message-input"
+                name="chatbot_message"
+                aria-label="Chatbot message input"
+                autoComplete="off"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
                 className="flex-1 rounded-md border border-border/60 bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               />
-              <Button type="submit" size="icon" className="shrink-0">
+              <Button
+                type="submit"
+                size="icon"
+                className="shrink-0"
+                aria-label="Send chatbot message"
+                data-testid="chatbot-send-button"
+              >
                 <Send className="h-4 w-4" />
               </Button>
             </form>
