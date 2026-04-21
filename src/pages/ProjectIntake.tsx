@@ -47,9 +47,9 @@ const intakeSchema = z.object({
 type IntakeForm = z.infer<typeof intakeSchema>;
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
-  Starter: "150-300",
-  Business: "300-500",
-  Advanced: "500-750",
+  Starter: "under-100",
+  Business: "350-650",
+  Advanced: "650-1000",
 };
 
 const ProjectIntake = () => {
