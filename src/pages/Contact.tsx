@@ -172,11 +172,11 @@ const Contact = () => {
                               <SelectTrigger data-testid="contact-budget-select"><SelectValue placeholder="Select budget" /></SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="under-150">Under $150</SelectItem>
-                              <SelectItem value="150-300">$150 – $300</SelectItem>
-                              <SelectItem value="300-500">$300 – $500</SelectItem>
-                              <SelectItem value="500-750">$500 – $750</SelectItem>
-                              <SelectItem value="over-750">Over $750 / Custom Scope</SelectItem>
+                              <SelectItem value="under-100">Under $100</SelectItem>
+                              <SelectItem value="100-350">$100 – $350</SelectItem>
+                              <SelectItem value="350-650">$350 – $650</SelectItem>
+                              <SelectItem value="650-1000">$650 – $1,000</SelectItem>
+                              <SelectItem value="over-1000">Over $1,000 / Custom Scope</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />

@@ -65,7 +65,7 @@ const ThankYou = () => (
       <AnimatedSection delay={0.35}>
         <div className="mx-auto mt-16 max-w-md rounded-lg border border-border/30 bg-card/20 p-6 text-center">
           <p className="mb-1 text-sm font-medium text-muted-foreground">Ready to move forward immediately?</p>
-          <p className="mb-4 text-xs text-muted-foreground/70">Starter package — $150 flat, direct checkout.</p>
+          <p className="mb-4 text-xs text-muted-foreground/70">Starter package — $100 flat, direct checkout.</p>
           <a href="https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1RC03" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="lg" className="w-full gap-2">
               Pay for Starter Package <ArrowRight className="h-4 w-4" />

@@ -17,7 +17,7 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   pricing: [
     {
       keywords: ["pricing", "price", "cost", "how much", "budget", "afford"],
-      response: "We have three packages:\n\n• **Starter** — $150 (up to 3 pages, 5-day delivery)\n• **Business** — Starting at $300 (up to 5 pages, autoresponder, 7-day delivery)\n• **Advanced Website / Web App** — Starting at $500 (up to 8 pages, payments, e-commerce or booking, 14-day delivery)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
+      response: "We have three packages:\n\n• **Starter** — $100 (up to 3 pages, 5-day delivery)\n• **Business** — Starting at $350 (up to 5 pages, autoresponder, 7-day delivery)\n• **Advanced Website / Web App** — Starting at $650 (up to 8 pages, payments, e-commerce or booking, 14-day delivery)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
     },
   ],
   timeline: [
@@ -82,7 +82,7 @@ const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   },
   {
     keywords: ["landing page", "single page", "launch page", "coming soon"],
-    response: "For a high-converting landing page, our **Starter package ($150)** is perfect. You'll get a responsive, SEO-optimized page delivered in about 2 weeks.\n\nNeed more pages or features? The **Business package ($300)** gives you up to 7 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
+    response: "For a high-converting landing page, our **Starter package ($100)** is perfect. You'll get a responsive, SEO-optimized page delivered in 5 days.\n\nNeed more pages or features? The **Business package ($350)** gives you up to 5 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
   },
   {
     keywords: ["booking", "scheduling", "appointment", "calendar"],
@@ -98,7 +98,7 @@ const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   },
   {
     keywords: ["cheap", "free", "lowest", "discount"],
-    response: "Our most affordable option is the **Starter package at $150** — it includes a 1–3 page responsive website with mobile-friendly design, basic SEO, and a contact form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
+    response: "Our most affordable option is the **Starter package at $100** — it includes a 1–3 page responsive website with mobile-friendly design, speed optimization, and an opt-in form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
   },
 ];
 
@@ -193,7 +193,7 @@ const ChatWidget = () => {
     }
 
     // Fallback with helpful guidance
-    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $150\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
+    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $100\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
   };
 
   // Simple markdown-like link rendering

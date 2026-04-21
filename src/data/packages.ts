@@ -22,7 +22,7 @@ export const STARTER_PAYMENT_LINK = "https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1R
 export const packages: Package[] = [
   {
     name: "Starter",
-    price: 150,
+    price: 100,
     description: "Clean, modern website for your business or idea. Best for a simple professional online presence.",
     icon: Globe,
     cta: "Pay & Start",
@@ -42,7 +42,7 @@ export const packages: Package[] = [
   },
   {
     name: "Business",
-    price: 300,
+    price: 350,
     pricePrefix: "Starting at",
     description: "Professional multi-page website with key features to grow your business online.",
     icon: Rocket,
@@ -51,7 +51,7 @@ export const packages: Package[] = [
     cta: "Book a Consultation",
     ctaLink: CALENDLY,
     intakeLink: "/project-intake?package=Business",
-    supportingNote: "Business projects start at $300. Final scope depends on features, pages, timeline, and add-ons.",
+    supportingNote: "Business projects start at $350. Final scope depends on features, pages, timeline, and add-ons.",
     features: [
       "Up to 5 pages",
       "Responsive design",
@@ -67,14 +67,14 @@ export const packages: Package[] = [
   },
   {
     name: "Advanced Website / Web App",
-    price: 500,
+    price: 650,
     pricePrefix: "Starting at",
     description: "Advanced website or web app with stronger customization, payments, and higher-end integrations.",
     icon: Zap,
     cta: "Book a Consultation",
     ctaLink: CALENDLY,
     intakeLink: "/project-intake?package=Advanced",
-    supportingNote: "Advanced projects start at $500 and are reviewed before kickoff to confirm scope, complexity, and deliverables.",
+    supportingNote: "Advanced projects start at $650 and are reviewed before kickoff to confirm scope, complexity, and deliverables.",
     features: [
       "Up to 8 pages",
       "Responsive design",
