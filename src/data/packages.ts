@@ -17,7 +17,9 @@ export interface Package {
 }
 
 export const CALENDLY = "https://calendly.com/onyxai-contact/onyx-consultation";
-export const STARTER_PAYMENT_LINK = "https://buy.stripe.com/6oU6oG5PZ2U66lL2qX1RC03";
+export const STARTER_PAYMENT_LINK = "https://buy.stripe.com/28E8wOfqz2U6bG55D91RC06";
+export const BUSINESS_PAYMENT_LINK = "https://buy.stripe.com/bJecN4emv8eq9xX5D91RC07";
+export const ADVANCED_PAYMENT_LINK = "https://buy.stripe.com/eVq14mfqz2U611r5D91RC08";
 
 export const packages: Package[] = [
   {

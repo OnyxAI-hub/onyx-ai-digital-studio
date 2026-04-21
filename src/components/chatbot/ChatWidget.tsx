@@ -62,19 +62,19 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
 const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   {
     keywords: ["business website", "company website", "professional website", "brochure"],
-    response: "For a professional business website, I'd recommend our **Business package ($300)**. It includes up to 7 pages, custom UI/UX design, advanced SEO, and 3 rounds of revisions.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
+    response: "For a professional business website, I'd recommend our **Business package (starting at $350)**. It includes up to 5 pages, responsive design, autoresponder integration, and revisions during the active build phase.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
   },
   {
     keywords: ["e-commerce", "ecommerce", "online store", "sell products", "shop", "supplements", "wellness"],
-    response: "For an e-commerce or product-based site, our **Advanced package ($500)** is the best fit. It includes custom features, payment integration, and 30-day post-launch support.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
+    response: "For an e-commerce or product-based site, our **Advanced package (starting at $650)** is the best fit. It includes payment integration, e-commerce or booking system, up to 10 products, and hosting setup.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
   },
   {
     keywords: ["cleaning", "service business", "local business", "plumber", "contractor", "landscaping"],
-    response: "For a service business, our **Business package ($300)** works great. It includes a professional design with clear CTAs, booking integration, and SEO to help local customers find you.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
+    response: "For a service business, our **Business package (starting at $350)** works great. It includes a professional design with clear CTAs, up to 5 feature integrations, and speed optimization.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
   },
   {
     keywords: ["dashboard", "admin", "platform", "portal", "saas", "app"],
-    response: "For dashboards and web platforms, our **Advanced package ($500)** is ideal. It includes custom web app features, user dashboards, role-based access, and API integrations.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
+    response: "For dashboards and web platforms, our **Advanced package (starting at $650)** is ideal. It includes up to 10 feature integrations, payment integration, and hosting setup.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
   },
   {
     keywords: ["fitness", "gym", "workout", "training", "health"],
@@ -82,23 +82,23 @@ const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   },
   {
     keywords: ["landing page", "single page", "launch page", "coming soon"],
-    response: "For a high-converting landing page, our **Starter package ($100)** is perfect. You'll get a responsive, SEO-optimized page delivered in 5 days.\n\nNeed more pages or features? The **Business package ($350)** gives you up to 5 pages with custom design.\n\n[Get started →](/contact?service=Landing+Pages)",
+    response: "For a high-converting landing page, our **Starter package ($100)** is perfect. You'll get a responsive, SEO-optimized page delivered in 5 days.\n\nNeed more pages or features? The **Business package (starting at $350)** gives you up to 5 pages with professional design.\n\n[Get started →](/contact?service=Landing+Pages)",
   },
   {
     keywords: ["booking", "scheduling", "appointment", "calendar"],
-    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package ($500)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
+    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package (starting at $650)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
   },
   {
     keywords: ["chatbot", "ai bot", "chat assistant", "automated chat"],
-    response: "We build custom AI chatbots that qualify leads, answer FAQs, and engage visitors 24/7. You can add one to any project for $200 as an add-on.\n\n[Get started →](/contact?extra=AI+Chatbot+Integration)",
+    response: "We build custom AI chatbots that qualify leads, answer FAQs, and engage visitors 24/7. You can add one to any project for $125 as an add-on.\n\n[Get started →](/contact?extra=AI+Chatbot+Integration)",
   },
   {
     keywords: ["logo", "brand", "branding", "identity"],
-    response: "We offer logo design ($75) and full brand kits ($120) that include logo concepts, color palettes, typography, and brand guidelines. These can be added to any package.\n\n[Get started →](/contact?extra=Brand+Kit)",
+    response: "We offer logo design ($75) and full brand kits ($60) that include logo concepts, color palettes, typography, and brand guidelines. These can be added to any package.\n\n[Get started →](/contact?extra=Brand+Kit)",
   },
   {
     keywords: ["cheap", "free", "lowest", "discount"],
-    response: "Our most affordable option is the **Starter package at $100** — it includes a 1–3 page responsive website with mobile-friendly design, speed optimization, and an opt-in form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
+    response: "Our most affordable option is the **Starter package at $100** — it includes up to 3 pages with responsive design, speed optimization, and an opt-in form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
   },
 ];
 
