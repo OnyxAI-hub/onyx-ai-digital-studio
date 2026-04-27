@@ -93,7 +93,7 @@ const FeaturedServicesSection = () => (
   <section className="section-padding">
     <div className="container-narrow">
       <AnimatedSection>
-        <SectionHeading badge="What We Do" title="Services That Drive Results" description="From simple landing pages to complex web applications — we build what your business needs to succeed online." />
+        <SectionHeading badge="What We Do" title="Digital Systems for Modern Businesses" description="Websites, web apps, AI voice agents, and automation systems built for service-based businesses." />
       </AnimatedSection>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featuredServices.map((service, i) => (
