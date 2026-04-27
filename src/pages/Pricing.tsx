@@ -42,6 +42,37 @@ const pricingFaqs = [
   },
 ];
 
+    {/* Pricing FAQ */}
+    <section className="section-padding bg-card/20">
+      <div className="container-narrow max-w-3xl">
+        <AnimatedSection>
+          <SectionHeading
+            badge="FAQ"
+            title="Pricing Questions, Answered"
+            description="Everything you need to know about packages, revisions, timelines, and custom scope."
+          />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <Accordion type="single" collapsible className="mt-8 space-y-3">
+            {pricingFaqs.map((faq, i) => (
+              <AccordionItem
+                key={faq.q}
+                value={`item-${i}`}
+                className="glass-card border-border/40 px-5"
+              >
+                <AccordionTrigger className="text-left font-display text-base font-semibold hover:no-underline">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </AnimatedSection>
+      </div>
+    </section>
+
 
 const Pricing = () => (
   <main className="pt-20">
