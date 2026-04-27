@@ -47,10 +47,12 @@ const intakeSchema = z.object({
 type IntakeForm = z.infer<typeof intakeSchema>;
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
-  Starter: "under-100",
   Business: "350-650",
   Advanced: "650-1000",
+  "AI Voice Agent": "350-650",
 };
+
+const VALID_PACKAGES = ["Business", "Advanced", "AI Voice Agent"];
 
 const ProjectIntake = () => {
   const [searchParams] = useSearchParams();
@@ -59,7 +61,7 @@ const ProjectIntake = () => {
 
   const prefillPackage = searchParams.get("package") || "";
   const prefillExtra = searchParams.get("extra") || "";
-  const resolvedPackage = ["Starter", "Business", "Advanced"].includes(prefillPackage) ? prefillPackage : "";
+  const resolvedPackage = VALID_PACKAGES.includes(prefillPackage) ? prefillPackage : "";
   const resolvedBudget = PACKAGE_BUDGET_MAP[prefillPackage] || "";
   const resolvedAddOns = prefillExtra && (ADDON_OPTIONS as readonly string[]).includes(prefillExtra) ? [prefillExtra] : [];
 
@@ -207,10 +209,10 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select package" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Starter">Starter — $100</SelectItem>
-                            <SelectItem value="Business">Business — Starting at $350</SelectItem>
-                            <SelectItem value="Advanced">Advanced — Starting at $650</SelectItem>
-                            <SelectItem value="Not sure yet">Not sure yet</SelectItem>
+                            <SelectItem value="Business">Business Website — Starting at $350</SelectItem>
+                            <SelectItem value="Advanced">Advanced Website / Web App — Starting at $650</SelectItem>
+                            <SelectItem value="AI Voice Agent">AI Voice Agent Setup — Starting at $500</SelectItem>
+                            <SelectItem value="Not sure yet">Not Sure Yet</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -266,10 +268,11 @@ const ProjectIntake = () => {
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="website">Business Website</SelectItem>
-                            <SelectItem value="landing">Landing Page</SelectItem>
                             <SelectItem value="webapp">Web Application</SelectItem>
                             <SelectItem value="ecommerce">E-Commerce</SelectItem>
                             <SelectItem value="redesign">Website Redesign</SelectItem>
+                            <SelectItem value="ai-voice-agent">AI Voice Agent Setup</SelectItem>
+                            <SelectItem value="automation">Automation / Workflow Setup</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>

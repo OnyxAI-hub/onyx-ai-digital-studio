@@ -13,12 +13,12 @@ import {
 
 const pricingFaqs = [
   {
-    q: "What's included in each package?",
-    a: "Starter ($100) includes up to 3 pages, dynamic design, content upload, and 2 feature integrations — perfect for a clean professional presence. Business (starting at $350) adds opt-in forms, autoresponder, payment integration, and up to 5 pages with 5 integrations. Advanced (starting at $500) is our top-tier build with AI chatbot, automation, booking system, full e-commerce (up to 10 products), hosting setup, and up to 8 pages. Each package includes revisions during the active build phase — see the revisions FAQ below for what counts as a revision vs. a new add-on.",
+    q: "What's included in each offer?",
+    a: "Business Website (starting at $350) covers up to 5 pages, responsive design, service sections, contact form, basic SEO, and speed optimization — ideal for service businesses that need a credible online presence. Advanced Website / Web App (starting at $650) extends to 8 pages and adds payments, booking, e-commerce or product setup, autoresponder/email automation, and hosting setup support. AI Voice Agent Setup (starting at $500) configures an AI phone assistant with a custom call flow, FAQ training, lead capture, and missed-call support. Each website offer includes revisions during the active build phase — see the revisions FAQ below for what counts.",
   },
   {
     q: "What counts as a \"revision\" during the build phase?",
-    a: "A revision is a refinement to work that's already been built within the agreed scope — things like text edits, color or font tweaks, image swaps, button styling, spacing adjustments, or small layout changes on existing pages. Revisions are unlimited during the active build phase (before final approval and delivery). What does NOT count as a revision: adding new pages, new feature integrations, switching the entire design direction after approval, adding e-commerce or booking systems not in your package, or post-delivery changes. Those are treated as add-ons and quoted separately from the extras menu.",
+    a: "A revision is a refinement to work that's already been built within the agreed scope — text edits, color or font tweaks, image swaps, button styling, spacing adjustments, or small layout changes on existing pages. Revisions are unlimited during the active build phase (before final approval and delivery). What does NOT count: adding new pages, new feature integrations, switching the entire design direction after approval, adding e-commerce or booking systems not in your package, or post-delivery changes. Those are treated as add-ons and quoted separately from the extras menu.",
   },
   {
     q: "How do revision limits actually work during the build?",
@@ -26,23 +26,23 @@ const pricingFaqs = [
   },
   {
     q: "What are the delivery timelines?",
-    a: "Starter delivers in 1 day (next-day). Business delivers in 3 days. Advanced delivers in 5 days. Timelines start once we've received all your content, brand assets, and project details. Revision rounds during the build phase are included within these timelines — major scope changes mid-build may shift the delivery date. Need it faster? Add Rush Delivery ($75) to move to the front of the queue.",
+    a: "Business Website delivers in roughly 7 days. Advanced Website / Web App delivers in roughly 14 days. AI Voice Agent Setup timelines depend on call flow complexity and platform setup — confirmed during your consultation. Timelines start once we've received all your content, brand assets, and project details. Need it faster? Add Rush Delivery ($75) to move to the front of the queue.",
   },
   {
     q: "What if my project needs custom scope or features beyond the package?",
     a: "Business and Advanced projects may require a quick consultation before kickoff to confirm scope, selected features, and timeline. Custom features beyond the listed package — extra pages ($20 each), additional plugins ($20), payment integration ($65), AI chatbot ($125), and more — can be added from the extras menu or quoted individually. Anything added mid-build counts as new scope (not a revision) and will be priced and confirmed in writing before work continues.",
   },
   {
-    q: "Why are Business and Advanced \"starting at\" prices?",
-    a: "The base price covers the standard scope listed on each package. Final pricing depends on the number of pages, feature integrations, add-ons, and timeline. Revisions to in-scope work are included; new features added during or after the build are quoted as extras. We confirm the exact total during your consultation — no surprise charges.",
+    q: "Why are these \"starting at\" prices?",
+    a: "The base price covers the standard scope listed on each offer. Final pricing depends on the number of pages, feature integrations, add-ons, and timeline. For AI Voice Agent Setup, pricing also depends on call volume, platform costs, phone number setup, and workflow complexity. Revisions to in-scope work are included; new features added during or after the build are quoted as extras. We confirm the exact total during your consultation — no surprise charges.",
   },
   {
     q: "Do you offer payment plans or deposits?",
-    a: "Starter is paid in full upfront via Stripe. Business and Advanced typically require a 50% deposit to start, with the balance due at delivery. Payment terms — including any add-ons or scope changes added mid-build — are confirmed in writing during your consultation.",
+    a: "Business and Advanced typically require a 50% deposit to start, with the balance due at delivery. AI Voice Agent Setup follows a similar deposit structure, with platform/usage costs handled separately. Payment terms — including any add-ons or scope changes added mid-build — are confirmed in writing during your consultation.",
   },
   {
-    q: "What happens after my website is delivered?",
-    a: "You receive full ownership of your site, all files, and a handoff walkthrough. Once you've approved final delivery, the build phase officially ends — no more free revisions. Future changes are handled three ways: (1) Monthly Maintenance ($30/month) covers small updates, backups, and security monitoring; (2) one-off changes are billed from the extras menu; (3) larger updates are quoted as a new mini-project. Hosting setup is included in Advanced and available as an add-on for other tiers.",
+    q: "What happens after my project is delivered?",
+    a: "You receive full ownership of your site or system, all files, and a handoff walkthrough. Once you've approved final delivery, the build phase officially ends — no more free revisions. Future changes are handled three ways: (1) Monthly Maintenance ($30/month) covers small updates, backups, and security monitoring; (2) one-off changes are billed from the extras menu; (3) larger updates are quoted as a new mini-project. Hosting setup is included in Advanced and available as an add-on for other tiers.",
   },
 ];
 
@@ -54,10 +54,10 @@ const Pricing = () => (
         <AnimatedSection>
           <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Pricing</span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-            Invest in a Website That <span className="gradient-text">Works for You</span>
+            Websites, Web Apps & <span className="gradient-text">AI Voice Agents</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Premium web solutions built around your goals. Choose a package or book a consultation to scope your project.
+            ONYX AI Studios builds modern websites, web apps, automation systems, and AI-powered business tools for service-based businesses. Choose an offer or book a consultation to scope your project.
           </p>
         </AnimatedSection>
       </div>
