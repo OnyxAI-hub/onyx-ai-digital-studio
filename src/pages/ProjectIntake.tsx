@@ -328,11 +328,11 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="under-100">Under $100</SelectItem>
-                            <SelectItem value="100-350">$100 – $350</SelectItem>
-                            <SelectItem value="350-650">$350 – $650</SelectItem>
-                            <SelectItem value="650-1000">$650 – $1,000</SelectItem>
-                            <SelectItem value="over-1000">Over $1,000 / Custom Scope</SelectItem>
+                            <SelectItem value="under-300">Under $300</SelectItem>
+                            <SelectItem value="300-500">$300 – $500</SelectItem>
+                            <SelectItem value="500-1000">$500 – $1,000</SelectItem>
+                            <SelectItem value="1000-2000">$1,000 – $2,000</SelectItem>
+                            <SelectItem value="over-2000">Over $2,000 / Custom Scope</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
