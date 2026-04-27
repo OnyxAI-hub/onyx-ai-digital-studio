@@ -54,10 +54,10 @@ const Pricing = () => (
         <AnimatedSection>
           <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Pricing</span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-            Invest in a Website That <span className="gradient-text">Works for You</span>
+            Websites, Web Apps & <span className="gradient-text">AI Voice Agents</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Premium web solutions built around your goals. Choose a package or book a consultation to scope your project.
+            ONYX AI Studios builds modern websites, web apps, automation systems, and AI-powered business tools for service-based businesses. Choose an offer or book a consultation to scope your project.
           </p>
         </AnimatedSection>
       </div>
