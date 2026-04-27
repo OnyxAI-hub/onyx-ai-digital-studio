@@ -367,7 +367,6 @@ const Newsletter = () => {
 };
 
 /* ─── What We Automate ─── */
-import { Inbox, CalendarClock, PhoneMissed, Bot as BotIcon, CreditCard as CardIcon, MailCheck, LineChart, Building2 } from "lucide-react";
 
 const automations = [
   { icon: Inbox, title: "Customer Intake", desc: "Collect customer details, project needs, service requests, and contact information through smarter forms and guided flows." },
