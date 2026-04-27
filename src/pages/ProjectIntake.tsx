@@ -275,6 +275,7 @@ const ProjectIntake = () => {
                             <SelectItem value="redesign">Website Redesign</SelectItem>
                             <SelectItem value="ai-voice-agent">AI Voice Agent Setup</SelectItem>
                             <SelectItem value="automation">Automation / Workflow Setup</SelectItem>
+                            <SelectItem value="booking-payment">Booking / Payment Flow</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
