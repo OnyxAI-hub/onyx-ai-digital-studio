@@ -27,34 +27,34 @@ const Hero = () => (
     <div className="relative z-10 container-narrow px-4 text-center">
       <AnimatedSection>
         <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-          Digital Studio
+          Digital Systems Studio
         </span>
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
         <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
           <span className="text-foreground">Websites, Web Apps</span>
           <br />
-          <span className="gradient-text">& AI Automation</span>
+          <span className="gradient-text">& AI Agents</span>
         </h1>
         <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
-          Built for Service-Based Businesses
+          For Modern Businesses
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.2}>
         <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-          ONYX AI Studios builds modern websites, web apps, and AI automation systems that help businesses look better, respond faster, and operate smoother.
+          ONYX AI Studios builds digital systems that help businesses capture leads, book customers, automate customer intake, and operate smoother.
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.3}>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Link to="/contact">
+          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
               Book a Consultation <ArrowRight className="h-4 w-4" />
             </Button>
-          </Link>
-          <Link to="/pricing">
+          </a>
+          <Link to="/services">
             <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
-              View Pricing
+              Explore Services
             </Button>
           </Link>
         </div>
