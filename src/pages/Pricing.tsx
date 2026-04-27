@@ -14,7 +14,7 @@ import {
 const pricingFaqs = [
   {
     q: "What's included in each offer?",
-    a: "Business Website (starting at $350) covers up to 5 pages, responsive design, service sections, contact form, basic SEO, and speed optimization — ideal for service businesses that need a credible online presence. Advanced Website / Web App (starting at $650) extends to 8 pages and adds payments, booking, e-commerce or product setup, autoresponder/email automation, and hosting setup support. AI Voice Agent Setup (starting at $500) configures an AI phone assistant with a custom call flow, FAQ training, lead capture, and missed-call support. Each website offer includes revisions during the active build phase — see the revisions FAQ below for what counts.",
+    a: "Business Website (starting at $300) covers up to 5 pages, mobile-friendly design, service sections, contact form, click-to-call buttons, basic SEO, and speed optimization — ideal for service businesses that need a credible online presence. Advanced Website / Web App (starting at $500) extends to 8 pages and adds booking, payments, customer intake, e-commerce or product setup, autoresponder/email automation, workflow automation, and hosting setup support. AI Voice Agent Setup (starting at $500) configures an AI phone assistant with a custom call flow, FAQ training, lead capture, call summaries, and missed-call support. Each website offer includes revisions during the active build phase — see the revisions FAQ below for what counts.",
   },
   {
     q: "What counts as a \"revision\" during the build phase?",
