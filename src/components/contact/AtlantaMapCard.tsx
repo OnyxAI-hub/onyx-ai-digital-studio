@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Billboard, Text } from "@react-three/drei";
 import { MapPin } from "lucide-react";
 import * as THREE from "three";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -56,17 +56,60 @@ function CityBlocks({ count = 180 }: { count?: number }) {
 
   return (
     <group>
-      {blocks.map((b, i) => (
-        <mesh key={i} position={[b.x, b.h / 2, b.z]}>
-          <boxGeometry args={[b.w, b.h, b.d]} />
-          <meshStandardMaterial
-            color={"#0d0d0d"}
-            roughness={0.55}
-            metalness={0.25}
-            emissive={"#1a1a1a"}
-            emissiveIntensity={0.15}
-          />
-        </mesh>
+      {blocks.map((b, i) => {
+        const tone = Math.min(0.22, 0.08 + b.h * 0.08);
+        const color = new THREE.Color(tone, tone, tone);
+        return (
+          <group key={i} position={[b.x, 0, b.z]}>
+            <mesh position={[0, b.h / 2, 0]}>
+              <boxGeometry args={[b.w, b.h, b.d]} />
+              <meshStandardMaterial color={color} roughness={0.45} metalness={0.35} />
+            </mesh>
+            {/* Bright rooftop edge for definition */}
+            <mesh position={[0, b.h + 0.001, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <planeGeometry args={[b.w * 0.96, b.d * 0.96]} />
+              <meshBasicMaterial color={"#ffffff"} transparent opacity={0.18} />
+            </mesh>
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
+type LabelDef = { name: string; x: number; z: number; size?: number; muted?: boolean };
+
+const LABELS: LabelDef[] = [
+  { name: "ATLANTA", x: 0, z: -0.7, size: 0.42 },
+  { name: "MIDTOWN", x: 0.5, z: -2.2, size: 0.26 },
+  { name: "BUCKHEAD", x: 1.4, z: -4.2, size: 0.28 },
+  { name: "DECATUR", x: 3.6, z: 1.1, size: 0.26 },
+  { name: "SMYRNA", x: -3.8, z: -3.6, size: 0.28 },
+  { name: "MARIETTA", x: -3.2, z: -6.2, size: 0.3 },
+  { name: "SANDY SPRINGS", x: 1.8, z: -6.4, size: 0.26 },
+  { name: "EAST POINT", x: -1.6, z: 4.2, size: 0.24, muted: true },
+  { name: "DRUID HILLS", x: 2.6, z: -1.4, size: 0.22, muted: true },
+];
+
+function CityLabels() {
+  return (
+    <group>
+      {LABELS.map((l) => (
+        <Billboard key={l.name} position={[l.x, 0.35 + (l.size ?? 0.26) * 0.6, l.z]}>
+          <Text
+            fontSize={l.size ?? 0.26}
+            color={"#ffffff"}
+            anchorX="center"
+            anchorY="middle"
+            outlineWidth={0.012}
+            outlineColor={"#000000"}
+            outlineOpacity={0.85}
+            fillOpacity={l.muted ? 0.55 : 0.92}
+            letterSpacing={0.08}
+          >
+            {l.name}
+          </Text>
+        </Billboard>
       ))}
     </group>
   );
@@ -195,6 +238,7 @@ function Scene({ isMobile }: { isMobile: boolean }) {
       <GroundGrid />
       <Highways />
       <CityBlocks count={isMobile ? 70 : 180} />
+      <CityLabels />
       <Pin />
 
       {/* Fog for depth */}
