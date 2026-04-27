@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Billboard, Text } from "@react-three/drei";
 import { MapPin } from "lucide-react";
 import * as THREE from "three";
 import { useIsMobile } from "@/hooks/use-mobile";
