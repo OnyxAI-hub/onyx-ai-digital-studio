@@ -193,7 +193,7 @@ const ChatWidget = () => {
     }
 
     // Fallback with helpful guidance
-    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $100\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
+    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — offers starting at $300\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
   };
 
   // Simple markdown-like link rendering
