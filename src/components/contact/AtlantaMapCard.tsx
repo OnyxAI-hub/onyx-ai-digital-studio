@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { MapPin } from "lucide-react";
 import * as THREE from "three";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
  * 3D black & white map, ONYX aesthetic.
@@ -31,12 +32,12 @@ function mulberry32(seed: number) {
   };
 }
 
-function CityBlocks() {
+function CityBlocks({ count = 180 }: { count?: number }) {
   const rand = useMemo(() => mulberry32(42), []);
   const blocks: Block[] = useMemo(() => {
     const out: Block[] = [];
     const range = 9;
-    for (let i = 0; i < 180; i++) {
+    for (let i = 0; i < count; i++) {
       const x = (rand() - 0.5) * range * 2;
       const z = (rand() - 0.5) * range * 2;
       // Skip blocks too close to highways or center pin
@@ -51,12 +52,12 @@ function CityBlocks() {
       out.push({ x, z, w, d, h });
     }
     return out;
-  }, [rand]);
+  }, [rand, count]);
 
   return (
     <group>
       {blocks.map((b, i) => (
-        <mesh key={i} position={[b.x, b.h / 2, b.z]} castShadow receiveShadow>
+        <mesh key={i} position={[b.x, b.h / 2, b.z]}>
           <boxGeometry args={[b.w, b.h, b.d]} />
           <meshStandardMaterial
             color={"#0d0d0d"}
@@ -176,23 +177,24 @@ function GroundGrid() {
   );
 }
 
-function Scene() {
+function Scene({ isMobile }: { isMobile: boolean }) {
   return (
     <>
-      <ambientLight intensity={0.35} />
+      <ambientLight intensity={isMobile ? 0.5 : 0.35} />
       <directionalLight
         position={[6, 8, 4]}
         intensity={0.9}
         color={"#ffffff"}
-        castShadow
       />
-      <directionalLight position={[-5, 4, -3]} intensity={0.25} color={"#ffffff"} />
+      {!isMobile && (
+        <directionalLight position={[-5, 4, -3]} intensity={0.25} color={"#ffffff"} />
+      )}
       {/* Soft top fill from the pin */}
       <pointLight position={[0, 2.5, 0]} intensity={0.6} color={"#ffffff"} distance={6} decay={2} />
 
       <GroundGrid />
       <Highways />
-      <CityBlocks />
+      <CityBlocks count={isMobile ? 70 : 180} />
       <Pin />
 
       {/* Fog for depth */}
@@ -202,19 +204,20 @@ function Scene() {
 }
 
 const AtlantaMapCard = () => {
+  const isMobile = useIsMobile();
   return (
     <div className="glass-card overflow-hidden relative">
       {/* 3D canvas */}
       <div className="relative h-72 bg-[hsl(0,0%,2%)]">
         <Suspense fallback={<div className="absolute inset-0 grid place-items-center text-xs text-muted-foreground">Loading map…</div>}>
           <Canvas
-            shadows
-            dpr={[1, 2]}
+            dpr={isMobile ? [1, 1.25] : [1, 2]}
             camera={{ position: [6, 6, 8], fov: 38 }}
-            gl={{ antialias: true, alpha: false }}
+            gl={{ antialias: !isMobile, alpha: false, powerPreference: "high-performance" }}
+            frameloop={isMobile ? "demand" : "always"}
           >
             <color attach="background" args={["#020202"]} />
-            <Scene />
+            <Scene isMobile={isMobile} />
             <OrbitControls
               enablePan={false}
               enableDamping
@@ -223,7 +226,7 @@ const AtlantaMapCard = () => {
               maxDistance={14}
               minPolarAngle={Math.PI / 6}
               maxPolarAngle={Math.PI / 2.4}
-              autoRotate
+              autoRotate={!isMobile}
               autoRotateSpeed={0.4}
             />
           </Canvas>
