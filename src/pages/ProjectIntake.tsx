@@ -209,10 +209,10 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select package" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Starter">Starter — $100</SelectItem>
-                            <SelectItem value="Business">Business — Starting at $350</SelectItem>
-                            <SelectItem value="Advanced">Advanced — Starting at $650</SelectItem>
-                            <SelectItem value="Not sure yet">Not sure yet</SelectItem>
+                            <SelectItem value="Business">Business Website — Starting at $350</SelectItem>
+                            <SelectItem value="Advanced">Advanced Website / Web App — Starting at $650</SelectItem>
+                            <SelectItem value="AI Voice Agent">AI Voice Agent Setup — Starting at $500</SelectItem>
+                            <SelectItem value="Not sure yet">Not Sure Yet</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
