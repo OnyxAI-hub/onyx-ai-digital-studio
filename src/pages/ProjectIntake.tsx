@@ -49,11 +49,11 @@ type IntakeForm = z.infer<typeof intakeSchema>;
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
   Business: "300-500",
   Advanced: "500-1000",
-  "AI Voice Agent": "500-1000",
+  "AI Agent": "500-1000",
   "Business Automation": "500-1000",
 };
 
-const VALID_PACKAGES = ["Business", "Advanced", "AI Voice Agent", "Business Automation"];
+const VALID_PACKAGES = ["Business", "Advanced", "AI Agent", "Business Automation"];
 
 const ProjectIntake = () => {
   const [searchParams] = useSearchParams();
@@ -212,7 +212,7 @@ const ProjectIntake = () => {
                           <SelectContent>
                             <SelectItem value="Business">Business Website — Starting at $300</SelectItem>
                             <SelectItem value="Advanced">Advanced Website / Web App — Starting at $500</SelectItem>
-                            <SelectItem value="AI Voice Agent">AI Voice Agent Setup — Starting at $500</SelectItem>
+                            <SelectItem value="AI Agent">AI Agent Setup — Starting at $500</SelectItem>
                             <SelectItem value="Business Automation">Business Automation</SelectItem>
                             <SelectItem value="Not sure yet">Not Sure Yet</SelectItem>
                           </SelectContent>
@@ -273,7 +273,7 @@ const ProjectIntake = () => {
                             <SelectItem value="webapp">Web Application</SelectItem>
                             <SelectItem value="ecommerce">E-Commerce</SelectItem>
                             <SelectItem value="redesign">Website Redesign</SelectItem>
-                            <SelectItem value="ai-voice-agent">AI Voice Agent Setup</SelectItem>
+                            <SelectItem value="ai-agent">AI Agent Setup</SelectItem>
                             <SelectItem value="automation">Automation / Workflow Setup</SelectItem>
                             <SelectItem value="booking-payment">Booking / Payment Flow</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
