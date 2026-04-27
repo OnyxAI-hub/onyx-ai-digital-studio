@@ -32,7 +32,7 @@ const Hero = () => (
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
         <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
-          <span className="text-foreground">Websites, Web Apps</span>
+          <span className="text-foreground">Websites, Automation</span>
           <br />
           <span className="gradient-text">& AI Agents</span>
         </h1>
