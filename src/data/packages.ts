@@ -1,4 +1,4 @@
-import { Globe, Rocket, Zap } from "lucide-react";
+import { Globe, Rocket, Zap, PhoneCall } from "lucide-react";
 
 export interface Package {
   name: string;
