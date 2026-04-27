@@ -21,14 +21,14 @@ export const coreServices: Service[] = [
     features: ["Custom Functionality", "Booking & Payments", "Intake Flows", "Dashboards"],
   },
   {
-    title: "AI Voice Agents",
-    description: "AI phone assistants that help answer calls, collect customer details, summarize requests, and support service-based businesses.",
+    title: "AI Agent Setup",
+    description: "AI voice or chat assistants that help answer questions, collect customer details, summarize requests, and support service-based businesses.",
     icon: PhoneCall,
-    features: ["Custom Call Flows", "FAQ Training", "Lead Capture", "Call Summaries"],
+    features: ["Voice or Chat Agents", "FAQ Training", "Lead Capture", "Call & Chat Summaries"],
   },
   {
     title: "Business Automation",
-    description: "Automated workflows for lead capture, customer intake, follow-ups, booking, notifications, and internal processes.",
+    description: "Automated workflows for customer intake, lead alerts, booking, notifications, follow-ups, and internal processes.",
     icon: Cog,
     features: ["Lead Capture", "Follow-Ups", "Notifications", "Internal Workflows"],
   },
