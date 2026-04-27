@@ -41,6 +41,7 @@ export const packages: Package[] = [
   {
     name: "Business",
     price: 350,
+    priceMax: 800,
     pricePrefix: "Starting at",
     description: "Professional multi-page website with key features to grow your business online.",
     icon: Rocket,
@@ -63,6 +64,7 @@ export const packages: Package[] = [
   {
     name: "Advanced",
     price: 600,
+    priceMax: 1500,
     pricePrefix: "Starting at",
     description: "Top-tier website or web app with AI chatbot, full automation, booking, and ecommerce capabilities.",
     icon: Zap,
