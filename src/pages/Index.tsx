@@ -459,9 +459,11 @@ const Index = () => (
     <Hero />
     <TrustSection />
     <FeaturedServicesSection />
+    <WhatWeAutomateSection />
     <HowItWorksSection />
     <WhyChooseSection />
     <PackagePreview />
+    <IndustriesSection />
     <PortfolioPreview />
     <TestimonialsSection />
     <ChatbotTeaser />
