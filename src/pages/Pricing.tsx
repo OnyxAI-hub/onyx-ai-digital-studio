@@ -85,6 +85,12 @@ const Pricing = () => (
                       <span className="block text-xs text-muted-foreground mb-0.5">{pkg.pricePrefix}</span>
                     )}
                     <span className="font-display text-5xl font-bold">${pkg.price.toLocaleString()}</span>
+                    {pkg.priceMax && (
+                      <span className="font-display text-2xl font-semibold text-muted-foreground"> – ${pkg.priceMax.toLocaleString()}</span>
+                    )}
+                    {pkg.priceMax && (
+                      <span className="block text-[11px] text-muted-foreground/70 mt-1">Typical project range</span>
+                    )}
                   </div>
                   <p className="text-sm text-muted-foreground mb-6">{pkg.description}</p>
                   <ul className="mb-6 flex-1 space-y-3">
