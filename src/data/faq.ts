@@ -6,19 +6,19 @@ export interface FAQ {
 export const faqs: FAQ[] = [
   {
     question: "How long does it take to build a website?",
-    answer: "Most projects are completed within 1–2 weeks depending on the package and complexity. Starter sites deliver in about 5 days, Business sites in 7 days, and Advanced builds in around 14 days. Rush delivery is available as an add-on.",
+    answer: "Most projects are completed within 1–2 weeks depending on scope. Business Websites typically deliver in around 7 days, Advanced Websites / Web Apps in around 14 days. AI Voice Agent Setup timelines depend on call flow complexity. Rush delivery is available as an add-on.",
   },
   {
     question: "What do I need to get started?",
-    answer: "Just a clear idea of what your business needs. We'll handle the rest. During our discovery call, we'll discuss your goals, target audience, and design preferences. If you have a logo, brand colors, or content ready, that helps speed things up.",
+    answer: "Just a clear idea of what your business needs. We'll handle the rest. During our consultation, we'll discuss your goals, target audience, and design or workflow preferences. If you have a logo, brand colors, or content ready, that helps speed things up.",
   },
   {
     question: "Do you offer revisions?",
-    answer: "Yes. Every package includes unlimited revisions during the active build phase, so we can refine the design until it feels right.",
+    answer: "Yes. Every website package includes revisions during the active build phase, so we can refine the design until it feels right. Once you sign off on final delivery, future changes become paid add-ons or are covered under a monthly support plan.",
   },
   {
     question: "Can you build custom features like booking systems or dashboards?",
-    answer: "Absolutely. Our Advanced Website / Web App package includes payment integration and an e-commerce or booking system. More custom features like dashboards or API integrations are scoped through a consultation.",
+    answer: "Absolutely. Our Advanced Website / Web App package includes booking, payments, customer intake, and workflow automation. More custom features like dashboards or API integrations are scoped through a consultation.",
   },
   {
     question: "Do you provide hosting?",
@@ -26,15 +26,15 @@ export const faqs: FAQ[] = [
   },
   {
     question: "What technologies do you use?",
-    answer: "We primarily build with React, TypeScript, Tailwind CSS, and modern frameworks. For backends, we use Supabase, Node.js, or serverless functions depending on the project needs.",
+    answer: "We primarily build with React, TypeScript, Tailwind CSS, and modern frameworks. For backends and automation we use Supabase, Node.js, or serverless functions depending on the project needs.",
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer: "Yes. We offer monthly maintenance plans starting at $30/month for updates, security patches, and content changes.",
+    answer: "Yes. Monthly support plans start at $50/month and cover updates, maintenance, automation tweaks, and ongoing system improvements.",
   },
   {
-    question: "How much does a website cost?",
-    answer: "Our packages start at $100 for a Starter site, $350 for a Business site, and $650 for an Advanced build. The final cost depends on the features and customization you need.",
+    question: "How much does a project cost?",
+    answer: "Business Websites start at $300, Advanced Websites / Web Apps start at $500, and AI Voice Agent Setup starts at $500. Final cost depends on the features, integrations, and workflow complexity you need — confirmed during your consultation.",
   },
   {
     question: "Can I update the website myself after it's built?",
