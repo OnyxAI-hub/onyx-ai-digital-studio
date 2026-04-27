@@ -372,7 +372,7 @@ const automations = [
   { icon: Inbox, title: "Customer Intake", desc: "Collect customer details, project needs, service requests, and contact information through smarter forms and guided flows." },
   { icon: CalendarClock, title: "Booking & Scheduling", desc: "Connect customers to consultation or appointment booking through tools like Calendly, calendar flows, and service request systems." },
   { icon: PhoneMissed, title: "Missed Call Follow-Up", desc: "Create workflows that help capture missed opportunities and guide customers toward the next step." },
-  { icon: BotIcon, title: "AI Voice & Chat Agents", desc: "Set up AI assistants that can answer basic questions, collect details, and support customer routing." },
+  { icon: Bot, title: "AI Voice & Chat Agents", desc: "Set up AI assistants that can answer basic questions, collect details, and support customer routing." },
   { icon: CardIcon, title: "Payment & Deposit Flows", desc: "Connect Stripe payment links, deposits, checkout flows, and payment-ready service paths." },
   { icon: MailCheck, title: "Email & Follow-Up Systems", desc: "Automate confirmations, reminders, lead alerts, and customer follow-up messages." },
   { icon: LineChart, title: "Lead Tracking", desc: "Send inquiries into Google Sheets, CRM tools, or organized tracking systems so leads are easier to manage." },
