@@ -268,10 +268,11 @@ const ProjectIntake = () => {
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="website">Business Website</SelectItem>
-                            <SelectItem value="landing">Landing Page</SelectItem>
                             <SelectItem value="webapp">Web Application</SelectItem>
                             <SelectItem value="ecommerce">E-Commerce</SelectItem>
                             <SelectItem value="redesign">Website Redesign</SelectItem>
+                            <SelectItem value="ai-voice-agent">AI Voice Agent Setup</SelectItem>
+                            <SelectItem value="automation">Automation / Workflow Setup</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
