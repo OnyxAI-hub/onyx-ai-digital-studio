@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot } from "lucide-react";
+import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot, Inbox, CalendarClock, PhoneMissed, CreditCard as CardIcon, MailCheck, LineChart, Building2 } from "lucide-react";
 import { toast } from "sonner";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
@@ -27,34 +27,34 @@ const Hero = () => (
     <div className="relative z-10 container-narrow px-4 text-center">
       <AnimatedSection>
         <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-          Digital Studio
+          Digital Systems Studio
         </span>
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
         <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
           <span className="text-foreground">Websites, Web Apps</span>
           <br />
-          <span className="gradient-text">& AI Automation</span>
+          <span className="gradient-text">& AI Agents</span>
         </h1>
         <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
-          Built for Service-Based Businesses
+          For Modern Businesses
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.2}>
         <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-          ONYX AI Studios builds modern websites, web apps, and AI automation systems that help businesses look better, respond faster, and operate smoother.
+          ONYX AI Studios builds digital systems that help businesses capture leads, book customers, automate customer intake, and operate smoother.
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.3}>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Link to="/contact">
+          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
               Book a Consultation <ArrowRight className="h-4 w-4" />
             </Button>
-          </Link>
-          <Link to="/pricing">
+          </a>
+          <Link to="/services">
             <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
-              View Pricing
+              Explore Services
             </Button>
           </Link>
         </div>
@@ -366,6 +366,67 @@ const Newsletter = () => {
   );
 };
 
+/* ─── What We Automate ─── */
+
+const automations = [
+  { icon: Inbox, title: "Customer Intake", desc: "Collect customer details, project needs, service requests, and contact information through smarter forms and guided flows." },
+  { icon: CalendarClock, title: "Booking & Scheduling", desc: "Connect customers to consultation or appointment booking through tools like Calendly, calendar flows, and service request systems." },
+  { icon: PhoneMissed, title: "Missed Call Follow-Up", desc: "Create workflows that help capture missed opportunities and guide customers toward the next step." },
+  { icon: Bot, title: "AI Voice & Chat Agents", desc: "Set up AI assistants that can answer basic questions, collect details, and support customer routing." },
+  { icon: CardIcon, title: "Payment & Deposit Flows", desc: "Connect Stripe payment links, deposits, checkout flows, and payment-ready service paths." },
+  { icon: MailCheck, title: "Email & Follow-Up Systems", desc: "Automate confirmations, reminders, lead alerts, and customer follow-up messages." },
+  { icon: LineChart, title: "Lead Tracking", desc: "Send inquiries into Google Sheets, CRM tools, or organized tracking systems so leads are easier to manage." },
+];
+
+const WhatWeAutomateSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Automation" title="What ONYX AI Can Automate" description="Your website should do more than look good — it should help customers take action, request service, book calls, submit details, and move through your business flow." />
+      </AnimatedSection>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {automations.map((a, i) => (
+          <AnimatedSection key={a.title} delay={i * 0.05}>
+            <div className="glass-card-hover p-6 h-full">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
+                <a.icon className="h-5 w-5 text-foreground/70" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-2 tracking-tight">{a.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ─── Built for Service-Based Businesses ─── */
+const industries = [
+  "Plumbing", "Cleaning", "Pressure Washing", "HVAC", "Landscaping",
+  "Fitness Coaches", "Health Coaches", "Med Spas", "Local Contractors", "Consultants",
+];
+
+const IndustriesSection = () => (
+  <section className="section-padding section-charcoal">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Who We Serve" title="Built for Service-Based Businesses" description="ONYX AI Studios is built for businesses that rely on calls, appointments, estimates, service requests, payments, and customer communication." />
+      </AnimatedSection>
+      <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+        {industries.map((name, i) => (
+          <AnimatedSection key={name} delay={i * 0.03}>
+            <div className="flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-2 text-sm text-foreground/80">
+              <Building2 className="h-3.5 w-3.5 text-muted-foreground" />
+              {name}
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
   <section className="section-padding relative overflow-hidden">
@@ -380,11 +441,11 @@ const FinalCTA = () => (
             Let's talk about your project. Book a free consultation and see how ONYX AI can help your business grow.
           </p>
           <div className="mt-8">
-            <Link to="/contact">
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
                 Book a Consultation <ArrowRight className="h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </AnimatedSection>
@@ -398,9 +459,11 @@ const Index = () => (
     <Hero />
     <TrustSection />
     <FeaturedServicesSection />
+    <WhatWeAutomateSection />
     <HowItWorksSection />
     <WhyChooseSection />
     <PackagePreview />
+    <IndustriesSection />
     <PortfolioPreview />
     <TestimonialsSection />
     <ChatbotTeaser />
