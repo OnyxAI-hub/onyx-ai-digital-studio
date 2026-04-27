@@ -238,6 +238,7 @@ function Scene({ isMobile }: { isMobile: boolean }) {
       <GroundGrid />
       <Highways />
       <CityBlocks count={isMobile ? 70 : 180} />
+      <CityLabels />
       <Pin />
 
       {/* Fog for depth */}
