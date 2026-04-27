@@ -64,11 +64,11 @@ const ThankYou = () => (
 
       <AnimatedSection delay={0.35}>
         <div className="mx-auto mt-16 max-w-md rounded-lg border border-border/30 bg-card/20 p-6 text-center">
-          <p className="mb-1 text-sm font-medium text-muted-foreground">Ready to move forward immediately?</p>
-          <p className="mb-4 text-xs text-muted-foreground/70">Starter package — $100 flat, direct checkout.</p>
-          <a href="https://buy.stripe.com/28E8wOfqz2U6bG55D91RC06" target="_blank" rel="noopener noreferrer">
+          <p className="mb-1 text-sm font-medium text-muted-foreground">Want to talk it through sooner?</p>
+          <p className="mb-4 text-xs text-muted-foreground/70">Book a free consultation and we'll scope your project together.</p>
+          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="lg" className="w-full gap-2">
-              Pay for Starter Package <ArrowRight className="h-4 w-4" />
+              Book a Consultation <ArrowRight className="h-4 w-4" />
             </Button>
           </a>
         </div>
