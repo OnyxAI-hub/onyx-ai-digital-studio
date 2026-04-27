@@ -47,10 +47,12 @@ const intakeSchema = z.object({
 type IntakeForm = z.infer<typeof intakeSchema>;
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
-  Starter: "under-100",
   Business: "350-650",
   Advanced: "650-1000",
+  "AI Voice Agent": "350-650",
 };
+
+const VALID_PACKAGES = ["Business", "Advanced", "AI Voice Agent"];
 
 const ProjectIntake = () => {
   const [searchParams] = useSearchParams();
