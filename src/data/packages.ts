@@ -3,6 +3,7 @@ import { Globe, Rocket, Zap } from "lucide-react";
 export interface Package {
   name: string;
   price: number;
+  priceMax?: number;
   pricePrefix?: string;
   description: string;
   icon: typeof Globe;
