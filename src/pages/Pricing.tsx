@@ -152,6 +152,86 @@ const Pricing = () => (
       </div>
     </section>
 
+    {/* Revision Policy Callout */}
+    <section className="pb-12 px-4">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <div className="glass-card p-8 md:p-10 border-border/60">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-card border border-border/60">
+                <RefreshCw className="h-5 w-5 text-foreground/70" />
+              </div>
+              <div>
+                <span className="mb-2 inline-block rounded-full border border-border/60 bg-card/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Revision Policy
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
+                  How Revisions Work
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+                  Clear, fair, and built to keep your project on track. Here's exactly what's included — and what isn't.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              {/* Included */}
+              <div className="rounded-lg border border-border/60 bg-card/40 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <Check className="h-4 w-4 text-foreground" />
+                  <h3 className="font-display text-sm font-semibold uppercase tracking-wider">Counts as a Revision</h3>
+                </div>
+                <p className="text-xs text-muted-foreground/80 mb-3">Unlimited during the active build phase.</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Text & copy edits</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Color, font & styling tweaks</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Image swaps</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Button & spacing adjustments</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Small layout changes on existing pages</li>
+                </ul>
+              </div>
+
+              {/* Build phase ends */}
+              <div className="rounded-lg border border-border/60 bg-card/40 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <X className="h-4 w-4 text-foreground" />
+                  <h3 className="font-display text-sm font-semibold uppercase tracking-wider">Build Phase Ends</h3>
+                </div>
+                <p className="text-xs text-muted-foreground/80 mb-3">When you sign off on final delivery.</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Final approval = handoff complete</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Files & ownership transferred</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Free revisions period closes</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Future updates billed separately</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Maintenance plan available ($30/mo)</li>
+                </ul>
+              </div>
+
+              {/* Paid add-ons */}
+              <div className="rounded-lg border border-border/60 bg-card/40 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <Plus className="h-4 w-4 text-foreground" />
+                  <h3 className="font-display text-sm font-semibold uppercase tracking-wider">Becomes a Paid Add-On</h3>
+                </div>
+                <p className="text-xs text-muted-foreground/80 mb-3">Quoted from the extras menu before work continues.</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> New pages ($20 each)</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> New feature integrations ($20+)</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Full design direction change after approval</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> E-commerce or booking not in package</li>
+                  <li className="flex gap-2"><span className="text-foreground/40">•</span> Any post-delivery changes</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-xs text-muted-foreground/70 text-center">
+              Scope changes are always confirmed in writing before any extra work begins — no surprise charges.
+            </p>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+
     {/* Extras */}
     <section className="section-padding bg-card/20">
       <div className="container-narrow">
