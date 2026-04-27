@@ -32,18 +32,17 @@ const Hero = () => (
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
         <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
-          <span className="text-foreground">Modern Websites</span>
+          <span className="text-foreground">Websites, Web Apps</span>
           <br />
-          <span className="gradient-text">& Web Apps</span>
+          <span className="gradient-text">& AI Automation</span>
         </h1>
         <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
-          Built to Grow Your Business
+          Built for Service-Based Businesses
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.2}>
         <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-          We design and build premium digital experiences that look great, work flawlessly,
-          and drive real results for your business.
+          ONYX AI Studios builds modern websites, web apps, and AI automation systems that help businesses look better, respond faster, and operate smoother.
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.3}>
