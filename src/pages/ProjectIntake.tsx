@@ -61,7 +61,7 @@ const ProjectIntake = () => {
 
   const prefillPackage = searchParams.get("package") || "";
   const prefillExtra = searchParams.get("extra") || "";
-  const resolvedPackage = ["Starter", "Business", "Advanced"].includes(prefillPackage) ? prefillPackage : "";
+  const resolvedPackage = VALID_PACKAGES.includes(prefillPackage) ? prefillPackage : "";
   const resolvedBudget = PACKAGE_BUDGET_MAP[prefillPackage] || "";
   const resolvedAddOns = prefillExtra && (ADDON_OPTIONS as readonly string[]).includes(prefillExtra) ? [prefillExtra] : [];
 
