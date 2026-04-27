@@ -47,7 +47,7 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   about: [
     {
       keywords: ["about", "who are you", "onyx", "xavier", "founder"],
-      response: "ONYX AI is a premium digital agency founded by Xavier de Jesus Ruiz. We build modern websites, web apps, and AI-powered solutions for businesses of all sizes. Xavier is fluent in English and Spanish. [Learn more about us](/about).",
+      response: "ONYX AI Studios is a digital studio founded by Xavier de Jesus Ruiz. We build modern websites, web apps, AI voice agents, and automation systems for service-based businesses. Xavier is fluent in English and Spanish. [Learn more about us](/about).",
     },
   ],
   technology: [
