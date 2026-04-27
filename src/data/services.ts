@@ -1,4 +1,4 @@
-import { Globe, Layout, Code, BarChart3, CalendarCheck, CreditCard, Bot, Cog, Smartphone } from "lucide-react";
+import { Globe, Code, PhoneCall, Cog, CreditCard, LifeBuoy } from "lucide-react";
 
 export interface Service {
   title: string;
@@ -10,51 +10,39 @@ export interface Service {
 export const coreServices: Service[] = [
   {
     title: "Business Websites",
-    description: "Professional, responsive websites designed to showcase your brand and convert visitors into customers.",
+    description: "Clean, professional websites built to explain your services, build trust, and make it easier for customers to contact you.",
     icon: Globe,
-    features: ["Custom Design", "Mobile-Responsive", "SEO Optimized", "Fast Loading"],
+    features: ["Service Pages", "Mobile-Friendly", "Contact Forms", "Speed Optimized"],
   },
   {
-    title: "Landing Pages",
-    description: "High-converting landing pages built to capture leads and drive specific business actions.",
-    icon: Layout,
-    features: ["Conversion-Focused", "A/B Ready", "Analytics Integrated", "Fast Turnaround"],
-  },
-  {
-    title: "Web Applications",
-    description: "Custom web apps with dynamic features, user authentication, and real-time functionality.",
+    title: "Advanced Websites / Web Apps",
+    description: "Custom websites and web apps with booking, payments, intake forms, dashboards, or more advanced business functionality.",
     icon: Code,
-    features: ["Custom Features", "User Dashboards", "Real-Time Data", "Scalable Architecture"],
+    features: ["Custom Functionality", "Booking & Payments", "Intake Flows", "Dashboards"],
   },
   {
-    title: "Dashboards & Admin Panels",
-    description: "Data-driven dashboards that give you full control and visibility over your business operations.",
-    icon: BarChart3,
-    features: ["Data Visualization", "Role-Based Access", "Real-Time Updates", "Custom Reports"],
+    title: "AI Voice Agents",
+    description: "AI phone assistants that help answer calls, collect customer details, summarize requests, and support service-based businesses.",
+    icon: PhoneCall,
+    features: ["Custom Call Flows", "FAQ Training", "Lead Capture", "Call Summaries"],
   },
   {
-    title: "Booking & Scheduling Systems",
-    description: "Online booking systems that let your clients schedule appointments and services with ease.",
-    icon: CalendarCheck,
-    features: ["Calendar Integration", "Email Reminders", "Payment Collection", "Client Management"],
-  },
-  {
-    title: "Payment Integrations",
-    description: "Secure payment processing so you can accept payments online with confidence.",
-    icon: CreditCard,
-    features: ["Stripe / PayPal", "Invoicing", "Subscription Billing", "PCI Compliant"],
-  },
-  {
-    title: "Automation & Workflows",
-    description: "Automate repetitive tasks and streamline your business processes to save time and money.",
+    title: "Business Automation",
+    description: "Automated workflows for lead capture, customer intake, follow-ups, booking, notifications, and internal processes.",
     icon: Cog,
-    features: ["Email Automation", "CRM Integration", "Task Automation", "Custom Workflows"],
+    features: ["Lead Capture", "Follow-Ups", "Notifications", "Internal Workflows"],
   },
   {
-    title: "AI Chatbots",
-    description: "Intelligent chatbots that qualify leads, answer FAQs, and engage visitors 24/7.",
-    icon: Bot,
-    features: ["Lead Qualification", "FAQ Handling", "24/7 Availability", "Custom Responses"],
+    title: "Payment & Booking Flows",
+    description: "Stripe, Calendly, booking, request forms, and customer flow setup to help businesses accept inquiries and payments faster.",
+    icon: CreditCard,
+    features: ["Stripe Setup", "Calendly Integration", "Request Forms", "Customer Flows"],
+  },
+  {
+    title: "Ongoing Support",
+    description: "Maintenance, updates, support, and system improvements available after launch.",
+    icon: LifeBuoy,
+    features: ["Updates & Fixes", "Automation Tweaks", "System Improvements", "Monthly Plans"],
   },
 ];
 
