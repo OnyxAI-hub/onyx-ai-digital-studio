@@ -47,12 +47,13 @@ const intakeSchema = z.object({
 type IntakeForm = z.infer<typeof intakeSchema>;
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
-  Business: "350-650",
-  Advanced: "650-1000",
-  "AI Voice Agent": "350-650",
+  Business: "300-500",
+  Advanced: "500-1000",
+  "AI Voice Agent": "500-1000",
+  "Business Automation": "500-1000",
 };
 
-const VALID_PACKAGES = ["Business", "Advanced", "AI Voice Agent"];
+const VALID_PACKAGES = ["Business", "Advanced", "AI Voice Agent", "Business Automation"];
 
 const ProjectIntake = () => {
   const [searchParams] = useSearchParams();
@@ -209,9 +210,10 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select package" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Business">Business Website — Starting at $350</SelectItem>
-                            <SelectItem value="Advanced">Advanced Website / Web App — Starting at $650</SelectItem>
+                            <SelectItem value="Business">Business Website — Starting at $300</SelectItem>
+                            <SelectItem value="Advanced">Advanced Website / Web App — Starting at $500</SelectItem>
                             <SelectItem value="AI Voice Agent">AI Voice Agent Setup — Starting at $500</SelectItem>
+                            <SelectItem value="Business Automation">Business Automation</SelectItem>
                             <SelectItem value="Not sure yet">Not Sure Yet</SelectItem>
                           </SelectContent>
                         </Select>
@@ -273,6 +275,7 @@ const ProjectIntake = () => {
                             <SelectItem value="redesign">Website Redesign</SelectItem>
                             <SelectItem value="ai-voice-agent">AI Voice Agent Setup</SelectItem>
                             <SelectItem value="automation">Automation / Workflow Setup</SelectItem>
+                            <SelectItem value="booking-payment">Booking / Payment Flow</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
@@ -325,11 +328,11 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="under-100">Under $100</SelectItem>
-                            <SelectItem value="100-350">$100 – $350</SelectItem>
-                            <SelectItem value="350-650">$350 – $650</SelectItem>
-                            <SelectItem value="650-1000">$650 – $1,000</SelectItem>
-                            <SelectItem value="over-1000">Over $1,000 / Custom Scope</SelectItem>
+                            <SelectItem value="under-300">Under $300</SelectItem>
+                            <SelectItem value="300-500">$300 – $500</SelectItem>
+                            <SelectItem value="500-1000">$500 – $1,000</SelectItem>
+                            <SelectItem value="1000-2000">$1,000 – $2,000</SelectItem>
+                            <SelectItem value="over-2000">Over $2,000 / Custom Scope</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />

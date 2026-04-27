@@ -17,25 +17,25 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   pricing: [
     {
       keywords: ["pricing", "price", "cost", "how much", "budget", "afford"],
-      response: "We have three packages:\n\n• **Starter** — $100 (up to 3 pages, 5-day delivery)\n• **Business** — Starting at $350 (up to 5 pages, autoresponder, 7-day delivery)\n• **Advanced Website / Web App** — Starting at $650 (up to 8 pages, payments, e-commerce or booking, 14-day delivery)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
+      response: "We offer three main services:\n\n• **Business Website** — Starting at $300 (up to 5 pages, ~7-day delivery)\n• **Advanced Website / Web App** — Starting at $500 (up to 8 pages, booking, payments, automation, ~14-day delivery)\n• **AI Voice Agent Setup** — Starting at $500 (AI phone assistant, custom call flow, lead capture)\n\nWant help choosing? Tell me about your business and I'll recommend one. Or [view full pricing](/pricing).",
     },
   ],
   timeline: [
     {
       keywords: ["timeline", "how long", "turnaround", "delivery", "when", "deadline"],
-      response: "Most projects are completed in 1–2 weeks:\n\n• Starter: ~5 days\n• Business: ~7 days\n• Advanced: ~14 days\n\nRush delivery is available as a $75 add-on. When do you need your project ready?",
+      response: "Most projects are completed in 1–2 weeks:\n\n• Business Website: ~7 days\n• Advanced Website / Web App: ~14 days\n• AI Voice Agent Setup: depends on call flow complexity\n\nRush delivery is available as a $75 add-on. When do you need your project ready?",
     },
   ],
   revisions: [
     {
       keywords: ["revision", "changes", "edits", "rounds"],
-      response: "Every package includes unlimited revisions during the active build phase, so we can keep refining until the design feels right.",
+      response: "Every website package includes revisions during the active build phase, so we can keep refining until the design feels right. After final delivery, changes become paid add-ons or are covered by a monthly support plan.",
     },
   ],
   support: [
     {
       keywords: ["support", "maintenance", "after launch", "updates"],
-      response: "We offer monthly maintenance plans starting at $30/month for ongoing updates, security patches, and content changes.",
+      response: "Monthly support plans start at $50/month and cover updates, maintenance, automation tweaks, and ongoing system improvements.",
     },
   ],
   contact: [
@@ -47,7 +47,7 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
   about: [
     {
       keywords: ["about", "who are you", "onyx", "xavier", "founder"],
-      response: "ONYX AI is a premium digital agency founded by Xavier de Jesus Ruiz. We build modern websites, web apps, and AI-powered solutions for businesses of all sizes. Xavier is fluent in English and Spanish. [Learn more about us](/about).",
+      response: "ONYX AI Studios is a digital studio founded by Xavier de Jesus Ruiz. We build modern websites, web apps, AI voice agents, and automation systems for service-based businesses. Xavier is fluent in English and Spanish. [Learn more about us](/about).",
     },
   ],
   technology: [
@@ -62,43 +62,43 @@ const FAQ_RESPONSES: Record<string, { keywords: string[]; response: string }[]> 
 const SMART_RESPONSES: { keywords: string[]; response: string }[] = [
   {
     keywords: ["business website", "company website", "professional website", "brochure"],
-    response: "For a professional business website, I'd recommend our **Business package (starting at $350)**. It includes up to 5 pages, responsive design, autoresponder integration, and revisions during the active build phase.\n\nHere's an example of a business site we built: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
+    response: "For a professional business website, I'd recommend our **Business Website (starting at $300)**. It includes up to 5 pages, mobile-friendly design, service sections, contact form, and click-to-call buttons.\n\nHere's an example: [PrimeShine Cleaning Co.](/portfolio/primeshine-cleaning)\n\nWant to get started? [Book a consultation →](/contact?package=Business)",
   },
   {
     keywords: ["e-commerce", "ecommerce", "online store", "sell products", "shop", "supplements", "wellness"],
-    response: "For an e-commerce or product-based site, our **Advanced package (starting at $650)** is the best fit. It includes payment integration, e-commerce or booking system, up to 10 products, and hosting setup.\n\nCheck out our NutriFit Wellness project — a premium supplement e-commerce site: [View project →](/portfolio/nutrifit-wellness)\n\nReady to discuss? [Book a consultation →](/contact?service=Web+Applications)",
+    response: "For an e-commerce or product-based site, our **Advanced Website / Web App (starting at $500)** is the best fit. It includes payment integration, e-commerce or product setup, customer intake, and hosting setup support.\n\nCheck out our NutriFit Wellness project: [View project →](/portfolio/nutrifit-wellness)\n\n[Book a consultation →](/contact?package=Advanced)",
   },
   {
     keywords: ["cleaning", "service business", "local business", "plumber", "contractor", "landscaping"],
-    response: "For a service business, our **Business package (starting at $350)** works great. It includes a professional design with clear CTAs, up to 5 feature integrations, and speed optimization.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?service=Business+Websites)",
+    response: "For a service business, our **Business Website (starting at $300)** works great. Clean, professional design with service sections, contact form, and click-to-call buttons.\n\nSee how we built PrimeShine Cleaning Co.'s site: [View project →](/portfolio/primeshine-cleaning)\n\n[Get started →](/contact?package=Business)",
   },
   {
-    keywords: ["dashboard", "admin", "platform", "portal", "saas", "app"],
-    response: "For dashboards and web platforms, our **Advanced package (starting at $650)** is ideal. It includes up to 10 feature integrations, payment integration, and hosting setup.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?service=Web+Applications)",
+    keywords: ["dashboard", "admin", "platform", "portal", "saas", "app", "web app"],
+    response: "For dashboards and web apps, our **Advanced Website / Web App (starting at $500)** is ideal. Custom functionality, customer intake, automation options, and hosting setup support.\n\nSee our Quality Fitness Club platform: [View project →](/portfolio/quality-fitness-club)\n\n[Book a consultation →](/contact?package=Advanced)",
   },
   {
     keywords: ["fitness", "gym", "workout", "training", "health"],
-    response: "We've built premium fitness platforms before! Check out Quality Fitness Club — a full member portal with scheduling, profiles, and class management: [View project →](/portfolio/quality-fitness-club)\n\nI'd recommend our **Advanced package** for a fitness platform. [Get started →](/contact?package=Advanced)",
+    response: "We've built premium fitness platforms before! Check out Quality Fitness Club: [View project →](/portfolio/quality-fitness-club)\n\nI'd recommend our **Advanced Website / Web App** for a fitness platform. [Get started →](/contact?package=Advanced)",
   },
   {
-    keywords: ["landing page", "single page", "launch page", "coming soon"],
-    response: "For a high-converting landing page, our **Starter package ($100)** is perfect. You'll get a responsive, SEO-optimized page delivered in 5 days.\n\nNeed more pages or features? The **Business package (starting at $350)** gives you up to 5 pages with professional design.\n\n[Get started →](/contact?service=Landing+Pages)",
+    keywords: ["voice agent", "ai phone", "phone assistant", "call answering", "missed call", "ai voice"],
+    response: "Our **AI Voice Agent Setup (starting at $500)** configures an AI phone assistant with a custom call flow, FAQ training, lead capture, call summaries, and missed-call support.\n\nVoice agent pricing may vary based on call volume, phone number setup, and platform costs.\n\n[Book a consultation →](/contact?package=AI+Voice+Agent)",
+  },
+  {
+    keywords: ["automation", "workflow", "follow-up", "follow up", "zapier", "n8n", "automate"],
+    response: "We build **business automation** for lead capture, customer intake, follow-ups, booking, notifications, and internal processes. This can be added on its own or as part of an Advanced Website / Web App build.\n\n[Book a consultation →](/contact?package=Business+Automation)",
   },
   {
     keywords: ["booking", "scheduling", "appointment", "calendar"],
-    response: "We build online booking systems that let your clients schedule with ease — complete with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced package (starting at $650)** or available as a custom add-on.\n\n[Get started →](/contact?service=Booking+%26+Scheduling+Systems)",
+    response: "We build booking and scheduling flows with calendar integration, email reminders, and payment collection.\n\nThis is included in our **Advanced Website / Web App (starting at $500)** or available as a custom add-on.\n\n[Get started →](/contact?package=Advanced)",
   },
   {
     keywords: ["chatbot", "ai bot", "chat assistant", "automated chat"],
-    response: "We build custom AI chatbots that qualify leads, answer FAQs, and engage visitors 24/7. You can add one to any project for $125 as an add-on.\n\n[Get started →](/contact?extra=AI+Chatbot+Integration)",
+    response: "We build custom AI chatbots that qualify leads, answer FAQs, and engage visitors 24/7. Available as a $125 add-on on website builds.\n\n[Get started →](/contact?extra=AI+Chatbot+Integration)",
   },
   {
     keywords: ["logo", "brand", "branding", "identity"],
-    response: "We offer logo design ($75) and full brand kits ($60) that include logo concepts, color palettes, typography, and brand guidelines. These can be added to any package.\n\n[Get started →](/contact?extra=Brand+Kit)",
-  },
-  {
-    keywords: ["cheap", "free", "lowest", "discount"],
-    response: "Our most affordable option is the **Starter package at $100** — it includes up to 3 pages with responsive design, speed optimization, and an opt-in form.\n\nIt's designed to get small businesses online fast and professionally. [View pricing →](/pricing)",
+    response: "We offer logo design ($75) and full brand kits ($60) — logo concepts, color palettes, typography, and brand guidelines. Add-on to any project.\n\n[Get started →](/contact?extra=Brand+Kit)",
   },
 ];
 
@@ -193,7 +193,7 @@ const ChatWidget = () => {
     }
 
     // Fallback with helpful guidance
-    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — packages starting at $100\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
+    addMessages(text, "I'd be happy to help! Here are some things I can assist with:\n\n• **Services** — what we build and how\n• **Pricing** — offers starting at $300\n• **Portfolio** — real projects we've delivered\n• **Timeline** — typical project turnaround\n\nOr if you're ready, say \"get started\" and I'll connect you with Xavier.");
   };
 
   // Simple markdown-like link rendering
