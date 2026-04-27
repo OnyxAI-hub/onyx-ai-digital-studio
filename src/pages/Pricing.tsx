@@ -265,6 +265,29 @@ const Pricing = () => (
       </div>
     </section>
 
+    {/* Ongoing Support Teaser */}
+    <section className="pb-12 px-4">
+      <div className="container-narrow max-w-3xl">
+        <AnimatedSection>
+          <div className="glass-card p-8 md:p-10 text-center">
+            <span className="mb-3 inline-block rounded-full border border-border/60 bg-card/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              After Launch
+            </span>
+            <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">Ongoing Support Available</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+              After your website, web app, or automation system is launched, ONYX AI Studios can provide ongoing support for updates, maintenance, automations, and improvements.
+            </p>
+            <p className="mt-4 text-sm font-medium text-foreground/80">
+              Monthly support plans start at <span className="text-foreground">$50/month</span>.
+            </p>
+            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
+              <Button variant="outline" className="gap-2">Ask About Monthly Support <ArrowRight className="h-4 w-4" /></Button>
+            </a>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+
     {/* Pricing FAQ */}
     <section className="section-padding bg-card/20">
       <div className="container-narrow max-w-3xl">
