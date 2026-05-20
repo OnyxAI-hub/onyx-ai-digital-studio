@@ -5,49 +5,53 @@
 @layer base {
   :root {
     --background: 0 0% 2%;
-    --foreground: 0 0% 95%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 6%;
-    --card-foreground: 0 0% 95%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 95%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 88%;
-    --primary-foreground: 0 0% 2%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 9%;
-    --secondary-foreground: 0 0% 75%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 82%;
 
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 50%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 0 0% 88%;
-    --accent-foreground: 0 0% 2%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 65%;
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 0 0% 80%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 4%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 88%;
-    --sidebar-primary-foreground: 0 0% 2%;
-    --sidebar-accent: 0 0% 9%;
-    --sidebar-accent-foreground: 0 0% 75%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 65%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 82%;
+    --sidebar-border: 0 0% 22%;
+    --sidebar-ring: 0 0% 80%;
 
     /* Metallic tokens */
-    --silver: 0 0% 72%;
-    --chrome: 0 0% 88%;
-    --gunmetal: 0 0% 28%;
+    --silver: 0 0% 78%;
+    --chrome: 0 0% 92%;
+    --gunmetal: 0 0% 32%;
     --charcoal: 0 0% 11%;
+
+    /* AI accent (subtle) */
+    --ai-cyan: 190 95% 60%;
+    --ai-glow: 200 100% 70%;
   }
 }
 
@@ -65,22 +69,55 @@
     font-family: 'Space Grotesk', sans-serif;
     letter-spacing: -0.025em;
     font-weight: 700;
+    color: hsl(0 0% 100%);
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-lg;
-    box-shadow: 0 1px 0 0 rgba(255,255,255,0.02) inset, 0 4px 20px -4px rgba(0,0,0,0.5);
+    @apply bg-card/70 backdrop-blur-xl border border-border/60 rounded-lg;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 4px 24px -6px rgba(0, 0, 0, 0.55);
   }
 
   .glass-card-hover {
-    @apply glass-card transition-all duration-300 hover:border-[hsl(0,0%,25%)] hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6),0_1px_0_0_rgba(255,255,255,0.04)_inset];
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    border-color: hsl(0 0% 42%);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+      0 10px 38px -10px rgba(0, 0, 0, 0.65),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* Silver / chrome card — for emphasis on pricing, packs, featured rows */
+  .silver-card {
+    @apply rounded-lg backdrop-blur-xl;
+    background:
+      linear-gradient(180deg, hsl(0 0% 14%) 0%, hsl(0 0% 9%) 100%);
+    border: 1px solid hsl(0 0% 32%);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.03),
+      0 12px 40px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  .silver-card-hover {
+    @apply silver-card transition-all duration-300;
+  }
+  .silver-card-hover:hover {
+    border-color: hsl(0 0% 55%);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.12) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 16px 48px -12px rgba(0, 0, 0, 0.75);
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 75%) 50%, hsl(0 0% 45%) 100%);
+    background-image: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 82%) 50%, hsl(0 0% 55%) 100%);
   }
 
   .section-padding {
@@ -91,15 +128,47 @@
     @apply max-w-6xl mx-auto;
   }
 
+  /* Existing dark charcoal band (kept) */
   .section-charcoal {
     background: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 50%, hsl(0 0% 4%) 100%);
   }
 
+  /* NEW: brighter silver/light-gray band for high-contrast emphasis sections */
+  .section-silver {
+    position: relative;
+    background:
+      radial-gradient(1200px 400px at 50% -10%, hsl(0 0% 22% / 0.6) 0%, transparent 60%),
+      linear-gradient(180deg, hsl(0 0% 11%) 0%, hsl(0 0% 14%) 50%, hsl(0 0% 11%) 100%);
+    border-top: 1px solid hsl(0 0% 25%);
+    border-bottom: 1px solid hsl(0 0% 25%);
+  }
+  .section-silver::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 30%);
+  }
+
   .metallic-border {
-    border-image: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 50%), hsl(0 0% 20%)) 1;
+    border-image: linear-gradient(135deg, hsl(0 0% 28%), hsl(0 0% 62%), hsl(0 0% 28%)) 1;
   }
 
   .silver-highlight {
-    background: linear-gradient(135deg, hsl(0 0% 10%) 0%, hsl(0 0% 14%) 50%, hsl(0 0% 10%) 100%);
+    background: linear-gradient(135deg, hsl(0 0% 12%) 0%, hsl(0 0% 18%) 50%, hsl(0 0% 12%) 100%);
+  }
+
+  /* Soft white glow for emphasis (use sparingly) */
+  .glow-white {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 40px -8px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Subtle AI cyan accent glow — used only on highlighted CTAs/popular tags */
+  .glow-cyan {
+    box-shadow:
+      0 0 0 1px hsl(var(--ai-cyan) / 0.3),
+      0 0 28px -6px hsl(var(--ai-glow) / 0.35);
   }
 }
