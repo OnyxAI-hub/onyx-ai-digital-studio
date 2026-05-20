@@ -50,15 +50,15 @@ const Hero = () => {
           </span>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
-            <span className="text-foreground">Create Websites, Media</span>
+          <h1 className="font-display font-bold leading-[1.05] tracking-[-0.035em] text-balance text-4xl md:text-6xl lg:text-[4.5rem]">
+            <span className="text-foreground">Build Smarter. Create Faster.</span>
             <br />
-            <span className="gradient-text">& Automation With AI</span>
+            <span className="gradient-text">Scale With AI.</span>
           </h1>
         </AnimatedSection>
         <AnimatedSection delay={0.2}>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground leading-relaxed">
-            ONYX AI Studio helps businesses and creators build websites, web apps, AI visuals, promo videos, music content, brand assets, automation systems, AI agents, and more.
+          <p className="mx-auto mt-7 max-w-xl text-[15px] md:text-base text-muted-foreground/90 leading-relaxed">
+            ONYX AI Studio helps businesses and creators launch websites, generate media, build automations, and access powerful AI tools — all from one platform.
           </p>
         </AnimatedSection>
 
