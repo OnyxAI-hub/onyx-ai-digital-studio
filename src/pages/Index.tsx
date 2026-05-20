@@ -622,6 +622,8 @@ const Index = () => (
   <main>
     <Hero />
     <TrustSection />
+    <ChooseWhatSection />
+    <ModelsSection />
     <FeaturedServicesSection />
     <WhatWeAutomateSection />
     <HowItWorksSection />
