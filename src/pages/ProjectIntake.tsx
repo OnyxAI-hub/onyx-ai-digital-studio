@@ -41,10 +41,54 @@ const intakeSchema = z.object({
   budget: z.string().optional(),
   timeline: z.string().optional(),
   nextStep: z.string().optional(),
+  styleVibe: z.string().max(500).optional(),
+  references: z.string().max(500).optional(),
+  platform: z.string().optional(),
+  requestMode: z.string().optional(),
   message: z.string().trim().min(10, "Tell us a bit about your project").max(2000),
 });
 
 type IntakeForm = z.infer<typeof intakeSchema>;
+
+const PROJECT_TYPE_GROUPS: { label: string; options: string[] }[] = [
+  {
+    label: "Creative",
+    options: [
+      "AI Image Creation",
+      "AI Video Generation",
+      "AI Promo Video",
+      "Music Visualizer",
+      "Cover Art / Brand Visual",
+      "Branding / Logo Concepts",
+      "Social Content Pack",
+      "Creative Credit Pack",
+    ],
+  },
+  {
+    label: "Business / Website",
+    options: [
+      "Website / Landing Page",
+      "Web App / Business System",
+    ],
+  },
+  {
+    label: "Automation",
+    options: [
+      "AI Agent Setup",
+      "Automation System",
+    ],
+  },
+  {
+    label: "Plans & Other",
+    options: [
+      "Monthly Subscription",
+      "Monthly Support",
+      "Custom AI Request",
+      "Not Sure Yet",
+      "Other",
+    ],
+  },
+];
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
   Business: "300-500",
