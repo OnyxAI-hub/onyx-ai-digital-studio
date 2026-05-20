@@ -12,6 +12,12 @@ import { packages } from "@/data/packages";
 import { projects } from "@/data/portfolio";
 import { testimonials } from "@/data/testimonials";
 import { modelCategories } from "@/data/credits";
+import StudioCategoriesSection from "@/components/studio/StudioCategoriesSection";
+import ModelHighlightsSection from "@/components/studio/ModelHighlightsSection";
+import ImageModelsSection from "@/components/studio/ImageModelsSection";
+import VideoModelsSection from "@/components/studio/VideoModelsSection";
+import CreativeAppsSection from "@/components/studio/CreativeAppsSection";
+import GallerySection from "@/components/studio/GallerySection";
 
 /* ─── Hero ─── */
 const HERO_CHIPS: { label: string; icon: typeof ImageIcon; type: string }[] = [
@@ -622,6 +628,11 @@ const Index = () => (
   <main>
     <Hero />
     <TrustSection />
+    <StudioCategoriesSection />
+    <ModelHighlightsSection />
+    <ImageModelsSection />
+    <VideoModelsSection />
+    <CreativeAppsSection />
     <ChooseWhatSection />
     <ModelsSection />
     <FeaturedServicesSection />
@@ -629,6 +640,7 @@ const Index = () => (
     <HowItWorksSection />
     <WhyChooseSection />
     <PackagePreview />
+    <GallerySection />
     <IndustriesSection />
     <PortfolioPreview />
     <TestimonialsSection />

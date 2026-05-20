@@ -208,13 +208,15 @@ export const modelCategories: ModelCategory[] = [
 export const creditCostRows: { type: string; use: string; cost: string }[] = [
   { type: "Chat / Text / Prompt Help", use: "Captions, scripts, ideas, copy, prompts", cost: "2–5 credits" },
   { type: "Standard Image", use: "Simple image, cover draft, concept image", cost: "5–10 credits" },
-  { type: "Premium / HD Image", use: "Polished cover art, brand visual, product visual", cost: "15–25 credits" },
-  { type: "Audio / Voice", use: "Voiceover, narration, audio support", cost: "10–20 credits" },
+  { type: "Premium Image", use: "Polished cover art, brand visual, product visual", cost: "15–25 credits" },
+  { type: "HD / 4K Image", use: "Hero visuals, posters, large prints", cost: "25–50 credits" },
+  { type: "Audio / Voice", use: "Voiceover, narration, audio support (varies by length)", cost: "10–50 credits" },
   { type: "Music Visualizer Concept", use: "Looping visual, album visual, music promo", cost: "75+ credits" },
-  { type: "Video — 5 seconds", use: "Short AI video clip or motion concept", cost: "500 credits" },
-  { type: "Video — 10 seconds", use: "Longer promo or creative video concept", cost: "1,000 credits" },
-  { type: "Video — 15 seconds", use: "Premium short AI video sequence", cost: "1,500 credits" },
-  { type: "Custom Creative Request", use: "Multi-asset request, campaign, brand package", cost: "Custom quote" },
+  { type: "Fast Video — 5 / 10 / 15 sec", use: "Quick motion concepts", cost: "300 / 600 / 900 credits" },
+  { type: "Standard Video — 5 / 10 / 15 sec", use: "Social clips, promos, visual ideas", cost: "500 / 1,000 / 1,500 credits" },
+  { type: "Premium Video — 5 / 10 / 15 sec", use: "Cinematic or polished promotional visuals", cost: "750 / 1,500 / 2,250 credits" },
+  { type: "Ultra Video — 5 / 10 / 15 sec", use: "High-detail premium creative direction", cost: "1,000 / 2,000 / 3,000 credits" },
+  { type: "Custom / Multi-Asset Request", use: "Multi-asset request, campaign, brand package", cost: "Custom quote" },
 ];
 
 export interface OneTimeService {

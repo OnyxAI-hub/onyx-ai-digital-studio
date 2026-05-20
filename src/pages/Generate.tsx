@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Image as ImageIcon, Video, Mic, Globe, Bot, Sparkles, Upload, ArrowRight, Info } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import StudioSidebar from "@/components/studio/StudioSidebar";
 import { modelCategories } from "@/data/credits";
 
 type Tab = "Image" | "Video" | "Audio" | "Website" | "Automation";
@@ -25,7 +26,9 @@ const Generate = () => {
   return (
     <main className="pt-20">
       <section className="section-padding">
-        <div className="container-narrow">
+        <div className="container-narrow flex gap-8">
+          <StudioSidebar />
+          <div className="flex-1 min-w-0">
           <AnimatedSection>
             <div className="text-center">
               <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -134,6 +137,7 @@ const Generate = () => {
               </p>
             </div>
           </AnimatedSection>
+          </div>
         </div>
       </section>
     </main>
