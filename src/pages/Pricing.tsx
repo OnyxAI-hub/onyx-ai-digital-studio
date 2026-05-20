@@ -495,6 +495,7 @@ const Pricing = () => {
       </div>
     </section>
   </main>
-);
+  );
+};
 
 export default Pricing;
