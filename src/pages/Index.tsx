@@ -250,7 +250,7 @@ const ChooseWhatSection = () => (
 
 /* ─── Models / Workflows ─── */
 const ModelsSection = () => (
-  <section className="section-padding section-charcoal">
+  <section className="section-padding section-silver">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Workflows" title="Create Across Multiple AI Workflows" description="Pick a workflow — credits flex across image, video, audio, websites, and automation requests." />
@@ -347,7 +347,7 @@ const WhyChooseSection = () => (
 
 /* ─── Package Preview ─── */
 const PackagePreview = () => (
-  <section className="section-padding section-charcoal">
+  <section className="section-padding section-silver">
     <div className="container-narrow">
       <AnimatedSection>
         <SectionHeading badge="Pricing" title="Simple, Transparent Pricing" description="Choose a package that fits your needs. No hidden fees." />
