@@ -286,13 +286,14 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="new-website">New Website</SelectItem>
-                            <SelectItem value="redesign">Redesign</SelectItem>
-                            <SelectItem value="landing-page">Landing Page</SelectItem>
-                            <SelectItem value="web-app">Web App / Dashboard</SelectItem>
-                            <SelectItem value="ecommerce">E-commerce Store</SelectItem>
-                            <SelectItem value="booking">Booking System</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            {PROJECT_TYPE_GROUPS.map((group) => (
+                              <div key={group.label}>
+                                <div className="px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">{group.label}</div>
+                                {group.options.map((opt) => (
+                                  <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                                ))}
+                              </div>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
