@@ -101,7 +101,7 @@ const Pricing = () => {
             const price = billing === "monthly" ? p.monthly : p.annualMonthly;
             return (
               <AnimatedSection key={p.name} delay={i * 0.05}>
-                <div className={`glass-card p-6 h-full flex flex-col relative ${p.popular ? "border-foreground/25 shadow-[0_0_40px_rgba(255,255,255,0.05)]" : ""}`}>
+                <div className={`p-6 h-full flex flex-col relative rounded-lg ${p.popular ? "silver-card glow-white" : "glass-card"}`}>
                   {p.popular && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
                       Popular
@@ -175,7 +175,7 @@ const Pricing = () => {
     </section>
 
     {/* ─── One-Time Credit Packs ─── */}
-    <section className="pb-16 px-4 section-charcoal py-16">
+    <section className="pb-16 px-4 section-silver py-16">
       <div className="container-narrow">
         <AnimatedSection>
           <SectionHeading badge="Top Up" title="Need Extra Credits?" description="One-time credit packs that never expire on active accounts." />
