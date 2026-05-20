@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Image as ImageIcon, Video, Mic, Globe, Bot, Sparkles, Upload, ArrowRight, Info } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import StudioSidebar from "@/components/studio/StudioSidebar";
 import { modelCategories } from "@/data/credits";
 
 type Tab = "Image" | "Video" | "Audio" | "Website" | "Automation";
