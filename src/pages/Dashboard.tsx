@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sparkles, CreditCard, FolderOpen, HardDrive, Clock, ArrowRight, Plus } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import StudioSidebar from "@/components/studio/StudioSidebar";
 
 const stats = [
   { label: "Credit Balance", value: "—", hint: "Sign-in required", icon: Sparkles },
@@ -13,7 +14,9 @@ const stats = [
 const Dashboard = () => (
   <main className="pt-20">
     <section className="section-padding">
-      <div className="container-narrow">
+      <div className="container-narrow flex gap-8">
+        <StudioSidebar />
+        <div className="flex-1 min-w-0">
         <AnimatedSection>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
