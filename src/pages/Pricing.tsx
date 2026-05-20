@@ -49,25 +49,187 @@ const pricingFaqs = [
 ];
 
 
-const Pricing = () => (
+const Pricing = () => {
+  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
+
+  return (
   <main className="pt-20">
-    <section className="section-padding">
+    <section className="section-padding pb-8">
       <div className="container-narrow text-center">
         <AnimatedSection>
           <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Pricing</span>
           <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-            Websites, Web Apps & <span className="gradient-text">AI Voice Agents</span>
+            Credits, Subscriptions & <span className="gradient-text">Custom Services</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            ONYX AI Studios builds modern websites, web apps, automation systems, and AI-powered business tools for service-based businesses. Choose an offer or book a consultation to scope your project.
+            Subscribe for monthly credits, top up with credit packs, or book ONYX for done-for-you websites, automation, and AI agent builds.
           </p>
         </AnimatedSection>
       </div>
     </section>
 
+    {/* ─── SaaS Credit Plans ─── */}
+    <section className="pb-16 px-4">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <div className="text-center mb-8">
+            <span className="mb-3 inline-block rounded-full border border-border/60 bg-card/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              Credit Subscriptions
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">Monthly Credit Plans</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Use credits toward AI creative requests reviewed and fulfilled by ONYX.</p>
+
+            <div className="mt-6 inline-flex items-center gap-1 rounded-full border border-border/60 bg-card/60 p-1">
+              <button
+                onClick={() => setBilling("monthly")}
+                className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${billing === "monthly" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setBilling("annual")}
+                className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${billing === "annual" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                Annual <span className="ml-1 text-[9px] opacity-70">Save ~30%</span>
+              </button>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-5">
+          {creditPlans.map((p, i) => {
+            const price = billing === "monthly" ? p.monthly : p.annualMonthly;
+            return (
+              <AnimatedSection key={p.name} delay={i * 0.05}>
+                <div className={`glass-card p-6 h-full flex flex-col relative ${p.popular ? "border-foreground/25 shadow-[0_0_40px_rgba(255,255,255,0.05)]" : ""}`}>
+                  {p.popular && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
+                      Popular
+                    </span>
+                  )}
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-card border border-border/60">
+                    <p.icon className="h-4 w-4 text-foreground/70" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold tracking-tight">{p.name}</h3>
+                  <div className="mt-2 mb-1">
+                    <span className="font-display text-3xl font-bold">${price}</span>
+                    <span className="text-xs text-muted-foreground">/mo</span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground/80 mb-3">
+                    {billing === "annual" ? "billed annually" : "billed monthly"}
+                  </p>
+                  <p className="text-xs font-medium text-foreground/80 mb-4">{p.credits}</p>
+                  <ul className="mb-5 flex-1 space-y-1.5">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-xs">
+                        <CheckCircle className="h-3 w-3 shrink-0 text-muted-foreground mt-0.5" />
+                        <span className="text-muted-foreground">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={`/project-intake?type=${encodeURIComponent(p.intakeType)}&plan=${encodeURIComponent(p.name)}`}>
+                    <Button className="w-full" variant={p.popular ? "default" : "outline"} size="sm">
+                      {p.cta}
+                    </Button>
+                  </Link>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+
+        <AnimatedSection delay={0.2}>
+          <p className="mt-6 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
+            Credits can be used toward AI creative requests reviewed and fulfilled by ONYX AI Studio. Some requests may require review before production. Video, audio, and premium creative requests use more credits because they cost more to process.
+          </p>
+        </AnimatedSection>
+      </div>
+    </section>
+
+    {/* ─── Credit Cost Breakdown ─── */}
+    <section className="pb-16 px-4">
+      <div className="container-narrow max-w-4xl">
+        <AnimatedSection>
+          <SectionHeading badge="Transparent" title="Credit Costs" description="Different request types use different credit amounts depending on complexity, model cost, quality, length, and delivery needs." />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <div className="mt-8 glass-card overflow-hidden">
+            <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 border-b border-border/40 bg-card/40 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="col-span-4">Generation Type</div>
+              <div className="col-span-5">Example Use</div>
+              <div className="col-span-3 text-right">Starting Credit Cost</div>
+            </div>
+            {creditCostRows.map((row) => (
+              <div key={row.type} className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 px-6 py-4 border-b border-border/20 last:border-0 text-sm">
+                <div className="md:col-span-4 font-medium text-foreground">{row.type}</div>
+                <div className="md:col-span-5 text-muted-foreground text-xs md:text-sm">{row.use}</div>
+                <div className="md:col-span-3 md:text-right text-xs font-semibold text-foreground/80">{row.cost}</div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
+            Credit usage is reviewed before production for request-based projects.
+          </p>
+        </AnimatedSection>
+      </div>
+    </section>
+
+    {/* ─── One-Time Credit Packs ─── */}
+    <section className="pb-16 px-4 section-charcoal py-16">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Top Up" title="Need Extra Credits?" description="One-time credit packs that never expire on active accounts." />
+        </AnimatedSection>
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {creditPacks.map((pack, i) => (
+            <AnimatedSection key={pack.name} delay={i * 0.05}>
+              <div className="glass-card-hover p-6 text-center h-full flex flex-col">
+                <Sparkles className="mx-auto h-5 w-5 text-foreground/70" />
+                <h3 className="mt-3 font-display text-base font-semibold tracking-tight">{pack.name}</h3>
+                <div className="mt-3 font-display text-3xl font-bold">${pack.price}</div>
+                <p className="mt-1 text-xs text-muted-foreground">{pack.credits}</p>
+                <Link to={`/project-intake?type=Creative%20Credit%20Pack&plan=${encodeURIComponent(pack.name)}`} className="mt-5">
+                  <Button variant="outline" size="sm" className="w-full">Buy Pack</Button>
+                </Link>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <p className="mt-6 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
+          Credit packs can be used toward creative requests, image generations, video concepts, music visuals, brand assets, and more. Pro and Ultra members may receive bonus credits or model discounts when available.
+        </p>
+      </div>
+    </section>
+
+    {/* ─── One-Time Services ─── */}
+    <section className="pb-16 px-4 py-16">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Done For You" title="One-Time Services" description="Prefer a custom build over credits? Book ONYX for the full project." />
+        </AnimatedSection>
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {oneTimeServices.map((s, i) => (
+            <AnimatedSection key={s.title} delay={i * 0.05}>
+              <Link to={`/project-intake?type=${encodeURIComponent(s.intakeType)}`} className="block h-full">
+                <div className="glass-card-hover p-6 h-full">
+                  <h3 className="font-display text-base font-semibold tracking-tight">{s.title}</h3>
+                  <p className="mt-1 text-[11px] uppercase tracking-wider text-foreground/60 font-medium">{s.price}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                </div>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ─── Legacy package tiers (kept) ─── */}
     <section className="pb-12 px-4">
       <div className="container-narrow">
-        <div className="grid gap-6 md:grid-cols-3">
+        <AnimatedSection>
+          <SectionHeading badge="Featured" title="Flagship Project Packages" description="Original ONYX packages — fully scoped for websites, web apps, and AI agents." />
+        </AnimatedSection>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {packages.map((pkg, i) => {
             const isExternal = pkg.ctaLink.startsWith("http");
             return (
