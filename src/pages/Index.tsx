@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot, Inbox, CalendarClock, PhoneMissed, CreditCard as CardIcon, MailCheck, LineChart, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle, Palette, Code2, MessageSquare, Star, Send, Clock, Smartphone, Briefcase, Bot, Inbox, CalendarClock, PhoneMissed, CreditCard as CardIcon, MailCheck, LineChart, Building2, Image as ImageIcon, Video, Mic, Globe, Sparkles, Zap, Layers, FileText, Rocket } from "lucide-react";
 import { toast } from "sonner";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
@@ -11,57 +11,127 @@ import { featuredServices } from "@/data/services";
 import { packages } from "@/data/packages";
 import { projects } from "@/data/portfolio";
 import { testimonials } from "@/data/testimonials";
+import { modelCategories } from "@/data/credits";
 
 /* ─── Hero ─── */
-const Hero = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-    {/* Layered animated background */}
-    <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,2%)] via-[hsl(0,0%,3%)] to-[hsl(0,0%,4%)]" />
-      <HeroBackground />
-      {/* Static chrome line accents layered on top */}
-      <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-      <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
-    </div>
+const HERO_CHIPS: { label: string; icon: typeof ImageIcon; type: string }[] = [
+  { label: "Image", icon: ImageIcon, type: "AI Image Creation" },
+  { label: "Video", icon: Video, type: "AI Video Generation" },
+  { label: "Audio", icon: Mic, type: "Custom AI Request" },
+  { label: "Website", icon: Globe, type: "Website / Landing Page" },
+  { label: "Automation", icon: Bot, type: "Automation System" },
+];
 
-    <div className="relative z-10 container-narrow px-4 text-center">
-      <AnimatedSection>
-        <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-          Digital Systems Studio
-        </span>
-      </AnimatedSection>
-      <AnimatedSection delay={0.1}>
-        <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
-          <span className="text-foreground">Websites, Automation</span>
-          <br />
-          <span className="gradient-text">& AI Agents</span>
-        </h1>
-        <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
-          For Modern Businesses
-        </p>
-      </AnimatedSection>
-      <AnimatedSection delay={0.2}>
-        <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-          ONYX AI Studios builds digital systems that help businesses capture leads, book customers, automate customer intake, and operate smoother.
-        </p>
-      </AnimatedSection>
-      <AnimatedSection delay={0.3}>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
-              Book a Consultation <ArrowRight className="h-4 w-4" />
-            </Button>
-          </a>
-          <Link to="/services">
-            <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
-              Explore Services
-            </Button>
-          </Link>
-        </div>
-      </AnimatedSection>
-    </div>
-  </section>
-);
+const HERO_PROMPTS = [
+  "Create a promo video",
+  "Generate cover art",
+  "Build a landing page",
+  "Design brand visuals",
+  "Create a music visualizer",
+  "Set up an AI agent",
+];
+
+const Hero = () => {
+  const [prompt, setPrompt] = useState("");
+  const href = `/generate${prompt ? `?prompt=${encodeURIComponent(prompt)}` : ""}`;
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,2%)] via-[hsl(0,0%,3%)] to-[hsl(0,0%,4%)]" />
+        <HeroBackground />
+        <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+        <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
+      </div>
+
+      <div className="relative z-10 container-narrow px-4 text-center">
+        <AnimatedSection>
+          <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
+            AI Creative Platform · Studio · Automation
+          </span>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
+            <span className="text-foreground">Create Websites, Media</span>
+            <br />
+            <span className="gradient-text">& Automation With AI</span>
+          </h1>
+        </AnimatedSection>
+        <AnimatedSection delay={0.2}>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground leading-relaxed">
+            ONYX AI Studio helps businesses and creators build websites, web apps, AI visuals, promo videos, music content, brand assets, automation systems, AI agents, and more.
+          </p>
+        </AnimatedSection>
+
+        {/* Prompt bar */}
+        <AnimatedSection delay={0.3}>
+          <form
+            onSubmit={(e) => { e.preventDefault(); window.location.href = href; }}
+            className="mx-auto mt-8 max-w-2xl"
+          >
+            <div className="flex items-center gap-2 rounded-2xl border border-[hsl(0,0%,18%)] bg-[hsl(0,0%,5%)]/80 backdrop-blur-xl p-2 shadow-[0_0_60px_rgba(255,255,255,0.03)]">
+              <Sparkles className="h-4 w-4 ml-2 text-foreground/50 shrink-0" />
+              <input
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Describe what you want to create…"
+                className="flex-1 bg-transparent text-sm md:text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2"
+              />
+              <Link to={href}>
+                <Button size="sm" className="gap-2 uppercase tracking-wider text-[11px]">
+                  Start Creating <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {HERO_CHIPS.map((c) => (
+                <Link
+                  key={c.label}
+                  to={`/generate?tab=${c.label}`}
+                  className="flex items-center gap-1.5 rounded-full border border-border/50 bg-card/40 px-3 py-1 text-[11px] text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
+                >
+                  <c.icon className="h-3 w-3" />
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {HERO_PROMPTS.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setPrompt(p)}
+                  className="rounded-md border border-border/40 bg-card/20 px-2.5 py-1 text-[10px] text-muted-foreground/80 hover:text-foreground hover:border-foreground/20 transition-all"
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </form>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link to="/generate">
+              <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
+                Start Creating <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
+                Buy Credits
+              </Button>
+            </Link>
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="ghost" className="gap-2 text-sm uppercase tracking-wider">
+                Book a Consultation
+              </Button>
+            </a>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
 
 /* ─── Trust ─── */
 const trustItems = [
@@ -119,27 +189,121 @@ const FeaturedServicesSection = () => (
   </section>
 );
 
-/* ─── How It Works ─── */
-const steps = [
-  { num: "01", title: "Discover", desc: "We learn about your business, goals, and target audience." },
-  { num: "02", title: "Design", desc: "We create a custom design that reflects your brand identity." },
-  { num: "03", title: "Build", desc: "We develop your site with clean code and modern technology." },
-  { num: "04", title: "Launch", desc: "We deploy, test, and hand over everything ready to go." },
+/* ─── Choose What You Want to Create ─── */
+const CHOOSE_CARDS = [
+  {
+    icon: Globe,
+    title: "Websites & Web Apps",
+    desc: "Business websites, landing pages, web apps, booking flows, payment flows, customer intake systems, and dashboards.",
+    examples: ["Business websites", "Landing pages", "Web apps", "Booking systems", "Payment flows", "Customer intake", "Dashboards"],
+    cta: "Start a Website Project",
+    href: "/project-intake?type=Website%20%2F%20Landing%20Page",
+  },
+  {
+    icon: Sparkles,
+    title: "AI Creative Studio",
+    desc: "AI images, cover art, promo videos, music visualizers, brand assets, social content, and short-form video concepts.",
+    examples: ["AI images", "Cover art", "Music visualizers", "Promo videos", "Social content", "Brand visuals", "Product images"],
+    cta: "Start a Creative Request",
+    href: "/project-intake?type=AI%20Image%20Creation",
+  },
+  {
+    icon: Bot,
+    title: "Business Automation",
+    desc: "AI agents, chatbots, voice agents, lead tracking, follow-ups, outreach systems, booking automation, and customer workflows.",
+    examples: ["AI voice agents", "AI chat agents", "Lead tracking", "Follow-up systems", "Outreach systems", "Booking automation", "Customer workflows"],
+    cta: "Start an Automation Project",
+    href: "/project-intake?type=Automation%20System",
+  },
 ];
 
-const HowItWorksSection = () => (
+const ChooseWhatSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="The Platform" title="Choose What You Want to Create" description="One studio for websites, AI creative work, and business automation." />
+      </AnimatedSection>
+      <div className="grid gap-6 md:grid-cols-3">
+        {CHOOSE_CARDS.map((c, i) => (
+          <AnimatedSection key={c.title} delay={i * 0.1}>
+            <div className="glass-card-hover p-7 h-full flex flex-col">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-card border border-border/60">
+                <c.icon className="h-5 w-5 text-foreground/70" />
+              </div>
+              <h3 className="font-display text-xl font-bold tracking-tight">{c.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              <ul className="mt-5 mb-6 flex flex-wrap gap-1.5">
+                {c.examples.map((ex) => (
+                  <li key={ex} className="rounded-md border border-border/40 bg-card/30 px-2 py-0.5 text-[11px] text-muted-foreground">{ex}</li>
+                ))}
+              </ul>
+              <Link to={c.href} className="mt-auto">
+                <Button variant="outline" className="w-full gap-2">{c.cta} <ArrowRight className="h-4 w-4" /></Button>
+              </Link>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ─── Models / Workflows ─── */
+const ModelsSection = () => (
   <section className="section-padding section-charcoal">
     <div className="container-narrow">
       <AnimatedSection>
-        <SectionHeading badge="Our Process" title="How It Works" description="A simple, transparent process from idea to launch." />
+        <SectionHeading badge="Workflows" title="Create Across Multiple AI Workflows" description="Pick a workflow — credits flex across image, video, audio, websites, and automation requests." />
       </AnimatedSection>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {modelCategories.map((m, i) => (
+          <AnimatedSection key={m.title} delay={i * 0.05}>
+            <Link to={`/project-intake?type=${encodeURIComponent(m.intakeType)}`} className="block h-full">
+              <div className="glass-card-hover p-5 h-full">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-card border border-border/60">
+                  <m.icon className="h-4 w-4 text-foreground/70" />
+                </div>
+                <h3 className="font-display text-base font-semibold tracking-tight">{m.title}</h3>
+                <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{m.description}</p>
+                <p className="mt-3 text-[11px] uppercase tracking-wider text-foreground/60 font-medium">{m.cost}</p>
+              </div>
+            </Link>
+          </AnimatedSection>
+        ))}
+      </div>
+      <AnimatedSection>
+        <div className="mt-10 text-center">
+          <Link to="/generate">
+            <Button className="gap-2">Open Studio <ArrowRight className="h-4 w-4" /></Button>
+          </Link>
+        </div>
+      </AnimatedSection>
+    </div>
+  </section>
+);
+
+/* ─── How It Works ─── */
+const steps = [
+  { num: "01", title: "Choose What You Want Created", desc: "Pick a website, image, video, music visual, automation system, AI agent, or custom request." },
+  { num: "02", title: "Use Credits or Choose a Service", desc: "Subscribe monthly, buy extra credits, or book a consultation for larger custom projects." },
+  { num: "03", title: "Submit Your Idea", desc: "Share your goal, style, references, business details, files, and timeline." },
+  { num: "04", title: "ONYX Builds the Output", desc: "We use creative direction, prompting, AI workflows, and platform systems to create the result." },
+  { num: "05", title: "Review, Refine & Launch", desc: "Review the finished work, request adjustments, and launch for your business, brand, or content." },
+];
+
+const HowItWorksSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Our Process" title="How ONYX AI Studio Works" description="From idea to delivery in five steps." />
+      </AnimatedSection>
+      <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
         {steps.map((step, i) => (
-          <AnimatedSection key={step.num} delay={i * 0.1}>
+          <AnimatedSection key={step.num} delay={i * 0.08}>
             <div className="text-center">
               <span className="font-display text-5xl font-bold text-border">{step.num}</span>
-              <h3 className="mt-3 font-display text-xl font-semibold tracking-tight">{step.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{step.desc}</p>
+              <h3 className="mt-3 font-display text-base font-semibold tracking-tight">{step.title}</h3>
+              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
             </div>
           </AnimatedSection>
         ))}
@@ -458,6 +622,8 @@ const Index = () => (
   <main>
     <Hero />
     <TrustSection />
+    <ChooseWhatSection />
+    <ModelsSection />
     <FeaturedServicesSection />
     <WhatWeAutomateSection />
     <HowItWorksSection />

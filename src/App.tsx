@@ -18,6 +18,8 @@ import Contact from "./pages/Contact";
 import ProjectIntake from "./pages/ProjectIntake";
 import ClientPortal from "./pages/ClientPortal";
 import ThankYou from "./pages/ThankYou";
+import Generate from "./pages/Generate";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/project-intake" element={<ProjectIntake />} />
           <Route path="/client-portal" element={<ClientPortal />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/generate" element={<Generate />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

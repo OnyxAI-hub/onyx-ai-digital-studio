@@ -1,116 +1,75 @@
+# ONYX AI Studio → AI Creative Platform Transformation
 
+This is a large scope. I'll execute in phases so nothing breaks. **Phase 1 (this build) = all frontend/copy/pages.** Phase 2 = Lovable Cloud + Stripe backend (requires your go-ahead since it touches billing).
 
-# ONYX AI — Complete Premium Website Build
+## Phase 1 — Frontend platform reposition (this build)
 
-## Summary
-Build the full 8-page ONYX AI premium agency website from scratch. Dark theme (#0A0A0A), electric blue accent (#3B82F6), glassy cards, smooth scroll animations, conversion-focused copy, AI chatbot widget, and client portal mock. All front-end; backend mocked.
+### 1. Homepage (`src/pages/Index.tsx`)
+- New hero: headline "Create Websites, Media & Automation With AI", new subheadline, AI prompt-style input bar with chips (Image, Video, Audio, Website, Automation), CTAs: **Start Creating**, **Buy Credits**, **Book a Consultation**
+- Keep existing animated/code background
+- New "Choose What You Want to Create" section — 3 premium cards (Websites & Web Apps / AI Creative Studio / Business Automation)
+- New "Create Across Multiple AI Workflows" — 8 model/category cards with credit costs
+- New "How ONYX AI Studio Works" — 5 steps
+- Keep existing portfolio, testimonials, trust strip, contact map
 
-## Hero Visual Direction
-- Abstract tech gradient background using CSS radial/linear gradients and subtle geometric shapes (circles, grid lines, dots)
-- Faint dashboard/UI overlay elements rendered as semi-transparent CSS shapes to suggest a digital workspace
-- No stock images — pure CSS/SVG abstract visuals
-- Dark-to-darker gradient with electric blue glow accents
+### 2. Pricing page (`src/pages/Pricing.tsx`)
+- Add **Monthly/Annual toggle**
+- Replace current packages with 5 SaaS tiers: Starter $4, Basic $9, Premium $21 (Popular), Pro $54, Ultra $124 — full feature lists per spec
+- Add **Credit Costs** transparency table
+- Add **One-Time Credit Packs** section (4 packs: $25/$75/$150/$300)
+- Keep existing **One-Time Services** section, updated to the 6 services in spec
+- All CTAs route to `/project-intake` with `?package=` prefill until Stripe is wired
 
-## CTA Button System
-- **Primary**: Solid electric blue (#3B82F6) background, white text, hover glow/brightness increase, rounded-lg, strong contrast
-- **Secondary**: Transparent/glass background with white border, white text, subtle hover fill, backdrop-blur
-- Consistent across all pages — defined as shared button variants
+### 3. Services page (`src/pages/Services.tsx`)
+- Reframe as "Need It Done For You?" agency section, keep existing 6 service cards (update copy to platform tone)
+- Add chips/tags for credit-vs-service distinction
 
-## Dependencies to Install
-- `framer-motion` for scroll/entrance animations
+### 4. Project Intake (`src/pages/ProjectIntake.tsx`)
+- Expand "Type of Project" dropdown with all 17 options from spec
+- Add fields: style/vibe, references/links, target platform, request type (credits/one-time/consultation)
+- Group visually: Creative / Business / Automation
+- **Keep Zapier webhook, all existing field IDs, validation, navigate to /thank-you**
 
-## What Gets Built (~45 files)
+### 5. New page: `/generate` (`src/pages/Generate.tsx`)
+- Prompt box + type tabs (Image/Video/Audio/Website/Automation) + model selector + credit cost preview
+- Reference upload (UI only)
+- Button = **"Submit Request"** (NOT fake instant generation) → routes to `/project-intake` with type prefilled
+- Recent requests placeholder (empty state messaging)
 
-### Foundation
-- `index.html` — updated title, meta description, favicon reference
-- `index.css` — dark theme as default (#0A0A0A bg, white text, #3B82F6 accent, glassy card utilities)
-- `tailwind.config.ts` — custom ONYX color palette
-- `App.tsx` — 8 routes: `/`, `/services`, `/pricing`, `/portfolio`, `/about`, `/faq`, `/contact`, `/client-portal`
-- Copy uploaded logo to `public/onyx-logo.png`
+### 6. New page: `/dashboard` (`src/pages/Dashboard.tsx`)
+- Mock credit balance, plan, request history, storage usage, active requests
+- "Connect account to track real credits" notice (since no auth yet)
+- Buttons: Upgrade, Buy Credits
 
-### Data Files (`src/data/`)
-Centralized content for clean components:
-- `packages.ts` — 3 pricing tiers + all extras/add-ons
-- `services.ts` — 8 core services + 9 add-ons
-- `faq.ts` — 15 Q&As
-- `testimonials.ts` — 4 realistic reviews
-- `portfolio.ts` — 3 projects with details
-- `products.ts` — 7 service products
+### 7. Navbar (`src/components/layout/Navbar.tsx`)
+- Add **Generate** link, keep all existing routes
+- Add small **Buy Credits** CTA
 
-### Layout Components
-- **Navbar** — sticky, logo image left, nav links center, mobile hamburger, "Book a Consultation" primary CTA button right
-- **Footer** — logo, nav columns, social icons (IG, LinkedIn, X, FB, GitHub), contact info, copyright
+### 8. Routes (`src/App.tsx`)
+- Register `/generate` and `/dashboard`
+- All existing routes untouched
 
-### Home Page (11 sections)
-1. **Hero** — abstract gradient background with subtle geometric overlays, headline "Modern Websites & Web Apps Built to Help Your Business Grow", subheadline, dual CTAs (primary blue "Book a Consultation" + secondary glass "View Pricing")
-2. **Trust Section** — 4 indicators: 50+ Projects Delivered, Business-Focused Builds, Responsive on All Devices, Fast Turnaround
-3. **Featured Services** — 6 service cards with icons
-4. **How It Works** — 4 steps: Discover → Design → Build → Launch
-5. **Why Businesses Choose ONYX AI** — 4 premium cards: Fast Turnaround, Premium Design, Web Apps & Automation, Clear Communication
-6. **Package Preview** — 3 pricing cards linking to Pricing page
-7. **Portfolio Preview** — 3 project cards linking to Portfolio page
-8. **Testimonials** — 4 realistic reviews in a grid
-9. **AI Chatbot Teaser** — section promoting the chatbot capability
-10. **Newsletter** — email opt-in form
-11. **Final CTA** — "Ready to Build Something Powerful?" with primary CTA
+### 9. Data file: `src/data/credits.ts` (new)
+- Plans array, credit packs, model categories, cost table — single source of truth
 
-### Services Page
-- 8 core service cards (business websites, landing pages, web apps, dashboards, booking systems, payment integrations, automation, AI chatbots)
-- Add-on services section with 9 extras and pricing
+## Phase 2 — Backend (separate build, ask first)
 
-### Pricing Page
-- 3 package cards: Starter ($250), Business ($550, highlighted), Advanced ($1,100)
-- Business card: electric blue border glow, "Most Popular" badge, slight scale-up on desktop, collapses cleanly on mobile
-- Full feature checklists per package
-- Extras/add-ons section below
+When you're ready, I'll:
+1. Enable **Lovable Cloud** (auth, DB, storage)
+2. Tables: `profiles`, `subscriptions`, `credit_balances`, `credit_transactions`, `creative_requests`, `uploaded_files`, `payments`, `model_pricing`
+3. Enable Stripe via `enable_stripe_payments` (seamless), create the 5 subscription products + 4 credit packs
+4. Stripe webhook → credit allocation
+5. Real `/dashboard` + `/generate` with auth
+6. Admin dashboard
 
-### Portfolio Page
-- 3 project cards with CSS gradient placeholder visuals: NutriFit Wellness (green), PrimeShine Cleaning (blue), Quality Fitness Club (dark/red)
-- Category, description, tech tags, "View Project" CTA
+## Guardrails honored
+- ✅ Existing pages, Calendly, Zapier, Stripe links, forms, automation flows all preserved
+- ✅ Visual identity unchanged — black/charcoal/silver + existing accent
+- ✅ No fake instant generation — all CTAs say "Submit Request" / "Start a Request"
+- ✅ No Lovable / third-party tool name-drops
+- ✅ No "unlimited" claims
+- ✅ Honest MVP language: "request-based, credit-supported"
 
-### About Page
-- Founder intro (Xavier), bilingual support, brand story
-- "Why Choose ONYX AI" differentiators
-- Process timeline: Discovery → Design → Build → Launch → Support
-
-### FAQ Page
-- 15 Q&A accordion using existing Radix accordion component
-
-### Contact Page
-- Contact form + full project intake form (all specified fields, validated with react-hook-form + zod)
-- Booking calendar placeholder section
-- Social/contact details, map placeholder
-- "Let's Build Something Powerful" closing CTA
-
-### Client Portal (`/client-portal`)
-- ONYX AI logo prominently displayed
-- Login / Sign Up / Password Reset tab interface
-- Mock dashboard with 5 widget cards: Project Status, Files/Uploads, Invoices/Payments, Messages, Requested Revisions
-
-### AI Chatbot Widget (global)
-- Floating electric blue button bottom-right on all pages
-- ONYX AI logo in chat header
-- Rule-based conversation: welcome → FAQ matching → lead qualification → package recommendation
-- Captures name, email, project summary
-- Concise, lead-focused responses
-- Fallback: "I can help with that. Please leave your details and Xavier will follow up."
-
-### E-Commerce / Products
-- 7 service product cards distributed across Services/Pricing pages
-- Each with name, price, description, "Get Started" CTA
-
-### Forms & Lead Capture
-- Contact form, newsletter opt-in, consultation booking form, project intake form, chatbot lead capture
-- All validated on front-end, success confirmation states with autoresponder placeholders
-
-## Logo Placement
-- Navbar (left), Footer, Client Portal login, Chatbot header
-- White/monochrome on dark backgrounds, generous padding, no distortion
-- Favicon from logo
-
-## Trust Indicators (exact)
-- 50+ Projects Delivered
-- Business-Focused Builds
-- Responsive on All Devices
-- Fast Turnaround
-
+## What I need from you
+- **Approve this plan to start Phase 1** (frontend only, ~9 files touched, ~2 new pages)
+- Confirm when you want Phase 2 (Cloud + Stripe) — that's a separate ask since it touches billing

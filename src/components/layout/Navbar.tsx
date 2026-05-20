@@ -6,6 +6,7 @@ import onyxLogo from "@/assets/onyx-logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
+  { label: "Generate", path: "/generate" },
   { label: "Services", path: "/services" },
   { label: "Pricing", path: "/pricing" },
   { label: "Portfolio", path: "/portfolio" },
@@ -44,15 +45,18 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Link to="/client-portal">
+        <div className="hidden md:flex items-center gap-2">
+          <Link to="/dashboard">
             <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">
-              Portal
+              Dashboard
             </Button>
           </Link>
-          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-            <Button size="sm" className="uppercase tracking-wider text-[11px]">Book a Consultation</Button>
-          </a>
+          <Link to="/pricing">
+            <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
+          </Link>
+          <Link to="/generate">
+            <Button size="sm" className="uppercase tracking-wider text-[11px]">Start Creating</Button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -81,12 +85,15 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-2 pt-2 border-t border-border/20">
-              <Link to="/client-portal" onClick={() => setMobileOpen(false)}>
-                <Button variant="outline" className="w-full">Client Portal</Button>
+              <Link to="/dashboard" onClick={() => setMobileOpen(false)}>
+                <Button variant="ghost" className="w-full">Dashboard</Button>
               </Link>
-              <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
-                <Button className="w-full">Book a Consultation</Button>
-              </a>
+              <Link to="/pricing" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" className="w-full">Buy Credits</Button>
+              </Link>
+              <Link to="/generate" onClick={() => setMobileOpen(false)}>
+                <Button className="w-full">Start Creating</Button>
+              </Link>
             </div>
           </div>
         </div>

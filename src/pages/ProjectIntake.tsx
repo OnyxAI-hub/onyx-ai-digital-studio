@@ -41,10 +41,54 @@ const intakeSchema = z.object({
   budget: z.string().optional(),
   timeline: z.string().optional(),
   nextStep: z.string().optional(),
+  styleVibe: z.string().max(500).optional(),
+  references: z.string().max(500).optional(),
+  platform: z.string().optional(),
+  requestMode: z.string().optional(),
   message: z.string().trim().min(10, "Tell us a bit about your project").max(2000),
 });
 
 type IntakeForm = z.infer<typeof intakeSchema>;
+
+const PROJECT_TYPE_GROUPS: { label: string; options: string[] }[] = [
+  {
+    label: "Creative",
+    options: [
+      "AI Image Creation",
+      "AI Video Generation",
+      "AI Promo Video",
+      "Music Visualizer",
+      "Cover Art / Brand Visual",
+      "Branding / Logo Concepts",
+      "Social Content Pack",
+      "Creative Credit Pack",
+    ],
+  },
+  {
+    label: "Business / Website",
+    options: [
+      "Website / Landing Page",
+      "Web App / Business System",
+    ],
+  },
+  {
+    label: "Automation",
+    options: [
+      "AI Agent Setup",
+      "Automation System",
+    ],
+  },
+  {
+    label: "Plans & Other",
+    options: [
+      "Monthly Subscription",
+      "Monthly Support",
+      "Custom AI Request",
+      "Not Sure Yet",
+      "Other",
+    ],
+  },
+];
 
 const PACKAGE_BUDGET_MAP: Record<string, string> = {
   Business: "300-500",
@@ -62,9 +106,14 @@ const ProjectIntake = () => {
 
   const prefillPackage = searchParams.get("package") || "";
   const prefillExtra = searchParams.get("extra") || "";
+  const prefillType = searchParams.get("type") || "";
+  const prefillPrompt = searchParams.get("prompt") || "";
+  const prefillPlan = searchParams.get("plan") || "";
   const resolvedPackage = VALID_PACKAGES.includes(prefillPackage) ? prefillPackage : "";
   const resolvedBudget = PACKAGE_BUDGET_MAP[prefillPackage] || "";
   const resolvedAddOns = prefillExtra && (ADDON_OPTIONS as readonly string[]).includes(prefillExtra) ? [prefillExtra] : [];
+  const allTypes = PROJECT_TYPE_GROUPS.flatMap((g) => g.options);
+  const resolvedType = allTypes.includes(prefillType) ? prefillType : "";
 
   const form = useForm<IntakeForm>({
     resolver: zodResolver(intakeSchema),
@@ -75,14 +124,18 @@ const ProjectIntake = () => {
       brandName: "",
       websiteLink: "",
       packageInterest: resolvedPackage,
-      projectType: "",
+      projectType: resolvedType,
       estimatedPages: "",
       services: "",
       addOns: resolvedAddOns,
       budget: resolvedBudget,
       timeline: "",
       nextStep: "",
-      message: "",
+      styleVibe: "",
+      references: "",
+      platform: "",
+      requestMode: "",
+      message: prefillPrompt ? `Prompt: ${prefillPrompt}\n\n` : "",
     },
   });
 
@@ -115,6 +168,11 @@ const ProjectIntake = () => {
           budget: data.budget || "",
           timeline: data.timeline || "",
           next_step: data.nextStep || "",
+          style_vibe: data.styleVibe || "",
+          references: data.references || "",
+          platform: data.platform || "",
+          request_mode: data.requestMode || "",
+          plan_interest: prefillPlan || "",
           message: data.message,
           source_page: "project_intake_page",
         }),
@@ -228,13 +286,14 @@ const ProjectIntake = () => {
                             <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="new-website">New Website</SelectItem>
-                            <SelectItem value="redesign">Redesign</SelectItem>
-                            <SelectItem value="landing-page">Landing Page</SelectItem>
-                            <SelectItem value="web-app">Web App / Dashboard</SelectItem>
-                            <SelectItem value="ecommerce">E-commerce Store</SelectItem>
-                            <SelectItem value="booking">Booking System</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            {PROJECT_TYPE_GROUPS.map((group) => (
+                              <div key={group.label}>
+                                <div className="px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">{group.label}</div>
+                                {group.options.map((opt) => (
+                                  <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                                ))}
+                              </div>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -374,6 +433,68 @@ const ProjectIntake = () => {
                       <FormMessage />
                     </FormItem>
                   )} />
+
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <FormField control={form.control} name="requestMode" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>How would you like to proceed?</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Credits, one-time, or consultation" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="credits">Use credits / subscription</SelectItem>
+                            <SelectItem value="one-time">One-time service</SelectItem>
+                            <SelectItem value="consultation">Request a consultation</SelectItem>
+                            <SelectItem value="not-sure">Not sure yet</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="platform" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Target Platform</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Where will this be used?" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="website">Website</SelectItem>
+                            <SelectItem value="instagram">Instagram</SelectItem>
+                            <SelectItem value="tiktok">TikTok</SelectItem>
+                            <SelectItem value="youtube">YouTube</SelectItem>
+                            <SelectItem value="spotify">Spotify</SelectItem>
+                            <SelectItem value="business-ops">Business operations</SelectItem>
+                            <SelectItem value="multi">Multi-platform</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <FormField control={form.control} name="styleVibe" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Style or Vibe (optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. dark cinematic, minimal premium, retro neon, bright editorial…" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <FormField control={form.control} name="references" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>References (optional)</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="Paste image links, video links, social posts, or examples that capture the look you want…" className="min-h-[80px]" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
 
                   <FormField control={form.control} name="message" render={({ field }) => (
                     <FormItem>
