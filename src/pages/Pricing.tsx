@@ -147,10 +147,10 @@ const Pricing = () => {
     </section>
 
     {/* ─── Credit Cost Breakdown ─── */}
-    <section className="pb-16 px-4">
+    <section id="credit-costs" className="pb-16 px-4">
       <div className="container-narrow max-w-4xl">
         <AnimatedSection>
-          <SectionHeading badge="Transparent" title="Credit Costs" description="Different request types use different credit amounts depending on complexity, model cost, quality, length, and delivery needs." />
+          <SectionHeading badge="Transparent" title="Credit Costs by Model & Output" description="Credit cost varies depending on the AI model used, output type, generation quality, video duration, image resolution, audio length, complexity, restricted/unrestricted model availability, and backend/API cost." />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <div className="mt-8 glass-card overflow-hidden">
@@ -168,7 +168,7 @@ const Pricing = () => {
             ))}
           </div>
           <p className="mt-4 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
-            Credit usage is reviewed before production for request-based projects.
+            Credit costs are estimates and may vary by model, availability, quality, length, and request complexity. Free models, model discounts, EBA turns, concurrency, and storage limits depend on backend availability and may be phased in as the platform expands.
           </p>
         </AnimatedSection>
       </div>
