@@ -106,9 +106,14 @@ const ProjectIntake = () => {
 
   const prefillPackage = searchParams.get("package") || "";
   const prefillExtra = searchParams.get("extra") || "";
+  const prefillType = searchParams.get("type") || "";
+  const prefillPrompt = searchParams.get("prompt") || "";
+  const prefillPlan = searchParams.get("plan") || "";
   const resolvedPackage = VALID_PACKAGES.includes(prefillPackage) ? prefillPackage : "";
   const resolvedBudget = PACKAGE_BUDGET_MAP[prefillPackage] || "";
   const resolvedAddOns = prefillExtra && (ADDON_OPTIONS as readonly string[]).includes(prefillExtra) ? [prefillExtra] : [];
+  const allTypes = PROJECT_TYPE_GROUPS.flatMap((g) => g.options);
+  const resolvedType = allTypes.includes(prefillType) ? prefillType : "";
 
   const form = useForm<IntakeForm>({
     resolver: zodResolver(intakeSchema),
@@ -119,14 +124,18 @@ const ProjectIntake = () => {
       brandName: "",
       websiteLink: "",
       packageInterest: resolvedPackage,
-      projectType: "",
+      projectType: resolvedType,
       estimatedPages: "",
       services: "",
       addOns: resolvedAddOns,
       budget: resolvedBudget,
       timeline: "",
       nextStep: "",
-      message: "",
+      styleVibe: "",
+      references: "",
+      platform: "",
+      requestMode: "",
+      message: prefillPrompt ? `Prompt: ${prefillPrompt}\n\n` : "",
     },
   });
 
