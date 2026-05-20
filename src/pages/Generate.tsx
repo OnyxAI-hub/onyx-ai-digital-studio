@@ -137,6 +137,7 @@ const Generate = () => {
               </p>
             </div>
           </AnimatedSection>
+          </div>
         </div>
       </section>
     </main>
