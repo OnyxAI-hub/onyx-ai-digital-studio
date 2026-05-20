@@ -97,6 +97,7 @@ const Dashboard = () => (
             </p>
           </div>
         </AnimatedSection>
+        </div>
       </div>
     </section>
   </main>
