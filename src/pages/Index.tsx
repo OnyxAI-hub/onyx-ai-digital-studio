@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Rocket, Palette, Code2, MessageSquare, Star, Send, Zap, Clock, Smartphone, Briefcase, Bot, Inbox, CalendarClock, PhoneMissed, CreditCard as CardIcon, MailCheck, LineChart, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle, Palette, Code2, MessageSquare, Star, Send, Clock, Smartphone, Briefcase, Bot, Inbox, CalendarClock, PhoneMissed, CreditCard as CardIcon, MailCheck, LineChart, Building2, Image as ImageIcon, Video, Mic, Globe, Sparkles, Zap, Layers, FileText, Rocket } from "lucide-react";
 import { toast } from "sonner";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HeroBackground from "@/components/shared/HeroBackground";
@@ -11,57 +11,127 @@ import { featuredServices } from "@/data/services";
 import { packages } from "@/data/packages";
 import { projects } from "@/data/portfolio";
 import { testimonials } from "@/data/testimonials";
+import { modelCategories } from "@/data/credits";
 
 /* ─── Hero ─── */
-const Hero = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-    {/* Layered animated background */}
-    <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,2%)] via-[hsl(0,0%,3%)] to-[hsl(0,0%,4%)]" />
-      <HeroBackground />
-      {/* Static chrome line accents layered on top */}
-      <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-      <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
-    </div>
+const HERO_CHIPS: { label: string; icon: typeof ImageIcon; type: string }[] = [
+  { label: "Image", icon: ImageIcon, type: "AI Image Creation" },
+  { label: "Video", icon: Video, type: "AI Video Generation" },
+  { label: "Audio", icon: Mic, type: "Custom AI Request" },
+  { label: "Website", icon: Globe, type: "Website / Landing Page" },
+  { label: "Automation", icon: Bot, type: "Automation System" },
+];
 
-    <div className="relative z-10 container-narrow px-4 text-center">
-      <AnimatedSection>
-        <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-          Digital Systems Studio
-        </span>
-      </AnimatedSection>
-      <AnimatedSection delay={0.1}>
-        <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
-          <span className="text-foreground">Websites, Automation</span>
-          <br />
-          <span className="gradient-text">& AI Agents</span>
-        </h1>
-        <p className="mt-4 font-display text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[hsl(0,0%,45%)]">
-          For Modern Businesses
-        </p>
-      </AnimatedSection>
-      <AnimatedSection delay={0.2}>
-        <p className="mx-auto mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-          ONYX AI Studios builds digital systems that help businesses capture leads, book customers, automate customer intake, and operate smoother.
-        </p>
-      </AnimatedSection>
-      <AnimatedSection delay={0.3}>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
-              Book a Consultation <ArrowRight className="h-4 w-4" />
-            </Button>
-          </a>
-          <Link to="/services">
-            <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
-              Explore Services
-            </Button>
-          </Link>
-        </div>
-      </AnimatedSection>
-    </div>
-  </section>
-);
+const HERO_PROMPTS = [
+  "Create a promo video",
+  "Generate cover art",
+  "Build a landing page",
+  "Design brand visuals",
+  "Create a music visualizer",
+  "Set up an AI agent",
+];
+
+const Hero = () => {
+  const [prompt, setPrompt] = useState("");
+  const href = `/generate${prompt ? `?prompt=${encodeURIComponent(prompt)}` : ""}`;
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,2%)] via-[hsl(0,0%,3%)] to-[hsl(0,0%,4%)]" />
+        <HeroBackground />
+        <div className="absolute top-[18%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+        <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
+      </div>
+
+      <div className="relative z-10 container-narrow px-4 text-center">
+        <AnimatedSection>
+          <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
+            AI Creative Platform · Studio · Automation
+          </span>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.03em] md:text-7xl lg:text-[5.5rem]">
+            <span className="text-foreground">Create Websites, Media</span>
+            <br />
+            <span className="gradient-text">& Automation With AI</span>
+          </h1>
+        </AnimatedSection>
+        <AnimatedSection delay={0.2}>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground leading-relaxed">
+            ONYX AI Studio helps businesses and creators build websites, web apps, AI visuals, promo videos, music content, brand assets, automation systems, AI agents, and more.
+          </p>
+        </AnimatedSection>
+
+        {/* Prompt bar */}
+        <AnimatedSection delay={0.3}>
+          <form
+            onSubmit={(e) => { e.preventDefault(); window.location.href = href; }}
+            className="mx-auto mt-8 max-w-2xl"
+          >
+            <div className="flex items-center gap-2 rounded-2xl border border-[hsl(0,0%,18%)] bg-[hsl(0,0%,5%)]/80 backdrop-blur-xl p-2 shadow-[0_0_60px_rgba(255,255,255,0.03)]">
+              <Sparkles className="h-4 w-4 ml-2 text-foreground/50 shrink-0" />
+              <input
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Describe what you want to create…"
+                className="flex-1 bg-transparent text-sm md:text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2"
+              />
+              <Link to={href}>
+                <Button size="sm" className="gap-2 uppercase tracking-wider text-[11px]">
+                  Start Creating <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {HERO_CHIPS.map((c) => (
+                <Link
+                  key={c.label}
+                  to={`/generate?tab=${c.label}`}
+                  className="flex items-center gap-1.5 rounded-full border border-border/50 bg-card/40 px-3 py-1 text-[11px] text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
+                >
+                  <c.icon className="h-3 w-3" />
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {HERO_PROMPTS.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setPrompt(p)}
+                  className="rounded-md border border-border/40 bg-card/20 px-2.5 py-1 text-[10px] text-muted-foreground/80 hover:text-foreground hover:border-foreground/20 transition-all"
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </form>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link to="/generate">
+              <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
+                Start Creating <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
+                Buy Credits
+              </Button>
+            </Link>
+            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="ghost" className="gap-2 text-sm uppercase tracking-wider">
+                Book a Consultation
+              </Button>
+            </a>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
 
 /* ─── Trust ─── */
 const trustItems = [
