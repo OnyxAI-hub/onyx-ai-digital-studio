@@ -434,6 +434,68 @@ const ProjectIntake = () => {
                     </FormItem>
                   )} />
 
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <FormField control={form.control} name="requestMode" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>How would you like to proceed?</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Credits, one-time, or consultation" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="credits">Use credits / subscription</SelectItem>
+                            <SelectItem value="one-time">One-time service</SelectItem>
+                            <SelectItem value="consultation">Request a consultation</SelectItem>
+                            <SelectItem value="not-sure">Not sure yet</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="platform" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Target Platform</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Where will this be used?" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="website">Website</SelectItem>
+                            <SelectItem value="instagram">Instagram</SelectItem>
+                            <SelectItem value="tiktok">TikTok</SelectItem>
+                            <SelectItem value="youtube">YouTube</SelectItem>
+                            <SelectItem value="spotify">Spotify</SelectItem>
+                            <SelectItem value="business-ops">Business operations</SelectItem>
+                            <SelectItem value="multi">Multi-platform</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <FormField control={form.control} name="styleVibe" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Style or Vibe (optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. dark cinematic, minimal premium, retro neon, bright editorial…" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <FormField control={form.control} name="references" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>References (optional)</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="Paste image links, video links, social posts, or examples that capture the look you want…" className="min-h-[80px]" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+
                   <FormField control={form.control} name="message" render={({ field }) => (
                     <FormItem>
                       <FormLabel>Project Notes *</FormLabel>
