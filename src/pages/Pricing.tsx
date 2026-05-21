@@ -174,30 +174,80 @@ const Pricing = () => {
       </div>
     </section>
 
-    {/* ─── One-Time Credit Packs ─── */}
-    <section className="pb-16 px-4 section-silver py-16">
+    {/* ─── Buy Extra Credits (One-Time Packs) ─── */}
+    <section className="pb-16 px-4 section-silver py-20">
       <div className="container-narrow">
         <AnimatedSection>
-          <SectionHeading badge="Top Up" title="Need Extra Credits?" description="One-time credit packs that never expire on active accounts." />
+          <div className="text-center mb-10">
+            <span className="mb-3 inline-block rounded-full border border-[hsl(var(--ai-cyan)/0.4)] bg-[hsl(var(--ai-cyan)/0.08)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[hsl(var(--ai-glow))]">
+              One-Time · No Subscription
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">Buy Extra Credits</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Running low? Add credits anytime for images, videos, music visuals, promo concepts, brand assets, creative requests, and more.
+            </p>
+          </div>
         </AnimatedSection>
+
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {creditPacks.map((pack, i) => (
             <AnimatedSection key={pack.name} delay={i * 0.05}>
-              <div className="glass-card-hover p-6 text-center h-full flex flex-col">
-                <Sparkles className="mx-auto h-5 w-5 text-foreground/70" />
-                <h3 className="mt-3 font-display text-base font-semibold tracking-tight">{pack.name}</h3>
-                <div className="mt-3 font-display text-3xl font-bold">${pack.price}</div>
-                <p className="mt-1 text-xs text-muted-foreground">{pack.credits}</p>
-                <Link to={`/project-intake?type=Creative%20Credit%20Pack&plan=${encodeURIComponent(pack.name)}`} className="mt-5">
-                  <Button variant="outline" size="sm" className="w-full">Buy Pack</Button>
+              <div
+                className={`p-6 h-full flex flex-col relative rounded-lg ${
+                  pack.featured ? "silver-card glow-cyan" : "silver-card-hover"
+                }`}
+              >
+                {pack.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[hsl(var(--ai-cyan))] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
+                    Best Value
+                  </span>
+                )}
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-card border border-border/60">
+                  <Sparkles className={`h-4 w-4 ${pack.featured ? "text-[hsl(var(--ai-glow))]" : "text-foreground/70"}`} />
+                </div>
+                <h3 className="font-display text-lg font-semibold tracking-tight">{pack.name}</h3>
+                <div className="mt-3">
+                  <span className="font-display text-4xl font-bold">${pack.price}</span>
+                  <span className="ml-1 text-[11px] uppercase tracking-wider text-muted-foreground">one-time</span>
+                </div>
+                <p className="mt-2 text-sm font-medium text-foreground/85">{pack.credits}</p>
+                <div className="mt-4 pt-4 border-t border-border/40 flex-1">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Best for</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{pack.bestFor}</p>
+                </div>
+                <Link
+                  to={`/project-intake?type=Creative%20Credit%20Pack&plan=${encodeURIComponent(pack.name)}`}
+                  className="mt-5"
+                >
+                  <Button
+                    className="w-full"
+                    variant={pack.featured ? "default" : "outline"}
+                    size="sm"
+                  >
+                    {pack.cta}
+                  </Button>
                 </Link>
               </div>
             </AnimatedSection>
           ))}
         </div>
-        <p className="mt-6 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
-          Credit packs can be used toward creative requests, image generations, video concepts, music visuals, brand assets, and more. Pro and Ultra members may receive bonus credits or model discounts when available.
-        </p>
+
+        <AnimatedSection delay={0.25}>
+          <div className="mt-10 mx-auto max-w-3xl glass-card p-6 space-y-2.5">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-foreground/90 font-medium">•</span> Credit packs are one-time purchases and do not renew monthly.
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-foreground/90 font-medium">•</span> Credits can be used toward AI creative requests, image generation, video concepts, music visuals, brand assets, and more.
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-foreground/90 font-medium">•</span> Video, audio, and premium model requests may use more credits depending on model cost, duration, quality, and complexity.
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-foreground/90 font-medium">•</span> Pro and Ultra subscribers may receive bonus credits or model discounts when available.
+            </p>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
 
