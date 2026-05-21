@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SafetyBadge from "./SafetyBadge";
 import { imageModels } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const ImageModelsSection = () => (
   <section className="section-padding">
