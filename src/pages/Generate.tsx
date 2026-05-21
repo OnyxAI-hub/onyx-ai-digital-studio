@@ -69,7 +69,12 @@ const Generate = () => {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
 
-  const initialTab = (params.get("tab") || params.get("type") || "Image") as Tab;
+  const location = useLocation();
+  const pathTabMap: Record<string, Tab> = {
+    "/studio/images": "Image", "/studio/videos": "Video", "/studio/audio": "Audio",
+    "/studio/apps": "Apps", "/studio/design": "Design", "/studio/clipping": "Video",
+  };
+  const initialTab = (pathTabMap[location.pathname] || params.get("tab") || params.get("type") || "Image") as Tab;
   const matched = TABS.find((t) => t.id === initialTab) ?? TABS[0];
   const [tab, setTab] = useState<Tab>(matched.id);
 
