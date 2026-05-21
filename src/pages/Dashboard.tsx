@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Sparkles, CreditCard, FolderOpen, Clock, ArrowRight, Plus, LogOut } from "lucide-react";
+import { Sparkles, CreditCard, FolderOpen, Clock, ArrowRight, Plus, LogOut, Image as ImageIcon, Video, Mic, AppWindow, Palette, Scissors, Globe, Bot } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StudioSidebar from "@/components/studio/StudioSidebar";
 import PlatformTopBar from "@/components/studio/PlatformTopBar";
