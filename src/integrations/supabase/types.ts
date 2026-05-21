@@ -14,16 +14,347 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      creative_requests: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          delivery_url: string | null
+          estimated_credits: number
+          id: string
+          platform_use: string | null
+          prompt: string
+          reference_url: string | null
+          request_type: string
+          status: string
+          style: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          delivery_url?: string | null
+          estimated_credits?: number
+          id?: string
+          platform_use?: string | null
+          prompt: string
+          reference_url?: string | null
+          request_type: string
+          status?: string
+          style?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          delivery_url?: string | null
+          estimated_credits?: number
+          id?: string
+          platform_use?: string | null
+          prompt?: string
+          reference_url?: string | null
+          request_type?: string
+          status?: string
+          style?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creative_requests_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      credit_balances: {
+        Row: {
+          balance: number
+          bonus_credits: number
+          id: string
+          monthly_credits: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          balance?: number
+          bonus_credits?: number
+          id?: string
+          monthly_credits?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          balance?: number
+          bonus_credits?: number
+          id?: string
+          monthly_credits?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credit_balances_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      credit_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string | null
+          id: string
+          related_request_id: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          related_request_id?: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          related_request_id?: string | null
+          transaction_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credit_transactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      generation_history: {
+        Row: {
+          created_at: string
+          credits_used: number
+          error_message: string | null
+          generation_type: string
+          id: string
+          model_name: string
+          output_url: string | null
+          prompt: string | null
+          request_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          credits_used?: number
+          error_message?: string | null
+          generation_type: string
+          id?: string
+          model_name: string
+          output_url?: string | null
+          prompt?: string | null
+          request_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          credits_used?: number
+          error_message?: string | null
+          generation_type?: string
+          id?: string
+          model_name?: string
+          output_url?: string | null
+          prompt?: string | null
+          request_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generation_history_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "creative_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "generation_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount_paid: number
+          created_at: string
+          credits_added: number
+          id: string
+          product_name: string
+          product_type: string
+          status: string
+          stripe_customer_id: string | null
+          stripe_payment_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_paid?: number
+          created_at?: string
+          credits_added?: number
+          id?: string
+          product_name: string
+          product_type: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_payment_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_paid?: number
+          created_at?: string
+          credits_added?: number
+          id?: string
+          product_name?: string
+          product_type?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_payment_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          plan_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          plan_name?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      uploaded_files: {
+        Row: {
+          created_at: string
+          file_name: string | null
+          file_type: string | null
+          file_url: string
+          id: string
+          request_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          file_name?: string | null
+          file_type?: string | null
+          file_url: string
+          id?: string
+          request_id?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          file_name?: string | null
+          file_type?: string | null
+          file_url?: string
+          id?: string
+          request_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "uploaded_files_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "creative_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "uploaded_files_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +481,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
