@@ -20,7 +20,10 @@ import ClientPortal from "./pages/ClientPortal";
 import ThankYou from "./pages/ThankYou";
 import Generate from "./pages/Generate";
 import Dashboard from "./pages/Dashboard";
+import Auth from "./pages/Auth";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import { AuthProvider } from "@/hooks/useAuth";
 
 const queryClient = new QueryClient();
 
