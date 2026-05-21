@@ -37,7 +37,7 @@ const VideoModelsSection = () => (
                   </div>
                 ))}
               </div>
-              <Link to={`/project-intake?type=${encodeURIComponent(m.intakeType)}&model=${encodeURIComponent(m.name)}`} className="mt-4">
+              <Link to={getStudioHref(m.intakeType, { model: m.name })} className="mt-4">
                 <Button size="sm" variant="outline" className="w-full gap-2 text-[11px] uppercase tracking-wider">
                   Submit Request <ArrowRight className="h-3 w-3" />
                 </Button>
