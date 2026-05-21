@@ -265,8 +265,24 @@ const Pricing = () => {
             </p>
           </div>
         </AnimatedSection>
+
+        <AnimatedSection delay={0.3}>
+          <div className="mt-6 mx-auto max-w-3xl glass-card p-6">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider mb-3">How Extra Credits Work</h3>
+            <ul className="space-y-2 text-xs text-muted-foreground leading-relaxed">
+              <li><span className="text-foreground/90 font-medium">Automatic Usage:</span> Extra credits are used only after your monthly subscription allowance is depleted.</li>
+              <li><span className="text-foreground/90 font-medium">Expiration:</span> Credit packs expire 2 months after purchase.</li>
+              <li><span className="text-foreground/90 font-medium">All Tiers Welcome:</span> Available to Free users and all subscription tiers.</li>
+              <li><span className="text-foreground/90 font-medium">Free Tier Note:</span> Credit purchases do not unlock premium features.</li>
+              <li><span className="text-foreground/90 font-medium">No Refunds:</span> All credit purchases are final.</li>
+              <li><span className="text-foreground/90 font-medium">Credit Balance System:</span> We do not issue cash refunds. Plan changes may be converted to a credit balance that applies to future subscriptions.</li>
+            </ul>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
+
+    <WhyOnyx />
 
     {/* ─── One-Time Services ─── */}
     <section className="pb-16 px-4 py-16">
