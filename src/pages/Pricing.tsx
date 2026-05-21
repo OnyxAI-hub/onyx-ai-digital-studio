@@ -148,6 +148,21 @@ const Pricing = () => {
       </div>
     </section>
 
+    {/* ─── Compare All Features ─── */}
+    <section className="pb-16 px-4">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Compare" title="All Features Side by Side" description="See exactly what's included at every tier." />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <div className="mt-8"><CompareTable /></div>
+          <p className="mt-4 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
+            Plan features and limits are subject to change. Prices shown exclude taxes and applicable fees. Credits reset on the 1st of each calendar month unless otherwise stated.
+          </p>
+        </AnimatedSection>
+      </div>
+    </section>
+
     {/* ─── Credit Cost Breakdown ─── */}
     <section id="credit-costs" className="pb-16 px-4">
       <div className="container-narrow max-w-4xl">
