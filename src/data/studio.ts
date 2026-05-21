@@ -460,8 +460,8 @@ export const platformSidebar: SidebarSection[] = [
     icon: Sparkles,
     items: [
       { label: "Credits", href: "/dashboard" },
-      { label: "Plan", href: "/pricing" },
-      { label: "Usage", disabled: true },
+      { label: "Current Plan", href: "/pricing" },
+      { label: "Daily Rewards", href: "/rewards" },
     ],
   },
   {
@@ -472,7 +472,7 @@ export const platformSidebar: SidebarSection[] = [
       { label: "Teen", disabled: true },
       { label: "Mature", disabled: true },
       { label: "Suggestive", disabled: true },
-      { label: "Custom filters", disabled: true },
+      { label: "Custom Filters", disabled: true },
     ],
   },
   {
@@ -492,7 +492,7 @@ export const platformSidebar: SidebarSection[] = [
     icon: Layers,
     items: [
       { label: "Asset Manager", disabled: true },
-      { label: "Design", disabled: true },
+      { label: "Design Studio", disabled: true },
       { label: "Clipping", disabled: true },
       { label: "Projects", href: "/portfolio" },
       { label: "Requests", href: "/project-intake" },
@@ -509,21 +509,22 @@ export const platformSidebar: SidebarSection[] = [
     ],
   },
   {
-    label: "Social",
+    label: "Community",
     icon: Users,
     items: [
-      { label: "Feed", disabled: true },
-      { label: "Gallery", href: "/#gallery" },
-      { label: "Community", disabled: true },
-      { label: "Updates", disabled: true },
+      { label: "Feed", href: "/feed" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Challenges", href: "/challenges" },
+      { label: "Blog", href: "/blog" },
+      { label: "My Page", href: "/profile" },
     ],
   },
   {
     label: "Support",
     icon: Globe,
     items: [
-      { label: "Help", href: "/faq" },
       { label: "What's New", disabled: true },
+      { label: "Help", href: "/faq" },
       { label: "Contact", href: "/contact" },
     ],
   },
