@@ -19,6 +19,21 @@ import {
   Layers,
   Film,
   Brush,
+  Home,
+  FolderOpen,
+  Headphones,
+  AppWindow,
+  Cpu,
+  FileText,
+  Newspaper,
+  Trophy,
+  Rss,
+  Image,
+  Sparkle,
+  LifeBuoy,
+  HelpCircle,
+  Mail,
+  Megaphone,
 } from "lucide-react";
 
 export type Safety =
