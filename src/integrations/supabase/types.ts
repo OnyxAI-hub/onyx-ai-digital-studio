@@ -14,6 +14,208 @@ export type Database = {
   }
   public: {
     Tables: {
+      asset_manager: {
+        Row: {
+          asset_type: string | null
+          created_at: string
+          file_url: string | null
+          id: string
+          metadata: Json | null
+          name: string
+          size_bytes: number | null
+          source: string | null
+          thumbnail_url: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          asset_type?: string | null
+          created_at?: string
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          name: string
+          size_bytes?: number | null
+          source?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          asset_type?: string | null
+          created_at?: string
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          name?: string
+          size_bytes?: number | null
+          source?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      blog_claps: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_claps_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          author_name: string | null
+          body: string | null
+          category: string | null
+          cover_gradient: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          is_published: boolean
+          published_at: string | null
+          read_time: string | null
+          slug: string
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          author_name?: string | null
+          body?: string | null
+          category?: string | null
+          cover_gradient?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          read_time?: string | null
+          slug: string
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          author_name?: string | null
+          body?: string | null
+          category?: string | null
+          cover_gradient?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          read_time?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: []
+      }
+      challenge_entries: {
+        Row: {
+          asset_url: string | null
+          challenge_id: string
+          created_at: string
+          id: string
+          title: string | null
+          user_id: string
+          votes: number
+        }
+        Insert: {
+          asset_url?: string | null
+          challenge_id: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          user_id: string
+          votes?: number
+        }
+        Update: {
+          asset_url?: string | null
+          challenge_id?: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          user_id?: string
+          votes?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_entries_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      challenges: {
+        Row: {
+          banner_gradient: string | null
+          created_at: string
+          ends_at: string | null
+          id: string
+          prize: string | null
+          starts_at: string | null
+          status: string
+          theme: string | null
+          title: string
+          updated_at: string
+          vote_reward: number | null
+        }
+        Insert: {
+          banner_gradient?: string | null
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          prize?: string | null
+          starts_at?: string | null
+          status?: string
+          theme?: string | null
+          title: string
+          updated_at?: string
+          vote_reward?: number | null
+        }
+        Update: {
+          banner_gradient?: string | null
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          prize?: string | null
+          starts_at?: string | null
+          status?: string
+          theme?: string | null
+          title?: string
+          updated_at?: string
+          vote_reward?: number | null
+        }
+        Relationships: []
+      }
       creative_requests: {
         Row: {
           admin_notes: string | null
@@ -143,6 +345,81 @@ export type Database = {
           },
         ]
       }
+      daily_rewards: {
+        Row: {
+          created_at: string
+          credits: number
+          description: string | null
+          id: string
+          is_active: boolean
+          reward_key: string
+          reward_type: string
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          credits?: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          reward_key: string
+          reward_type?: string
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          created_at?: string
+          credits?: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          reward_key?: string
+          reward_type?: string
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      gallery_items: {
+        Row: {
+          category: string | null
+          created_at: string
+          gradient: string | null
+          id: string
+          is_featured: boolean
+          media_url: string | null
+          model_name: string | null
+          sort_order: number
+          span: string | null
+          title: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          gradient?: string | null
+          id?: string
+          is_featured?: boolean
+          media_url?: string | null
+          model_name?: string | null
+          sort_order?: number
+          span?: string | null
+          title: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          gradient?: string | null
+          id?: string
+          is_featured?: boolean
+          media_url?: string | null
+          model_name?: string | null
+          sort_order?: number
+          span?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       generation_history: {
         Row: {
           created_at: string
@@ -200,6 +477,92 @@ export type Database = {
           },
         ]
       }
+      model_catalog: {
+        Row: {
+          created_at: string
+          cta_href: string | null
+          cta_label: string | null
+          description: string | null
+          id: string
+          is_active: boolean
+          is_premium: boolean
+          model_type: string
+          name: string
+          safety_level: string
+          slug: string
+          sort_order: number
+          thumbnail_gradient: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta_href?: string | null
+          cta_label?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_premium?: boolean
+          model_type: string
+          name: string
+          safety_level?: string
+          slug: string
+          sort_order?: number
+          thumbnail_gradient?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta_href?: string | null
+          cta_label?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_premium?: boolean
+          model_type?: string
+          name?: string
+          safety_level?: string
+          slug?: string
+          sort_order?: number
+          thumbnail_gradient?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      model_pricing: {
+        Row: {
+          created_at: string
+          credit_cost: number
+          id: string
+          model_id: string
+          quality_tier: string
+          unit_label: string | null
+        }
+        Insert: {
+          created_at?: string
+          credit_cost: number
+          id?: string
+          model_id: string
+          quality_tier: string
+          unit_label?: string | null
+        }
+        Update: {
+          created_at?: string
+          credit_cost?: number
+          id?: string
+          model_id?: string
+          quality_tier?: string
+          unit_label?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "model_pricing_model_id_fkey"
+            columns: ["model_id"]
+            isOneToOne: false
+            referencedRelation: "model_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       payments: {
         Row: {
           amount_paid: number
@@ -247,6 +610,117 @@ export type Database = {
           },
         ]
       }
+      post_comments: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      post_likes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      posts: {
+        Row: {
+          caption: string | null
+          challenge_id: string | null
+          created_at: string
+          id: string
+          is_public: boolean
+          media_gradient: string | null
+          media_url: string | null
+          model_name: string | null
+          updated_at: string
+          user_id: string
+          views: number
+        }
+        Insert: {
+          caption?: string | null
+          challenge_id?: string | null
+          created_at?: string
+          id?: string
+          is_public?: boolean
+          media_gradient?: string | null
+          media_url?: string | null
+          model_name?: string | null
+          updated_at?: string
+          user_id: string
+          views?: number
+        }
+        Update: {
+          caption?: string | null
+          challenge_id?: string | null
+          created_at?: string
+          id?: string
+          is_public?: boolean
+          media_gradient?: string | null
+          media_url?: string | null
+          model_name?: string | null
+          updated_at?: string
+          user_id?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -273,6 +747,38 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      reward_claims: {
+        Row: {
+          claimed_at: string
+          credits_awarded: number
+          id: string
+          reward_id: string
+          user_id: string
+        }
+        Insert: {
+          claimed_at?: string
+          credits_awarded?: number
+          id?: string
+          reward_id: string
+          user_id: string
+        }
+        Update: {
+          claimed_at?: string
+          credits_awarded?: number
+          id?: string
+          reward_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reward_claims_reward_id_fkey"
+            columns: ["reward_id"]
+            isOneToOne: false
+            referencedRelation: "daily_rewards"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       uploaded_files: {
         Row: {

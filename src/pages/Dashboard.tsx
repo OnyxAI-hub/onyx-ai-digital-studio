@@ -6,6 +6,7 @@ import { Sparkles, CreditCard, FolderOpen, Clock, ArrowRight, Plus, LogOut } fro
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StudioSidebar from "@/components/studio/StudioSidebar";
 import PlatformTopBar from "@/components/studio/PlatformTopBar";
+import FeaturedModels from "@/components/studio/FeaturedModels";
 import CreativeRequestForm from "@/components/dashboard/CreativeRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -160,6 +161,10 @@ const Dashboard = () => {
                 </div>
               </AnimatedSection>
             </div>
+
+            <AnimatedSection delay={0.15}>
+              <FeaturedModels />
+            </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
               <div className="mt-10 glass-card p-6 text-center">

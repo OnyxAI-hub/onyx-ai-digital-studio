@@ -1,39 +1,74 @@
-import { Flame, Gift, Heart, MessageCircle, PenSquare, Trophy, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Flame, Gift, Heart, MessageCircle, PenSquare, Trophy, Clock, Share2, UserPlus } from "lucide-react";
 import PlatformLayout from "@/components/studio/PlatformLayout";
 import { Button } from "@/components/ui/button";
-import { dailyStreak, socialRewards } from "@/data/community";
+import { supabase } from "@/integrations/supabase/client";
+
+interface RewardRow {
+  id: string;
+  reward_key: string;
+  title: string;
+  description: string | null;
+  reward_type: string;
+  credits: number;
+}
+
+const iconFor = (key: string) => {
+  if (key.includes("share")) return Share2;
+  if (key.includes("invite")) return UserPlus;
+  if (key.includes("review")) return PenSquare;
+  if (key.includes("streak")) return Flame;
+  return Gift;
+};
 
 const Rewards = () => {
-  const currentStreak = 3;
+  const [rewards, setRewards] = useState<RewardRow[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("daily_rewards")
+      .select("id,reward_key,title,description,reward_type,credits")
+      .eq("is_active", true)
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => setRewards((data as RewardRow[]) ?? []));
+  }, []);
+
+  const checkins = rewards.filter((r) => r.reward_type === "checkin");
+  const social = rewards.filter((r) => r.reward_type === "social");
+  const currentStreak = 0;
 
   return (
-    <PlatformLayout badge="Coming Soon · Preview" title={<>Daily <span className="gradient-text">Rewards</span></>} description="Earn credits every day through check-ins, community activity, and creative contributions.">
+    <PlatformLayout badge="Preview" title={<>Daily <span className="gradient-text">Rewards</span></>} description="Earn credits every day through check-ins, community activity, and creative contributions.">
       <div className="grid gap-5 lg:grid-cols-3 mb-8">
         <div className="silver-card p-6 lg:col-span-2">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <Flame className="h-4 w-4 text-foreground/70" />
-              <h3 className="font-display text-base font-semibold uppercase tracking-wider">Streak — Day {currentStreak}</h3>
+              <h3 className="font-display text-base font-semibold uppercase tracking-wider">Check-in Rewards</h3>
             </div>
-            <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-muted-foreground"><Clock className="h-3 w-3" /> Next reset in 14h 22m</span>
+            <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-muted-foreground"><Clock className="h-3 w-3" /> Streak {currentStreak}</span>
           </div>
-          <div className="grid grid-cols-5 gap-2">
-            {dailyStreak.map((d) => {
-              const claimed = d.day < currentStreak;
-              const today = d.day === currentStreak;
-              return (
-                <div key={d.day} className={`rounded-lg border p-3 text-center transition ${today ? "border-foreground/40 bg-foreground/5 glow-white" : claimed ? "border-border/30 bg-card/40 opacity-60" : "border-border/40 bg-card/30"}`}>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Day {d.day}</p>
-                  <p className="mt-2 font-display text-lg font-bold">{d.credits}</p>
-                  <p className="text-[10px] text-muted-foreground">credits</p>
-                  <p className="mt-2 text-[9px] uppercase tracking-wider font-medium">
-                    {claimed ? "Claimed" : today ? "Today" : "Locked"}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          <Button className="mt-5 w-full md:w-auto gap-2" disabled><Gift className="h-4 w-4" /> Claim Today · Coming Soon</Button>
+          {checkins.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No check-in rewards configured.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {checkins.map((r) => {
+                const Icon = iconFor(r.reward_key);
+                return (
+                  <div key={r.id} className="rounded-lg border border-border/40 bg-card/40 p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon className="h-4 w-4 text-foreground/70" />
+                      <p className="text-sm font-medium">{r.title}</p>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground leading-relaxed">{r.description}</p>
+                    <p className="mt-3 font-display text-xl font-bold">+{r.credits}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">credits</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <Button className="mt-5 gap-2" disabled><Gift className="h-4 w-4" /> Claim Today · Coming Soon</Button>
         </div>
 
         <div className="glass-card p-6">
@@ -57,23 +92,30 @@ const Rewards = () => {
 
       <div className="glass-card p-6">
         <h3 className="font-display text-base font-semibold uppercase tracking-wider mb-4">Social & Activity Rewards</h3>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {socialRewards.map((r, i) => {
-            const Icon = [Heart, MessageCircle, PenSquare, Heart, PenSquare, Trophy][i] ?? Gift;
-            return (
-              <div key={r.label} className="rounded-lg border border-border/40 bg-card/40 p-4 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="h-9 w-9 rounded-md bg-card border border-border/60 flex items-center justify-center shrink-0">
-                    <Icon className="h-4 w-4 text-foreground/70" />
+        {social.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No social rewards configured.</p>
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {social.map((r) => {
+              const Icon = iconFor(r.reward_key);
+              return (
+                <div key={r.id} className="rounded-lg border border-border/40 bg-card/40 p-4 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-9 w-9 rounded-md bg-card border border-border/60 flex items-center justify-center shrink-0">
+                      <Icon className="h-4 w-4 text-foreground/70" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm truncate">{r.title}</p>
+                      <p className="text-[10px] text-muted-foreground truncate">{r.description}</p>
+                    </div>
                   </div>
-                  <p className="text-sm truncate">{r.label}</p>
+                  <span className="text-xs font-semibold text-foreground/90 shrink-0">+{r.credits}</span>
                 </div>
-                <span className="text-xs font-semibold text-foreground/90 shrink-0">+{r.credits}</span>
-              </div>
-            );
-          })}
-        </div>
-        <p className="mt-5 text-[11px] text-muted-foreground/70">Rewards activate once community features are live. Bonus credits expire 2 months after earned.</p>
+              );
+            })}
+          </div>
+        )}
+        <p className="mt-5 text-[11px] text-muted-foreground/70">Claim logic activates once community features are live. Bonus credits expire 2 months after earned.</p>
       </div>
     </PlatformLayout>
   );

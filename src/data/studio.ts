@@ -482,7 +482,7 @@ export const platformSidebar: SidebarSection[] = [
     icon: Sparkles,
     items: [
       { label: "Home", href: "/dashboard", icon: Home },
-      { label: "Asset Manager", href: "/coming-soon?title=Asset+Manager", icon: FolderOpen },
+      { label: "Asset Manager", href: "/assets", icon: FolderOpen },
     ],
   },
   {
