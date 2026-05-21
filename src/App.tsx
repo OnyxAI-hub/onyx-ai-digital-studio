@@ -28,6 +28,7 @@ import Challenges from "./pages/Challenges";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Rewards from "./pages/Rewards";
+import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "@/hooks/useAuth";
 
@@ -64,6 +65,12 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/rewards" element={<Rewards />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/settings" element={<ComingSoon />} />
+            <Route path="/subscription" element={<ComingSoon />} />
+            <Route path="/creator-program" element={<ComingSoon />} />
+            <Route path="/refer" element={<ComingSoon />} />
+            <Route path="/billing" element={<ComingSoon />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

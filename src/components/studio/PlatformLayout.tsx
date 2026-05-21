@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import StudioSidebar from "./StudioSidebar";
+import PlatformTopBar from "./PlatformTopBar";
 
 interface Props {
   badge?: string;
@@ -10,9 +11,10 @@ interface Props {
 }
 
 const PlatformLayout = ({ badge, title, description, actions, children }: Props) => (
-  <main className="pt-20">
-    <section className="section-padding">
-      <div className="container-narrow flex gap-8">
+  <main className="pt-[72px] md:pt-20">
+    <PlatformTopBar />
+    <section className="section-padding pt-8">
+      <div className="container-narrow flex gap-6">
         <StudioSidebar />
         <div className="flex-1 min-w-0">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
