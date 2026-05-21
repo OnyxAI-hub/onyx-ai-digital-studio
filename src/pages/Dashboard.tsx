@@ -106,6 +106,30 @@ const Dashboard = () => {
               ))}
             </div>
 
+            {/* Quick studio cards */}
+            <AnimatedSection delay={0.05}>
+              <div className="mt-10">
+                <h3 className="font-display text-lg font-semibold tracking-tight mb-3">Quick Studios</h3>
+                <div className="grid gap-3 grid-cols-2 md:grid-cols-4 lg:grid-cols-8">
+                  {[
+                    { label: "Image", to: "/studio/images", icon: ImageIcon },
+                    { label: "Video", to: "/studio/videos", icon: Video },
+                    { label: "Audio", to: "/studio/audio", icon: Mic },
+                    { label: "Apps", to: "/studio/apps", icon: AppWindow },
+                    { label: "Design", to: "/studio/design", icon: Palette },
+                    { label: "Clip", to: "/studio/clipping", icon: Scissors },
+                    { label: "Website", to: "/project-intake?type=Website+%2F+Landing+Page", icon: Globe },
+                    { label: "Automation", to: "/project-intake?type=Automation+System", icon: Bot },
+                  ].map((q) => (
+                    <Link key={q.label} to={q.to} className="glass-card-hover p-3 flex flex-col items-center justify-center text-center gap-1.5">
+                      <q.icon className="h-4 w-4 text-foreground/80" />
+                      <span className="text-[11px] font-medium">{q.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </AnimatedSection>
+
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
               <AnimatedSection>
                 <div className="glass-card p-6 h-full">
