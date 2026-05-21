@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SafetyBadge from "./SafetyBadge";
 import { modelHighlights } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const ModelHighlightsSection = () => (
   <section id="models" className="section-padding section-silver">
