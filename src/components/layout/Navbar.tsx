@@ -48,17 +48,29 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-2">
-          <Link to="/dashboard">
-            <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">
-              Dashboard
-            </Button>
-          </Link>
-          <Link to="/pricing">
-            <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
-          </Link>
-          <Link to="/generate">
-            <Button size="sm" className="uppercase tracking-wider text-[11px]">Start Creating</Button>
-          </Link>
+          {user ? (
+            <>
+              <Link to="/dashboard">
+                <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">Dashboard</Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
+              </Link>
+              <Button size="sm" variant="ghost" onClick={signOut} className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Sign out</Button>
+            </>
+          ) : (
+            <>
+              <Link to="/auth">
+                <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">Sign in</Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
+              </Link>
+              <Link to="/auth">
+                <Button size="sm" className="uppercase tracking-wider text-[11px]">Get Started</Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Toggle */}
