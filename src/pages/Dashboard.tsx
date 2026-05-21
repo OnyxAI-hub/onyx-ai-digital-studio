@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Sparkles, CreditCard, FolderOpen, Clock, ArrowRight, Plus, LogOut } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StudioSidebar from "@/components/studio/StudioSidebar";
+import PlatformTopBar from "@/components/studio/PlatformTopBar";
 import CreativeRequestForm from "@/components/dashboard/CreativeRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -55,9 +56,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <main className="pt-20">
-      <section className="section-padding">
-        <div className="container-narrow flex gap-8">
+    <main className="pt-[72px] md:pt-20">
+      <PlatformTopBar />
+      <section className="section-padding pt-8">
+        <div className="container-narrow flex gap-6">
           <StudioSidebar />
           <div className="flex-1 min-w-0">
             <AnimatedSection>
