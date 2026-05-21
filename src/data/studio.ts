@@ -518,7 +518,7 @@ export const platformSidebar: SidebarSection[] = [
     icon: Users,
     items: [
       { label: "Feed", href: "/feed", icon: Rss },
-      { label: "Gallery", href: "/gallery", icon: Image },
+      { label: "Gallery", href: "/gallery", icon: ImageIcon },
       { label: "Challenges", href: "/challenges", icon: Trophy },
       { label: "Blog", href: "/blog", icon: Newspaper },
     ],
