@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { studioCategories } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const StudioCategoriesSection = () => (
   <section id="studio" className="section-padding">
