@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SafetyBadge from "./SafetyBadge";
 import { imageModels } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const ImageModelsSection = () => (
   <section className="section-padding">
@@ -38,7 +39,7 @@ const ImageModelsSection = () => (
                   ))}
                 </div>
                 <p className="mt-4 text-[11px] uppercase tracking-wider text-foreground/70 font-semibold">{m.cost}</p>
-                <Link to={`/project-intake?type=${encodeURIComponent(m.intakeType)}&model=${encodeURIComponent(m.name)}`} className="mt-4">
+                <Link to={getStudioHref(m.intakeType, { model: m.name })} className="mt-4">
                   <Button size="sm" variant="outline" className="w-full gap-2 text-[11px] uppercase tracking-wider">
                     Submit Request <ArrowRight className="h-3 w-3" />
                   </Button>

@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SafetyBadge from "./SafetyBadge";
 import { creativeApps } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const CreativeAppsSection = () => (
   <section className="section-padding">
@@ -31,7 +32,7 @@ const CreativeAppsSection = () => (
                 <h3 className="mt-4 font-display text-base font-semibold tracking-tight">{a.title}</h3>
                 <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed flex-1">{a.description}</p>
                 <p className="mt-3 text-[10px] uppercase tracking-wider text-muted-foreground/80">{a.status}</p>
-                <Link to={`/project-intake?type=${encodeURIComponent(a.intakeType)}&app=${encodeURIComponent(a.title)}`} className="mt-3">
+                <Link to={getStudioHref(a.intakeType, { app: a.title })} className="mt-3">
                   <Button size="sm" variant="outline" className="w-full text-[11px] uppercase tracking-wider">
                     {ctaLabel}
                   </Button>
