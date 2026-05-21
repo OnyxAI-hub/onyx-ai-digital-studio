@@ -22,6 +22,12 @@ import Generate from "./pages/Generate";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Feed from "./pages/Feed";
+import GalleryPage from "./pages/GalleryPage";
+import Challenges from "./pages/Challenges";
+import Blog from "./pages/Blog";
+import Profile from "./pages/Profile";
+import Rewards from "./pages/Rewards";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "@/hooks/useAuth";
 
@@ -52,6 +58,12 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/challenges" element={<Challenges />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/rewards" element={<Rewards />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
