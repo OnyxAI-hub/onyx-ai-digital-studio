@@ -32,6 +32,7 @@ import {
   HelpCircle,
   Mail,
   Megaphone,
+  User as UserIcon,
 } from "lucide-react";
 
 export type Safety =
