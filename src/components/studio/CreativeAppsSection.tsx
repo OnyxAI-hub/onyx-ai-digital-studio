@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SafetyBadge from "./SafetyBadge";
 import { creativeApps } from "@/data/studio";
+import { getStudioHref } from "@/lib/studioRouting";
 
 const CreativeAppsSection = () => (
   <section className="section-padding">
