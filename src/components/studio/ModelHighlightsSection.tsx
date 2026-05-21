@@ -52,7 +52,7 @@ const ModelHighlightsSection = () => (
                     <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{m.status}</span>
                   )}
                 </div>
-                <Link to={`/project-intake?type=${encodeURIComponent(m.intakeType)}&model=${encodeURIComponent(m.name)}`} className="mt-4">
+                <Link to={getStudioHref(m.intakeType, { model: m.name })} className="mt-4">
                   <Button size="sm" className="w-full gap-2 text-[11px] uppercase tracking-wider">
                     Create With This Model <ArrowRight className="h-3 w-3" />
                   </Button>
