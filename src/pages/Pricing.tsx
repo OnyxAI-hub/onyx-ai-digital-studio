@@ -6,6 +6,8 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { packages, extras, CALENDLY } from "@/data/packages";
 import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/data/credits";
+import CompareTable from "@/components/pricing/CompareTable";
+import WhyOnyx from "@/components/pricing/WhyOnyx";
 import {
   Accordion,
   AccordionContent,
@@ -96,7 +98,7 @@ const Pricing = () => {
           </div>
         </AnimatedSection>
 
-        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {creditPlans.map((p, i) => {
             const price = billing === "monthly" ? p.monthly : p.annualMonthly;
             return (
@@ -189,7 +191,7 @@ const Pricing = () => {
           </div>
         </AnimatedSection>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {creditPacks.map((pack, i) => (
             <AnimatedSection key={pack.name} delay={i * 0.05}>
               <div
