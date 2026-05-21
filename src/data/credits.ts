@@ -27,6 +27,23 @@ export interface CreditPlan {
 
 export const creditPlans: CreditPlan[] = [
   {
+    name: "Free",
+    monthly: 0,
+    annualMonthly: 0,
+    credits: "300 credits / month",
+    icon: Sparkles,
+    cta: "Start Free",
+    intakeType: "Monthly Subscription",
+    features: [
+      "1 concurrent request",
+      "500MB storage",
+      "5 free assistant turns/day",
+      "Limited model access",
+      "Community feed access",
+      "No commercial usage",
+    ],
+  },
+  {
     name: "Starter",
     monthly: 4,
     annualMonthly: 3,
