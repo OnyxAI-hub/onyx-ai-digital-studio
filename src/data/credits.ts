@@ -129,13 +129,46 @@ export interface CreditPack {
   name: string;
   price: number;
   credits: string;
+  creditsNumeric: string;
+  bestFor: string;
+  cta: string;
+  featured?: boolean;
 }
 
 export const creditPacks: CreditPack[] = [
-  { name: "Starter Credit Pack", price: 25, credits: "5,000 credits" },
-  { name: "Creator Credit Pack", price: 75, credits: "20,000 credits" },
-  { name: "Studio Credit Pack", price: 150, credits: "50,000 credits" },
-  { name: "Pro Credit Pack", price: 300, credits: "110,000 credits" },
+  {
+    name: "Starter Credit Pack",
+    price: 25,
+    credits: "5,000 credits",
+    creditsNumeric: "5,000",
+    bestFor: "Testing ideas, image concepts, cover art drafts, and small creative requests.",
+    cta: "Buy 5,000 Credits",
+  },
+  {
+    name: "Creator Credit Pack",
+    price: 75,
+    credits: "20,000 credits",
+    creditsNumeric: "20,000",
+    bestFor: "Image sets, cover concepts, social visuals, content ideas, and creative batches.",
+    cta: "Buy 20,000 Credits",
+  },
+  {
+    name: "Studio Credit Pack",
+    price: 150,
+    credits: "50,000 credits",
+    creditsNumeric: "50,000",
+    bestFor: "Larger creative batches, promo concepts, visualizer ideas, brand assets, and short video requests.",
+    cta: "Buy 50,000 Credits",
+  },
+  {
+    name: "Pro Credit Pack",
+    price: 300,
+    credits: "110,000 credits",
+    creditsNumeric: "110,000",
+    bestFor: "High-volume creators, video-heavy requests, promo campaigns, brand assets, and larger AI creative workflows.",
+    cta: "Buy 110,000 Credits",
+    featured: true,
+  },
 ];
 
 export interface ModelCategory {
