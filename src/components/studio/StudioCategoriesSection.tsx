@@ -32,7 +32,7 @@ const StudioCategoriesSection = () => (
                   </li>
                 ))}
               </ul>
-              <Link to={`/project-intake?type=${encodeURIComponent(c.intakeType)}`} className="mt-auto">
+              <Link to={c.title === "Studio Gallery" ? "/gallery" : getStudioHref(c.intakeType)} className="mt-auto">
                 <Button size="sm" variant="outline" className="w-full gap-2 text-[11px] uppercase tracking-wider">
                   {c.cta} <ArrowRight className="h-3 w-3" />
                 </Button>
