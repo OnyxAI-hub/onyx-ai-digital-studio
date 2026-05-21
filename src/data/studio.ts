@@ -481,28 +481,30 @@ export const platformSidebar: SidebarSection[] = [
     label: "Main",
     icon: Sparkles,
     items: [
-      { label: "Home", href: "/dashboard", icon: Home },
-      { label: "Asset Manager", href: "/assets", icon: FolderOpen },
+      { label: "Dashboard", href: "/dashboard", icon: Home },
+      { label: "Asset Manager", href: "/asset-manager", icon: FolderOpen },
+      { label: "Generate", href: "/generate", icon: Wand2 },
     ],
   },
   {
     label: "Studio",
     icon: Wand2,
     items: [
-      { label: "Images", href: "/generate?tab=Image", icon: ImageIcon },
-      { label: "Videos", href: "/generate?tab=Video", icon: Video },
-      { label: "Audio", href: "/generate?tab=Audio", icon: Headphones },
-      { label: "Apps", href: "/coming-soon?title=Creative+Apps", icon: AppWindow },
+      { label: "Image Studio", href: "/studio/images", icon: ImageIcon },
+      { label: "Video Studio", href: "/studio/videos", icon: Video },
+      { label: "Audio Studio", href: "/studio/audio", icon: Headphones },
+      { label: "Apps", href: "/studio/apps", icon: AppWindow },
+      { label: "Design Studio", href: "/studio/design", icon: Palette },
+      { label: "Clip Studio", href: "/studio/clipping", icon: Scissors },
     ],
   },
   {
     label: "Workspace",
     icon: Layers,
     items: [
-      { label: "Design Studio", href: "/coming-soon?title=Design+Studio", icon: Palette },
-      { label: "Clip Studio", href: "/coming-soon?title=Clip+Studio", icon: Scissors },
+      { label: "My Page", href: "/my-page", icon: UserIcon },
       { label: "Projects", href: "/portfolio", icon: FolderOpen },
-      { label: "Requests", href: "/project-intake", icon: FileText },
+      { label: "Custom Requests", href: "/project-intake", icon: FileText },
     ],
   },
   {
@@ -533,3 +535,4 @@ export const platformSidebar: SidebarSection[] = [
     ],
   },
 ];
+
