@@ -186,6 +186,14 @@ export const creditPacks: CreditPack[] = [
     cta: "Buy 110,000 Credits",
     featured: true,
   },
+  {
+    name: "Ultimate Credit Pack",
+    price: 500,
+    credits: "500,000 credits",
+    creditsNumeric: "500,000",
+    bestFor: "Studios, teams, and agencies running heavy creative and video production workloads.",
+    cta: "Buy 500,000 Credits",
+  },
 ];
 
 export interface ModelCategory {
