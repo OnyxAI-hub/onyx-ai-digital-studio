@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import onyxLogo from "@/assets/onyx-logo.png";
 
 const navLinks = [
@@ -18,6 +19,7 @@ const navLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/20 bg-background/85 backdrop-blur-2xl">
@@ -46,17 +48,29 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-2">
-          <Link to="/dashboard">
-            <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">
-              Dashboard
-            </Button>
-          </Link>
-          <Link to="/pricing">
-            <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
-          </Link>
-          <Link to="/generate">
-            <Button size="sm" className="uppercase tracking-wider text-[11px]">Start Creating</Button>
-          </Link>
+          {user ? (
+            <>
+              <Link to="/dashboard">
+                <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">Dashboard</Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
+              </Link>
+              <Button size="sm" variant="ghost" onClick={signOut} className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Sign out</Button>
+            </>
+          ) : (
+            <>
+              <Link to="/auth">
+                <Button variant="ghost" size="sm" className="text-muted-foreground text-[11px] uppercase tracking-[0.15em]">Sign in</Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" size="sm" className="uppercase tracking-wider text-[11px]">Buy Credits</Button>
+              </Link>
+              <Link to="/auth">
+                <Button size="sm" className="uppercase tracking-wider text-[11px]">Get Started</Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Toggle */}
