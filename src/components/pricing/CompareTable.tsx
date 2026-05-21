@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Check, Minus } from "lucide-react";
 
 type Cell = string | boolean;
@@ -78,8 +79,8 @@ const CompareTable = () => (
       </thead>
       <tbody>
         {groups.map((g) => (
-          <>
-            <tr key={g.title} className="bg-card/20">
+          <Fragment key={g.title}>
+            <tr className="bg-card/20">
               <td colSpan={cols.length + 1} className="px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/80">
                 {g.title}
               </td>
@@ -92,7 +93,7 @@ const CompareTable = () => (
                 ))}
               </tr>
             ))}
-          </>
+          </Fragment>
         ))}
       </tbody>
     </table>
