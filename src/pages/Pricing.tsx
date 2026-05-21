@@ -6,6 +6,8 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { packages, extras, CALENDLY } from "@/data/packages";
 import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/data/credits";
+import CompareTable from "@/components/pricing/CompareTable";
+import WhyOnyx from "@/components/pricing/WhyOnyx";
 import {
   Accordion,
   AccordionContent,
@@ -96,7 +98,7 @@ const Pricing = () => {
           </div>
         </AnimatedSection>
 
-        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {creditPlans.map((p, i) => {
             const price = billing === "monthly" ? p.monthly : p.annualMonthly;
             return (
@@ -146,6 +148,21 @@ const Pricing = () => {
       </div>
     </section>
 
+    {/* ─── Compare All Features ─── */}
+    <section className="pb-16 px-4">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Compare" title="All Features Side by Side" description="See exactly what's included at every tier." />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <div className="mt-8"><CompareTable /></div>
+          <p className="mt-4 text-center text-[11px] text-muted-foreground/70 max-w-2xl mx-auto">
+            Plan features and limits are subject to change. Prices shown exclude taxes and applicable fees. Credits reset on the 1st of each calendar month unless otherwise stated.
+          </p>
+        </AnimatedSection>
+      </div>
+    </section>
+
     {/* ─── Credit Cost Breakdown ─── */}
     <section id="credit-costs" className="pb-16 px-4">
       <div className="container-narrow max-w-4xl">
@@ -189,7 +206,7 @@ const Pricing = () => {
           </div>
         </AnimatedSection>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {creditPacks.map((pack, i) => (
             <AnimatedSection key={pack.name} delay={i * 0.05}>
               <div
@@ -248,8 +265,24 @@ const Pricing = () => {
             </p>
           </div>
         </AnimatedSection>
+
+        <AnimatedSection delay={0.3}>
+          <div className="mt-6 mx-auto max-w-3xl glass-card p-6">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider mb-3">How Extra Credits Work</h3>
+            <ul className="space-y-2 text-xs text-muted-foreground leading-relaxed">
+              <li><span className="text-foreground/90 font-medium">Automatic Usage:</span> Extra credits are used only after your monthly subscription allowance is depleted.</li>
+              <li><span className="text-foreground/90 font-medium">Expiration:</span> Credit packs expire 2 months after purchase.</li>
+              <li><span className="text-foreground/90 font-medium">All Tiers Welcome:</span> Available to Free users and all subscription tiers.</li>
+              <li><span className="text-foreground/90 font-medium">Free Tier Note:</span> Credit purchases do not unlock premium features.</li>
+              <li><span className="text-foreground/90 font-medium">No Refunds:</span> All credit purchases are final.</li>
+              <li><span className="text-foreground/90 font-medium">Credit Balance System:</span> We do not issue cash refunds. Plan changes may be converted to a credit balance that applies to future subscriptions.</li>
+            </ul>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
+
+    <WhyOnyx />
 
     {/* ─── One-Time Services ─── */}
     <section className="pb-16 px-4 py-16">

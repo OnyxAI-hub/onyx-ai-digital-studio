@@ -27,6 +27,23 @@ export interface CreditPlan {
 
 export const creditPlans: CreditPlan[] = [
   {
+    name: "Free",
+    monthly: 0,
+    annualMonthly: 0,
+    credits: "300 credits / month",
+    icon: Sparkles,
+    cta: "Start Free",
+    intakeType: "Monthly Subscription",
+    features: [
+      "1 concurrent request",
+      "500MB storage",
+      "5 free assistant turns/day",
+      "Limited model access",
+      "Community feed access",
+      "No commercial usage",
+    ],
+  },
+  {
     name: "Starter",
     monthly: 4,
     annualMonthly: 3,
@@ -168,6 +185,14 @@ export const creditPacks: CreditPack[] = [
     bestFor: "High-volume creators, video-heavy requests, promo campaigns, brand assets, and larger AI creative workflows.",
     cta: "Buy 110,000 Credits",
     featured: true,
+  },
+  {
+    name: "Ultimate Credit Pack",
+    price: 500,
+    credits: "500,000 credits",
+    creditsNumeric: "500,000",
+    bestFor: "Studios, teams, and agencies running heavy creative and video production workloads.",
+    cta: "Buy 500,000 Credits",
   },
 ];
 
