@@ -33,26 +33,30 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/portfolio/:slug" element={<ProjectDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/project-intake" element={<ProjectIntake />} />
-          <Route path="/client-portal" element={<ClientPortal />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/generate" element={<Generate />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <ChatWidget />
+        <AuthProvider>
+          <ScrollToTop />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/project-intake" element={<ProjectIntake />} />
+            <Route path="/client-portal" element={<ClientPortal />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/generate" element={<Generate />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <ChatWidget />
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
