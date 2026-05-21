@@ -462,6 +462,7 @@ export interface SidebarItem {
   label: string;
   href?: string;
   disabled?: boolean;
+  icon?: typeof Sparkles;
 }
 export interface SidebarSection {
   label: string;
@@ -469,78 +470,68 @@ export interface SidebarSection {
   items: SidebarItem[];
 }
 
+export const safetyOptions = [
+  { label: "Family", value: "family" },
+  { label: "Teen+", value: "teen" },
+  { label: "Mild Suggestive", value: "mild" },
+  { label: "Mature", value: "mature" },
+  { label: "Custom", value: "custom" },
+] as const;
+
 export const platformSidebar: SidebarSection[] = [
   {
-    label: "Account",
+    label: "Main",
     icon: Sparkles,
     items: [
-      { label: "Credits", href: "/dashboard" },
-      { label: "Current Plan", href: "/pricing" },
-      { label: "Daily Rewards", href: "/rewards" },
-    ],
-  },
-  {
-    label: "Safety",
-    icon: Shield,
-    items: [
-      { label: "Safe", disabled: true },
-      { label: "Teen", disabled: true },
-      { label: "Mature", disabled: true },
-      { label: "Suggestive", disabled: true },
-      { label: "Custom Filters", disabled: true },
+      { label: "Home", href: "/dashboard", icon: Home },
+      { label: "Asset Manager", href: "/coming-soon?title=Asset+Manager", icon: FolderOpen },
     ],
   },
   {
     label: "Studio",
     icon: Wand2,
     items: [
-      { label: "Images", href: "/generate?tab=Image" },
-      { label: "Videos", href: "/generate?tab=Video" },
-      { label: "Audio", href: "/generate?tab=Audio" },
-      { label: "Apps", disabled: true },
-      { label: "Websites", href: "/generate?tab=Website" },
-      { label: "Automation", href: "/generate?tab=Automation" },
+      { label: "Images", href: "/generate?tab=Image", icon: ImageIcon },
+      { label: "Videos", href: "/generate?tab=Video", icon: Video },
+      { label: "Audio", href: "/generate?tab=Audio", icon: Headphones },
+      { label: "Apps", href: "/coming-soon?title=Creative+Apps", icon: AppWindow },
     ],
   },
   {
     label: "Workspace",
     icon: Layers,
     items: [
-      { label: "Asset Manager", disabled: true },
-      { label: "Design Studio", disabled: true },
-      { label: "Clipping", disabled: true },
-      { label: "Projects", href: "/portfolio" },
-      { label: "Requests", href: "/project-intake" },
+      { label: "Design Studio", href: "/coming-soon?title=Design+Studio", icon: Palette },
+      { label: "Clip Studio", href: "/coming-soon?title=Clip+Studio", icon: Scissors },
+      { label: "Projects", href: "/portfolio", icon: FolderOpen },
+      { label: "Requests", href: "/project-intake", icon: FileText },
     ],
   },
   {
     label: "Models",
     icon: Brush,
     items: [
-      { label: "Models", href: "/#models" },
-      { label: "Custom Models", disabled: true },
-      { label: "Model Specs", disabled: true },
-      { label: "Credit Costs", href: "/pricing#credit-costs" },
+      { label: "Models", href: "/#models", icon: Cpu },
+      { label: "Model Specs", href: "/coming-soon?title=Model+Specs", icon: FileText },
     ],
   },
   {
-    label: "Community",
+    label: "Social",
     icon: Users,
     items: [
-      { label: "Feed", href: "/feed" },
-      { label: "Gallery", href: "/gallery" },
-      { label: "Challenges", href: "/challenges" },
-      { label: "Blog", href: "/blog" },
-      { label: "My Page", href: "/profile" },
+      { label: "Feed", href: "/feed", icon: Rss },
+      { label: "Gallery", href: "/gallery", icon: Image },
+      { label: "Challenges", href: "/challenges", icon: Trophy },
+      { label: "Blog", href: "/blog", icon: Newspaper },
     ],
   },
   {
     label: "Support",
-    icon: Globe,
+    icon: LifeBuoy,
     items: [
-      { label: "What's New", disabled: true },
-      { label: "Help", href: "/faq" },
-      { label: "Contact", href: "/contact" },
+      { label: "What's New", href: "/coming-soon?title=What's+New", icon: Megaphone },
+      { label: "Help", href: "/faq", icon: HelpCircle },
+      { label: "Contact", href: "/contact", icon: Mail },
     ],
   },
 ];
