@@ -24,13 +24,15 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/20 bg-background/85 backdrop-blur-2xl">
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center md:-ml-8 lg:-ml-16 xl:-ml-24 mr-6 md:mr-10">
           <img
             src={onyxLogo}
             alt="Onyx AI"
             className="h-9 md:h-11 w-auto object-contain"
           />
         </Link>
+
+
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-1 md:flex">
