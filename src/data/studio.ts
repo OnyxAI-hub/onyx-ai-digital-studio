@@ -28,8 +28,6 @@ import {
   Newspaper,
   Trophy,
   Rss,
-  Image,
-  Sparkle,
   LifeBuoy,
   HelpCircle,
   Mail,
