@@ -52,7 +52,7 @@ const Hero = () => {
       <div className="relative z-10 container-narrow px-4 text-center">
         <AnimatedSection>
           <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-            AI Creative Platform · Studio · Automation
+            AI Creative Platform — Images · Video · Audio · Music
           </span>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
@@ -623,11 +623,77 @@ const FinalCTA = () => (
   </section>
 );
 
+/* ─── Model Showcase ─── */
+const MODEL_SHOWCASE = [
+  { name: "WAN 2.0", type: "Video", cost: "from 500 cr", gradient: "from-slate-900 via-indigo-950 to-cyan-950", tab: "Video" },
+  { name: "Flux Pro", type: "Image", cost: "from 5 cr", gradient: "from-zinc-800 via-zinc-700 to-zinc-900", tab: "Image" },
+  { name: "Seedance", type: "Video", cost: "from 300 cr", gradient: "from-indigo-950 via-violet-950 to-slate-900", tab: "Video" },
+  { name: "ElevenLabs", type: "Audio", cost: "from 10 cr", gradient: "from-stone-700 via-zinc-600 to-stone-800", tab: "Audio" },
+  { name: "GPT-4o", type: "Chat", cost: "from 2 cr", gradient: "from-slate-800 via-zinc-700 to-slate-900", tab: "Image" },
+  { name: "DALL·E 3", type: "Image", cost: "from 8 cr", gradient: "from-zinc-900 via-slate-800 to-black", tab: "Image" },
+  { name: "Runway", type: "Video", cost: "from 200 cr", gradient: "from-cyan-950 via-slate-900 to-zinc-900", tab: "Video" },
+  { name: "Suno", type: "Audio", cost: "from 15 cr", gradient: "from-violet-950 via-slate-900 to-zinc-950", tab: "Audio" },
+];
+
+const ModelShowcaseSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading
+          badge="70+ Models"
+          title="Powered by Industry-Leading AI Models"
+          description="Explore the best AI models for images, video, audio, and more — all available inside ONYX Studio."
+        />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.1}>
+        <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex gap-5 min-w-max">
+            {MODEL_SHOWCASE.map((m) => (
+              <div
+                key={m.name}
+                className="glass-card-hover w-[260px] shrink-0 flex flex-col"
+              >
+                <div className={`h-28 rounded-t-xl bg-gradient-to-br ${m.gradient} opacity-70`} />
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-display text-base font-bold tracking-tight text-foreground">{m.name}</h3>
+                    <span className="rounded-md border border-border/60 bg-card/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">
+                      {m.type}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1">
+                    <Sparkles className="h-3 w-3" /> {m.cost}
+                  </p>
+                  <Link to={`/generate?tab=${m.tab}`} className="mt-4">
+                    <Button size="sm" variant="outline" className="w-full gap-2 text-[11px] uppercase tracking-wider">
+                      Try It <ArrowRight className="h-3 w-3" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <div className="mt-8 text-center">
+          <Link to="/generate">
+            <Button className="gap-2">Open Studio <ArrowRight className="h-4 w-4" /></Button>
+          </Link>
+        </div>
+      </AnimatedSection>
+    </div>
+  </section>
+);
+
 /* ─── Page ─── */
 const Index = () => (
   <main>
     <Hero />
     <TrustSection />
+    <ModelShowcaseSection />
     <StudioCategoriesSection />
     <ModelHighlightsSection />
     <ImageModelsSection />
