@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, RefreshCw, Check, X, Plus, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -8,6 +8,8 @@ import { packages, extras, CALENDLY } from "@/data/packages";
 import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/data/credits";
 import CompareTable from "@/components/pricing/CompareTable";
 import WhyOnyx from "@/components/pricing/WhyOnyx";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 import {
   Accordion,
   AccordionContent,
