@@ -37,6 +37,13 @@ const HERO_PROMPTS = [
   "Set up an AI agent",
 ];
 
+const HERO_STATS = [
+  { value: "70+", label: "Models" },
+  { value: "$4", label: "Per Month" },
+  { value: "130K", label: "Credits" },
+  { value: "5", label: "Plans" },
+];
+
 const Hero = () => {
   const [prompt, setPrompt] = useState("");
   const href = `/generate${prompt ? `?prompt=${encodeURIComponent(prompt)}` : ""}`;
@@ -49,7 +56,7 @@ const Hero = () => {
         <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
       </div>
 
-      <div className="relative z-10 container-narrow px-4 text-center">
+      <div className="relative z-10 container-narrow px-4 text-center py-24">
         <AnimatedSection>
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
@@ -57,15 +64,17 @@ const Hero = () => {
           </span>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <h1 className="font-display font-bold leading-[1.05] tracking-[-0.035em] text-balance text-4xl md:text-6xl lg:text-[4.5rem]">
-            <span className="text-foreground">Build Smarter. Create Faster.</span>
-            <br />
-            <span className="gradient-text">Scale With AI.</span>
+          <h1 className="font-display font-black tracking-[-0.04em] leading-[0.95] text-balance text-6xl md:text-8xl lg:text-[6rem]">
+            <span className="block text-foreground">Create Anything.</span>
+            <span className="block gradient-text">Powered by AI.</span>
+            <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground tracking-tight">
+              Starting at $4/month.
+            </span>
           </h1>
         </AnimatedSection>
         <AnimatedSection delay={0.2}>
-          <p className="mx-auto mt-7 max-w-xl text-[15px] md:text-base text-muted-foreground/90 leading-relaxed">
-            ONYX AI Studio helps businesses and creators launch websites, generate media, build automations, and access powerful AI tools — all from one platform.
+          <p className="mx-auto mt-8 max-w-lg text-base md:text-lg text-muted-foreground/80 leading-relaxed">
+            70+ AI models. Images, video, audio, music, and more — all in one studio. Cheaper than every competitor.
           </p>
         </AnimatedSection>
 
@@ -73,23 +82,23 @@ const Hero = () => {
         <AnimatedSection delay={0.3}>
           <form
             onSubmit={(e) => { e.preventDefault(); window.location.href = href; }}
-            className="mx-auto mt-8 max-w-2xl"
+            className="mx-auto mt-10 max-w-2xl"
           >
-            <div className="flex items-center gap-2 rounded-2xl border border-[hsl(0,0%,18%)] bg-[hsl(0,0%,5%)]/80 backdrop-blur-xl p-2 shadow-[0_0_60px_rgba(255,255,255,0.03)]">
-              <Sparkles className="h-4 w-4 ml-2 text-foreground/50 shrink-0" />
+            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-2.5 shadow-[0_0_80px_rgba(6,182,212,0.08)]">
+              <Sparkles className="h-5 w-5 ml-3 text-cyan-300/70 shrink-0" />
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you want to create…"
-                className="flex-1 bg-transparent text-sm md:text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2"
+                className="flex-1 bg-transparent text-base md:text-lg text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2.5"
               />
               <Link to={href}>
-                <Button size="sm" className="gap-2 uppercase tracking-wider text-[11px]">
-                  Start Creating <ArrowRight className="h-3.5 w-3.5" />
+                <Button size="lg" className="gap-2 uppercase tracking-wider text-xs h-12 px-5">
+                  Start Creating <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
             </div>
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
               {HERO_CHIPS.map((c) => (
                 <Link
                   key={c.label}
@@ -101,23 +110,23 @@ const Hero = () => {
                 </Link>
               ))}
             </div>
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
-              {HERO_PROMPTS.map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => setPrompt(p)}
-                  className="rounded-md border border-border/40 bg-card/20 px-2.5 py-1 text-[10px] text-muted-foreground/80 hover:text-foreground hover:border-foreground/20 transition-all"
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
           </form>
         </AnimatedSection>
 
+        {/* Stats row */}
+        <AnimatedSection delay={0.35}>
+          <div className="mt-10 mx-auto max-w-2xl grid grid-cols-4 divide-x divide-white/[0.06]">
+            {HERO_STATS.map((s) => (
+              <div key={s.label} className="px-2 text-center">
+                <div className="font-display text-2xl md:text-3xl font-black text-foreground tracking-tight">{s.value}</div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection delay={0.4}>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link to="/generate">
               <Button size="lg" className="h-14 px-10 text-sm uppercase tracking-widest gap-3 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
                 Start Creating Free <ArrowRight />
@@ -143,18 +152,21 @@ const MODEL_TICKER = [
 ];
 
 const ModelTicker = () => (
-  <section className="border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden">
-    <div className="relative">
-      <div className="flex ticker-left whitespace-nowrap py-3">
+  <section className="relative border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden py-4">
+    {/* Edge fade masks */}
+    <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[hsl(0,0%,3%)] to-transparent" />
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[hsl(0,0%,3%)] to-transparent" />
+    <div className="relative space-y-3">
+      <div className="flex ticker-left whitespace-nowrap">
         {[...MODEL_TICKER, ...MODEL_TICKER].map((name, i) => (
-          <span key={`l-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/60 font-medium tracking-wide">
+          <span key={`l-${name}-${i}`} className="mx-2 shrink-0 border border-border/40 bg-card/50 rounded-full px-4 py-1.5 text-[11px] font-medium text-muted-foreground">
             {name}
           </span>
         ))}
       </div>
-      <div className="flex ticker-right whitespace-nowrap py-3 border-t border-[hsl(0,0%,10%)]">
+      <div className="flex ticker-right whitespace-nowrap">
         {[...MODEL_TICKER.slice().reverse(), ...MODEL_TICKER.slice().reverse()].map((name, i) => (
-          <span key={`r-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/40 font-medium tracking-wide">
+          <span key={`r-${name}-${i}`} className="mx-2 shrink-0 border border-border/30 bg-card/30 rounded-full px-4 py-1.5 text-[11px] font-medium text-muted-foreground/70">
             {name}
           </span>
         ))}
@@ -321,26 +333,51 @@ const steps = [
   { num: "05", title: "Review, Refine & Launch", desc: "Review the finished work, request adjustments, and launch for your business, brand, or content." },
 ];
 
-const HowItWorksSection = () => (
-  <section className="section-padding">
-    <div className="container-narrow">
-      <AnimatedSection>
-        <SectionHeading badge="Our Process" title="How ONYX AI Studio Works" description="From idea to delivery in five steps." />
-      </AnimatedSection>
-      <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
-        {steps.map((step, i) => (
-          <AnimatedSection key={step.num} delay={i * 0.08}>
-            <div className="text-center">
-              <span className="font-display text-5xl font-bold text-border">{step.num}</span>
-              <h3 className="mt-3 font-display text-base font-semibold tracking-tight">{step.title}</h3>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
-            </div>
-          </AnimatedSection>
-        ))}
+const HowItWorksSection = () => {
+  const topRow = steps.slice(0, 3);
+  const bottomRow = steps.slice(3);
+  return (
+    <section className="section-padding">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Our Process" title="How ONYX AI Studio Works" description="From idea to delivery in five steps." />
+        </AnimatedSection>
+        <div className="grid gap-6 md:grid-cols-3">
+          {topRow.map((step, i) => (
+            <AnimatedSection key={step.num} delay={i * 0.08}>
+              <div className="relative glass-card-hover p-8 h-full overflow-hidden">
+                <span className="pointer-events-none absolute -top-4 -right-2 font-display text-[8rem] font-black text-border/30 leading-none select-none">
+                  {step.num}
+                </span>
+                <div className="relative z-10">
+                  <span className="font-display text-xs font-bold tracking-[0.3em] text-cyan-300/70 uppercase">Step {step.num}</span>
+                  <h3 className="mt-3 font-display text-xl font-bold tracking-tight">{step.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 md:max-w-3xl md:mx-auto mt-6">
+          {bottomRow.map((step, i) => (
+            <AnimatedSection key={step.num} delay={(i + 3) * 0.08}>
+              <div className="relative glass-card-hover p-8 h-full overflow-hidden">
+                <span className="pointer-events-none absolute -top-4 -right-2 font-display text-[8rem] font-black text-border/30 leading-none select-none">
+                  {step.num}
+                </span>
+                <div className="relative z-10">
+                  <span className="font-display text-xs font-bold tracking-[0.3em] text-cyan-300/70 uppercase">Step {step.num}</span>
+                  <h3 className="mt-3 font-display text-xl font-bold tracking-tight">{step.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 /* ─── Why Choose ONYX AI ─── */
 const whyCards = [
@@ -623,23 +660,37 @@ const IndustriesSection = () => (
 
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
-  <section className="section-padding relative overflow-hidden">
-    <StarGlimmers count={12} />
-    <div className="container-narrow">
+  <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden py-24">
+    <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,3%)] via-[hsl(0,0%,4%)] to-[hsl(0,0%,2%)]" />
+      <HeroBackground />
+    </div>
+    <StarGlimmers count={18} />
+    <div className="relative z-10 container-narrow px-4">
       <AnimatedSection>
         <div className="text-center">
-          <h2 className="font-display text-3xl font-bold md:text-5xl tracking-tight">
-            Ready to Build Something <span className="gradient-text">Powerful</span>?
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            25 Free Credits On Signup
+          </span>
+          <h2 className="font-display font-black tracking-[-0.04em] leading-[0.95] text-5xl md:text-7xl lg:text-8xl">
+            <span className="block text-foreground">Ready to</span>
+            <span className="block gradient-text">Create?</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Let's talk about your project. Book a free consultation and see how ONYX AI can help your business grow.
+          <p className="mx-auto mt-8 max-w-lg text-base md:text-lg text-muted-foreground/80 leading-relaxed">
+            Join ONYX AI Studio. Get 25 free credits on signup and start generating in seconds.
           </p>
-          <div className="mt-8">
-            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
-                Book a Consultation <ArrowRight className="h-4 w-4" />
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link to="/generate">
+              <Button size="lg" className="h-14 px-10 text-sm uppercase tracking-widest gap-3 shadow-[0_0_40px_rgba(255,255,255,0.15)]">
+                Start Creating Free <ArrowRight />
               </Button>
-            </a>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="h-14 px-10 text-sm uppercase tracking-widest border-white/15 hover:border-white/30">
+                View All Plans
+              </Button>
+            </Link>
           </div>
         </div>
       </AnimatedSection>
@@ -665,72 +716,198 @@ const ModelShowcaseSection = () => (
       <AnimatedSection>
         <SectionHeading
           badge="70+ Models"
-          title="Powered by Industry-Leading AI Models"
-          description="Explore the best AI models for images, video, audio, and more — all available inside ONYX Studio."
+          title="The Most Powerful AI Models"
+          description="Every top model available in one platform. No switching apps. No separate subscriptions."
         />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex gap-5 min-w-max">
-            {SHOWCASE_MODELS.map((model) => (
-              <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer w-[260px] shrink-0">
-                {/* Gradient thumbnail - tall aspect ratio 4/5 */}
-                <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
-                  {/* Shimmer overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                  {/* Model type badge top-left */}
-                  <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white/80">
-                    {model.type}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          {SHOWCASE_MODELS.map((model) => (
+            <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer">
+              <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white/80">
+                  {model.type}
+                </span>
+                {model.premium && (
+                  <span className="absolute top-3 right-3 rounded-full bg-foreground/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-background">
+                    Premium
                   </span>
-
-                  {/* Premium badge top-right if premium */}
-                  {model.premium && (
-                    <span className="absolute top-3 right-3 rounded-full bg-foreground/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-background">
-                      Premium
-                    </span>
-                  )}
-
-                  {/* Center: large glowing icon/letter */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-7xl font-black text-white/10 select-none group-hover:text-white/15 transition-all duration-500 group-hover:scale-110">
-                      {model.letter}
-                    </span>
-                  </div>
-
-                  {/* Bottom info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="font-display text-lg font-bold text-white tracking-tight">{model.name}</p>
-                    <p className="text-[10px] text-white/50 mt-0.5">{model.desc}</p>
-                  </div>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="font-display text-7xl md:text-8xl font-black text-white/10 select-none group-hover:text-white/15 transition-all duration-500 group-hover:scale-110">
+                    {model.letter}
+                  </span>
                 </div>
-
-                {/* Card footer */}
-                <div className="p-4 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-semibold text-foreground/90">{model.cost}</p>
-                    <p className="text-[10px] text-muted-foreground">per generation</p>
-                  </div>
-                  <Link to={model.href}>
-                    <Button size="sm" variant="outline" className="h-8 text-[10px] uppercase tracking-wider gap-1.5">
-                      Try <ArrowRight className="h-3 w-3" />
-                    </Button>
-                  </Link>
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="font-display text-lg font-bold text-white tracking-tight">{model.name}</p>
+                  <p className="text-[10px] text-white/50 mt-0.5">{model.desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-foreground/90">{model.cost}</p>
+                  <p className="text-[10px] text-muted-foreground">per generation</p>
+                </div>
+                <Link to={model.href}>
+                  <Button size="sm" variant="outline" className="h-8 text-[10px] uppercase tracking-wider gap-1.5">
+                    Try <ArrowRight className="h-3 w-3" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </AnimatedSection>
 
       <AnimatedSection>
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link to="/generate">
-            <Button className="gap-2">Open Studio <ArrowRight className="h-4 w-4" /></Button>
+            <Button size="lg" variant="outline" className="gap-2 border-white/15 hover:border-white/30">
+              See all 70+ models <ArrowRight className="h-4 w-4" />
+            </Button>
           </Link>
         </div>
       </AnimatedSection>
+    </div>
+  </section>
+);
+
+/* ─── What You Can Create (Bento) ─── */
+const BENTO_CARDS = [
+  {
+    icon: ImageIcon,
+    title: "Image & Video Studio",
+    desc: "Generate cinematic stills and motion. From product photography to full ad campaigns — rendered in minutes.",
+    examples: ["Flux Pro", "DALL·E 3", "Runway", "WAN 2.0", "Seedance", "Ideogram"],
+    gradient: "from-slate-900 to-indigo-950",
+    href: "/generate?tab=Image",
+  },
+  {
+    icon: Mic,
+    title: "Music & Audio",
+    desc: "Compose original tracks, generate voiceovers, and craft soundscapes with state-of-the-art audio AI.",
+    examples: ["Suno", "ElevenLabs", "MusicGen", "Bark", "Voiceover", "SFX"],
+    gradient: "from-stone-800 to-zinc-900",
+    href: "/generate?tab=Audio",
+  },
+  {
+    icon: Globe,
+    title: "Websites & Automation",
+    desc: "Launch landing pages, full sites, and automated workflows. Booking, payments, lead capture — handled.",
+    examples: ["Landing pages", "Web apps", "AI agents", "Booking flows", "CRM sync", "Email automation"],
+    gradient: "from-zinc-900 to-slate-900",
+    href: "/project-intake",
+  },
+];
+
+const WhatYouCanCreateSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Creation Hub" title="One Platform. Infinite Creations." description="Three studios. Endless output. Built for creators who refuse to compromise." />
+      </AnimatedSection>
+      <div className="grid gap-6 md:grid-cols-3">
+        {BENTO_CARDS.map((c, i) => (
+          <AnimatedSection key={c.title} delay={i * 0.1}>
+            <Link to={c.href} className="block group">
+              <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${c.gradient} min-h-[420px] p-8 flex flex-col transition-all duration-500 hover:border-white/25 hover:scale-[1.01] hover:shadow-[0_20px_80px_rgba(0,0,0,0.5)]`}>
+                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/[0.03] blur-3xl" />
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur">
+                  <c.icon className="h-8 w-8 text-white/90" />
+                </div>
+                <h3 className="relative z-10 mt-6 font-display text-2xl md:text-3xl font-bold tracking-tight text-white">{c.title}</h3>
+                <p className="relative z-10 mt-3 text-sm text-white/70 leading-relaxed">{c.desc}</p>
+                <div className="relative z-10 mt-auto pt-6 flex flex-wrap gap-1.5">
+                  {c.examples.map((ex) => (
+                    <span key={ex} className="rounded-full border border-white/15 bg-white/[0.05] backdrop-blur px-2.5 py-1 text-[10px] font-medium text-white/80 uppercase tracking-wider">{ex}</span>
+                  ))}
+                </div>
+                <div className="relative z-10 mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/80 group-hover:text-white">
+                  Explore <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+            </Link>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ─── Pricing Preview ─── */
+const PRICING_PLANS = [
+  { name: "Free", price: 0, credits: "25 credits", features: ["Try the studio", "Standard models", "Community support"], cta: "Start Free", highlight: false },
+  { name: "Starter", price: 4, credits: "1,500 credits / mo", features: ["All standard models", "Image + audio", "Email support"], cta: "Choose Starter", highlight: false },
+  { name: "Basic", price: 9, credits: "5,000 credits / mo", features: ["All standard + select premium", "Video generation", "Priority queue"], cta: "Choose Basic", highlight: false },
+  { name: "Premium", price: 21, credits: "20,000 credits / mo", features: ["Every model unlocked", "Pro video & audio", "Fast lane rendering"], cta: "Choose Premium", highlight: true },
+  { name: "Pro", price: 54, credits: "130,000 credits / mo", features: ["Maximum throughput", "Team-ready capacity", "Dedicated support"], cta: "Choose Pro", highlight: false },
+];
+
+const PricingPreviewSection = () => (
+  <section className="section-padding section-silver">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Pricing" title="Always Cheaper Than Competitors" description="Every plan priced $1-2 below Budget Pixel AI. Same top models. Less money." />
+      </AnimatedSection>
+      <div className="md:grid md:grid-cols-5 md:gap-4 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible">
+        {PRICING_PLANS.map((p, i) => (
+          <AnimatedSection key={p.name} delay={i * 0.06}>
+            <div className={`relative h-full min-w-[240px] md:min-w-0 rounded-2xl p-6 flex flex-col ${p.highlight ? "silver-card shadow-[0_0_60px_rgba(255,255,255,0.08)] md:scale-[1.04] border border-white/20" : "glass-card"}`}>
+              {p.highlight && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-background">
+                  Most Popular
+                </span>
+              )}
+              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">{p.name}</span>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="font-display text-5xl font-black tracking-tight">${p.price}</span>
+                <span className="text-xs text-muted-foreground">/mo</span>
+              </div>
+              <p className="mt-2 text-xs font-semibold text-cyan-300/80">{p.credits}</p>
+              <ul className="mt-5 space-y-2 flex-1">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle className="h-3.5 w-3.5 shrink-0 text-foreground/60 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/pricing" className="mt-6">
+                <Button className="w-full" variant={p.highlight ? "default" : "outline"} size="sm">{p.cta}</Button>
+              </Link>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+      <p className="mt-8 text-center text-xs text-muted-foreground">Annual billing saves up to 30% · Cancel anytime · No hidden fees</p>
+    </div>
+  </section>
+);
+
+/* ─── Trust Strip ─── */
+const TRUST_STATS = [
+  { value: "70+", label: "AI Models" },
+  { value: "$4", label: "Starting / mo" },
+  { value: "130K", label: "Max Credits" },
+  { value: "5", label: "Subscription Tiers" },
+  { value: "24/7", label: "Platform Access" },
+];
+
+const TrustStripSection = () => (
+  <section className="section-charcoal border-y border-[hsl(0,0%,10%)]">
+    <div className="container-narrow px-4 py-14">
+      <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+        {TRUST_STATS.map((s, i) => (
+          <AnimatedSection key={s.label} delay={i * 0.05}>
+            <div className="px-4 py-4 text-center">
+              <div className="font-display text-3xl md:text-4xl font-black text-foreground tracking-tight">{s.value}</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/80">{s.label}</div>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
     </div>
   </section>
 );
@@ -740,20 +917,17 @@ const Index = () => (
   <main>
     <Hero />
     <ModelTicker />
-    <TrustSection />
     <ModelShowcaseSection />
     <StudioCategoriesSection />
     <ModelHighlightsSection />
     <ImageModelsSection />
     <VideoModelsSection />
     <CreativeAppsSection />
-    <ChooseWhatSection />
-    <ModelsSection />
-    <FeaturedServicesSection />
-    <WhatWeAutomateSection />
+    <WhatYouCanCreateSection />
+    <PricingPreviewSection />
     <HowItWorksSection />
+    <TrustStripSection />
     <WhyChooseSection />
-    <PackagePreview />
     <GallerySection />
     <IndustriesSection />
     <PortfolioPreview />
