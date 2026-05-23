@@ -649,14 +649,14 @@ const FinalCTA = () => (
 
 /* ─── Model Showcase ─── */
 const MODEL_SHOWCASE = [
-  { name: "WAN 2.0", type: "Video", cost: "from 500 cr", gradient: "from-slate-900 via-indigo-950 to-cyan-950", tab: "Video" },
-  { name: "Flux Pro", type: "Image", cost: "from 5 cr", gradient: "from-zinc-800 via-zinc-700 to-zinc-900", tab: "Image" },
-  { name: "Seedance", type: "Video", cost: "from 300 cr", gradient: "from-indigo-950 via-violet-950 to-slate-900", tab: "Video" },
-  { name: "ElevenLabs", type: "Audio", cost: "from 10 cr", gradient: "from-stone-700 via-zinc-600 to-stone-800", tab: "Audio" },
-  { name: "GPT-4o", type: "Chat", cost: "from 2 cr", gradient: "from-slate-800 via-zinc-700 to-slate-900", tab: "Image" },
-  { name: "DALL·E 3", type: "Image", cost: "from 8 cr", gradient: "from-zinc-900 via-slate-800 to-black", tab: "Image" },
-  { name: "Runway", type: "Video", cost: "from 200 cr", gradient: "from-cyan-950 via-slate-900 to-zinc-900", tab: "Video" },
-  { name: "Suno", type: "Audio", cost: "from 15 cr", gradient: "from-violet-950 via-slate-900 to-zinc-950", tab: "Audio" },
+  { name: "WAN 2.0", letter: "W", type: "Video", desc: "Cinematic motion", cost: "from 500 cr", gradient: "from-slate-900 via-indigo-950 to-cyan-950", href: "/generate?tab=Video", premium: true },
+  { name: "Flux Pro", letter: "F", type: "Image", desc: "Photoreal stills", cost: "from 5 cr", gradient: "from-zinc-800 via-zinc-700 to-zinc-900", href: "/generate?tab=Image", premium: false },
+  { name: "Seedance", letter: "S", type: "Video", desc: "Dance & motion", cost: "from 300 cr", gradient: "from-indigo-950 via-violet-950 to-slate-900", href: "/generate?tab=Video", premium: false },
+  { name: "ElevenLabs", letter: "E", type: "Audio", desc: "Lifelike voices", cost: "from 10 cr", gradient: "from-stone-700 via-zinc-600 to-stone-800", href: "/generate?tab=Audio", premium: false },
+  { name: "GPT-4o", letter: "G", type: "Chat", desc: "Multimodal AI", cost: "from 2 cr", gradient: "from-slate-800 via-zinc-700 to-slate-900", href: "/generate?tab=Image", premium: false },
+  { name: "DALL·E 3", letter: "D", type: "Image", desc: "Iconic visuals", cost: "from 8 cr", gradient: "from-zinc-900 via-slate-800 to-black", href: "/generate?tab=Image", premium: false },
+  { name: "Runway", letter: "R", type: "Video", desc: "Pro-grade film", cost: "from 200 cr", gradient: "from-cyan-950 via-slate-900 to-zinc-900", href: "/generate?tab=Video", premium: true },
+  { name: "Suno", letter: "S", type: "Audio", desc: "Music generation", cost: "from 15 cr", gradient: "from-violet-950 via-slate-900 to-zinc-950", href: "/generate?tab=Audio", premium: false },
 ];
 
 const ModelShowcaseSection = () => (
@@ -673,25 +673,48 @@ const ModelShowcaseSection = () => (
       <AnimatedSection delay={0.1}>
         <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-5 min-w-max">
-            {MODEL_SHOWCASE.map((m) => (
-              <div
-                key={m.name}
-                className="glass-card-hover w-[260px] shrink-0 flex flex-col"
-              >
-                <div className={`h-28 rounded-t-xl bg-gradient-to-br ${m.gradient} opacity-70`} />
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-display text-base font-bold tracking-tight text-foreground">{m.name}</h3>
-                    <span className="rounded-md border border-border/60 bg-card/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">
-                      {m.type}
+            {MODEL_SHOWCASE.map((model) => (
+              <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer w-[260px] shrink-0">
+                {/* Gradient thumbnail - tall aspect ratio 4/5 */}
+                <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
+                  {/* Shimmer overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                  {/* Model type badge top-left */}
+                  <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white/80">
+                    {model.type}
+                  </span>
+
+                  {/* Premium badge top-right if premium */}
+                  {model.premium && (
+                    <span className="absolute top-3 right-3 rounded-full bg-foreground/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-background">
+                      Premium
+                    </span>
+                  )}
+
+                  {/* Center: large glowing icon/letter */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display text-7xl font-black text-white/10 select-none group-hover:text-white/15 transition-all duration-500 group-hover:scale-110">
+                      {model.letter}
                     </span>
                   </div>
-                  <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1">
-                    <Sparkles className="h-3 w-3" /> {m.cost}
-                  </p>
-                  <Link to={`/generate?tab=${m.tab}`} className="mt-4">
-                    <Button size="sm" variant="outline" className="w-full gap-2 text-[11px] uppercase tracking-wider">
-                      Try It <ArrowRight className="h-3 w-3" />
+
+                  {/* Bottom info */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="font-display text-lg font-bold text-white tracking-tight">{model.name}</p>
+                    <p className="text-[10px] text-white/50 mt-0.5">{model.desc}</p>
+                  </div>
+                </div>
+
+                {/* Card footer */}
+                <div className="p-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-semibold text-foreground/90">{model.cost}</p>
+                    <p className="text-[10px] text-muted-foreground">per generation</p>
+                  </div>
+                  <Link to={model.href}>
+                    <Button size="sm" variant="outline" className="h-8 text-[10px] uppercase tracking-wider gap-1.5">
+                      Try <ArrowRight className="h-3 w-3" />
                     </Button>
                   </Link>
                 </div>
