@@ -53,9 +53,6 @@ const pricingFaqs = [
 ];
 
 
-const CHECKOUT_ENDPOINT =
-  "https://ypwjepyzjvhsriqlmfvc.supabase.co/functions/v1/create-checkout";
-
 const PLAN_LOOKUP_KEYS: Record<string, string> = {
   Starter: "starter_monthly",
   Basic: "basic_monthly",
@@ -74,42 +71,34 @@ const PACK_LOOKUP_KEYS: Record<string, string> = {
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
-  const [processingId, setProcessingId] = useState<string | null>(null);
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleCheckout = async (id: string, lookupKey: string | undefined) => {
+  const handleCheckout = async (lookupKey: string) => {
     if (!user) {
-      navigate("/auth?redirect=/pricing");
+      navigate("/auth");
       return;
     }
-    if (!lookupKey) {
-      toast.error("This plan isn't available for checkout yet.");
-      return;
-    }
-    setProcessingId(id);
+    setLoadingKey(lookupKey);
     try {
-      const res = await fetch(CHECKOUT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          priceId: lookupKey,
-          userId: user.id,
-          userEmail: user.email,
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.error || "Checkout failed");
+      const { data, error } = await supabase.functions.invoke(
+        "create-checkout",
+        {
+          body: {
+            priceId: lookupKey,
+            userId: user.id,
+            userEmail: user.email,
+          },
+        }
+      );
       if (data?.url) {
         window.location.href = data.url;
-        return;
       }
-      throw new Error("No checkout URL returned");
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Checkout failed";
-      toast.error(msg);
-      setProcessingId(null);
+      console.error(err);
     }
+    setLoadingKey(null);
   };
 
   return (
