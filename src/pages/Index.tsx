@@ -677,72 +677,198 @@ const ModelShowcaseSection = () => (
       <AnimatedSection>
         <SectionHeading
           badge="70+ Models"
-          title="Powered by Industry-Leading AI Models"
-          description="Explore the best AI models for images, video, audio, and more — all available inside ONYX Studio."
+          title="The Most Powerful AI Models"
+          description="Every top model available in one platform. No switching apps. No separate subscriptions."
         />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex gap-5 min-w-max">
-            {SHOWCASE_MODELS.map((model) => (
-              <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer w-[260px] shrink-0">
-                {/* Gradient thumbnail - tall aspect ratio 4/5 */}
-                <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
-                  {/* Shimmer overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                  {/* Model type badge top-left */}
-                  <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white/80">
-                    {model.type}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          {SHOWCASE_MODELS.map((model) => (
+            <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer">
+              <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white/80">
+                  {model.type}
+                </span>
+                {model.premium && (
+                  <span className="absolute top-3 right-3 rounded-full bg-foreground/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-background">
+                    Premium
                   </span>
-
-                  {/* Premium badge top-right if premium */}
-                  {model.premium && (
-                    <span className="absolute top-3 right-3 rounded-full bg-foreground/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-background">
-                      Premium
-                    </span>
-                  )}
-
-                  {/* Center: large glowing icon/letter */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-7xl font-black text-white/10 select-none group-hover:text-white/15 transition-all duration-500 group-hover:scale-110">
-                      {model.letter}
-                    </span>
-                  </div>
-
-                  {/* Bottom info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="font-display text-lg font-bold text-white tracking-tight">{model.name}</p>
-                    <p className="text-[10px] text-white/50 mt-0.5">{model.desc}</p>
-                  </div>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="font-display text-7xl md:text-8xl font-black text-white/10 select-none group-hover:text-white/15 transition-all duration-500 group-hover:scale-110">
+                    {model.letter}
+                  </span>
                 </div>
-
-                {/* Card footer */}
-                <div className="p-4 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-semibold text-foreground/90">{model.cost}</p>
-                    <p className="text-[10px] text-muted-foreground">per generation</p>
-                  </div>
-                  <Link to={model.href}>
-                    <Button size="sm" variant="outline" className="h-8 text-[10px] uppercase tracking-wider gap-1.5">
-                      Try <ArrowRight className="h-3 w-3" />
-                    </Button>
-                  </Link>
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="font-display text-lg font-bold text-white tracking-tight">{model.name}</p>
+                  <p className="text-[10px] text-white/50 mt-0.5">{model.desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-foreground/90">{model.cost}</p>
+                  <p className="text-[10px] text-muted-foreground">per generation</p>
+                </div>
+                <Link to={model.href}>
+                  <Button size="sm" variant="outline" className="h-8 text-[10px] uppercase tracking-wider gap-1.5">
+                    Try <ArrowRight className="h-3 w-3" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </AnimatedSection>
 
       <AnimatedSection>
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link to="/generate">
-            <Button className="gap-2">Open Studio <ArrowRight className="h-4 w-4" /></Button>
+            <Button size="lg" variant="outline" className="gap-2 border-white/15 hover:border-white/30">
+              See all 70+ models <ArrowRight className="h-4 w-4" />
+            </Button>
           </Link>
         </div>
       </AnimatedSection>
+    </div>
+  </section>
+);
+
+/* ─── What You Can Create (Bento) ─── */
+const BENTO_CARDS = [
+  {
+    icon: ImageIcon,
+    title: "Image & Video Studio",
+    desc: "Generate cinematic stills and motion. From product photography to full ad campaigns — rendered in minutes.",
+    examples: ["Flux Pro", "DALL·E 3", "Runway", "WAN 2.0", "Seedance", "Ideogram"],
+    gradient: "from-slate-900 to-indigo-950",
+    href: "/generate?tab=Image",
+  },
+  {
+    icon: Mic,
+    title: "Music & Audio",
+    desc: "Compose original tracks, generate voiceovers, and craft soundscapes with state-of-the-art audio AI.",
+    examples: ["Suno", "ElevenLabs", "MusicGen", "Bark", "Voiceover", "SFX"],
+    gradient: "from-stone-800 to-zinc-900",
+    href: "/generate?tab=Audio",
+  },
+  {
+    icon: Globe,
+    title: "Websites & Automation",
+    desc: "Launch landing pages, full sites, and automated workflows. Booking, payments, lead capture — handled.",
+    examples: ["Landing pages", "Web apps", "AI agents", "Booking flows", "CRM sync", "Email automation"],
+    gradient: "from-zinc-900 to-slate-900",
+    href: "/project-intake",
+  },
+];
+
+const WhatYouCanCreateSection = () => (
+  <section className="section-padding">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Creation Hub" title="One Platform. Infinite Creations." description="Three studios. Endless output. Built for creators who refuse to compromise." />
+      </AnimatedSection>
+      <div className="grid gap-6 md:grid-cols-3">
+        {BENTO_CARDS.map((c, i) => (
+          <AnimatedSection key={c.title} delay={i * 0.1}>
+            <Link to={c.href} className="block group">
+              <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${c.gradient} min-h-[420px] p-8 flex flex-col transition-all duration-500 hover:border-white/25 hover:scale-[1.01] hover:shadow-[0_20px_80px_rgba(0,0,0,0.5)]`}>
+                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/[0.03] blur-3xl" />
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur">
+                  <c.icon className="h-8 w-8 text-white/90" />
+                </div>
+                <h3 className="relative z-10 mt-6 font-display text-2xl md:text-3xl font-bold tracking-tight text-white">{c.title}</h3>
+                <p className="relative z-10 mt-3 text-sm text-white/70 leading-relaxed">{c.desc}</p>
+                <div className="relative z-10 mt-auto pt-6 flex flex-wrap gap-1.5">
+                  {c.examples.map((ex) => (
+                    <span key={ex} className="rounded-full border border-white/15 bg-white/[0.05] backdrop-blur px-2.5 py-1 text-[10px] font-medium text-white/80 uppercase tracking-wider">{ex}</span>
+                  ))}
+                </div>
+                <div className="relative z-10 mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/80 group-hover:text-white">
+                  Explore <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+            </Link>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ─── Pricing Preview ─── */
+const PRICING_PLANS = [
+  { name: "Free", price: 0, credits: "25 credits", features: ["Try the studio", "Standard models", "Community support"], cta: "Start Free", highlight: false },
+  { name: "Starter", price: 4, credits: "1,500 credits / mo", features: ["All standard models", "Image + audio", "Email support"], cta: "Choose Starter", highlight: false },
+  { name: "Basic", price: 9, credits: "5,000 credits / mo", features: ["All standard + select premium", "Video generation", "Priority queue"], cta: "Choose Basic", highlight: false },
+  { name: "Premium", price: 21, credits: "20,000 credits / mo", features: ["Every model unlocked", "Pro video & audio", "Fast lane rendering"], cta: "Choose Premium", highlight: true },
+  { name: "Pro", price: 54, credits: "130,000 credits / mo", features: ["Maximum throughput", "Team-ready capacity", "Dedicated support"], cta: "Choose Pro", highlight: false },
+];
+
+const PricingPreviewSection = () => (
+  <section className="section-padding section-silver">
+    <div className="container-narrow">
+      <AnimatedSection>
+        <SectionHeading badge="Pricing" title="Always Cheaper Than Competitors" description="Every plan priced $1-2 below Budget Pixel AI. Same top models. Less money." />
+      </AnimatedSection>
+      <div className="md:grid md:grid-cols-5 md:gap-4 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible">
+        {PRICING_PLANS.map((p, i) => (
+          <AnimatedSection key={p.name} delay={i * 0.06}>
+            <div className={`relative h-full min-w-[240px] md:min-w-0 rounded-2xl p-6 flex flex-col ${p.highlight ? "silver-card shadow-[0_0_60px_rgba(255,255,255,0.08)] md:scale-[1.04] border border-white/20" : "glass-card"}`}>
+              {p.highlight && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-background">
+                  Most Popular
+                </span>
+              )}
+              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">{p.name}</span>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="font-display text-5xl font-black tracking-tight">${p.price}</span>
+                <span className="text-xs text-muted-foreground">/mo</span>
+              </div>
+              <p className="mt-2 text-xs font-semibold text-cyan-300/80">{p.credits}</p>
+              <ul className="mt-5 space-y-2 flex-1">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle className="h-3.5 w-3.5 shrink-0 text-foreground/60 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/pricing" className="mt-6">
+                <Button className="w-full" variant={p.highlight ? "default" : "outline"} size="sm">{p.cta}</Button>
+              </Link>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+      <p className="mt-8 text-center text-xs text-muted-foreground">Annual billing saves up to 30% · Cancel anytime · No hidden fees</p>
+    </div>
+  </section>
+);
+
+/* ─── Trust Strip ─── */
+const TRUST_STATS = [
+  { value: "70+", label: "AI Models" },
+  { value: "$4", label: "Starting / mo" },
+  { value: "130K", label: "Max Credits" },
+  { value: "5", label: "Subscription Tiers" },
+  { value: "24/7", label: "Platform Access" },
+];
+
+const TrustStripSection = () => (
+  <section className="section-charcoal border-y border-[hsl(0,0%,10%)]">
+    <div className="container-narrow px-4 py-14">
+      <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+        {TRUST_STATS.map((s, i) => (
+          <AnimatedSection key={s.label} delay={i * 0.05}>
+            <div className="px-4 py-4 text-center">
+              <div className="font-display text-3xl md:text-4xl font-black text-foreground tracking-tight">{s.value}</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/80">{s.label}</div>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
     </div>
   </section>
 );
