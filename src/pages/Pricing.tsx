@@ -299,7 +299,7 @@ const Pricing = () => {
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
                   disabled={processingId === `pack-${pack.name}`}
-                  onClick={() => handleCheckout(`pack-${pack.name}`)}
+                  onClick={() => handleCheckout(`pack-${pack.name}`, PACK_LOOKUP_KEYS[pack.name])}
                 >
                   {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
                 </Button>
