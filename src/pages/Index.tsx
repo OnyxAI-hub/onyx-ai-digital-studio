@@ -917,20 +917,17 @@ const Index = () => (
   <main>
     <Hero />
     <ModelTicker />
-    <TrustSection />
     <ModelShowcaseSection />
     <StudioCategoriesSection />
     <ModelHighlightsSection />
     <ImageModelsSection />
     <VideoModelsSection />
     <CreativeAppsSection />
-    <ChooseWhatSection />
-    <ModelsSection />
-    <FeaturedServicesSection />
-    <WhatWeAutomateSection />
+    <WhatYouCanCreateSection />
+    <PricingPreviewSection />
     <HowItWorksSection />
+    <TrustStripSection />
     <WhyChooseSection />
-    <PackagePreview />
     <GallerySection />
     <IndustriesSection />
     <PortfolioPreview />
