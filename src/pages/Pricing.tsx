@@ -144,11 +144,15 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to={`/project-intake?type=${encodeURIComponent(p.intakeType)}&plan=${encodeURIComponent(p.name)}`}>
-                    <Button className="w-full" variant={p.popular ? "default" : "outline"} size="sm">
-                      {p.cta}
-                    </Button>
-                  </Link>
+                  <Button
+                    className="w-full"
+                    variant={p.popular ? "default" : "outline"}
+                    size="sm"
+                    disabled={processingId === `plan-${p.name}`}
+                    onClick={() => handleCheckout(`plan-${p.name}`)}
+                  >
+                    {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
+                  </Button>
                 </div>
               </AnimatedSection>
             );
