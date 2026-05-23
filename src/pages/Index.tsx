@@ -51,8 +51,9 @@ const Hero = () => {
 
       <div className="relative z-10 container-narrow px-4 text-center">
         <AnimatedSection>
-          <span className="mb-6 inline-block rounded-full border border-[hsl(0,0%,20%)] bg-[hsl(0,0%,6%)] px-5 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[hsl(0,0%,60%)]">
-            AI Creative Platform — Images · Video · Audio · Music
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            AI Creative Platform — Now Live
           </span>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
