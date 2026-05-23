@@ -192,7 +192,7 @@ const Pricing = () => {
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
                     disabled={processingId === `plan-${p.name}`}
-                    onClick={() => handleCheckout(`plan-${p.name}`)}
+                    onClick={() => handleCheckout(`plan-${p.name}`, PLAN_LOOKUP_KEYS[p.name])}
                   >
                     {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
                   </Button>
