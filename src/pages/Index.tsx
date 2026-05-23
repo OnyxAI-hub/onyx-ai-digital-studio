@@ -119,20 +119,15 @@ const Hero = () => {
         <AnimatedSection delay={0.4}>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link to="/generate">
-              <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
-                Start Creating <ArrowRight className="h-4 w-4" />
+              <Button size="lg" className="h-14 px-10 text-sm uppercase tracking-widest gap-3 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                Start Creating Free <ArrowRight />
               </Button>
             </Link>
             <Link to="/pricing">
-              <Button size="lg" variant="outline" className="gap-2 text-sm uppercase tracking-wider">
-                Buy Credits
+              <Button size="lg" variant="outline" className="h-14 px-10 text-sm uppercase tracking-widest border-white/15 hover:border-white/30">
+                View Pricing
               </Button>
             </Link>
-            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="ghost" className="gap-2 text-sm uppercase tracking-wider">
-                Book a Consultation
-              </Button>
-            </a>
           </div>
         </AnimatedSection>
       </div>
