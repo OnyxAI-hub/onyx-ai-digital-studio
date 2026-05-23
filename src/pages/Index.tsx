@@ -152,18 +152,21 @@ const MODEL_TICKER = [
 ];
 
 const ModelTicker = () => (
-  <section className="border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden">
-    <div className="relative">
-      <div className="flex ticker-left whitespace-nowrap py-3">
+  <section className="relative border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden py-4">
+    {/* Edge fade masks */}
+    <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[hsl(0,0%,3%)] to-transparent" />
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[hsl(0,0%,3%)] to-transparent" />
+    <div className="relative space-y-3">
+      <div className="flex ticker-left whitespace-nowrap">
         {[...MODEL_TICKER, ...MODEL_TICKER].map((name, i) => (
-          <span key={`l-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/60 font-medium tracking-wide">
+          <span key={`l-${name}-${i}`} className="mx-2 shrink-0 border border-border/40 bg-card/50 rounded-full px-4 py-1.5 text-[11px] font-medium text-muted-foreground">
             {name}
           </span>
         ))}
       </div>
-      <div className="flex ticker-right whitespace-nowrap py-3 border-t border-[hsl(0,0%,10%)]">
+      <div className="flex ticker-right whitespace-nowrap">
         {[...MODEL_TICKER.slice().reverse(), ...MODEL_TICKER.slice().reverse()].map((name, i) => (
-          <span key={`r-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/40 font-medium tracking-wide">
+          <span key={`r-${name}-${i}`} className="mx-2 shrink-0 border border-border/30 bg-card/30 rounded-full px-4 py-1.5 text-[11px] font-medium text-muted-foreground/70">
             {name}
           </span>
         ))}
