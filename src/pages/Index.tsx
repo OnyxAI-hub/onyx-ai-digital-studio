@@ -145,9 +145,16 @@ const MODEL_TICKER = [
 const ModelTicker = () => (
   <section className="border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden">
     <div className="relative">
-      <div className="flex animate-[ticker_30s_linear_infinite] whitespace-nowrap py-4">
+      <div className="flex ticker-left whitespace-nowrap py-3">
         {[...MODEL_TICKER, ...MODEL_TICKER].map((name, i) => (
-          <span key={`${name}-${i}`} className="mx-6 text-sm text-muted-foreground/60 font-medium tracking-wide">
+          <span key={`l-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/60 font-medium tracking-wide">
+            {name}
+          </span>
+        ))}
+      </div>
+      <div className="flex ticker-right whitespace-nowrap py-3 border-t border-[hsl(0,0%,10%)]">
+        {[...MODEL_TICKER.slice().reverse(), ...MODEL_TICKER.slice().reverse()].map((name, i) => (
+          <span key={`r-${name}-${i}`} className="mx-6 text-sm text-muted-foreground/40 font-medium tracking-wide">
             {name}
           </span>
         ))}
