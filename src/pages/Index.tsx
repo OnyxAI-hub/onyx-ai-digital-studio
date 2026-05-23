@@ -333,26 +333,51 @@ const steps = [
   { num: "05", title: "Review, Refine & Launch", desc: "Review the finished work, request adjustments, and launch for your business, brand, or content." },
 ];
 
-const HowItWorksSection = () => (
-  <section className="section-padding">
-    <div className="container-narrow">
-      <AnimatedSection>
-        <SectionHeading badge="Our Process" title="How ONYX AI Studio Works" description="From idea to delivery in five steps." />
-      </AnimatedSection>
-      <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
-        {steps.map((step, i) => (
-          <AnimatedSection key={step.num} delay={i * 0.08}>
-            <div className="text-center">
-              <span className="font-display text-5xl font-bold text-border">{step.num}</span>
-              <h3 className="mt-3 font-display text-base font-semibold tracking-tight">{step.title}</h3>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
-            </div>
-          </AnimatedSection>
-        ))}
+const HowItWorksSection = () => {
+  const topRow = steps.slice(0, 3);
+  const bottomRow = steps.slice(3);
+  return (
+    <section className="section-padding">
+      <div className="container-narrow">
+        <AnimatedSection>
+          <SectionHeading badge="Our Process" title="How ONYX AI Studio Works" description="From idea to delivery in five steps." />
+        </AnimatedSection>
+        <div className="grid gap-6 md:grid-cols-3">
+          {topRow.map((step, i) => (
+            <AnimatedSection key={step.num} delay={i * 0.08}>
+              <div className="relative glass-card-hover p-8 h-full overflow-hidden">
+                <span className="pointer-events-none absolute -top-4 -right-2 font-display text-[8rem] font-black text-border/30 leading-none select-none">
+                  {step.num}
+                </span>
+                <div className="relative z-10">
+                  <span className="font-display text-xs font-bold tracking-[0.3em] text-cyan-300/70 uppercase">Step {step.num}</span>
+                  <h3 className="mt-3 font-display text-xl font-bold tracking-tight">{step.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 md:max-w-3xl md:mx-auto mt-6">
+          {bottomRow.map((step, i) => (
+            <AnimatedSection key={step.num} delay={(i + 3) * 0.08}>
+              <div className="relative glass-card-hover p-8 h-full overflow-hidden">
+                <span className="pointer-events-none absolute -top-4 -right-2 font-display text-[8rem] font-black text-border/30 leading-none select-none">
+                  {step.num}
+                </span>
+                <div className="relative z-10">
+                  <span className="font-display text-xs font-bold tracking-[0.3em] text-cyan-300/70 uppercase">Step {step.num}</span>
+                  <h3 className="mt-3 font-display text-xl font-bold tracking-tight">{step.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 /* ─── Why Choose ONYX AI ─── */
 const whyCards = [
