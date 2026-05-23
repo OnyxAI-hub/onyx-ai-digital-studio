@@ -9,7 +9,7 @@ import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/dat
 import CompareTable from "@/components/pricing/CompareTable";
 import WhyOnyx from "@/components/pricing/WhyOnyx";
 import { useAuth } from "@/hooks/useAuth";
-import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Accordion,
   AccordionContent,
@@ -53,9 +53,6 @@ const pricingFaqs = [
 ];
 
 
-const CHECKOUT_ENDPOINT =
-  "https://ypwjepyzjvhsriqlmfvc.supabase.co/functions/v1/create-checkout";
-
 const PLAN_LOOKUP_KEYS: Record<string, string> = {
   Starter: "starter_monthly",
   Basic: "basic_monthly",
@@ -74,42 +71,34 @@ const PACK_LOOKUP_KEYS: Record<string, string> = {
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
-  const [processingId, setProcessingId] = useState<string | null>(null);
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleCheckout = async (id: string, lookupKey: string | undefined) => {
+  const handleCheckout = async (lookupKey: string) => {
     if (!user) {
-      navigate("/auth?redirect=/pricing");
+      navigate("/auth");
       return;
     }
-    if (!lookupKey) {
-      toast.error("This plan isn't available for checkout yet.");
-      return;
-    }
-    setProcessingId(id);
+    setLoadingKey(lookupKey);
     try {
-      const res = await fetch(CHECKOUT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          priceId: lookupKey,
-          userId: user.id,
-          userEmail: user.email,
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.error || "Checkout failed");
+      const { data, error } = await supabase.functions.invoke(
+        "create-checkout",
+        {
+          body: {
+            priceId: lookupKey,
+            userId: user.id,
+            userEmail: user.email,
+          },
+        }
+      );
       if (data?.url) {
         window.location.href = data.url;
-        return;
       }
-      throw new Error("No checkout URL returned");
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Checkout failed";
-      toast.error(msg);
-      setProcessingId(null);
+      console.error(err);
     }
+    setLoadingKey(null);
   };
 
   return (
@@ -191,10 +180,14 @@ const Pricing = () => {
                     className="w-full"
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
-                    disabled={processingId === `plan-${p.name}`}
-                    onClick={() => handleCheckout(`plan-${p.name}`, PLAN_LOOKUP_KEYS[p.name])}
+                    disabled={loadingKey === PLAN_LOOKUP_KEYS[p.name]}
+                    onClick={() => {
+                      const key = PLAN_LOOKUP_KEYS[p.name];
+                      if (key) handleCheckout(key);
+                      else if (!user) navigate("/auth");
+                    }}
                   >
-                    {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
+                    {loadingKey === PLAN_LOOKUP_KEYS[p.name] ? "Loading..." : p.cta}
                   </Button>
                 </div>
               </AnimatedSection>
@@ -298,10 +291,10 @@ const Pricing = () => {
                   className="w-full mt-5"
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
-                  disabled={processingId === `pack-${pack.name}`}
-                  onClick={() => handleCheckout(`pack-${pack.name}`, PACK_LOOKUP_KEYS[pack.name])}
+                  disabled={loadingKey === PACK_LOOKUP_KEYS[pack.name]}
+                  onClick={() => handleCheckout(PACK_LOOKUP_KEYS[pack.name])}
                 >
-                  {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
+                  {loadingKey === PACK_LOOKUP_KEYS[pack.name] ? "Loading..." : pack.cta}
                 </Button>
               </div>
             </AnimatedSection>
