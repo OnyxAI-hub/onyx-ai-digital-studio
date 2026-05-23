@@ -648,15 +648,15 @@ const FinalCTA = () => (
 );
 
 /* ─── Model Showcase ─── */
-const MODEL_SHOWCASE = [
-  { name: "WAN 2.0", letter: "W", type: "Video", desc: "Cinematic motion", cost: "from 500 cr", gradient: "from-slate-900 via-indigo-950 to-cyan-950", href: "/generate?tab=Video", premium: true },
-  { name: "Flux Pro", letter: "F", type: "Image", desc: "Photoreal stills", cost: "from 5 cr", gradient: "from-zinc-800 via-zinc-700 to-zinc-900", href: "/generate?tab=Image", premium: false },
-  { name: "Seedance", letter: "S", type: "Video", desc: "Dance & motion", cost: "from 300 cr", gradient: "from-indigo-950 via-violet-950 to-slate-900", href: "/generate?tab=Video", premium: false },
-  { name: "ElevenLabs", letter: "E", type: "Audio", desc: "Lifelike voices", cost: "from 10 cr", gradient: "from-stone-700 via-zinc-600 to-stone-800", href: "/generate?tab=Audio", premium: false },
-  { name: "GPT-4o", letter: "G", type: "Chat", desc: "Multimodal AI", cost: "from 2 cr", gradient: "from-slate-800 via-zinc-700 to-slate-900", href: "/generate?tab=Image", premium: false },
-  { name: "DALL·E 3", letter: "D", type: "Image", desc: "Iconic visuals", cost: "from 8 cr", gradient: "from-zinc-900 via-slate-800 to-black", href: "/generate?tab=Image", premium: false },
-  { name: "Runway", letter: "R", type: "Video", desc: "Pro-grade film", cost: "from 200 cr", gradient: "from-cyan-950 via-slate-900 to-zinc-900", href: "/generate?tab=Video", premium: true },
-  { name: "Suno", letter: "S", type: "Audio", desc: "Music generation", cost: "from 15 cr", gradient: "from-violet-950 via-slate-900 to-zinc-950", href: "/generate?tab=Audio", premium: false },
+const SHOWCASE_MODELS = [
+  { name: "WAN 2.0", letter: "W", type: "Video", desc: "Text & image to video", cost: "From 500 cr", gradient: "from-slate-900 via-indigo-950 to-cyan-950", href: "/generate?tab=Video", premium: true },
+  { name: "Flux Pro", letter: "F", type: "Image", desc: "Photorealistic images", cost: "From 5 cr", gradient: "from-zinc-800 via-zinc-700 to-zinc-900", href: "/generate?tab=Image", premium: false },
+  { name: "Seedance", letter: "S", type: "Video", desc: "Cinematic AI video", cost: "From 300 cr", gradient: "from-indigo-950 via-violet-950 to-slate-900", href: "/generate?tab=Video", premium: true },
+  { name: "ElevenLabs", letter: "E", type: "Audio", desc: "Voice & music AI", cost: "From 10 cr", gradient: "from-stone-700 via-zinc-600 to-stone-800", href: "/generate?tab=Audio", premium: false },
+  { name: "GPT-4o", letter: "G", type: "Chat", desc: "OpenAI flagship", cost: "From 2 cr", gradient: "from-slate-800 via-zinc-700 to-slate-900", href: "/generate?tab=Image", premium: false },
+  { name: "DALL·E 3", letter: "D", type: "Image", desc: "Creative image AI", cost: "From 8 cr", gradient: "from-zinc-900 via-slate-800 to-black", href: "/generate?tab=Image", premium: false },
+  { name: "Runway", letter: "R", type: "Video", desc: "Professional video", cost: "From 200 cr", gradient: "from-cyan-950 via-slate-900 to-zinc-900", href: "/generate?tab=Video", premium: true },
+  { name: "Suno", letter: "S", type: "Audio", desc: "AI music generation", cost: "From 15 cr", gradient: "from-violet-950 via-slate-900 to-zinc-950", href: "/generate?tab=Audio", premium: false },
 ];
 
 const ModelShowcaseSection = () => (
@@ -673,7 +673,7 @@ const ModelShowcaseSection = () => (
       <AnimatedSection delay={0.1}>
         <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-5 min-w-max">
-            {MODEL_SHOWCASE.map((model) => (
+            {SHOWCASE_MODELS.map((model) => (
               <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer w-[260px] shrink-0">
                 {/* Gradient thumbnail - tall aspect ratio 4/5 */}
                 <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
