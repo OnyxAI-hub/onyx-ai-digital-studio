@@ -673,7 +673,7 @@ const ModelShowcaseSection = () => (
       <AnimatedSection delay={0.1}>
         <div className="relative -mx-4 px-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-5 min-w-max">
-            {MODEL_SHOWCASE.map((model) => (
+            {SHOWCASE_MODELS.map((model) => (
               <div key={model.name} className="glass-card-hover overflow-hidden group cursor-pointer w-[260px] shrink-0">
                 {/* Gradient thumbnail - tall aspect ratio 4/5 */}
                 <div className={`relative aspect-[4/5] bg-gradient-to-br ${model.gradient} overflow-hidden`}>
