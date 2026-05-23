@@ -135,6 +135,27 @@ const Hero = () => {
   );
 };
 
+/* ─── Model Ticker ─── */
+const MODEL_TICKER = [
+  "WAN 2.0", "Flux Pro", "DALL·E 3", "Seedance", "ElevenLabs", "Suno",
+  "Runway", "Kling", "GPT-4o", "Claude", "Grok", "Ideogram v3",
+  "Stable Diffusion", "MusicGen", "Bark", "Sora", "Veo 2", "Luma Dream Machine",
+];
+
+const ModelTicker = () => (
+  <section className="border-y border-[hsl(0,0%,10%)] bg-[hsl(0,0%,3%)] overflow-hidden">
+    <div className="relative">
+      <div className="flex animate-[ticker_30s_linear_infinite] whitespace-nowrap py-4">
+        {[...MODEL_TICKER, ...MODEL_TICKER].map((name, i) => (
+          <span key={`${name}-${i}`} className="mx-6 text-sm text-muted-foreground/60 font-medium tracking-wide">
+            {name}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 /* ─── Trust ─── */
 const trustItems = [
   { icon: CheckCircle, label: "50+ Projects Delivered" },
