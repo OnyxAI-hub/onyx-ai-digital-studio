@@ -251,18 +251,15 @@ const Pricing = () => {
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Best for</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{pack.bestFor}</p>
                 </div>
-                <Link
-                  to={`/project-intake?type=Creative%20Credit%20Pack&plan=${encodeURIComponent(pack.name)}`}
-                  className="mt-5"
+                <Button
+                  className="w-full mt-5"
+                  variant={pack.featured ? "default" : "outline"}
+                  size="sm"
+                  disabled={processingId === `pack-${pack.name}`}
+                  onClick={() => handleCheckout(`pack-${pack.name}`)}
                 >
-                  <Button
-                    className="w-full"
-                    variant={pack.featured ? "default" : "outline"}
-                    size="sm"
-                  >
-                    {pack.cta}
-                  </Button>
-                </Link>
+                  {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
+                </Button>
               </div>
             </AnimatedSection>
           ))}
