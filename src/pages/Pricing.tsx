@@ -55,6 +55,19 @@ const pricingFaqs = [
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
+  const [processingId, setProcessingId] = useState<string | null>(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCheckout = (id: string) => {
+    if (!user) {
+      navigate("/auth?redirect=/pricing");
+      return;
+    }
+    setProcessingId(id);
+    toast("Checkout coming soon — Stripe integration in progress");
+    setTimeout(() => setProcessingId((cur) => (cur === id ? null : cur)), 1500);
+  };
 
   return (
   <main className="pt-20">
