@@ -53,20 +53,63 @@ const pricingFaqs = [
 ];
 
 
+const CHECKOUT_ENDPOINT =
+  "https://ypwjepyzjvhsriqlmfvc.supabase.co/functions/v1/create-checkout";
+
+const PLAN_LOOKUP_KEYS: Record<string, string> = {
+  Starter: "starter_monthly",
+  Basic: "basic_monthly",
+  Premium: "premium_monthly",
+  Pro: "pro_monthly",
+  Ultra: "ultra_monthly",
+};
+
+const PACK_LOOKUP_KEYS: Record<string, string> = {
+  "Starter Credit Pack": "starter_pack",
+  "Creator Credit Pack": "creator_pack",
+  "Studio Credit Pack": "studio_pack",
+  "Pro Credit Pack": "pro_pack",
+  "Ultimate Credit Pack": "ultimate_pack",
+};
+
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
   const [processingId, setProcessingId] = useState<string | null>(null);
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleCheckout = (id: string) => {
+  const handleCheckout = async (id: string, lookupKey: string | undefined) => {
     if (!user) {
       navigate("/auth?redirect=/pricing");
       return;
     }
+    if (!lookupKey) {
+      toast.error("This plan isn't available for checkout yet.");
+      return;
+    }
     setProcessingId(id);
-    toast("Checkout coming soon — Stripe integration in progress");
-    setTimeout(() => setProcessingId((cur) => (cur === id ? null : cur)), 1500);
+    try {
+      const res = await fetch(CHECKOUT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          priceId: lookupKey,
+          userId: user.id,
+          userEmail: user.email,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Checkout failed");
+      if (data?.url) {
+        window.location.href = data.url;
+        return;
+      }
+      throw new Error("No checkout URL returned");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Checkout failed";
+      toast.error(msg);
+      setProcessingId(null);
+    }
   };
 
   return (
@@ -149,7 +192,7 @@ const Pricing = () => {
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
                     disabled={processingId === `plan-${p.name}`}
-                    onClick={() => handleCheckout(`plan-${p.name}`)}
+                    onClick={() => handleCheckout(`plan-${p.name}`, PLAN_LOOKUP_KEYS[p.name])}
                   >
                     {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
                   </Button>
@@ -256,7 +299,7 @@ const Pricing = () => {
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
                   disabled={processingId === `pack-${pack.name}`}
-                  onClick={() => handleCheckout(`pack-${pack.name}`)}
+                  onClick={() => handleCheckout(`pack-${pack.name}`, PACK_LOOKUP_KEYS[pack.name])}
                 >
                   {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
                 </Button>
