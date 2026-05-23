@@ -709,6 +709,7 @@ const ModelShowcaseSection = () => (
 const Index = () => (
   <main>
     <Hero />
+    <ModelTicker />
     <TrustSection />
     <ModelShowcaseSection />
     <StudioCategoriesSection />
