@@ -180,10 +180,14 @@ const Pricing = () => {
                     className="w-full"
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
-                    disabled={processingId === `plan-${p.name}`}
-                    onClick={() => handleCheckout(`plan-${p.name}`, PLAN_LOOKUP_KEYS[p.name])}
+                    disabled={loadingKey === PLAN_LOOKUP_KEYS[p.name]}
+                    onClick={() => {
+                      const key = PLAN_LOOKUP_KEYS[p.name];
+                      if (key) handleCheckout(key);
+                      else if (!user) navigate("/auth");
+                    }}
                   >
-                    {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
+                    {loadingKey === PLAN_LOOKUP_KEYS[p.name] ? "Loading..." : p.cta}
                   </Button>
                 </div>
               </AnimatedSection>
@@ -287,10 +291,10 @@ const Pricing = () => {
                   className="w-full mt-5"
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
-                  disabled={processingId === `pack-${pack.name}`}
-                  onClick={() => handleCheckout(`pack-${pack.name}`, PACK_LOOKUP_KEYS[pack.name])}
+                  disabled={loadingKey === PACK_LOOKUP_KEYS[pack.name]}
+                  onClick={() => handleCheckout(PACK_LOOKUP_KEYS[pack.name])}
                 >
-                  {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
+                  {loadingKey === PACK_LOOKUP_KEYS[pack.name] ? "Loading..." : pack.cta}
                 </Button>
               </div>
             </AnimatedSection>
