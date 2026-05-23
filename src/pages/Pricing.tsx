@@ -9,7 +9,7 @@ import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/dat
 import CompareTable from "@/components/pricing/CompareTable";
 import WhyOnyx from "@/components/pricing/WhyOnyx";
 import { useAuth } from "@/hooks/useAuth";
-import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Accordion,
   AccordionContent,
