@@ -171,4 +171,10 @@
       0 0 0 1px hsl(var(--ai-cyan) / 0.3),
       0 0 28px -6px hsl(var(--ai-glow) / 0.35);
   }
+
+  /* Ticker marquee */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
