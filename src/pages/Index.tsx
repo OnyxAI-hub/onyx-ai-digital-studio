@@ -37,6 +37,13 @@ const HERO_PROMPTS = [
   "Set up an AI agent",
 ];
 
+const HERO_STATS = [
+  { value: "70+", label: "Models" },
+  { value: "$4", label: "Per Month" },
+  { value: "130K", label: "Credits" },
+  { value: "5", label: "Plans" },
+];
+
 const Hero = () => {
   const [prompt, setPrompt] = useState("");
   const href = `/generate${prompt ? `?prompt=${encodeURIComponent(prompt)}` : ""}`;
@@ -49,7 +56,7 @@ const Hero = () => {
         <div className="absolute top-[82%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
       </div>
 
-      <div className="relative z-10 container-narrow px-4 text-center">
+      <div className="relative z-10 container-narrow px-4 text-center py-24">
         <AnimatedSection>
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
@@ -57,15 +64,17 @@ const Hero = () => {
           </span>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <h1 className="font-display font-bold leading-[1.05] tracking-[-0.035em] text-balance text-4xl md:text-6xl lg:text-[4.5rem]">
-            <span className="text-foreground">Build Smarter. Create Faster.</span>
-            <br />
-            <span className="gradient-text">Scale With AI.</span>
+          <h1 className="font-display font-black tracking-[-0.04em] leading-[0.95] text-balance text-6xl md:text-8xl lg:text-[6rem]">
+            <span className="block text-foreground">Create Anything.</span>
+            <span className="block gradient-text">Powered by AI.</span>
+            <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground tracking-tight">
+              Starting at $4/month.
+            </span>
           </h1>
         </AnimatedSection>
         <AnimatedSection delay={0.2}>
-          <p className="mx-auto mt-7 max-w-xl text-[15px] md:text-base text-muted-foreground/90 leading-relaxed">
-            ONYX AI Studio helps businesses and creators launch websites, generate media, build automations, and access powerful AI tools — all from one platform.
+          <p className="mx-auto mt-8 max-w-lg text-base md:text-lg text-muted-foreground/80 leading-relaxed">
+            70+ AI models. Images, video, audio, music, and more — all in one studio. Cheaper than every competitor.
           </p>
         </AnimatedSection>
 
@@ -73,23 +82,23 @@ const Hero = () => {
         <AnimatedSection delay={0.3}>
           <form
             onSubmit={(e) => { e.preventDefault(); window.location.href = href; }}
-            className="mx-auto mt-8 max-w-2xl"
+            className="mx-auto mt-10 max-w-2xl"
           >
-            <div className="flex items-center gap-2 rounded-2xl border border-[hsl(0,0%,18%)] bg-[hsl(0,0%,5%)]/80 backdrop-blur-xl p-2 shadow-[0_0_60px_rgba(255,255,255,0.03)]">
-              <Sparkles className="h-4 w-4 ml-2 text-foreground/50 shrink-0" />
+            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-2.5 shadow-[0_0_80px_rgba(6,182,212,0.08)]">
+              <Sparkles className="h-5 w-5 ml-3 text-cyan-300/70 shrink-0" />
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you want to create…"
-                className="flex-1 bg-transparent text-sm md:text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2"
+                className="flex-1 bg-transparent text-base md:text-lg text-foreground placeholder:text-muted-foreground/60 focus:outline-none px-1 py-2.5"
               />
               <Link to={href}>
-                <Button size="sm" className="gap-2 uppercase tracking-wider text-[11px]">
-                  Start Creating <ArrowRight className="h-3.5 w-3.5" />
+                <Button size="lg" className="gap-2 uppercase tracking-wider text-xs h-12 px-5">
+                  Start Creating <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
             </div>
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
               {HERO_CHIPS.map((c) => (
                 <Link
                   key={c.label}
@@ -101,23 +110,23 @@ const Hero = () => {
                 </Link>
               ))}
             </div>
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
-              {HERO_PROMPTS.map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => setPrompt(p)}
-                  className="rounded-md border border-border/40 bg-card/20 px-2.5 py-1 text-[10px] text-muted-foreground/80 hover:text-foreground hover:border-foreground/20 transition-all"
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
           </form>
         </AnimatedSection>
 
+        {/* Stats row */}
+        <AnimatedSection delay={0.35}>
+          <div className="mt-10 mx-auto max-w-2xl grid grid-cols-4 divide-x divide-white/[0.06]">
+            {HERO_STATS.map((s) => (
+              <div key={s.label} className="px-2 text-center">
+                <div className="font-display text-2xl md:text-3xl font-black text-foreground tracking-tight">{s.value}</div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection delay={0.4}>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link to="/generate">
               <Button size="lg" className="h-14 px-10 text-sm uppercase tracking-widest gap-3 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
                 Start Creating Free <ArrowRight />
