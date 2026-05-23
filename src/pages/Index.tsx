@@ -660,23 +660,37 @@ const IndustriesSection = () => (
 
 /* ─── Final CTA ─── */
 const FinalCTA = () => (
-  <section className="section-padding relative overflow-hidden">
-    <StarGlimmers count={12} />
-    <div className="container-narrow">
+  <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden py-24">
+    <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,3%)] via-[hsl(0,0%,4%)] to-[hsl(0,0%,2%)]" />
+      <HeroBackground />
+    </div>
+    <StarGlimmers count={18} />
+    <div className="relative z-10 container-narrow px-4">
       <AnimatedSection>
         <div className="text-center">
-          <h2 className="font-display text-3xl font-bold md:text-5xl tracking-tight">
-            Ready to Build Something <span className="gradient-text">Powerful</span>?
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            25 Free Credits On Signup
+          </span>
+          <h2 className="font-display font-black tracking-[-0.04em] leading-[0.95] text-5xl md:text-7xl lg:text-8xl">
+            <span className="block text-foreground">Ready to</span>
+            <span className="block gradient-text">Create?</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Let's talk about your project. Book a free consultation and see how ONYX AI can help your business grow.
+          <p className="mx-auto mt-8 max-w-lg text-base md:text-lg text-muted-foreground/80 leading-relaxed">
+            Join ONYX AI Studio. Get 25 free credits on signup and start generating in seconds.
           </p>
-          <div className="mt-8">
-            <a href="https://calendly.com/onyxai-contact/onyx-consultation" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="gap-2 text-sm uppercase tracking-wider">
-                Book a Consultation <ArrowRight className="h-4 w-4" />
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link to="/generate">
+              <Button size="lg" className="h-14 px-10 text-sm uppercase tracking-widest gap-3 shadow-[0_0_40px_rgba(255,255,255,0.15)]">
+                Start Creating Free <ArrowRight />
               </Button>
-            </a>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="h-14 px-10 text-sm uppercase tracking-widest border-white/15 hover:border-white/30">
+                View All Plans
+              </Button>
+            </Link>
           </div>
         </div>
       </AnimatedSection>
