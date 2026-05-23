@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, RefreshCw, Check, X, Plus, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -8,6 +8,8 @@ import { packages, extras, CALENDLY } from "@/data/packages";
 import { creditPlans, creditPacks, creditCostRows, oneTimeServices } from "@/data/credits";
 import CompareTable from "@/components/pricing/CompareTable";
 import WhyOnyx from "@/components/pricing/WhyOnyx";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 import {
   Accordion,
   AccordionContent,
@@ -53,6 +55,19 @@ const pricingFaqs = [
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
+  const [processingId, setProcessingId] = useState<string | null>(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCheckout = (id: string) => {
+    if (!user) {
+      navigate("/auth?redirect=/pricing");
+      return;
+    }
+    setProcessingId(id);
+    toast("Checkout coming soon — Stripe integration in progress");
+    setTimeout(() => setProcessingId((cur) => (cur === id ? null : cur)), 1500);
+  };
 
   return (
   <main className="pt-20">
@@ -129,11 +144,15 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to={`/project-intake?type=${encodeURIComponent(p.intakeType)}&plan=${encodeURIComponent(p.name)}`}>
-                    <Button className="w-full" variant={p.popular ? "default" : "outline"} size="sm">
-                      {p.cta}
-                    </Button>
-                  </Link>
+                  <Button
+                    className="w-full"
+                    variant={p.popular ? "default" : "outline"}
+                    size="sm"
+                    disabled={processingId === `plan-${p.name}`}
+                    onClick={() => handleCheckout(`plan-${p.name}`)}
+                  >
+                    {processingId === `plan-${p.name}` ? "Processing..." : p.cta}
+                  </Button>
                 </div>
               </AnimatedSection>
             );
@@ -232,18 +251,15 @@ const Pricing = () => {
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Best for</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{pack.bestFor}</p>
                 </div>
-                <Link
-                  to={`/project-intake?type=Creative%20Credit%20Pack&plan=${encodeURIComponent(pack.name)}`}
-                  className="mt-5"
+                <Button
+                  className="w-full mt-5"
+                  variant={pack.featured ? "default" : "outline"}
+                  size="sm"
+                  disabled={processingId === `pack-${pack.name}`}
+                  onClick={() => handleCheckout(`pack-${pack.name}`)}
                 >
-                  <Button
-                    className="w-full"
-                    variant={pack.featured ? "default" : "outline"}
-                    size="sm"
-                  >
-                    {pack.cta}
-                  </Button>
-                </Link>
+                  {processingId === `pack-${pack.name}` ? "Processing..." : pack.cta}
+                </Button>
               </div>
             </AnimatedSection>
           ))}
