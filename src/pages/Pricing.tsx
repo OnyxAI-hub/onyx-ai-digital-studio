@@ -108,72 +108,53 @@ const Pricing = () => {
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">Monthly Credit Plans</h2>
             <p className="mt-2 text-sm text-muted-foreground">Use credits toward AI creative requests reviewed and fulfilled by ONYX.</p>
 
-            <div className="mt-6 inline-flex items-center gap-1 rounded-full border border-border/60 bg-card/60 p-1">
-              <button
-                onClick={() => setBilling("monthly")}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${billing === "monthly" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBilling("annual")}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${billing === "annual" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
-              >
-                Annual <span className="ml-1 text-[9px] opacity-70">Save ~30%</span>
-              </button>
-            </div>
           </div>
         </AnimatedSection>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          {creditPlans.map((p, i) => {
-            const price = billing === "monthly" ? p.monthly : p.annualMonthly;
-            return (
-              <AnimatedSection key={p.name} delay={i * 0.05}>
-                <div className={`p-6 h-full flex flex-col relative rounded-lg ${p.popular ? "silver-card glow-white" : "glass-card"}`}>
-                  {p.popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
-                      Popular
-                    </span>
-                  )}
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-card border border-border/60">
-                    <p.icon className="h-4 w-4 text-foreground/70" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold tracking-tight">{p.name}</h3>
-                  <div className="mt-2 mb-1">
-                    <span className="font-display text-3xl font-bold">${price}</span>
-                    <span className="text-xs text-muted-foreground">/mo</span>
-                  </div>
-                  <p className="text-[11px] text-muted-foreground/80 mb-3">
-                    {billing === "annual" ? "billed annually" : "billed monthly"}
-                  </p>
-                  <p className="text-xs font-medium text-foreground/80 mb-4">{p.credits}</p>
-                  <ul className="mb-5 flex-1 space-y-1.5">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-xs">
-                        <CheckCircle className="h-3 w-3 shrink-0 text-muted-foreground mt-0.5" />
-                        <span className="text-muted-foreground">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    className="w-full"
-                    variant={p.popular ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => {
-                      if (p.name === "Free") {
-                        if (!user) navigate("/auth");
-                        return;
-                      }
-                      handleStripeLink(`${p.name}_${billing}`);
-                    }}
-                  >
-                    {p.cta}
-                  </Button>
+          {creditPlans.map((p, i) => (
+            <AnimatedSection key={p.name} delay={i * 0.05}>
+              <div className={`p-6 h-full flex flex-col relative rounded-lg ${p.popular ? "silver-card glow-white" : "glass-card"}`}>
+                {p.popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
+                    Popular
+                  </span>
+                )}
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-card border border-border/60">
+                  <p.icon className="h-4 w-4 text-foreground/70" />
                 </div>
-              </AnimatedSection>
-            );
-          })}
+                <h3 className="font-display text-lg font-bold tracking-tight">{p.name}</h3>
+                <div className="mt-2 mb-1">
+                  <span className="font-display text-3xl font-bold">${p.monthly}</span>
+                  <span className="text-xs text-muted-foreground">/mo</span>
+                </div>
+                <p className="text-[11px] text-muted-foreground/80 mb-3">billed monthly</p>
+                <p className="text-xs font-medium text-foreground/80 mb-4">{p.credits}</p>
+                <ul className="mb-5 flex-1 space-y-1.5">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-xs">
+                      <CheckCircle className="h-3 w-3 shrink-0 text-muted-foreground mt-0.5" />
+                      <span className="text-muted-foreground">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  className="w-full"
+                  variant={p.popular ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    if (p.name === "Free") {
+                      if (!user) navigate("/auth");
+                      return;
+                    }
+                    handleStripeLink(`${p.name}_monthly`);
+                  }}
+                >
+                  {p.cta}
+                </Button>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
 
         <AnimatedSection delay={0.2}>
