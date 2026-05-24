@@ -166,16 +166,15 @@ const Pricing = () => {
                     className="w-full"
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
-                    disabled={loadingKey === `${p.name}_${billing}`}
                     onClick={() => {
                       if (p.name === "Free") {
                         if (!user) navigate("/auth");
                         return;
                       }
-                      handleCheckout(`${p.name}_${billing}`);
+                      handleStripeLink(`${p.name}_${billing}`);
                     }}
                   >
-                    {loadingKey === `${p.name}_${billing}` ? "Loading..." : p.cta}
+                    {p.cta}
                   </Button>
                 </div>
               </AnimatedSection>
@@ -279,10 +278,9 @@ const Pricing = () => {
                   className="w-full mt-5"
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
-                  disabled={loadingKey === `${pack.name.split(" ")[0]}_pack`}
-                  onClick={() => handleCheckout(`${pack.name.split(" ")[0]}_pack`)}
+                  onClick={() => handleStripeLink(`${pack.name.split(" ")[0]}_pack`)}
                 >
-                  {loadingKey === `${pack.name.split(" ")[0]}_pack` ? "Loading..." : pack.cta}
+                  {pack.cta}
                 </Button>
               </div>
             </AnimatedSection>
