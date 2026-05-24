@@ -53,21 +53,6 @@ const pricingFaqs = [
 ];
 
 
-const PLAN_LOOKUP_KEYS: Record<string, string> = {
-  Starter: "starter_monthly",
-  Basic: "basic_monthly",
-  Premium: "premium_monthly",
-  Pro: "pro_monthly",
-  Ultra: "ultra_monthly",
-};
-
-const PACK_LOOKUP_KEYS: Record<string, string> = {
-  "Starter Credit Pack": "starter_pack",
-  "Creator Credit Pack": "creator_pack",
-  "Studio Credit Pack": "studio_pack",
-  "Pro Credit Pack": "pro_pack",
-  "Ultimate Credit Pack": "ultimate_pack",
-};
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
