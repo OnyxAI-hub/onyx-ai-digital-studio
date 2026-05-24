@@ -53,36 +53,38 @@ const pricingFaqs = [
 
 
 
+const STRIPE_LINKS: Record<string, string> = {
+  "Starter_monthly": "https://buy.stripe.com/28EdR81zJ66i5hH2qX1RC09",
+  "Starter_annual": "https://buy.stripe.com/28EdR81zJ66i5hH2qX1RC09",
+  "Basic_monthly": "https://buy.stripe.com/cNidR87Y73Ya9xXghN1RC0a",
+  "Basic_annual": "https://buy.stripe.com/cNidR87Y73Ya9xXghN1RC0a",
+  "Premium_monthly": "https://buy.stripe.com/8x25kC4LVamybG5c1x1RC0b",
+  "Premium_annual": "https://buy.stripe.com/8x25kC4LVamybG5c1x1RC0b",
+  "Pro_monthly": "https://buy.stripe.com/fZubJ07Y7gKWh0pd5B1RC0c",
+  "Pro_annual": "https://buy.stripe.com/fZubJ07Y7gKWh0pd5B1RC0c",
+  "Ultra_monthly": "https://buy.stripe.com/14A8wOa6fgKW25v3v11RC0d",
+  "Ultra_annual": "https://buy.stripe.com/14A8wOa6fgKW25v3v11RC0d",
+  "Starter_pack": "https://buy.stripe.com/6oU9AScen0LY4dD5D91RC0e",
+  "Creator_pack": "https://buy.stripe.com/cNi9AS7Y7gKWcK94z51RC0f",
+  "Studio_pack": "https://buy.stripe.com/28E6oG5PZeCO4dD4z51RC0g",
+  "Pro_pack": "https://buy.stripe.com/4gMeVc5PZ1Q2aC14z51RC0h",
+  "Ultimate_pack": "https://buy.stripe.com/14A8wO92bcuG8tT9Tp1RC0i",
+};
+
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
-  const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleCheckout = async (lookupKey: string) => {
+  const handleStripeLink = (key: string) => {
     if (!user) {
       navigate("/auth");
       return;
     }
-    setLoadingKey(lookupKey);
-    try {
-      const { data, error } = await supabase.functions.invoke(
-        "create-checkout",
-        {
-          body: {
-            priceId: lookupKey,
-            userId: user.id,
-            userEmail: user.email,
-          },
-        }
-      );
-      if (data?.url) {
-        window.location.href = data.url;
-      }
-    } catch (err) {
-      console.error(err);
+    const url = STRIPE_LINKS[key];
+    if (url) {
+      window.open(url, "_blank");
     }
-    setLoadingKey(null);
   };
 
   return (
