@@ -165,14 +165,16 @@ const Pricing = () => {
                     className="w-full"
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
-                    disabled={loadingKey === PLAN_LOOKUP_KEYS[p.name]}
+                    disabled={loadingKey === `${p.name}_${billing}`}
                     onClick={() => {
-                      const key = PLAN_LOOKUP_KEYS[p.name];
-                      if (key) handleCheckout(key);
-                      else if (!user) navigate("/auth");
+                      if (p.name === "Free") {
+                        if (!user) navigate("/auth");
+                        return;
+                      }
+                      handleCheckout(`${p.name}_${billing}`);
                     }}
                   >
-                    {loadingKey === PLAN_LOOKUP_KEYS[p.name] ? "Loading..." : p.cta}
+                    {loadingKey === `${p.name}_${billing}` ? "Loading..." : p.cta}
                   </Button>
                 </div>
               </AnimatedSection>
