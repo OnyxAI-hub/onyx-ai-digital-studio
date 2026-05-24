@@ -53,21 +53,6 @@ const pricingFaqs = [
 ];
 
 
-const PLAN_LOOKUP_KEYS: Record<string, string> = {
-  Starter: "starter_monthly",
-  Basic: "basic_monthly",
-  Premium: "premium_monthly",
-  Pro: "pro_monthly",
-  Ultra: "ultra_monthly",
-};
-
-const PACK_LOOKUP_KEYS: Record<string, string> = {
-  "Starter Credit Pack": "starter_pack",
-  "Creator Credit Pack": "creator_pack",
-  "Studio Credit Pack": "studio_pack",
-  "Pro Credit Pack": "pro_pack",
-  "Ultimate Credit Pack": "ultimate_pack",
-};
 
 const Pricing = () => {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
@@ -180,14 +165,16 @@ const Pricing = () => {
                     className="w-full"
                     variant={p.popular ? "default" : "outline"}
                     size="sm"
-                    disabled={loadingKey === PLAN_LOOKUP_KEYS[p.name]}
+                    disabled={loadingKey === `${p.name}_${billing}`}
                     onClick={() => {
-                      const key = PLAN_LOOKUP_KEYS[p.name];
-                      if (key) handleCheckout(key);
-                      else if (!user) navigate("/auth");
+                      if (p.name === "Free") {
+                        if (!user) navigate("/auth");
+                        return;
+                      }
+                      handleCheckout(`${p.name}_${billing}`);
                     }}
                   >
-                    {loadingKey === PLAN_LOOKUP_KEYS[p.name] ? "Loading..." : p.cta}
+                    {loadingKey === `${p.name}_${billing}` ? "Loading..." : p.cta}
                   </Button>
                 </div>
               </AnimatedSection>
@@ -291,10 +278,10 @@ const Pricing = () => {
                   className="w-full mt-5"
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
-                  disabled={loadingKey === PACK_LOOKUP_KEYS[pack.name]}
-                  onClick={() => handleCheckout(PACK_LOOKUP_KEYS[pack.name])}
+                  disabled={loadingKey === `${pack.name.split(" ")[0]}_pack`}
+                  onClick={() => handleCheckout(`${pack.name.split(" ")[0]}_pack`)}
                 >
-                  {loadingKey === PACK_LOOKUP_KEYS[pack.name] ? "Loading..." : pack.cta}
+                  {loadingKey === `${pack.name.split(" ")[0]}_pack` ? "Loading..." : pack.cta}
                 </Button>
               </div>
             </AnimatedSection>
