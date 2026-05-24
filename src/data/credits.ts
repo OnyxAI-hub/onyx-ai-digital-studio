@@ -16,7 +16,6 @@ import {
 export interface CreditPlan {
   name: string;
   monthly: number;
-  annualMonthly: number;
   credits: string;
   popular?: boolean;
   icon: typeof Rocket;
@@ -25,11 +24,11 @@ export interface CreditPlan {
   intakeType: string;
 }
 
+
 export const creditPlans: CreditPlan[] = [
   {
     name: "Free",
     monthly: 0,
-    annualMonthly: 0,
     credits: "300 credits / month",
     icon: Sparkles,
     cta: "Start Free",
@@ -46,7 +45,6 @@ export const creditPlans: CreditPlan[] = [
   {
     name: "Starter",
     monthly: 4,
-    annualMonthly: 3,
     credits: "5,000 credits / month",
     icon: Rocket,
     cta: "Start Starter",
@@ -64,7 +62,6 @@ export const creditPlans: CreditPlan[] = [
   {
     name: "Basic",
     monthly: 9,
-    annualMonthly: 7.33,
     credits: "11,000 credits / month",
     icon: Zap,
     cta: "Start Basic",
@@ -82,7 +79,6 @@ export const creditPlans: CreditPlan[] = [
   {
     name: "Premium",
     monthly: 21,
-    annualMonthly: 15.67,
     credits: "25,000 credits / month",
     popular: true,
     icon: Sparkles,
@@ -102,7 +98,6 @@ export const creditPlans: CreditPlan[] = [
   {
     name: "Pro",
     monthly: 54,
-    annualMonthly: 40.25,
     credits: "60,000 credits / month",
     icon: Crown,
     cta: "Start Pro",
@@ -122,7 +117,6 @@ export const creditPlans: CreditPlan[] = [
   {
     name: "Ultra",
     monthly: 124,
-    annualMonthly: 86.5,
     credits: "130,000 credits / month",
     icon: Gem,
     cta: "Start Ultra",
