@@ -278,10 +278,10 @@ const Pricing = () => {
                   className="w-full mt-5"
                   variant={pack.featured ? "default" : "outline"}
                   size="sm"
-                  disabled={loadingKey === PACK_LOOKUP_KEYS[pack.name]}
-                  onClick={() => handleCheckout(PACK_LOOKUP_KEYS[pack.name])}
+                  disabled={loadingKey === `${pack.name.split(" ")[0]}_pack`}
+                  onClick={() => handleCheckout(`${pack.name.split(" ")[0]}_pack`)}
                 >
-                  {loadingKey === PACK_LOOKUP_KEYS[pack.name] ? "Loading..." : pack.cta}
+                  {loadingKey === `${pack.name.split(" ")[0]}_pack` ? "Loading..." : pack.cta}
                 </Button>
               </div>
             </AnimatedSection>
