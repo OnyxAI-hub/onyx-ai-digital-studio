@@ -67,7 +67,6 @@ const STRIPE_LINKS: Record<string, string> = {
 };
 
 const Pricing = () => {
-  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
   const { user } = useAuth();
   const navigate = useNavigate();
 
