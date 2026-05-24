@@ -55,15 +55,10 @@ const pricingFaqs = [
 
 const STRIPE_LINKS: Record<string, string> = {
   "Starter_monthly": "https://buy.stripe.com/28EdR81zJ66i5hH2qX1RC09",
-  "Starter_annual": "https://buy.stripe.com/28EdR81zJ66i5hH2qX1RC09",
   "Basic_monthly": "https://buy.stripe.com/cNidR87Y73Ya9xXghN1RC0a",
-  "Basic_annual": "https://buy.stripe.com/cNidR87Y73Ya9xXghN1RC0a",
   "Premium_monthly": "https://buy.stripe.com/8x25kC4LVamybG5c1x1RC0b",
-  "Premium_annual": "https://buy.stripe.com/8x25kC4LVamybG5c1x1RC0b",
   "Pro_monthly": "https://buy.stripe.com/fZubJ07Y7gKWh0pd5B1RC0c",
-  "Pro_annual": "https://buy.stripe.com/fZubJ07Y7gKWh0pd5B1RC0c",
   "Ultra_monthly": "https://buy.stripe.com/14A8wOa6fgKW25v3v11RC0d",
-  "Ultra_annual": "https://buy.stripe.com/14A8wOa6fgKW25v3v11RC0d",
   "Starter_pack": "https://buy.stripe.com/6oU9AScen0LY4dD5D91RC0e",
   "Creator_pack": "https://buy.stripe.com/cNi9AS7Y7gKWcK94z51RC0f",
   "Studio_pack": "https://buy.stripe.com/28E6oG5PZeCO4dD4z51RC0g",
