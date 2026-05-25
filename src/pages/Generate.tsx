@@ -119,6 +119,45 @@ const Generate = () => {
     if (!user) return navigate("/auth");
     if (!prompt.trim()) return toast({ title: "Add a prompt first", variant: "destructive" });
     setSubmitting(true);
+
+    if (tab === "Image") {
+      setGeneratedImage(null);
+      try {
+        const { data, error } = await supabase.functions.invoke("generate-image", {
+          body: { prompt },
+        });
+        if (error) throw error;
+        const imageUrl = (data as any)?.imageUrl;
+        if (!imageUrl) throw new Error("No image returned");
+        setGeneratedImage(imageUrl);
+
+        // Deduct 10 credits
+        const { data: bal } = await supabase
+          .from("credit_balances")
+          .select("balance")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (bal) {
+          await supabase
+            .from("credit_balances")
+            .update({ balance: Math.max(0, (bal.balance ?? 0) - 10) })
+            .eq("user_id", user.id);
+          await supabase.from("credit_transactions").insert({
+            user_id: user.id,
+            transaction_type: "usage",
+            amount: -10,
+            description: "Image generation",
+          });
+        }
+        toast({ title: "Image generated", description: "10 credits deducted." });
+      } catch (err: any) {
+        toast({ title: "Generation failed", description: err?.message ?? "Unknown error", variant: "destructive" });
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
+
     const modelLine = tab === "Video" ? `${videoTier} · ${videoLen}s` : model;
     const { error } = await supabase.from("creative_requests").insert({
       user_id: user.id,
