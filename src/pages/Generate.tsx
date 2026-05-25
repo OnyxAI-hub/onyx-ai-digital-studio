@@ -275,6 +275,26 @@ const Generate = () => {
                   alt="Generated"
                   className="mt-2 w-full rounded-lg border border-border/60"
                 />
+                <Button
+                  onClick={async () => {
+                    try {
+                      const response = await fetch(generatedImage);
+                      const blob = await response.blob();
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = "onyx-ai-image.png";
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    } catch (err: any) {
+                      toast({ title: "Download failed", description: err?.message ?? "Unknown error", variant: "destructive" });
+                    }
+                  }}
+                  variant="outline"
+                  className="mt-3 w-full gap-2 border-border/60 bg-card/40 hover:bg-card/70 hover:border-foreground/30"
+                >
+                  <Download className="h-4 w-4" /> Download Image
+                </Button>
               </div>
             )}
             <p className="mt-3 flex items-start gap-1.5 text-[11px] text-muted-foreground/80 leading-relaxed">
