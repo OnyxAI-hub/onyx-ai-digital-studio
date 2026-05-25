@@ -14,7 +14,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { prompt } = await req.json();
+    const { prompt, safety } = await req.json();
     if (!prompt || typeof prompt !== "string") {
       return new Response(JSON.stringify({ error: "Missing 'prompt' string in body" }), {
         status: 400,
@@ -22,7 +22,17 @@ Deno.serve(async (req) => {
       });
     }
 
-    const falRes = await fetch("https://fal.run/fal-ai/flux/schnell", {
+    const SAFETY_MODEL_MAP: Record<string, string> = {
+      Family: "fal-ai/flux/schnell",
+      Safe: "fal-ai/flux/schnell",
+      "Teen+": "fal-ai/flux/dev",
+      "Mild Suggestive": "fal-ai/flux/dev",
+      Mature: "fal-ai/flux-pro",
+      Custom: "fal-ai/flux-pro",
+    };
+    const model = SAFETY_MODEL_MAP[safety as string] ?? "fal-ai/flux/dev";
+
+    const falRes = await fetch(`https://fal.run/${model}`, {
       method: "POST",
       headers: {
         Authorization: `Key ${FAL_API_KEY}`,
