@@ -91,6 +91,7 @@ const Generate = () => {
   const [safety, setSafety] = useState("Teen+");
   const [submitting, setSubmitting] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [referenceImage, setReferenceImage] = useState<string | null>(null);
 
   // Video-only
   const [videoTier, setVideoTier] = useState<"Fast" | "Standard" | "Premium" | "Ultra">("Standard");
