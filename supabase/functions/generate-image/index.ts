@@ -14,7 +14,12 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { prompt, safety, imageUrl } = await req.json();
+    const body = await req.json().catch(() => ({}));
+    const prompt: string | undefined = body?.prompt;
+    const safety: string | undefined = body?.safety;
+    // Accept either referenceImageUrl or imageUrl from client
+    const referenceImageUrl: string | undefined = body?.referenceImageUrl ?? body?.imageUrl;
+
     if (!prompt || typeof prompt !== "string") {
       return new Response(JSON.stringify({ error: "Missing 'prompt' string in body" }), {
         status: 400,
@@ -31,13 +36,13 @@ Deno.serve(async (req) => {
       Custom: "fal-ai/flux-pro",
     };
 
-    const isImageToImage = typeof imageUrl === "string" && imageUrl.length > 0;
+    const isImageToImage = typeof referenceImageUrl === "string" && referenceImageUrl.length > 0;
     const model = isImageToImage
-      ? "fal-ai/flux-pro/v1.1"
+      ? "fal-ai/flux/dev/image-to-image"
       : (SAFETY_MODEL_MAP[safety as string] ?? "fal-ai/flux/dev");
 
-    const body = isImageToImage
-      ? { prompt, image_url: imageUrl, strength: 0.85, num_images: 1 }
+    const falBody = isImageToImage
+      ? { prompt, image_url: referenceImageUrl, strength: 0.85, num_images: 1 }
       : { prompt, num_images: 1, image_size: "square_hd" };
 
     const falRes = await fetch(`https://fal.run/${model}`, {
@@ -46,11 +51,12 @@ Deno.serve(async (req) => {
         Authorization: `Key ${FAL_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(falBody),
     });
 
     if (!falRes.ok) {
       const text = await falRes.text();
+      console.error("fal.ai error:", falRes.status, text);
       return new Response(JSON.stringify({ error: `fal.ai error: ${text}` }), {
         status: 502,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -58,19 +64,20 @@ Deno.serve(async (req) => {
     }
 
     const result = await falRes.json();
-    const imageUrl = result?.images?.[0]?.url;
-    if (!imageUrl) {
+    const resultUrl = result?.images?.[0]?.url;
+    if (!resultUrl) {
       return new Response(JSON.stringify({ error: "No image returned", result }), {
         status: 502,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    return new Response(JSON.stringify({ imageUrl }), {
+    return new Response(JSON.stringify({ imageUrl: resultUrl }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("generate-image error:", err);
     return new Response(JSON.stringify({ error: (err as Error).message }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
