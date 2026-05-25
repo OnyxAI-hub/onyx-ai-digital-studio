@@ -110,13 +110,13 @@ const Generate = () => {
   }, [loading, user, active.mode, navigate, tab]);
 
   const estimated = useMemo(() => {
-    if (tab === "Image") return IMAGE_COST[model] ?? 10;
+    if (tab === "Image") return referenceImage ? 20 : 10;
     if (tab === "Video") return VIDEO_COST[videoTier][videoLen] ?? 500;
     if (tab === "Audio") return 75;
     if (tab === "Apps") return 25;
     if (tab === "Design") return 15;
     return 0;
-  }, [tab, model, videoTier, videoLen]);
+  }, [tab, model, videoTier, videoLen, referenceImage]);
 
   const submit = async () => {
     if (!user) return navigate("/auth");
