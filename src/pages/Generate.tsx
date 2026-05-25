@@ -257,9 +257,48 @@ const Generate = () => {
             <div className="mt-4">
               <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Reference link</Label>
               <Input value={referenceUrl} onChange={(e) => setReferenceUrl(e.target.value)} placeholder="https://… (file upload coming soon)" className="mt-2 text-xs" />
-              <div className="mt-2 flex items-center gap-1.5 text-[10px] text-muted-foreground/70">
-                <Upload className="h-3 w-3" /> File uploads activate once storage is enabled.
-              </div>
+              {tab === "Image" && (
+                <div className="mt-3">
+                  <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Reference image (image-to-image)</Label>
+                  <div className="mt-2 flex items-center gap-2">
+                    <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-border/60 bg-card/40 px-3 py-1.5 text-xs hover:bg-card/70 hover:border-foreground/30 transition">
+                      <Upload className="h-3.5 w-3.5" />
+                      {referenceImage ? "Replace image" : "Upload image"}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          if (file.size > 8 * 1024 * 1024) {
+                            toast({ title: "Image too large", description: "Max 8MB.", variant: "destructive" });
+                            return;
+                          }
+                          const reader = new FileReader();
+                          reader.onload = () => setReferenceImage(reader.result as string);
+                          reader.readAsDataURL(file);
+                        }}
+                      />
+                    </label>
+                    {referenceImage && (
+                      <Button variant="ghost" size="sm" className="h-7 text-[11px]" onClick={() => setReferenceImage(null)}>
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                  {referenceImage && (
+                    <img
+                      src={referenceImage}
+                      alt="Reference"
+                      className="mt-2 max-h-48 rounded-lg border border-border/60"
+                    />
+                  )}
+                  <p className="mt-1.5 text-[10px] text-muted-foreground/70">
+                    {referenceImage ? "Image-to-image (20 credits) using flux-pro v1.1." : "Optional. Upload to enable image-to-image."}
+                  </p>
+                </div>
+              )}
             </div>
 
             <Button onClick={submit} disabled={submitting} size="lg" className="mt-6 w-full gap-2">
