@@ -24,6 +24,7 @@ import {
   ArrowRight,
   Info,
   Upload,
+  Loader2,
 } from "lucide-react";
 import PlatformLayout from "@/components/studio/PlatformLayout";
 import { useAuth } from "@/hooks/useAuth";
@@ -88,6 +89,7 @@ const Generate = () => {
   const [model, setModel] = useState(modelOptions[0] ?? "");
   const [safety, setSafety] = useState("Teen+");
   const [submitting, setSubmitting] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
 
   // Video-only
   const [videoTier, setVideoTier] = useState<"Fast" | "Standard" | "Premium" | "Ultra">("Standard");
@@ -118,6 +120,45 @@ const Generate = () => {
     if (!user) return navigate("/auth");
     if (!prompt.trim()) return toast({ title: "Add a prompt first", variant: "destructive" });
     setSubmitting(true);
+
+    if (tab === "Image") {
+      setGeneratedImage(null);
+      try {
+        const { data, error } = await supabase.functions.invoke("generate-image", {
+          body: { prompt },
+        });
+        if (error) throw error;
+        const imageUrl = (data as any)?.imageUrl;
+        if (!imageUrl) throw new Error("No image returned");
+        setGeneratedImage(imageUrl);
+
+        // Deduct 10 credits
+        const { data: bal } = await supabase
+          .from("credit_balances")
+          .select("balance")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (bal) {
+          await supabase
+            .from("credit_balances")
+            .update({ balance: Math.max(0, (bal.balance ?? 0) - 10) })
+            .eq("user_id", user.id);
+          await supabase.from("credit_transactions").insert({
+            user_id: user.id,
+            transaction_type: "usage",
+            amount: -10,
+            description: "Image generation",
+          });
+        }
+        toast({ title: "Image generated", description: "10 credits deducted." });
+      } catch (err: any) {
+        toast({ title: "Generation failed", description: err?.message ?? "Unknown error", variant: "destructive" });
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
+
     const modelLine = tab === "Video" ? `${videoTier} · ${videoLen}s` : model;
     const { error } = await supabase.from("creative_requests").insert({
       user_id: user.id,
@@ -219,11 +260,27 @@ const Generate = () => {
             </div>
 
             <Button onClick={submit} disabled={submitting} size="lg" className="mt-6 w-full gap-2">
-              <Send className="h-4 w-4" /> {submitting ? "Submitting…" : "Submit Creation Request"}
+              {submitting ? (
+                <><Loader2 className="h-4 w-4 animate-spin" /> {tab === "Image" ? "Generating…" : "Submitting…"}</>
+              ) : (
+                <><Send className="h-4 w-4" /> {tab === "Image" ? "Generate Image" : "Submit Creation Request"}</>
+              )}
             </Button>
+            {tab === "Image" && generatedImage && (
+              <div className="mt-6">
+                <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Result</Label>
+                <img
+                  src={generatedImage}
+                  alt="Generated"
+                  className="mt-2 w-full rounded-lg border border-border/60"
+                />
+              </div>
+            )}
             <p className="mt-3 flex items-start gap-1.5 text-[11px] text-muted-foreground/80 leading-relaxed">
               <Info className="h-3 w-3 mt-0.5 shrink-0" />
-              API generation coming soon. Requests are saved as pending and fulfilled by the ONYX team. Credits are only deducted on delivery.
+              {tab === "Image"
+                ? "Image generation runs live via our AI model. 10 credits are deducted per successful generation."
+                : "API generation coming soon. Requests are saved as pending and fulfilled by the ONYX team. Credits are only deducted on delivery."}
             </p>
           </div>
 
