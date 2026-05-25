@@ -91,6 +91,7 @@ const Generate = () => {
   const [safety, setSafety] = useState("Teen+");
   const [submitting, setSubmitting] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [referenceImage, setReferenceImage] = useState<string | null>(null);
 
   // Video-only
   const [videoTier, setVideoTier] = useState<"Fast" | "Standard" | "Premium" | "Ultra">("Standard");
@@ -109,13 +110,13 @@ const Generate = () => {
   }, [loading, user, active.mode, navigate, tab]);
 
   const estimated = useMemo(() => {
-    if (tab === "Image") return IMAGE_COST[model] ?? 10;
+    if (tab === "Image") return referenceImage ? 20 : 10;
     if (tab === "Video") return VIDEO_COST[videoTier][videoLen] ?? 500;
     if (tab === "Audio") return 75;
     if (tab === "Apps") return 25;
     if (tab === "Design") return 15;
     return 0;
-  }, [tab, model, videoTier, videoLen]);
+  }, [tab, model, videoTier, videoLen, referenceImage]);
 
   const submit = async () => {
     if (!user) return navigate("/auth");
@@ -126,14 +127,15 @@ const Generate = () => {
       setGeneratedImage(null);
       try {
         const { data, error } = await supabase.functions.invoke("generate-image", {
-          body: { prompt, safety },
+          body: { prompt, safety, imageUrl: referenceImage ?? undefined },
         });
         if (error) throw error;
         const imageUrl = (data as any)?.imageUrl;
         if (!imageUrl) throw new Error("No image returned");
         setGeneratedImage(imageUrl);
 
-        // Deduct 10 credits
+        // Deduct credits (20 for img2img, 10 for text2img)
+        const cost = referenceImage ? 20 : 10;
         const { data: bal } = await supabase
           .from("credit_balances")
           .select("balance")
@@ -142,16 +144,16 @@ const Generate = () => {
         if (bal) {
           await supabase
             .from("credit_balances")
-            .update({ balance: Math.max(0, (bal.balance ?? 0) - 10) })
+            .update({ balance: Math.max(0, (bal.balance ?? 0) - cost) })
             .eq("user_id", user.id);
           await supabase.from("credit_transactions").insert({
             user_id: user.id,
             transaction_type: "usage",
-            amount: -10,
-            description: "Image generation",
+            amount: -cost,
+            description: referenceImage ? "Image-to-image generation" : "Image generation",
           });
         }
-        toast({ title: "Image generated", description: "10 credits deducted." });
+        toast({ title: "Image generated", description: `${cost} credits deducted.` });
       } catch (err: any) {
         toast({ title: "Generation failed", description: err?.message ?? "Unknown error", variant: "destructive" });
       } finally {
@@ -255,9 +257,48 @@ const Generate = () => {
             <div className="mt-4">
               <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Reference link</Label>
               <Input value={referenceUrl} onChange={(e) => setReferenceUrl(e.target.value)} placeholder="https://… (file upload coming soon)" className="mt-2 text-xs" />
-              <div className="mt-2 flex items-center gap-1.5 text-[10px] text-muted-foreground/70">
-                <Upload className="h-3 w-3" /> File uploads activate once storage is enabled.
-              </div>
+              {tab === "Image" && (
+                <div className="mt-3">
+                  <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Reference image (image-to-image)</Label>
+                  <div className="mt-2 flex items-center gap-2">
+                    <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-border/60 bg-card/40 px-3 py-1.5 text-xs hover:bg-card/70 hover:border-foreground/30 transition">
+                      <Upload className="h-3.5 w-3.5" />
+                      {referenceImage ? "Replace image" : "Upload image"}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          if (file.size > 8 * 1024 * 1024) {
+                            toast({ title: "Image too large", description: "Max 8MB.", variant: "destructive" });
+                            return;
+                          }
+                          const reader = new FileReader();
+                          reader.onload = () => setReferenceImage(reader.result as string);
+                          reader.readAsDataURL(file);
+                        }}
+                      />
+                    </label>
+                    {referenceImage && (
+                      <Button variant="ghost" size="sm" className="h-7 text-[11px]" onClick={() => setReferenceImage(null)}>
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                  {referenceImage && (
+                    <img
+                      src={referenceImage}
+                      alt="Reference"
+                      className="mt-2 max-h-48 rounded-lg border border-border/60"
+                    />
+                  )}
+                  <p className="mt-1.5 text-[10px] text-muted-foreground/70">
+                    {referenceImage ? "Image-to-image (20 credits) using flux-pro v1.1." : "Optional. Upload to enable image-to-image."}
+                  </p>
+                </div>
+              )}
             </div>
 
             <Button onClick={submit} disabled={submitting} size="lg" className="mt-6 w-full gap-2">

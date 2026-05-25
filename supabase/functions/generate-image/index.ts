@@ -14,7 +14,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { prompt, safety } = await req.json();
+    const { prompt, safety, imageUrl } = await req.json();
     if (!prompt || typeof prompt !== "string") {
       return new Response(JSON.stringify({ error: "Missing 'prompt' string in body" }), {
         status: 400,
@@ -30,7 +30,15 @@ Deno.serve(async (req) => {
       Mature: "fal-ai/flux-pro",
       Custom: "fal-ai/flux-pro",
     };
-    const model = SAFETY_MODEL_MAP[safety as string] ?? "fal-ai/flux/dev";
+
+    const isImageToImage = typeof imageUrl === "string" && imageUrl.length > 0;
+    const model = isImageToImage
+      ? "fal-ai/flux-pro/v1.1"
+      : (SAFETY_MODEL_MAP[safety as string] ?? "fal-ai/flux/dev");
+
+    const body = isImageToImage
+      ? { prompt, image_url: imageUrl, strength: 0.85, num_images: 1 }
+      : { prompt, num_images: 1, image_size: "square_hd" };
 
     const falRes = await fetch(`https://fal.run/${model}`, {
       method: "POST",
@@ -38,11 +46,7 @@ Deno.serve(async (req) => {
         Authorization: `Key ${FAL_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        prompt,
-        num_images: 1,
-        image_size: "square_hd",
-      }),
+      body: JSON.stringify(body),
     });
 
     if (!falRes.ok) {
