@@ -259,11 +259,27 @@ const Generate = () => {
             </div>
 
             <Button onClick={submit} disabled={submitting} size="lg" className="mt-6 w-full gap-2">
-              <Send className="h-4 w-4" /> {submitting ? "Submitting…" : "Submit Creation Request"}
+              {submitting ? (
+                <><Loader2 className="h-4 w-4 animate-spin" /> {tab === "Image" ? "Generating…" : "Submitting…"}</>
+              ) : (
+                <><Send className="h-4 w-4" /> {tab === "Image" ? "Generate Image" : "Submit Creation Request"}</>
+              )}
             </Button>
+            {tab === "Image" && generatedImage && (
+              <div className="mt-6">
+                <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">Result</Label>
+                <img
+                  src={generatedImage}
+                  alt="Generated"
+                  className="mt-2 w-full rounded-lg border border-border/60"
+                />
+              </div>
+            )}
             <p className="mt-3 flex items-start gap-1.5 text-[11px] text-muted-foreground/80 leading-relaxed">
               <Info className="h-3 w-3 mt-0.5 shrink-0" />
-              API generation coming soon. Requests are saved as pending and fulfilled by the ONYX team. Credits are only deducted on delivery.
+              {tab === "Image"
+                ? "Image generation runs live via our AI model. 10 credits are deducted per successful generation."
+                : "API generation coming soon. Requests are saved as pending and fulfilled by the ONYX team. Credits are only deducted on delivery."}
             </p>
           </div>
 
