@@ -126,7 +126,7 @@ const Generate = () => {
       setGeneratedImage(null);
       try {
         const { data, error } = await supabase.functions.invoke("generate-image", {
-          body: { prompt },
+          body: { prompt, safety },
         });
         if (error) throw error;
         const imageUrl = (data as any)?.imageUrl;
