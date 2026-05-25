@@ -25,6 +25,7 @@ import {
   Info,
   Upload,
   Loader2,
+  Download,
 } from "lucide-react";
 import PlatformLayout from "@/components/studio/PlatformLayout";
 import { useAuth } from "@/hooks/useAuth";
