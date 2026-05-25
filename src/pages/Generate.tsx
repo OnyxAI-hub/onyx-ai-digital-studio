@@ -127,14 +127,15 @@ const Generate = () => {
       setGeneratedImage(null);
       try {
         const { data, error } = await supabase.functions.invoke("generate-image", {
-          body: { prompt, safety },
+          body: { prompt, safety, imageUrl: referenceImage ?? undefined },
         });
         if (error) throw error;
         const imageUrl = (data as any)?.imageUrl;
         if (!imageUrl) throw new Error("No image returned");
         setGeneratedImage(imageUrl);
 
-        // Deduct 10 credits
+        // Deduct credits (20 for img2img, 10 for text2img)
+        const cost = referenceImage ? 20 : 10;
         const { data: bal } = await supabase
           .from("credit_balances")
           .select("balance")
@@ -143,16 +144,16 @@ const Generate = () => {
         if (bal) {
           await supabase
             .from("credit_balances")
-            .update({ balance: Math.max(0, (bal.balance ?? 0) - 10) })
+            .update({ balance: Math.max(0, (bal.balance ?? 0) - cost) })
             .eq("user_id", user.id);
           await supabase.from("credit_transactions").insert({
             user_id: user.id,
             transaction_type: "usage",
-            amount: -10,
-            description: "Image generation",
+            amount: -cost,
+            description: referenceImage ? "Image-to-image generation" : "Image generation",
           });
         }
-        toast({ title: "Image generated", description: "10 credits deducted." });
+        toast({ title: "Image generated", description: `${cost} credits deducted.` });
       } catch (err: any) {
         toast({ title: "Generation failed", description: err?.message ?? "Unknown error", variant: "destructive" });
       } finally {
