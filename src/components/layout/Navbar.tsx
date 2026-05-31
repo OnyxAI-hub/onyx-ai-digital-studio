@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import onyxLogo from "@/assets/onyx-logo.png";
 
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969";
 
@@ -17,10 +18,10 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/20 bg-background/85 backdrop-blur-2xl">
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="font-display text-base md:text-lg font-bold tracking-tight">
-            <span className="text-foreground">ONYX AI</span>
-            <span className="text-[hsl(var(--ai-cyan))]"> VIDEO SKOOL</span>
+        <a href="#top" className="flex items-center gap-3">
+          <img src={onyxLogo} alt="Onyx AI Video Skool" className="h-9 md:h-11 w-auto object-contain" />
+          <span className="hidden sm:inline font-display text-xs md:text-sm font-semibold tracking-[0.15em] uppercase text-muted-foreground">
+            Video Skool
           </span>
         </a>
 
