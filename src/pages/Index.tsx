@@ -195,7 +195,7 @@ const Index = () => {
                   className="absolute inset-0 -z-10 blur-2xl opacity-50"
                   style={{ background: "radial-gradient(circle, hsl(var(--ai-cyan) / 0.4), transparent 60%)" }}
                 />
-                <img src="/src/assets/xavier-headshot.jpg" alt="Xavier" className="h-full w-full object-cover" loading="lazy" />
+                <img src={xavierHeadshot} alt="Xavier" className="h-full w-full object-cover" loading="lazy" />
               </div>
             </div>
             <div className="md:col-span-3">
