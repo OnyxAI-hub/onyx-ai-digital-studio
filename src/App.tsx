@@ -6,32 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/layout/Navbar";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import Footer from "@/components/layout/Footer";
-import ChatWidget from "@/components/chatbot/ChatWidget";
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import Pricing from "./pages/Pricing";
-import Portfolio from "./pages/Portfolio";
-import ProjectDetail from "./pages/ProjectDetail";
-import About from "./pages/About";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import ProjectIntake from "./pages/ProjectIntake";
-import ClientPortal from "./pages/ClientPortal";
-import ThankYou from "./pages/ThankYou";
-import Generate from "./pages/Generate";
-import Dashboard from "./pages/Dashboard";
-import Auth from "./pages/Auth";
-import Admin from "./pages/Admin";
-import Feed from "./pages/Feed";
-import GalleryPage from "./pages/GalleryPage";
-import Challenges from "./pages/Challenges";
-import Blog from "./pages/Blog";
-import Profile from "./pages/Profile";
-import Rewards from "./pages/Rewards";
-import ComingSoon from "./pages/ComingSoon";
-import AssetManager from "./pages/AssetManager";
 import NotFound from "./pages/NotFound";
-import { AuthProvider } from "@/hooks/useAuth";
 
 const queryClient = new QueryClient();
 
@@ -41,54 +17,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AuthProvider>
-          <ScrollToTop />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/portfolio/:slug" element={<ProjectDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/project-intake" element={<ProjectIntake />} />
-            <Route path="/client-portal" element={<ClientPortal />} />
-            <Route path="/thank-you" element={<ThankYou />} />
-            <Route path="/generate" element={<Generate />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/challenges" element={<Challenges />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/my-page" element={<Profile />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/assets" element={<AssetManager />} />
-            <Route path="/asset-manager" element={<AssetManager />} />
-            {/* Studio aliases — all route to unified Generate page with tab preselected */}
-            <Route path="/studio/images" element={<Generate />} />
-            <Route path="/studio/videos" element={<Generate />} />
-            <Route path="/studio/audio" element={<Generate />} />
-            <Route path="/studio/apps" element={<Generate />} />
-            <Route path="/studio/design" element={<Generate />} />
-            <Route path="/studio/clipping" element={<Generate />} />
-            <Route path="/credits" element={<Pricing />} />
-            <Route path="/coming-soon" element={<ComingSoon />} />
-            <Route path="/settings" element={<ComingSoon />} />
-            <Route path="/subscription" element={<ComingSoon />} />
-            <Route path="/creator-program" element={<ComingSoon />} />
-            <Route path="/refer" element={<ComingSoon />} />
-            <Route path="/billing" element={<ComingSoon />} />
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-          <ChatWidget />
-        </AuthProvider>
+        <ScrollToTop />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
