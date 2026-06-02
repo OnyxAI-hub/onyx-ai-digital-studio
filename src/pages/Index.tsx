@@ -25,7 +25,7 @@ import {
 
 import xavierHeadshot from "@/assets/xavier-headshot.jpg";
 
-const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969";
+const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 const SPOTIFY_URL = "https://open.spotify.com/album/3ECiQ7o24hMVDSE4RE3oZa";
 
 const SkoolBtn = ({
