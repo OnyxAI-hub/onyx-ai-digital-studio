@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import onyxLogo from "@/assets/onyx-logo.png";
 
-const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969";
+const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 
 const navLinks = [
   { label: "Video Skool", href: "/#top" },
