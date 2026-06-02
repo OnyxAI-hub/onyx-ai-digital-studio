@@ -228,21 +228,32 @@ const Index = () => {
               Beyond the Skool, ONYX AI helps businesses and creators build websites, branding, voice agents, AI content systems, and more.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <div key={s.title} className="glass-card-hover p-6 group">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 text-[hsl(var(--ai-cyan))]">
-                    <s.icon className="h-5 w-5" />
-                  </div>
+              <div key={s.title} className="glass-card-hover overflow-hidden group">
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    width={1024}
+                    height={640}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
                   {s.price && (
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--ai-cyan))]">
+                    <span className="absolute top-3 right-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--ai-cyan))] bg-background/80 backdrop-blur-sm px-2 py-1 rounded border border-[hsl(var(--ai-cyan))]/30">
                       {s.price}
                     </span>
                   )}
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <div className="p-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 text-[hsl(var(--ai-cyan))] transition-shadow group-hover:shadow-[0_0_24px_-4px_hsl(var(--ai-cyan)/0.5)]">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">{s.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
