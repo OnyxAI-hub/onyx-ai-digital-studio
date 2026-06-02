@@ -75,12 +75,12 @@ const tools = [
 ];
 
 const services = [
-  { icon: Globe, title: "Website Builds", price: "Starting at $500", desc: "Modern websites and landing pages for creators, service businesses, salons, brands, and entrepreneurs." },
-  { icon: Phone, title: "Voice Agents", desc: "AI voice agents and phone/customer support flows to help businesses answer questions, capture leads, and route customers." },
-  { icon: Palette, title: "Branding", desc: "Logo concepts, visual direction, brand colors, social graphics, and AI-assisted brand assets." },
-  { icon: Wand2, title: "AI Creative Support", desc: "AI images, promo visuals, short-form content ideas, cover art concepts, and video concepts." },
-  { icon: Workflow, title: "Automation Support", desc: "Customer intake, booking/payment flows, follow-up systems, simple business workflows, and more." },
-  { icon: Megaphone, title: "Social Media Support", desc: "Content ideas, captions, post concepts, AI visuals, and creator/business content planning." },
+  { icon: Globe, title: "Website Builds", price: "Starting at $500", desc: "Modern websites and landing pages for creators, service businesses, salons, brands, and entrepreneurs.", image: serviceWebsite },
+  { icon: Phone, title: "Voice Agents", desc: "AI voice agents and phone/customer support flows to help businesses answer questions, capture leads, and route customers.", image: serviceVoice },
+  { icon: Palette, title: "Branding", desc: "Logo concepts, visual direction, brand colors, social graphics, and AI-assisted brand assets.", image: serviceBranding },
+  { icon: Wand2, title: "AI Creative Support", desc: "AI images, promo visuals, short-form content ideas, cover art concepts, and video concepts.", image: serviceCreative },
+  { icon: Workflow, title: "Automation Support", desc: "Customer intake, booking/payment flows, follow-up systems, simple business workflows, and more.", image: serviceAutomation },
+  { icon: Megaphone, title: "Social Media Support", desc: "Content ideas, captions, post concepts, AI visuals, and creator/business content planning.", image: serviceSocial },
 ];
 
 const Index = () => {
