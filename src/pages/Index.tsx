@@ -22,7 +22,7 @@ import {
   Megaphone,
   Terminal,
 } from "lucide-react";
-import onyxRobot from "@/assets/onyx-robot.png";
+
 import xavierHeadshot from "@/assets/xavier-headshot.jpg";
 
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969";
@@ -94,7 +94,7 @@ const Index = () => {
         </div>
 
         <div className="container-narrow px-4 py-20 md:py-28 w-full">
-          <div className="grid items-center gap-12 md:grid-cols-2">
+          <div className="flex flex-col items-center text-center">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
                 <Terminal className="h-3 w-3" /> ONYX AI Video Skool
@@ -108,10 +108,10 @@ const Index = () => {
                   & Monetization
                 </span>
               </h1>
-              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
+              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
                 Join ONYX AI Video Skool and learn AI image generation, cinematic video creation, viral content formats, monetization strategies, and AI music workflows with Suno.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center">
                 <SkoolBtn>Join the Skool</SkoolBtn>
                 <a href="#learn">
                   <Button
@@ -126,20 +126,6 @@ const Index = () => {
               <p className="mt-5 text-xs text-muted-foreground">
                 Join for <span className="text-foreground font-semibold">$9/month</span> on Skool.
               </p>
-            </div>
-
-            <div className="relative flex items-center justify-center">
-              <div
-                className="absolute inset-0 -z-10 blur-3xl opacity-70"
-                style={{ background: "radial-gradient(circle, hsl(var(--ai-cyan) / 0.45), transparent 60%)" }}
-              />
-              <img
-                src={onyxRobot}
-                alt="ONYX AI robot mascot"
-                width={1024}
-                height={1024}
-                className="w-full max-w-md drop-shadow-[0_0_80px_hsl(var(--ai-cyan)/0.45)]"
-              />
             </div>
           </div>
         </div>
