@@ -24,6 +24,12 @@ import {
 } from "lucide-react";
 
 import xavierHeadshot from "@/assets/xavier-headshot.jpg";
+import serviceWebsite from "@/assets/service-website.jpg";
+import serviceVoice from "@/assets/service-voice.jpg";
+import serviceBranding from "@/assets/service-branding.jpg";
+import serviceCreative from "@/assets/service-creative.jpg";
+import serviceAutomation from "@/assets/service-automation.jpg";
+import serviceSocial from "@/assets/service-social.jpg";
 
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 const SPOTIFY_URL = "https://open.spotify.com/album/3ECiQ7o24hMVDSE4RE3oZa";
@@ -69,12 +75,12 @@ const tools = [
 ];
 
 const services = [
-  { icon: Globe, title: "Website Builds", price: "Starting at $500", desc: "Modern websites and landing pages for creators, service businesses, salons, brands, and entrepreneurs." },
-  { icon: Phone, title: "Voice Agents", desc: "AI voice agents and phone/customer support flows to help businesses answer questions, capture leads, and route customers." },
-  { icon: Palette, title: "Branding", desc: "Logo concepts, visual direction, brand colors, social graphics, and AI-assisted brand assets." },
-  { icon: Wand2, title: "AI Creative Support", desc: "AI images, promo visuals, short-form content ideas, cover art concepts, and video concepts." },
-  { icon: Workflow, title: "Automation Support", desc: "Customer intake, booking/payment flows, follow-up systems, simple business workflows, and more." },
-  { icon: Megaphone, title: "Social Media Support", desc: "Content ideas, captions, post concepts, AI visuals, and creator/business content planning." },
+  { icon: Globe, title: "Website Builds", price: "Starting at $500", desc: "Modern websites and landing pages for creators, service businesses, salons, brands, and entrepreneurs.", image: serviceWebsite },
+  { icon: Phone, title: "Voice Agents", desc: "AI voice agents and phone/customer support flows to help businesses answer questions, capture leads, and route customers.", image: serviceVoice },
+  { icon: Palette, title: "Branding", desc: "Logo concepts, visual direction, brand colors, social graphics, and AI-assisted brand assets.", image: serviceBranding },
+  { icon: Wand2, title: "AI Creative Support", desc: "AI images, promo visuals, short-form content ideas, cover art concepts, and video concepts.", image: serviceCreative },
+  { icon: Workflow, title: "Automation Support", desc: "Customer intake, booking/payment flows, follow-up systems, simple business workflows, and more.", image: serviceAutomation },
+  { icon: Megaphone, title: "Social Media Support", desc: "Content ideas, captions, post concepts, AI visuals, and creator/business content planning.", image: serviceSocial },
 ];
 
 const Index = () => {
@@ -222,21 +228,32 @@ const Index = () => {
               Beyond the Skool, ONYX AI helps businesses and creators build websites, branding, voice agents, AI content systems, and more.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <div key={s.title} className="glass-card-hover p-6 group">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 text-[hsl(var(--ai-cyan))]">
-                    <s.icon className="h-5 w-5" />
-                  </div>
+              <div key={s.title} className="glass-card-hover overflow-hidden group">
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    width={1024}
+                    height={640}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
                   {s.price && (
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--ai-cyan))]">
+                    <span className="absolute top-3 right-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--ai-cyan))] bg-background/80 backdrop-blur-sm px-2 py-1 rounded border border-[hsl(var(--ai-cyan))]/30">
                       {s.price}
                     </span>
                   )}
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <div className="p-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 text-[hsl(var(--ai-cyan))] transition-shadow group-hover:shadow-[0_0_24px_-4px_hsl(var(--ai-cyan)/0.5)]">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">{s.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
