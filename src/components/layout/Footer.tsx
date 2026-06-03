@@ -31,9 +31,9 @@ const Footer = () => {
             <a href={INSTAGRAM_URL} className={linkClass}>
               <Instagram className="h-4 w-4" /> Instagram
             </a>
-            <a href="/#services" className={linkClass}>
+            <Link to="/#services" className={linkClass}>
               <Briefcase className="h-4 w-4" /> Services
-            </a>
+            </Link>
             <Link to="/contact" className={linkClass}>
               <Mail className="h-4 w-4" /> Contact
             </Link>
