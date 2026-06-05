@@ -31,6 +31,7 @@ import serviceCreative from "@/assets/service-creative.jpg";
 import serviceAutomation from "@/assets/service-automation.jpg";
 import serviceSocial from "@/assets/service-social.jpg";
 import introVideo from "@/assets/intro.mp4.asset.json";
+import lofiAlbumCover from "@/assets/lofi-album-cover.jpg.asset.json";
 
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 const SPOTIFY_URL = "https://open.spotify.com/album/3ECiQ7o24hMVDSE4RE3oZa";
@@ -338,16 +339,35 @@ const Index = () => {
                 Xavier is the creator behind ONYX AI and ONYX AI Video Skool. He creates with AI video tools, image generation platforms, and Suno music workflows, and built the Skool to help creators learn how to make better AI content and turn their skills into real opportunities.
               </p>
               <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-                He also released a full lo-fi album using Suno-assisted music workflows.{" "}
-                <a
-                  href={SPOTIFY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[hsl(var(--ai-cyan))] hover:text-[hsl(var(--ai-glow))] underline-offset-4 hover:underline"
-                >
-                  Listen on Spotify →
-                </a>
+                He also released a full lo-fi album using Suno-assisted music workflows.
               </p>
+
+              <a
+                href={SPOTIFY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-6 flex items-center gap-4 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-md p-3 pr-5 transition-all hover:border-[hsl(var(--ai-cyan))]/60 hover:bg-card/70 hover:shadow-[0_0_40px_-10px_hsl(var(--ai-cyan)/0.5)] max-w-md"
+              >
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-border/60">
+                  <img
+                    src={lofiAlbumCover.url}
+                    alt="Xavier's lo-fi album cover"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
+                    Lo-Fi Album · Suno
+                  </span>
+                  <p className="mt-1 font-display text-sm font-semibold tracking-tight truncate">
+                    Listen on Spotify
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    Made with AI music workflows →
+                  </p>
+                </div>
+              </a>
               <div className="mt-8">
                 <SkoolBtn>Join the Skool</SkoolBtn>
               </div>
