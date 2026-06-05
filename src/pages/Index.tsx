@@ -31,6 +31,7 @@ import serviceCreative from "@/assets/service-creative.jpg";
 import serviceAutomation from "@/assets/service-automation.jpg";
 import serviceSocial from "@/assets/service-social.jpg";
 import introVideo from "@/assets/intro.mp4.asset.json";
+import lofiAlbumCover from "@/assets/lofi-album-cover.jpg.asset.json";
 
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 const SPOTIFY_URL = "https://open.spotify.com/album/3ECiQ7o24hMVDSE4RE3oZa";
