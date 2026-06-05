@@ -358,7 +358,7 @@ const Index = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
-                    Lo-Fi Album · Suno
+                    Spotify
                   </span>
                   <p className="mt-1 font-display text-sm font-semibold tracking-tight truncate">
                     Listen on Spotify
