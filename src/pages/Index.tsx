@@ -100,13 +100,14 @@ const Index = () => {
           />
         </div>
 
-        <div className="container-narrow px-4 py-20 md:py-28 w-full">
-          <div className="flex flex-col items-center text-center">
-            <div>
+        <div className="container-narrow px-4 py-20 md:py-24 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+            {/* LEFT: Copy */}
+            <div className="text-center lg:text-left">
               <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
                 <Terminal className="h-3 w-3" /> ONYX AI Video Skool
               </span>
-              <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-[64px] font-extrabold tracking-[-0.03em] leading-[1.02]">
+              <h1 className="mt-6 font-display text-4xl md:text-5xl lg:text-[58px] font-extrabold tracking-[-0.03em] leading-[1.02]">
                 Learn AI Video,
                 <br />
                 Image Creation
@@ -115,10 +116,10 @@ const Index = () => {
                   & Monetization
                 </span>
               </h1>
-              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Join ONYX AI Video Skool and learn AI image generation, cinematic video creation, viral content formats, monetization strategies, and AI music workflows with Suno.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center">
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
                 <SkoolBtn>Join the Skool</SkoolBtn>
                 <a href="#learn">
                   <Button
@@ -134,57 +135,36 @@ const Index = () => {
                 Join for <span className="text-foreground font-semibold">$9/month</span> on Skool.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* INTRO VIDEO */}
-      <section id="intro" className="relative section-padding border-t border-border/40 overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10 opacity-60"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 0%, hsl(var(--ai-cyan) / 0.15), transparent 65%), radial-gradient(ellipse 50% 50% at 80% 100%, hsl(265 90% 60% / 0.12), transparent 70%)",
-          }}
-        />
-        <div className="container-narrow px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-[hsl(var(--ai-cyan))]">
-              <Sparkles className="h-3 w-3" /> Watch the Intro
-            </span>
-            <h2 className="mt-4 font-display text-3xl md:text-5xl font-extrabold tracking-[-0.025em]">
-              See What <span className="gradient-text">ONYX AI</span> Is About
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-muted-foreground">
-              A quick look at the world we're building — AI video, image creation, and the creator community behind it.
-            </p>
-          </div>
-
-          <div className="mt-12 relative mx-auto max-w-4xl">
-            <div
-              className="absolute -inset-4 -z-10 rounded-3xl blur-3xl opacity-70"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center, hsl(var(--ai-cyan) / 0.35), transparent 65%)",
-              }}
-            />
-            <div className="relative rounded-2xl overflow-hidden border border-[hsl(var(--ai-cyan))]/30 bg-card/40 backdrop-blur-md shadow-[0_0_60px_-15px_hsl(var(--ai-cyan)/0.5)]">
-              <div className="absolute top-3 left-3 z-10 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--ai-cyan))] animate-pulse-glow" />
-                ONYX AI
-              </div>
-              <video
-                src={introVideo.url}
-                className="w-full h-auto block"
-                controls
-                playsInline
-                preload="metadata"
+            {/* RIGHT: Intro video */}
+            <div id="intro" className="relative">
+              <div
+                className="absolute -inset-6 -z-10 rounded-3xl blur-3xl opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, hsl(var(--ai-cyan) / 0.35), transparent 65%)",
+                }}
               />
-              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl" />
+              <div className="relative rounded-2xl overflow-hidden border border-[hsl(var(--ai-cyan))]/30 bg-card/40 backdrop-blur-md shadow-[0_0_60px_-15px_hsl(var(--ai-cyan)/0.5)]">
+                <div className="absolute top-3 left-3 z-10 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--ai-cyan))] animate-pulse-glow" />
+                  ONYX AI · Intro
+                </div>
+                <video
+                  src={introVideo.url}
+                  className="w-full h-auto block aspect-video object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl" />
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+
 
 
       <section id="learn" className="section-padding section-charcoal border-y border-border/40">
