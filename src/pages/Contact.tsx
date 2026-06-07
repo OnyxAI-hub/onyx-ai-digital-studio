@@ -77,10 +77,10 @@ const Contact = () => {
           <AnimatedSection>
             <span className="mb-4 inline-block rounded-full border border-border/60 bg-card/60 px-4 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Contact</span>
             <h1 className="font-display text-4xl font-bold md:text-5xl tracking-tight">
-              Let's Build Something <span className="gradient-text">Powerful</span>
+              Work With <span className="gradient-text">Onyx AI</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Every inquiry is reviewed personally. Larger or more custom builds are best handled through a consultation first. Typical response within 24–48 hours.
+              Looking to grow your business with AI? Tell us what you need and we'll handle the rest. Response within 24 hours.
             </p>
           </AnimatedSection>
         </div>
@@ -131,7 +131,7 @@ const Contact = () => {
 
             <AnimatedSection delay={0.1} className="lg:col-span-2">
               <div className="glass-card p-8">
-                <h3 id="contact-form-heading" className="font-display text-xl font-bold mb-6 tracking-tight">Send a Message</h3>
+                <h3 id="contact-form-heading" className="font-display text-xl font-bold mb-6 tracking-tight">Business Inquiry</h3>
                 <Form {...form}>
                   <form
                     id="main-contact-form"
@@ -243,7 +243,7 @@ const Contact = () => {
                         data-testid="contact-form-submit"
                         aria-label="Send contact message"
                       >
-                        {isSubmitting ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
+                        {isSubmitting ? "Sending…" : "Submit Inquiry"} <Send className="h-4 w-4" />
                       </Button>
                     </div>
                   </form>

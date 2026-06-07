@@ -311,7 +311,7 @@ const Index = () => {
                 variant="outline"
                 className="border-[hsl(var(--ai-cyan))]/40 bg-card/40 backdrop-blur-md uppercase tracking-wider font-semibold hover:bg-card/70 hover:border-[hsl(var(--ai-cyan))]"
               >
-                Start a Project
+                Business Inquiry
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
