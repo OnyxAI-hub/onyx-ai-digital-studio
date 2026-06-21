@@ -38,7 +38,18 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-2xl">
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
-        <Link to="/" className="flex items-center gap-3">
+        <Link
+          to="/"
+          onClick={(e) => {
+            setMobileOpen(false);
+            if (pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="flex items-center gap-3"
+          aria-label="ONYX AI Home"
+        >
           <img src={onyxLogo} alt="ONYX AI" className="h-9 md:h-11 w-auto object-contain" />
         </Link>
 
