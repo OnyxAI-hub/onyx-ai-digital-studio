@@ -54,7 +54,7 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((l) =>
+          {navLinks.map((l: any) =>
             l.external ? (
               <a
                 key={l.label}
@@ -65,6 +65,15 @@ const Navbar = () => {
               >
                 {l.label}
               </a>
+            ) : l.to ? (
+              <Link
+                key={l.label}
+                to={l.to}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </Link>
             ) : (
               <button
                 key={l.hash}
@@ -96,7 +105,7 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl">
           <div className="flex flex-col gap-1 p-4">
-            {navLinks.map((l) =>
+            {navLinks.map((l: any) =>
               l.external ? (
                 <a
                   key={l.label}
@@ -108,6 +117,15 @@ const Navbar = () => {
                 >
                   {l.label}
                 </a>
+              ) : l.to ? (
+                <Link
+                  key={l.label}
+                  to={l.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+                >
+                  {l.label}
+                </Link>
               ) : (
                 <button
                   key={l.hash}
