@@ -851,6 +851,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_daily_reward: {
+        Args: { p_reward_id: string }
+        Returns: {
+          claimed_at: string
+          credits_awarded: number
+          id: string
+          reward_id: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "reward_claims"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
