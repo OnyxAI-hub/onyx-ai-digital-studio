@@ -43,15 +43,27 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((l) => (
-            <button
-              key={l.hash}
-              onClick={() => goToSection(l.hash)}
-              className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </button>
-          ))}
+          {navLinks.map((l) =>
+            l.external ? (
+              <a
+                key={l.label}
+                href={l.external}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ) : (
+              <button
+                key={l.hash}
+                onClick={() => goToSection(l.hash)}
+                className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </button>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex">
