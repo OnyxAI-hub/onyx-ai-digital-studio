@@ -7,7 +7,7 @@ import onyxLogo from "@/assets/onyx-logo.png";
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 
 const navLinks = [
-  { label: "Video Skool", hash: "top" },
+  { label: "Skool", hash: "top", external: SKOOL_URL },
   { label: "What You'll Learn", hash: "learn" },
   { label: "Community", hash: "community" },
   { label: "Services", hash: "services" },
@@ -40,21 +40,30 @@ const Navbar = () => {
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
         <Link to="/" className="flex items-center gap-3">
           <img src={onyxLogo} alt="ONYX AI" className="h-9 md:h-11 w-auto object-contain" />
-          <span className="hidden sm:inline font-display text-[11px] md:text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground">
-            Video Skool
-          </span>
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((l) => (
-            <button
-              key={l.hash}
-              onClick={() => goToSection(l.hash)}
-              className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </button>
-          ))}
+          {navLinks.map((l) =>
+            l.external ? (
+              <a
+                key={l.label}
+                href={l.external}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ) : (
+              <button
+                key={l.hash}
+                onClick={() => goToSection(l.hash)}
+                className="rounded-md px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </button>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex">
@@ -76,15 +85,28 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl">
           <div className="flex flex-col gap-1 p-4">
-            {navLinks.map((l) => (
-              <button
-                key={l.hash}
-                onClick={() => goToSection(l.hash)}
-                className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-              >
-                {l.label}
-              </button>
-            ))}
+            {navLinks.map((l) =>
+              l.external ? (
+                <a
+                  key={l.label}
+                  href={l.external}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <button
+                  key={l.hash}
+                  onClick={() => goToSection(l.hash)}
+                  className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+                >
+                  {l.label}
+                </button>
+              )
+            )}
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
               <Button className="w-full bg-[hsl(var(--ai-cyan))] text-background hover:bg-[hsl(var(--ai-glow))] uppercase tracking-[0.18em] font-semibold">
                 Join the Skool
