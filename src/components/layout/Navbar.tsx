@@ -40,9 +40,6 @@ const Navbar = () => {
       <div className="container-narrow flex h-[72px] items-center justify-between px-4 md:h-20">
         <Link to="/" className="flex items-center gap-3">
           <img src={onyxLogo} alt="ONYX AI" className="h-9 md:h-11 w-auto object-contain" />
-          <span className="hidden sm:inline font-display text-[11px] md:text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground">
-            Video Skool
-          </span>
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
