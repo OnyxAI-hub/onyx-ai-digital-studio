@@ -85,15 +85,28 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl">
           <div className="flex flex-col gap-1 p-4">
-            {navLinks.map((l) => (
-              <button
-                key={l.hash}
-                onClick={() => goToSection(l.hash)}
-                className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-              >
-                {l.label}
-              </button>
-            ))}
+            {navLinks.map((l) =>
+              l.external ? (
+                <a
+                  key={l.label}
+                  href={l.external}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <button
+                  key={l.hash}
+                  onClick={() => goToSection(l.hash)}
+                  className="text-left rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+                >
+                  {l.label}
+                </button>
+              )
+            )}
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
               <Button className="w-full bg-[hsl(var(--ai-cyan))] text-background hover:bg-[hsl(var(--ai-glow))] uppercase tracking-[0.18em] font-semibold">
                 Join the Skool
