@@ -7,7 +7,7 @@ import onyxLogo from "@/assets/onyx-logo.png";
 const SKOOL_URL = "https://www.skool.com/onyx-ai-video-skool-6969/about";
 
 const navLinks = [
-  { label: "Video Skool", hash: "top" },
+  { label: "Skool", hash: "top", external: SKOOL_URL },
   { label: "What You'll Learn", hash: "learn" },
   { label: "Community", hash: "community" },
   { label: "Services", hash: "services" },
