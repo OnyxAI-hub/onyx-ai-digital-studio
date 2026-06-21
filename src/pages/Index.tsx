@@ -104,34 +104,42 @@ const Index = () => {
         <div className="container-narrow px-4 py-20 md:py-24">
           <div className="text-center max-w-4xl mx-auto">
             <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--ai-cyan))]/30 bg-[hsl(var(--ai-cyan))]/5 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--ai-cyan))]">
-              <Terminal className="h-3 w-3" /> ONYX AI Video Skool
+              <Terminal className="h-3 w-3" /> ONYX AI
             </span>
             <h1 className="mt-6 font-display text-4xl md:text-5xl lg:text-[72px] font-extrabold tracking-[-0.03em] leading-[1.02]">
-              Learn AI Video,
+              We Build AI-Powered
               <br />
-              Image Creation
+              Brands & Teach You
               <br />
               <span className="bg-gradient-to-r from-[hsl(var(--ai-cyan))] via-[hsl(var(--ai-glow))] to-[hsl(265_90%_72%)] bg-clip-text text-transparent">
-                & Monetization
+                How to Create
               </span>
             </h1>
-            <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Join ONYX AI Video Skool and learn AI image generation, cinematic video creation, viral content formats, monetization strategies, and AI music workflows with Suno.
+            <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              ONYX AI is a business that builds websites, voice agents, automations, branding, and AI content systems for businesses — plus runs the ONYX AI Video Skool, where you learn AI video, image creation, monetization, and music workflows.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center">
-              <SkoolBtn>Join the Skool</SkoolBtn>
-              <a href="#learn">
+              <Link to="/contact">
+                <Button
+                  size="lg"
+                  className="bg-[hsl(var(--ai-cyan))] text-background hover:bg-[hsl(var(--ai-glow))] font-semibold uppercase tracking-wider shadow-[0_0_40px_-10px_hsl(var(--ai-cyan)/0.7)]"
+                >
+                  Work With Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-border/60 bg-card/40 backdrop-blur-md uppercase tracking-wider font-semibold hover:bg-card/70 hover:border-[hsl(var(--ai-cyan))]/50"
                 >
-                  Explore What You'll Learn
+                  Join the Skool
                 </Button>
               </a>
             </div>
             <p className="mt-5 text-xs text-muted-foreground">
-              Join for <span className="text-foreground font-semibold">$9/month</span> on Skool.
+              Services start at <span className="text-foreground font-semibold">$500</span> · Skool membership is <span className="text-foreground font-semibold">$9/month</span>
             </p>
           </div>
         </div>
